@@ -1,0 +1,146 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>顾宇的研习笔记 on 顾宇的研习笔记</title>
+    <link>https://www.guyu.me/</link>
+    <description>Recent content in 顾宇的研习笔记 on 顾宇的研习笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 13 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>外部分享</title>
+      <link>https://www.guyu.me/share/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.guyu.me/share/</guid>
+      <description>
+
+&lt;h2 id=&#34;2019-年-6-场&#34;&gt;2019 年 - 6 场&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;20191214-北京-中国软件技术大会-DevOps 的质量从用户故事开始&lt;/li&gt;
+&lt;li&gt;20191116-北京-Top100Summit-千人规模团队DevOps改进&lt;/li&gt;
+&lt;li&gt;20191026-北京-NCTS-DevOps的质量从需求质量开始&lt;/li&gt;
+&lt;li&gt;20190922-深圳-敏捷之旅-20190922-深圳-DevOps质量从用户故事开始&lt;/li&gt;
+&lt;li&gt;20190706-北京-DOIS-微服务产品团队规模化DevOps演进模式&lt;/li&gt;
+&lt;li&gt;20190623-深圳-DevOpsMeetup-千人规模DevOps组织演进模式&lt;/li&gt;
+&lt;li&gt;20190523-香港-CloudExpo-CloudNative DevOps&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2018-年-12-场&#34;&gt;2018 年 - 12 场&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;20181117-上海-CNUTCon-一次微服务架构决策的案例&lt;/li&gt;
+&lt;li&gt;20181103-深圳-DOIS-云原生下的 DevOps 新实践&lt;/li&gt;
+&lt;li&gt;20181127-深圳-腾讯云-从DevOps标准评估中我们学到了什么&lt;/li&gt;
+&lt;li&gt;20181014-厦门-DevOpsMeetup-一个敏捷开发团队的DevOps之路&lt;/li&gt;
+&lt;li&gt;20181013-福州-DevOpsMeetup-一个敏捷开发团队的DevOps之路&lt;/li&gt;
+&lt;li&gt;20180912-台北-DevOpsDays-用DevOps故事落地DevOps实践&lt;/li&gt;
+&lt;li&gt;20180902-广州-DevOpsMeetup-用DevOps故事落地DevOps实践&lt;/li&gt;
+&lt;li&gt;20180721-西安-AgileTour-团队敏捷文化构建工作坊&lt;/li&gt;
+&lt;li&gt;20180630-北京-DOIS-成功的微服务应该是什么样&lt;/li&gt;
+&lt;li&gt;20180629-北京-DOIS-应用设计标准解读&lt;/li&gt;
+&lt;li&gt;20180602-深圳-TechRadarSummit-CloudNativeDevOps&lt;/li&gt;
+&lt;li&gt;20180415-深圳-GOPS2018-微服务落地反思以及高效落地&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2017-年-7-场&#34;&gt;2017 年 - 7 场&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;20171028-北京-TechNeo-用基础设施即代码自动化架构迁移&lt;/li&gt;
+&lt;li&gt;20171021-厦门-MDP-微服务反思工作坊&lt;/li&gt;
+&lt;li&gt;20170917-北京-JAM-大型团队Jenkins最佳实践分享&lt;/li&gt;
+&lt;li&gt;20170818-上海-DevOpsDays-无服务器化的微服务持续交付&lt;/li&gt;
+&lt;li&gt;20170729-北京-QingCloudInsight-当你的持续集成服务器成为安全隐患&lt;/li&gt;
+&lt;li&gt;20170422-南京-NJSD2017-打造你的DevOps技术雷达&lt;/li&gt;
+&lt;li&gt;20170421-深圳-GOPS2017-DevOps可视化在电信企业的应用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2016-年-1-场&#34;&gt;2016 年 - 1 场&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;20161217-西安-DevOpsMeetUp-MicroService In Serverless&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>https://www.guyu.me/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.guyu.me/about/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;https://www.guyu.me/images/me/avatar.png&#34; alt=&#34;我&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;您好，我是顾宇，我目前专注于 DevOps，云计算，微服务和全功能敏捷团队的实践和推广。我在过去 6 年中在国内外不同规模的客户和项目中提供了敏捷，DevOps 和 微服务的培训、咨询和实施服务，积累了丰富的经验。。并且参与了《研发运营一体化能力成熟度模型》（DevOps标准）和《分布式应用架构技术能力要求 第一部分：微服务平台》（微服务标准）的编写。&lt;/p&gt;
+
+&lt;h2 id=&#34;职业经历&#34;&gt;职业经历&lt;/h2&gt;
+
+&lt;p&gt;见&lt;a href=&#34;https://www.linkedin.com/in/wizardbyron/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;LinkedIn&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;专栏&#34;&gt;专栏&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/u/66fea2f123be&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;简书&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://juejin.im/user/597bf69d6fb9a03c5e43e673&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;掘金&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://cloud.tencent.com/developer/column/4781&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;腾讯云+社区&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/byronm&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;CSDN博客&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://gitbook.cn/gitchat/author/58397910a8f7f84532595b98&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;GitChat&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.itdks.com/member/people/2551773&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;IT 大咖说&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://insights.thoughtworks.cn/author/guyu/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;ThoughtWorks 洞见&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;出版&#34;&gt;出版&lt;/h2&gt;
+
+&lt;h3 id=&#34;2017-年&#34;&gt;2017 年&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://read.amazon.cn/kp/embed?asin=B076X4NS7F&amp;amp;preview=newtab&amp;amp;linkCode=kpe&amp;amp;ref_=cm_sw_r_kb_dp_rRMMAbY2GMZG8&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;ThoughtWorks 洞见：微服务文集（二）&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2016-年&#34;&gt;2016 年&lt;/h3&gt;
+
+&lt;p&gt;翻译&lt;a href=&#34;https://www.amazon.cn/dp/B012OJWO12/ref=sr_1_1?ie=UTF8&amp;amp;qid=1520069374&amp;amp;sr=8-1&amp;amp;keywords=%E4%B8%83%E5%91%A8%E4%B8%83+Web+%E6%A1%86%E6%9E%B6&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;《七周七 Web 框架》&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;演讲视频&#34;&gt;演讲视频&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.itdks.com/dakalive/detail/12289&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;CloudNative 时代的 DevOps 应该怎么做？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.itdks.com/dakalive/detail/5450&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;大型团队 Jenkins 的构建最佳实践&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.itdks.com/dakalive/detail/3659&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;当持续集成服务器成为了安全关键隐患&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;在线文章发表&#34;&gt;在线文章发表&lt;/h2&gt;
+
+&lt;h3 id=&#34;发表于-thoughtworks-洞见&#34;&gt;发表于 ThoughtWorks 洞见&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://insights.thoughtworks.cn/case-of-serverless-microservices-continuous-delivery/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Serverless的微服务持续交付案例&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://insights.thoughtworks.cn/serverless-microservices-architecture-case/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Serverless的微服务架构案例&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://insights.thoughtworks.cn/improve-the-efficiency-of-microservices/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;推进微服务落地的 7 个步骤&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://insights.thoughtworks.cn/five-problems-of-microservices/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;微服务实施常被忽视的 5 个难点&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://insights.thoughtworks.cn/to-avoid-ci-become-a-security-risk/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;避免 CI 成为安全隐患&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://insights.thoughtworks.cn/nine-trends-of-devops/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;DevOps 技术发展的9个趋势&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Posts</title>
+      <link>https://www.guyu.me/posts/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.guyu.me/posts/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

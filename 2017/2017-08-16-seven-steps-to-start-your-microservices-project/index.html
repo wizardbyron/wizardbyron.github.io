@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="顾宇">
+  
+  
+  
+  <link rel="prev" href="https://www.guyu.me/2017/2017-06-28-are-your-ci-mining/" />
+  <link rel="next" href="https://www.guyu.me/2017/2017-08-16-five-blocks-to-microservices/" />
+  <link rel="canonical" href="https://www.guyu.me/2017/2017-08-16-seven-steps-to-start-your-microservices-project/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           提升微服务实施效率的 7 个步骤 | 顾宇的研习笔记
+       
+  </title>
+  <meta name="title" content="提升微服务实施效率的 7 个步骤 | 顾宇的研习笔记">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/www.guyu.me"
+    },
+    "articleSection" : "posts",
+    "name" : "提升微服务实施效率的 7 个步骤",
+    "headline" : "提升微服务实施效率的 7 个步骤",
+    "description" : "本文是GitChat《为什么微服务实施那么难？如何高效推进微服务架构演进》的下半部分。标题和部分内容已做修改。\n 微服务实施常被忽视的 5 个难点中描述了实施微服务常见的主要阻碍。本文针对前文提到的 5 个难点提出了 7 个步骤。每个步骤分别包含了管理和技术两方面的建议。\n如果之前的 5 点都让你膝盖中箭。那么根据我个人的经验，综合解决微服务实施难点的第一步就是：\n步骤1：以终为始，先构建一个独立的敏捷微服务团队 我们对微服务的期待就是：可以独立开发，独立部署，独立发布，并且去中心化管理。那么，我们就先构造一只“可以独立开发，独立部署，并且去中心化管理”的团队。\n这个团队为了达到这个目标，会采取各种方法（例如：DevOps，全功能团队）解决阻碍”独立开发，独立部署，独立发布 和 去中心化的问题。而根据康威定理，系统的架构会慢慢向去中心化方向发展。\n一定要意识到，这个过程会打破大型系统自上而下的既有流程并采用更有生产力的方式构建新的组织结构。你索要做的就是要充分信任团队，把它看做是一个微型的技术管理创新。不要用老的方式控制团队的运作，这会打击团队的士气。\n管理建议：\n 让微服务团队完全脱离之前的工作，专心于微服务的工作中。如果分心同时做几件事，每件事都不会做到最好。 给微服务团队一些特权，为了满足“全功能微服务团队的”诉求，特事特办。 如果团队在执行的过程出现了依赖从而阻碍了进度。则需要把依赖标明出来。代码中的依赖容易看见，但组织中的流程依赖很难发现。 为了避免团队对外部的“依赖惯性”，让团队自己想办法在内部解决依赖。 组织流程的改变也是很重要的微服务架构产物，而不仅仅是微服务代码或基础设施。  技术建议：\n 为微服务建立一个全新的代码库，而不要从原先的代码库上克隆或者复制，避免和原团队的开发依赖。 建设一个独立的持续交付流水线，最好是通过“流水线即代码技术”（例如 Jenkinsfile）来自动生成流水线。  步骤2：构建微服务的“电梯演讲” 成立了微服务团队之后，接下来就是要选择第一个实现的微服务。但是这个微服务应该多大，边界在哪是个问题。这不需要进行严格的设计和反复的论证，只要发现当前的痛点或者想要完成一个假设就足够上路了。让整个过程变轻，而不是变重。\n我的建议是通过“微服务电梯演讲”的方式来定义微服务。格式可以是：\n (XX微服务）用来 在（出现痛点的场景）的情况下 解决了（解决现有的某个问题） 从而（达到什么样的效果） 提升了（微服务的价值）\n 例如：\n （订单查询微服务）用来 在（订单查询数量快速）的情况下 解决了（访问数量迅速升高导致整体应用性能下降的问题） 从而（分离了订单查询请求） 提升了（提升了其他功能的性能）\n 当构造了微服务的电梯演讲，团队就可以以此为原则启动了。当碰到和现有系统冲突的问题，替换几个词比较有帮助你做决策。（语言一定程度上也是具有魔力的）\n把“拆分”换成“移除”。例如：“从现有系统中拆分出订单查询功能” 转变为 ”从现有系统中移除订单查询功能“。思维方式就从一个团队负责两个系统变成了两个团队负责两个系统。\n把“集成”换成“调用”。例如：”用户注册和用户登录需要集成”转变为“用户登录服务需要调用用户注册服务的信息”。思维方式就把两个系统的关系更精确了，从而明确了微服务之间的关系和沟通方式。\n管理建议：\n 把微服务的电梯演讲打印出来挂到墙上，让团队成员铭记于心。这会强化组织对微服务的边界认识。 随着团队的反思和学习，电梯演讲有可能会变更，但一定要让团队形成共识好和一致的意见。 不要期望一次就能划分正确。划分是一个持续权衡取舍的过程。  技术建议：\n 明确了微服务的职责和边界之后再去看代码，否则会被代码的复杂度影响。 领域驱动设计（DDD）可以帮助你更好的划分微服务。领域驱动设计很好的遵循了“关注点分离”（Separation of concerns，SOC）的原则，提出了更成熟、清晰的分层架构。 不会领域驱动设计（DDD）也没有关系。简单的使用“关注点分离原则”也可以帮你达到这一点。例如：从接口中分离出流量较大的接口独立部署，把读数据库和写数据库的 API 分开独立部署，把静态和动态访问分离……等等。  步骤3：以最小的代价发布出第一个微服务 要注意两个关键点：一个是“最小的代价”，另一个是“发布”（Release）。",
+    "inLanguage" : "zh-cn",
+    "author" : "顾宇",
+    "creator" : "顾宇",
+    "publisher": "顾宇",
+    "accountablePerson" : "顾宇",
+    "copyrightHolder" : "顾宇",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-08-16 00:00:00 \x2b0000 UTC",
+    "dateModified" : "2017-08-16 00:00:00 \x2b0000 UTC",
+    "url" : "https:\/\/www.guyu.me\/2017\/2017-08-16-seven-steps-to-start-your-microservices-project\/",
+    "wordCount" : "252",
+    "keywords" : [ "微服务","架构", "顾宇的研习笔记"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.guyu.me">顾宇的研习笔记</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/share/" title="外部分享">外部分享</a>
+                
+                <a class="menu-item" href="https://www.guyu.me/resume/" title="">个人简历</a>
+                
+                <a class="menu-item" href="/about/" title="关于我">关于我</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.guyu.me">顾宇的研习笔记</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/share/" title="外部分享">外部分享</a>
+                
+                <a class="menu-item" href="https://www.guyu.me/resume/" title="">个人简历</a>
+                
+                <a class="menu-item" href="/about/" title="关于我">关于我</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">提升微服务实施效率的 7 个步骤</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://www.guyu.me" rel="author">顾宇</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-08-16 itemprop="datePublished">August 16, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://www.guyu.me/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"> 微服务 </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<blockquote>
+<p>本文是GitChat《为什么微服务实施那么难？如何高效推进微服务架构演进》的下半部分。标题和部分内容已做修改。</p>
+</blockquote>
+
+<p>微服务实施常被忽视的 5 个难点中描述了实施微服务常见的主要阻碍。本文针对前文提到的 5 个难点提出了 7 个步骤。每个步骤分别包含了管理和技术两方面的建议。</p>
+
+<p>如果之前的 5 点都让你膝盖中箭。那么根据我个人的经验，综合解决微服务实施难点的第一步就是：</p>
+
+<h2 id="步骤1-以终为始-先构建一个独立的敏捷微服务团队">步骤1：以终为始，先构建一个独立的敏捷微服务团队</h2>
+
+<p>我们对微服务的期待就是：可以独立开发，独立部署，独立发布，并且去中心化管理。那么，我们就先构造一只“可以独立开发，独立部署，并且去中心化管理”的团队。</p>
+
+<p>这个团队为了达到这个目标，会采取各种方法（例如：DevOps，全功能团队）解决阻碍”独立开发，独立部署，独立发布 和 去中心化的问题。而根据康威定理，系统的架构会慢慢向去中心化方向发展。</p>
+
+<p>一定要意识到，这个过程会打破大型系统自上而下的既有流程并采用更有生产力的方式构建新的组织结构。你索要做的就是要充分信任团队，把它看做是一个微型的技术管理创新。不要用老的方式控制团队的运作，这会打击团队的士气。</p>
+
+<p><strong>管理建议</strong>：</p>
+
+<ul>
+<li>让微服务团队完全脱离之前的工作，专心于微服务的工作中。如果分心同时做几件事，每件事都不会做到最好。</li>
+<li>给微服务团队一些特权，为了满足“全功能微服务团队的”诉求，特事特办。</li>
+<li>如果团队在执行的过程出现了依赖从而阻碍了进度。则需要把依赖标明出来。代码中的依赖容易看见，但组织中的流程依赖很难发现。</li>
+<li>为了避免团队对外部的“依赖惯性”，让团队自己想办法在内部解决依赖。</li>
+<li>组织流程的改变也是很重要的微服务架构产物，而不仅仅是微服务代码或基础设施。</li>
+</ul>
+
+<p><strong>技术建议</strong>：</p>
+
+<ul>
+<li>为微服务建立一个全新的代码库，而不要从原先的代码库上克隆或者复制，避免和原团队的开发依赖。</li>
+<li>建设一个独立的持续交付流水线，最好是通过“流水线即代码技术”（例如 Jenkinsfile）来自动生成流水线。</li>
+</ul>
+
+<h2 id="步骤2-构建微服务的-电梯演讲">步骤2：构建微服务的“电梯演讲”</h2>
+
+<p>成立了微服务团队之后，接下来就是要选择第一个实现的微服务。但是这个微服务应该多大，边界在哪是个问题。这不需要进行严格的设计和反复的论证，只要发现当前的痛点或者想要完成一个假设就足够上路了。让整个过程变轻，而不是变重。</p>
+
+<p>我的建议是通过“微服务电梯演讲”的方式来定义微服务。格式可以是：</p>
+
+<blockquote>
+<p>(XX微服务）用来
+在（出现痛点的场景）的情况下
+解决了（解决现有的某个问题）
+从而（达到什么样的效果）
+提升了（微服务的价值）</p>
+</blockquote>
+
+<p>例如：</p>
+
+<blockquote>
+<p>（订单查询微服务）用来
+在（订单查询数量快速）的情况下
+解决了（访问数量迅速升高导致整体应用性能下降的问题）
+从而（分离了订单查询请求）
+提升了（提升了其他功能的性能）</p>
+</blockquote>
+
+<p>当构造了微服务的电梯演讲，团队就可以以此为原则启动了。当碰到和现有系统冲突的问题，替换几个词比较有帮助你做决策。（语言一定程度上也是具有魔力的）</p>
+
+<p><strong>把“拆分”换成“移除”</strong>。例如：“从现有系统中拆分出订单查询功能” 转变为 ”从现有系统中移除订单查询功能“。思维方式就从一个团队负责两个系统变成了两个团队负责两个系统。</p>
+
+<p><strong>把“集成”换成“调用”</strong>。例如：”用户注册和用户登录需要集成”转变为“用户登录服务需要调用用户注册服务的信息”。思维方式就把两个系统的关系更精确了，从而明确了微服务之间的关系和沟通方式。</p>
+
+<p><strong>管理建议</strong>：</p>
+
+<ul>
+<li>把微服务的电梯演讲打印出来挂到墙上，让团队成员铭记于心。这会强化组织对微服务的边界认识。</li>
+<li>随着团队的反思和学习，电梯演讲有可能会变更，但一定要让团队形成共识好和一致的意见。</li>
+<li>不要期望一次就能划分正确。划分是一个持续权衡取舍的过程。</li>
+</ul>
+
+<p><strong>技术建议</strong>：</p>
+
+<ul>
+<li>明确了微服务的职责和边界之后再去看代码，否则会被代码的复杂度影响。</li>
+<li>领域驱动设计（DDD）可以帮助你更好的划分微服务。领域驱动设计很好的遵循了“关注点分离”（Separation of concerns，SOC）的原则，提出了更成熟、清晰的分层架构。</li>
+<li>不会领域驱动设计（DDD）也没有关系。简单的使用“关注点分离原则”也可以帮你达到这一点。例如：从接口中分离出流量较大的接口独立部署，把读数据库和写数据库的 API 分开独立部署，把静态和动态访问分离……等等。</li>
+</ul>
+
+<h2 id="步骤3-以最小的代价发布出第一个微服务">步骤3：以最小的代价发布出第一个微服务</h2>
+
+<p>要注意两个关键点：<strong>一个是“最小的代价”，另一个是“发布”（Release）</strong>。</p>
+
+<p>正如前文所述，微服务架构本身就觉了微服务一定是低成本低风险的渐进式演进。而最大的浪费在于：</p>
+
+<ol>
+<li><p>级别/职责分工明确的组织沟通结构。</p></li>
+
+<li><p>“长时间，慢反馈”的行动习惯。</p></li>
+
+<li><p>先进且学习成本较高的技术栈。</p></li>
+</ol>
+
+<p>因此，“最小的代价”包含了以下三个方面：</p>
+
+<ol>
+<li><p>最精简的独立敏捷全功能团队。</p></li>
+
+<li><p>最快的时间。</p></li>
+
+<li><p>代价最小的技术栈。</p></li>
+</ol>
+
+<p>此外，很多微服务的“爱好者”由于害怕失败，因此将微服务技术始终放在“实验室”里。要勇于面对失败，在生产环境中面对真实的问题，但要采取一些规避风险的措施。</p>
+
+<p><strong>管理建议</strong>：</p>
+
+<ul>
+<li>尽量让现有微服务团队自己学习解决问题，成为全功能团队。如无必要，绝不增添新的人手。</li>
+<li>“扯破嗓子不如甩开膀子”，先动起来，在前进中解决问题。</li>
+<li>先考虑最后如何发布，根据发布流程倒推。</li>
+</ul>
+
+<p><strong>技术建议</strong>：</p>
+
+<ul>
+<li>根据当前技术采用的情况选择代价较小的技术栈。</li>
+<li>采用动态特性开关（Feature Toggle），在发布后可以在生产环境动态的控制微服务的启用，降低失败风险。</li>
+<li>如果采用了特性开关，一定要设立删除特性开关和对应旧代码的时间，一般不超过两个月。否则后面大量的特性开关会带来管理成本的提升和代码的凌乱。</li>
+<li>由于团队比较小，功能比较单一，不建议采用分支来构建微服务，而应该采用单主干方式开发。</li>
+</ul>
+
+<h2 id="步骤4-取得快速胜利-quick-wins-演示-showcase-驱动开发">步骤4：取得快速胜利（Quick wins），演示（Showcase）驱动开发</h2>
+
+<p>刚开始进行微服务改造的时候一定会是一个试错的过程。如果目标定得太大，会让团队倍感压力，从而士气低落。而制定每日的短期目标，赢得快速胜利则会不断激励团队的士气。通过设定当天结束的产出来确定今天需要做什么是一个非常有效的办法。</p>
+
+<p>每日演示（Daily Showcase）就是一种推进产出的做法。每天向团队分享今天的工作内容，使小组能够共同学习。并且以当天或者明天的 showcase 作为目标。每个人showcase 的内容一般不超过20分钟，一天的 showcase 时间不超过一小时。可以早上 showcase，也可以下班后 showcase。</p>
+
+<p>常见的快速胜利目标如下：</p>
+
+<ul>
+<li>构造第一条微服务流水线。</li>
+<li>上线第一个微服务 HelloWorld</li>
+<li>构造出第一个微服务自动化测试。</li>
+</ul>
+
+<p>而以下的目标不适合作为快速胜利的目标：</p>
+
+<ul>
+<li>构造出微服务 DevOps 平台。</li>
+<li>完成整个产品的微服务架构拆分。</li>
+<li>构造微服务自动化运维体系。</li>
+</ul>
+
+<p><strong>管理建议</strong>：</p>
+
+<ul>
+<li>要防止团队画大饼，完成好每日和每周的工作目标即可。微服务开发本身就没有很长周期。</li>
+<li>强迫团队有所产出，这样才能用关键产出驱动开发。产出不一定是代码或者基础设施，一篇总结，或者学习的文章分享，甚至是踩过的坑和遇到的问题都可以展示，目的是要打造自治学习的团队。</li>
+<li>贵在坚持，不要计划太远。超过一个月，就要对目标是不是范围过大进行反思。</li>
+<li>以天为单位拆分任务，超过一天的必须要拆分。无法在一天完成的工作需要拆分出阶段性产出。</li>
+<li>如果能结对，并且能够每天交换结对，showcase 不必要。</li>
+<li>可视化所有任务，用敏捷看板来管理任务是了解现状的最好方式。</li>
+</ul>
+
+<p><strong>技术建议</strong>：</p>
+
+<ul>
+<li>除了让第一个 HelloWord 微服务尽快发布到生产环境，其它的不要想太多。</li>
+<li>完成了 HelloWord 的发布，然后要考虑如何对发布流程进行改进。而不是上线业务。</li>
+</ul>
+
+<h2 id="步骤5-代码未动-devops-先行">步骤5：代码未动，DevOps 先行</h2>
+
+<p>微服务解耦的本质是把代码内部的复杂性通过一些工具转化外部复杂性。把代码内部的复杂性分散到各个微服务中以降低整体复杂性和架构风险。在这个过程中会大量采用了 DevOps 技术和工具。也可以说，微服务是 DevOps 文化和技术在走到极致的必然结果。</p>
+
+<p>以 J2EE 的应用为例，以前Web Server + App Server + MiddleWare + Database 的传统架构被代码更少，更多的基础设施工具所取代。因为基础设施相对于代码来说更加稳定，更加利于扩展。</p>
+
+<p>我把微服务的技术架构问题比作“搭台唱戏”：首先需要建立好微服务交付和运行的平台，然后让微服务上台“唱戏”。</p>
+
+<p>这个平台一开始不需要很完善，只需要满足生产上线的必要要求即可。而在很多企业里，这个部分是由 Ops 团队在交付流程的末尾把关的。因此，把最后一道关卡的确认工作放到最前面考虑可以减少后期的返工以及不必要的浪费。</p>
+
+<p>以前，软件的开发和测试过程是分开的。然而，随着 DevOps 运动的兴起和各种自动化运维工具的兴起，这之间的必要性不如从前，只要有足够的自动化测试做质量保证，就可以很快的将微服务快速部署和发布到生产环境上。</p>
+
+<p>最开始的时候，哪怕是发布一个 Hello World 程序，都表明微服务的持续交付和运行的平台已经搭建好，微服务交付流程已经打通，这一点是重中之重。</p>
+
+<p>从技术交付产物来说，DevOps 主要交付两点：</p>
+
+<p><strong>持续交付流水线</strong>。</p>
+
+<p><strong>微服务运行平台</strong>。</p>
+
+<p>为了保证微服务交付的高效，需要把这二者通过自动化的方式有机的结合起来，而不是各为其主。让开发和运维的矛盾变成“自动化的开发运维矛盾”</p>
+
+<p>此外，DevOps 指的不光是一系列技术，更是一种工作方式。从团队工作方式来说，DevOps 要做到：</p>
+
+<p>要让 Dev 和 Ops 共同参与决策，设计，实现和维护。</p>
+
+<p>团队完全独立自主，打破对现有流程的依赖。</p>
+
+<p>不断的追求改进，让团队行程改进的团队文化。</p>
+
+<p><strong>管理建议</strong>:</p>
+
+<ul>
+<li>给团队继续前进最大的动力就是新程序快速投入生产。</li>
+<li>如果你的组织是 Dev 和 Ops 分离的组织，先咨询一下 Ops 工程师的意见。最好是能够给微服务团队里面配备一名 Ops 工程师。</li>
+<li>如果不具备实施 DevOps 的条件，微服务架构就要从运维侧，而不是开发侧开始进行。</li>
+</ul>
+
+<p><strong>技术建议</strong>：</p>
+
+<ul>
+<li>微服务的平台一开始可以很简单，可以以后慢慢增强和扩展。但是一定要部署到生产环境里使用。</li>
+<li>如果想使用现成的微服务平台可以参考 Spring Cloud。</li>
+<li>微服务运行平台可以通过反向代理和生产环境并行运行。</li>
+<li>采用灰度发布技术在生产环境中逐步提升微服务的使用占比。</li>
+<li>基础设施即代码是 DevOps 核心实践，可以帮助开发人员迅速在本机构建生产环境相似的开发环境，减少环境的不一致性。可以采用 Docker，Ansible，Vagrant 等工具来完成。</li>
+<li>基础设施对微服务应该是透明的。微服务不应该也没必要知道运行环境的细节。只要能够正常启动并执行业务就完成了它的任务。因此，基础设施代码要和微服务业务代码分开，且微服务不应该告诉平台自己如何部署。</li>
+<li>服务注册和发现是微服务架构的核心部分。consul 和 Eureka 是这方面的佼佼者。</li>
+<li>部署（Deploy）和发布（Release）要分开。</li>
+</ul>
+
+<h2 id="步骤6-除了提交代码和发布-微服务平台一切都应当自动化">步骤6：除了提交代码和发布，微服务平台一切都应当自动化</h2>
+
+<p>在完成了微服务的基础设施和交付流程之后，就可以开始实现微服务的业务了。这时候需要依据电梯演讲划分出来的微服务进行业务逻辑的开发。在以 DevOps 的方式工作一段时间之后，团队应该养成了一些自动化的习惯，如果没有，就应该检查一下自己的自动化程度。最佳的自动糊理想的状态就是除了代码提交和发布。在这之间的每一个流程和环节都应当由自动化的手段来完成。</p>
+
+<p>当然，也有不能自动化的部分。根据我的经验，不能自动化的原因主要来自于流程管理的制度要求，而非技术困难。这往往是组织没有依据微服务进行流程变革导致的。这时候需要检讨不能自动化的部分是不是有存在的必要。</p>
+
+<p>另一方面，虽然自动化可以大量缩短微服务交付时间，提升微服务交付效率。但是自动化的同时需要考虑到安全因素和风险，不能顾此失彼。对于生产来说，可用性和安全性是最重要的部分。</p>
+
+<p><strong>关键的自动化</strong>：</p>
+
+<ul>
+<li>自动化功能性测试（UI/集成/单元/回归）</li>
+<li>自动化构建</li>
+<li>自动化部署</li>
+<li>自动化性能测试</li>
+<li>自动化安全扫描</li>
+</ul>
+
+<p><strong>管理建议</strong>：</p>
+
+<ul>
+<li>鼓励团队成员自发的进行自动化的改进，这会给未来微服务批量开发带来很多裨益。</li>
+<li>不要一开始就追求全面的自动化，自动化需要花费一定时间。根据团队的进度视情况适度进行。</li>
+</ul>
+
+<p><strong>技术建议</strong>：</p>
+
+<ul>
+<li>采用 TDD 的方式开发不光可以提升质量，也完成了测试的自动化。</li>
+<li>注意自动化的安全隐患。机密信息需要独立管理。</li>
+<li>关键步骤需要准备自动手动两种方式，必要时可以干预自动过程。</li>
+<li>采用 git 的 hook 技术，在代码 push 之前就可以完成测试和静态检查，提升 CI 的成功率。</li>
+</ul>
+
+<h2 id="步骤7-总结并复制成功经验-建立起微服务交付的节奏">步骤7：总结并复制成功经验，建立起微服务交付的节奏</h2>
+
+<p>当完成了第一个微服务，不要着急开始进行下一个微服务的开发。而是需要进行一次关于可复制经验的总结，识别微服务开发中的经验教训并总结成可复制的经验和产出。</p>
+
+<p>以下是一些需要总结出来的关键产出：</p>
+
+<p>微服务开发到发布的端到端流程规范。</p>
+
+<p>微服务开发的技术质量规范。</p>
+
+<p>团队合作中的坚持的最佳实践。</p>
+
+<p>常见技术问题总结。</p>
+
+<p>有了以上的关键产出，就可以对微服务开发团队进行扩张。这时候有了微服务开发的老司机，带着刚加入的同事一起开发，风险会相对低很多。</p>
+
+<p><strong>管理建议</strong>：</p>
+
+<ul>
+<li>刚开始的时候可以每周进行一个回顾会议，团队需要快速的反馈和调整。</li>
+<li>不要急于扩张团队，要在成功经验稳定并形成模式之后再快速扩充。</li>
+<li>避免微服务良好的开发氛围被稀释，刚开始的时候扩充团队可以慢一点。新老成员的配比不要超过1:1。</li>
+<li>虽然微服务平台趋于稳定，但在微服务没有上规模之前，不要让团队里缺少 Ops 成员。</li>
+<li>注意知识的传递和人员的培养。</li>
+</ul>
+
+<p><strong>技术建议</strong>：</p>
+
+<ul>
+<li>不要急于在微服务应用规模不大的时候形成微服务模板，否则会限制未来微服务的开发和扩展。</li>
+<li>在微服务不成规模的时候不要放松对微服务平台的改进。</li>
+</ul>
+
+<h2 id="参考书目">参考书目</h2>
+
+<p>《微服务设计》 是一本微服务各个方面技术的综合参考材料。如果你在实施微服务的过程中碰到了问题，它就是一个解决方案的分类汇总。</p>
+
+<p>《持续交付》汇集了很多交付最佳实践，当你的微服务实施碰到阻碍时，里面的建议能够让你解决当前的困境。</p>
+
+<p>《领域驱动设计》和《实现领域驱动设计》为拆分微服务提供了方法论，当团队之间对于微服务的拆分有困难的时候，采用领域驱动的方法往往会得到更好的效果。·</p>
+
+<p>《微服务那些事儿》是一本快速启动微服务的工具和实践的总结，能够帮助微服务入门者快速跨越门槛。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/cc-nd.png" alt="知识共享许可协议" class="lazyload"><figcaption class="image-caption">知识共享许可协议</figcaption></figure>
+本作品采用<a href="http://creativecommons.org/licenses/by-nd/4.0/" rel="nofollow noreferrer" target="_blank">知识共享署名-禁止演绎 4.0 国际许可协议</a>进行许可。</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>顾宇 </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://www.guyu.me/2017/2017-08-16-seven-steps-to-start-your-microservices-project/>https://www.guyu.me/2017/2017-08-16-seven-steps-to-start-your-microservices-project/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://www.guyu.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                    #微服务</a></span>
+            
+            <span class="tag"><a href="https://www.guyu.me/tags/%E6%9E%B6%E6%9E%84/">
+                    #架构</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://www.guyu.me">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://www.guyu.me/2017/2017-06-28-are-your-ci-mining/" class="prev" rel="prev" title="你的 CI 在挖矿吗？"><i class="iconfont icon-left"></i>&nbsp;你的 CI 在挖矿吗？</a>
+         
+        
+        <a href="https://www.guyu.me/2017/2017-08-16-five-blocks-to-microservices/" class="next" rel="next" title="微服务实施常被忽视的 5 个难点">微服务实施常被忽视的 5 个难点&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2016 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://www.guyu.me">顾宇</a> | </span> 
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备18015535号 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

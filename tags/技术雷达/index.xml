@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术雷达 on 顾宇的研习笔记</title>
+    <link>https://www.guyu.me/tags/%E6%8A%80%E6%9C%AF%E9%9B%B7%E8%BE%BE/</link>
+    <description>Recent content in 技术雷达 on 顾宇的研习笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 10 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.guyu.me/tags/%E6%8A%80%E6%9C%AF%E9%9B%B7%E8%BE%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>从第19期技术雷达看 DevOps 的发展趋势</title>
+      <link>https://www.guyu.me/2018/2018-12-10-devops-trend-from-tech-radar-vol19/</link>
+      <pubDate>Mon, 10 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.guyu.me/2018/2018-12-10-devops-trend-from-tech-radar-vol19/</guid>
+      <description>2018年下半年的技术雷达发布了。看过的朋友可能和我的感觉一样，会发现大部分条目都是和微服务和 DevOps 相关，但这些条目散落在不同的象限里。本文将这些散落在不同象限的条目采用以下 5 个主题进行重组：
+ DevOps 合作新实践 云计算新实践 容器新技术 微服务及其误区 安全  特别要提出的是，这期技术雷达采纳了 2018 年的 DevOps 报告 中的四个关键指标(FOUR KEYMETRICS):前置时间，部署频率，平均恢复时间(MTTR)和变更失败百分比。而这四个关键指标也是业界度量 DevOps 效果的统一方式。
+每个指标都创造了一个良性循环，并使团队专注于持续改进:缩短交付周期，减少浪费的活动，从而使你可以更频繁地部署，进而改进他们的实践和自动化流程。通过更好的实践，自动化和监控可以提高你从故障中恢复的速度，从而降低故障频率。
+DevOps 的合作 如何更好的在组织内合作是 DevOps 实践中永恒不变的的话题。随着 DevOps 合作理念的深入，合作的范围越来越越广，随之带来了新的问题和挑战。这期的技术雷达介绍了以下几方面的合作：
+ 和外包团队/供应商的 DevOps 合作 和用户/客户/UX设计师的合作 分布式团队之间的合作  和外包团队的 DevOps 合作 而随着 DevOps 应用的加深，会不可避免的碰到组织结构上带来的问题。特别是和外包方的合作，会影响组织的 DevOps 表现。这样的合作往往充满了漫长繁冗且火药味十足的会议和合同谈判，这是 DevOps 运动中不希望看到的但是又无法避免的问题。在 2018 年的 DevOps 报告中看到外包会带来效能下降——“低效能团队将整部分职能进行外包的可能性几乎是高效能团队的 4 倍，这些 外包功能包括测试或运维等等。”
+看到这里，千万不要得出“不要用外包的结论”。这里说得是不要“职能的外包”，而“端到端的外包”（End-2-End OutSourcing）则会免除这种顾虑。很多业界一流的 IT 服务企业都提供端到端的 IT 外包服务，你只需要告诉它们你要DevOps，它们会用最有效的方式交付给你。与供应商一起增量交付(INCREMENTAL DELIVERY WITH COTS (commercial off-the-shelf)) 就是这期技术雷达中提出的和外包商一起进行 DevOps 策略之一。与供应商的做端到端的 DevOps 性质的外包另外一个优点则是这样的供应商适合做“长期合作伙伴”来补充你业务、IT 等多样性的不足，甚至能够帮你培训员工。</description>
+    </item>
+    
+    <item>
+      <title>DevOps发展的九个趋势</title>
+      <link>https://www.guyu.me/2017/2017-05-02-devops-in-tech-radar/</link>
+      <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.guyu.me/2017/2017-05-02-devops-in-tech-radar/</guid>
+      <description>DevOps 包含了太多方面的技术和实践，很难通过一个统一的工具链来描述其发展。即便如此，我们仍然可以从 ThoughtWorks 技术雷达的条目变动中看出一些趋势。今年，我有幸作为主编参与了最新一期技术雷达的翻译，作为 DevOps 的爱好者，十分高兴能在这一过程中看到 DevOps 未来发展的几个趋势，总结成了这篇文章。
+趋势1：微服务目前仍然是 DevOps 技术应用和发展的主要领域 微服务将单块应用系统切割为多个简单独立的应用。从技术上说，这是通过工具把应用程序的内部复杂度转化为外部复杂度，需要一系列工具支撑微服务本身以及服务之间的通信。从组织上说，微服务团队要满足“快速发布，独立部署”的能力，则必须具备 DevOps 的工作方式。
+如何拆解微服务一直是微服务技术应用的最大难点之一，领域驱动设计是比较理想的微服务拆解方法论。社会化代码分析帮助团队通过更精确的数据找到更加合适的拆分点。CodeScene是一个在线服务，它能帮助识别出热点和复杂且难以维护的子系统，通过分析分布式子系统在时间上的耦合发现子系统之间的耦合。此外，它还能帮你认识组织中的康威定律，这会大大降低微服务解耦的难度。
+此外，微服务系统本质上是一个分布式系统，分布式系统之间的通信一直是很重要的问题。本期介绍的Kafka Streams和OpenTracing就是这类技术的条目。Kafka 作为一个成熟的分布式消息系统已经被广泛采用，而 Kafka Streams 则将最佳实践以“库”的方式呈现给开发人员，使得操作 Kafka 更加自然和简单。而 OpenTracing 则弥补了跨越多个微服务之间请求追踪的空白。
+另一方面，无服务器风格的架构（Serverless architecture ）把 DevOps 技术在微服务领域的应用推向极致。当应用程序执行环境的管理被新的编程模型和平台取代后，团队的交付生产率得到了进一步的提升。一方面它免去了很多环境管理的工作，包括设备、网络、主机以及对应的软件和配置工作，使得软件运行时环境更加稳定。另一方面，它大大降低了团队采用 DevOps 的技术门槛。然而，端到端的交付以及微服务中的函数管理问题日渐突出，尽管AWS API gateway和AWS Lambda几乎成了 Serverless 架构的代名词，但这二者结合的开发者体验并不佳。于是出现了Serverless framework和CLAUDIA这样的管理工具。
+AWS Lambda 带来的优势也深深影响了企业级应用领域，Apache OpenWhisk就是企业级无服务器领域的选择之一，它使得企业级应用也可以采用无服务器风格的架构构建应用程序。
+在微服务端到端交付流程上，Netflix 开源了自家的Spinnaker，Netflix 作为微服务实践的先锋，不断推出新的开源工具来弥补社区中微服务技术和最佳实践的缺失。 而Spring Cloud则为开发者提供了一系列工具，以便他们在所熟悉的 Spring 技术栈下使用这些服务协调技术(coordination techniques)，如服务发现、负载均衡、熔断和健康检查。
+而在微服务的安全上，最常见的需求之一是通过身份验证和授权功能来保护服务或 API。 这部分功能往往是最重要且不断重复构造的。而Keycloak就是一个开源的身份和访问管理解决方案，用于确保应用程序或微服务的安全。且几乎不需要编写代码，开箱即用。它支持单点登录，社交网络登录和标准协议登录(如 OpenID Connect ， OAuth2 和 SAML 等)。
+趋势2：以 Docker 为核心的数据中心方案逐渐走向成熟 在过去的两年，Docker 社区有了突飞猛进的发展，似乎每期技术雷达都会出现 Docker 相关的条目。而 Docker 往往和 DevOps 联系起来，被认为是推动 DevOps 发展的杀手级工具，以至于有些人会以团队是否采用 Docker 作为团队是否具备 DevOps 能力的标志。</description>
+    </item>
+    
+  </channel>
+</rss>
