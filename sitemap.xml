@@ -18,9 +18,49 @@
     </url>
   
     <url>
+      <loc>https://www.guyu.me/2019/2019-12-31-annual-review-for-2019/</loc>
+      
+      <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>https://www.guyu.me/categories/</loc>
       
-      <lastmod>2019-12-06T00:00:00+00:00</lastmod>
+      <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://www.guyu.me/posts/</loc>
+      
+      <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://www.guyu.me/categories/%E5%85%B6%E5%AE%83/</loc>
+      
+      <lastmod>2019-12-31T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://www.guyu.me/</loc>
+      
+      <lastmod>2019-12-31T00:00:00+00:00</lastmod>
       
       
       
@@ -48,16 +88,6 @@
     </url>
   
     <url>
-      <loc>https://www.guyu.me/posts/</loc>
-      
-      <lastmod>2019-12-06T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
       <loc>https://www.guyu.me/tags/</loc>
       
       <lastmod>2019-12-06T00:00:00+00:00</lastmod>
@@ -69,16 +99,6 @@
   
     <url>
       <loc>https://www.guyu.me/2019/2019-12-06-devops-tips-for-large-org/</loc>
-      
-      <lastmod>2019-12-06T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://www.guyu.me/</loc>
       
       <lastmod>2019-12-06T00:00:00+00:00</lastmod>
       
@@ -258,7 +278,7 @@
     </url>
   
     <url>
-      <loc>https://www.guyu.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+      <loc>https://www.guyu.me/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
       
       <lastmod>2019-03-22T00:00:00+00:00</lastmod>
       
@@ -268,7 +288,7 @@
     </url>
   
     <url>
-      <loc>https://www.guyu.me/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+      <loc>https://www.guyu.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
       
       <lastmod>2019-03-22T00:00:00+00:00</lastmod>
       
@@ -311,16 +331,6 @@
       <loc>https://www.guyu.me/tags/%E6%95%8F%E6%8D%B7/</loc>
       
       <lastmod>2019-02-17T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://www.guyu.me/categories/%E5%85%B6%E5%AE%83/</loc>
-      
-      <lastmod>2019-01-07T00:00:00+00:00</lastmod>
       
       
       
