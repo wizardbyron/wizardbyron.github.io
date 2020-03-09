@@ -23,7 +23,7 @@
 悲剧的是，管理员告诉我他的 key 因为更换电脑的关系没有及时更新。所以，他也登录不上去了。而且之前所有的管理员的 key 都失效了。我手上只有CI的管理员的用户名和密码，于是一个邪恶的想法就诞生了：
 既然 CI 可以执行脚本，那么我是否可以通过CI把我的key注入进去 ？
 于是我用Execute Shell的Job变成了我的命令行，通过CI运行日志得知了宿主用户的文件目录信息。然后把自己的ssh public key加到了登录列表里（此处省略敏感信息）：
-sudo sh -c “cp \~/.ssh/authorized\_keys \~/.ssh/authorized\_keys.bak” sudo sh -c &amp;quot;echo ‘{**你的****ssh public key**}’ \&amp;gt;\&amp;gt; \~/.ssh/authorized\_keys&amp;quot;  It works !
+sudo sh -c “cp \~/.ssh/authorized\_keys \~/.ssh/authorized\_keys.bak” sudo sh -c &amp;#34;echo ‘{**你的****ssh public key**}’ \&amp;gt;\&amp;gt; \~/.ssh/authorized\_keys&amp;#34; It works !
 我成功的登录了机器，但这却暴露了一个问题：CI有可能会成为一个安全隐患。
 首先，CI可以执行代码。这就意味着它有可能执行有害代码。
 其次，CI缺乏足够的用户鉴权，这很有可能导致未授权用户访问。
@@ -37,7 +37,9 @@ sudo sh -c “cp \~/.ssh/authorized\_keys \~/.ssh/authorized\_keys.bak” sudo s
 如果这些任务执行在隔离并受控的Docker容器里，那么会安全得多。
 也可以考虑采用TravisCI这样的第三方CI服务来保证安全性。
 备份和备份核查原则 在上述的故事里，因为缺乏有效的备份机制，导致了所有人都失去了对主机的访问。此外，我在修改authorized_keys的时候先进行了备份。这样，如果我注入失败，还可以还原。
-这里的备份，不光是对配置，数据的备份，还有岗位的备份。</description>
+这里的备份，不光是对配置，数据的备份，还有岗位的备份。
+如果有备份的管理员，完全不会出现这种事情。
+如果有备份QA服务器，完全可以不需要当前的QA服务器。</description>
     </item>
     
   </channel>
