@@ -24,7 +24,7 @@
  我把一个团队是否遵循 CLAMS 原则当做是否正确实践 DevOps 的标准之一。
 DevOps 故事由 DevOps Epic （DevOps 史诗）和 DevOps Story （DevOps 故事）组成。和用户故事对应，DevOps 史诗故事可以依据具体情况的不同拆分成不同的 DevOps 故事。
 而无论 DevOps 史诗 还是 DevOps 故事，都包含以下三个因素：
- 一定包含 Dev 和 Ops 两个方面</description>
+  一定包含 Dev 和 Ops 两个方面</description>
     </item>
     
   </channel>
