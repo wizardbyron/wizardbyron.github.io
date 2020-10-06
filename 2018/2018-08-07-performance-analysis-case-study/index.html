@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "公有云(AWS)上的生产环境性能分析案例",
     "headline" : "公有云(AWS)上的生产环境性能分析案例",
-    "description" : "本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。\n案例背景 案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以\x26quot;萨瓦迪卡\x26quot;指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress \x2b MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上平移到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。\n知识点： GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，AWS 的 FreeTier 免费计划是按 GB 计算的哦！\n除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库\/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：\n“萨瓦迪卡”的生产环境可以被认为是一个裸奔的肉鸡。我曾经一度它已经被轮番入侵很久了，只是还没有被发现而已。而且，“萨瓦迪卡”生产环境的唯一一台服务器的内存率使用经常超过 95%，我很担心它的状况，任何一个小的 DoS，都不需要 DDoS，就可以让它整站宕机了。",
+    "description" : "本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。\n案例背景 案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以\u0026quot;萨瓦迪卡\u0026quot;指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress \u002b MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上平移到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。\n知识点： GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，AWS 的 FreeTier 免费计划是按 GB 计算的哦！\n除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库\/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：\n“萨瓦迪卡”的生产环境可以被认为是一个裸奔的肉鸡。我曾经一度它已经被轮番入侵很久了，只是还没有被发现而已。而且，“萨瓦迪卡”生产环境的唯一一台服务器的内存率使用经常超过 95%，我很担心它的状况，任何一个小的 DoS，都不需要 DDoS，就可以让它整站宕机了。",
     "inLanguage" : "zh-cn",
     "author" : "顾宇",
     "creator" : "顾宇",
@@ -54,8 +54,8 @@
     "accountablePerson" : "顾宇",
     "copyrightHolder" : "顾宇",
     "copyrightYear" : "2018",
-    "datePublished": "2018-08-07 00:00:00 \x2b0000 UTC",
-    "dateModified" : "2018-08-07 00:00:00 \x2b0000 UTC",
+    "datePublished": "2018-08-07 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2018-08-07 00:00:00 \u002b0000 UTC",
     "url" : "https:\/\/www.guyu.me\/2018\/2018-08-07-performance-analysis-case-study\/",
     "wordCount" : "397",
     "keywords" : [ "停机时间","性能","AWS","wade","流量测试", "顾宇的研习笔记"]
@@ -85,8 +85,6 @@
                 
                 <a class="menu-item" href="/share/" title="外部分享">外部分享</a>
                 
-                <a class="menu-item" href="https://www.guyu.me/resume/" title="">个人简历</a>
-                
                 <a class="menu-item" href="/about/" title="关于我">关于我</a>
                 
         </div>
@@ -111,8 +109,6 @@
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
                 <a class="menu-item" href="/share/" title="外部分享">外部分享</a>
-                
-                <a class="menu-item" href="https://www.guyu.me/resume/" title="">个人简历</a>
                 
                 <a class="menu-item" href="/about/" title="关于我">关于我</a>
                 
