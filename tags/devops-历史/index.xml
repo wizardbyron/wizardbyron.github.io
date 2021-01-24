@@ -6,11 +6,7 @@
     <description>Recent content in DevOps 历史 on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 11 Jul 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/devops-%E5%8E%86%E5%8F%B2/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 11 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/devops-%E5%8E%86%E5%8F%B2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从技术雷达看 DevOps 的十年——容器技术与微服务</title>
       <link>https://www.guyu.me/2019/2019-07-21-devops-and-techradar-anniversary-docker-and-microservices/</link>

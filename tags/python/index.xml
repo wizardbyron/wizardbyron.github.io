@@ -6,11 +6,7 @@
     <description>Recent content in Python on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一怒之下，我又写了一个开源流量测试工具</title>
       <link>https://www.guyu.me/2018/2018-07-07-why-do-i-write-wade/</link>

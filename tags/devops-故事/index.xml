@@ -6,11 +6,7 @@
     <description>Recent content in DevOps 故事 on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 24 Jun 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/devops-%E6%95%85%E4%BA%8B/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 24 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/devops-%E6%95%85%E4%BA%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>采用 DevOps 故事落地 DevOps</title>
       <link>https://www.guyu.me/2018/2018-06-24-devops-story/</link>

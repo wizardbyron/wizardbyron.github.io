@@ -6,11 +6,7 @@
     <description>Recent content in 架构 on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 16 Aug 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 16 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>微服务实施常被忽视的 5 个难点</title>
       <link>https://www.guyu.me/2017/2017-08-16-five-blocks-to-microservices/</link>
