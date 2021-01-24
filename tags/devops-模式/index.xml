@@ -6,11 +6,7 @@
     <description>Recent content in DevOps 模式 on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 06 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/devops-%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 06 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/devops-%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>千人规模组织级 DevOps 演进的 9 个实践及技巧</title>
       <link>https://www.guyu.me/2019/2019-12-06-devops-tips-for-large-org/</link>
@@ -66,7 +62,7 @@ DevOps 策略模式  模式：定义你的 DevOps 反模式：DevOps 教条主�
       
       <guid>https://www.guyu.me/2019/2019-05-26-devops-pattern-define-your-devops/</guid>
       <description>遗憾的是，很少有人真的关心 “DevOps 是什么”，当然其实也不重要。比 DevOps 是什么来说，更重要的是 “DevOps 能做什么”。据 John Willis 的说法，DevOps 运动的发起人 Patrick Debois 一直拒绝给 DevOps 下定义是一件了不起的事情。 Patrick Debois 他不希望把 DevOps 据为己有。DevOps 应该属于社区，属于每一个愿意投身于 DevOps 目标的个人和组织。
-由于第一届 DevOpsDays 奠定 DevOps 的基础。组织者 Patrick Debois 作为第一个&amp;quot;官方&amp;rdquo; DevOps 发言人。第一届 DevOps 的产出内容给未来的 DevOps 发展方向上起到决定性作用。因此，DevOps 模式中的 DevOps 的相关定义均参考Patrick Debios 的博客。
+由于第一届 DevOpsDays 奠定 DevOps 的基础。组织者 Patrick Debois 作为第一个&amp;quot;官方&amp;quot; DevOps 发言人。第一届 DevOps 的产出内容给未来的 DevOps 发展方向上起到决定性作用。因此，DevOps 模式中的 DevOps 的相关定义均参考Patrick Debios 的博客。
 然而，在我过去经历的不同的 DevOps 转型/改进项目中的经历来看。不同的组织，不同的部门，甚至是同一个部门的人，大家对 DevOps 的理解并不一致。这对 DevOps 长时间在组织内发挥改进作用是不利的。
 模式：定义你的 DevOps (Define Your DevOps) 模式名称：定义你的 DevOps (Define Your DevOps)
 模式别名：定制化 DevOps 定义 (Customize DevOps Definition)
@@ -80,7 +76,7 @@ DevOps 策略模式  模式：定义你的 DevOps 反模式：DevOps 教条主�
       <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.guyu.me/2019/2019-05-18-about-devops-patterns/</guid>
-      <description>2018年的5月，DevOps 实践手册作者&amp;quot;四人帮&amp;quot;之一的 John Willis 来到了北京，在 DevOps 国际峰会上做了一场名为&amp;rdquo;DevOps：Almost 10 Years - What A Strange Long Trip It&amp;rsquo;s Been&amp;ldquo;的演讲。除了这个演讲的 PPT 只有一张很长的图片以外，坐在台下的我对他在这篇演讲中 DevOps 的定义有了共鸣。在这次演讲中，他将 DevOps 定义如下：
+      <description>2018年的5月，DevOps 实践手册作者&amp;quot;四人帮&amp;quot;之一的 John Willis 来到了北京，在 DevOps 国际峰会上做了一场名为&amp;quot;DevOps：Almost 10 Years - What A Strange Long Trip It&amp;rsquo;s Been&amp;ldquo;的演讲。除了这个演讲的 PPT 只有一张很长的图片以外，坐在台下的我对他在这篇演讲中 DevOps 的定义有了共鸣。在这次演讲中，他将 DevOps 定义如下：
 翻译过来就是&amp;quot;DevOps 是一组实践和模式，用来将人力资本转化为高效能的组织资本&amp;rdquo; 。
 关于这段定义，我深以为然。
 然而，在不同的场合和其他人交流时，我对 DevOps 的实践产生了忧虑。一方面，我看到很多朋友在落地某些 DevOps 实践中，由于缺乏经验，出现了种种阻碍 DevOps 产生效益的问题。另一方面，尽管论述如何做 DevOps 的材料足够多。但几乎都是告诉我们&amp;quot;成功的 DevOps”是什么样的，而“出现了问题怎么办”的内容却乏善可陈。

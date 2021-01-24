@@ -6,11 +6,7 @@
     <description>Recent content in 持续交付 on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 10 May 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 10 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从星巴克店面运营学习 DevOps</title>
       <link>https://www.guyu.me/2019/2019-05-10-how-starbucks-play-devops/</link>
@@ -32,7 +28,7 @@
 制作完成后的咖啡会放到咖啡待取区等客人来取。
 所有的店员都具备所有的技能（全栈工程师），并通过标准化的考试上岗。你会看到在星巴克里有绿色围裙和黑色围裙。黑色围裙的咖啡师是经过考试的，考试合格后会发黑色围裙作为通过认证的标志。
  反思：你的工程师有标准化的技能考试吗？
- 星巴克咖啡交付团队的 DevOps 单向工作流 说到 DevOps，不能不提到&amp;quot;三步工作法&amp;rdquo;。首先，我们要用到第一步——构建端到端单向工作流——来观察星巴克店面是如何构建单向工作流的。
+ 星巴克咖啡交付团队的 DevOps 单向工作流 说到 DevOps，不能不提到&amp;quot;三步工作法&amp;quot;。首先，我们要用到第一步——构建端到端单向工作流——来观察星巴克店面是如何构建单向工作流的。
 我们可以把交付一杯咖啡的流程和软件开发的交付一个用户故事的流程的关系做如下对应：
   需求分析：和客人交流并记录客人对咖啡的需求。
   产品开发：按照需求制作咖啡。
@@ -94,8 +90,8 @@
       <guid>https://www.guyu.me/2017/2017-12-03-we-are-talking-different-devops/</guid>
       <description>在过去的三年中，我作为 DevOps 的咨询师参与了很多企业的 DevOps 转型咨询以及技术实施，也在不同的社区活动中分享了自己在 DevOps 上的实践、理解和观点。
 随着 DevOps 的盛行，我在很多场合和越来越多的人聊起 DevOps。也在不同的渠道听到了很多人在讲 DevOps。然而，讨论的背后，我发现每个人对 DevOps 所指并不是同一件事情，也由于各执一词导致不欢而散。
-于是我通过 DevOpsDays 的官方网站整理所有 DevOps 的有关材料，随着学习和了解的不断增多，我也渐渐的对 DevOps 有了更进一步的认识。我把学到的材料经过整理后把陆续放在了简书上，形成了&amp;rdquo; DevOps 前世今生&amp;rdquo; 这个系列，这个系列还在不断补充新的材料。
-含义越来越丰富的 DevOps DevOps 至今都缺乏一个清晰和统一的认识。对于一场运动来说，这是一件好事，也同样是一件坏事。虽然 Patrick 曾经在自己的博客里一再提到自己对 DevOps 的&amp;quot;正确认识&amp;rsquo;&#39;，但社区似乎不以为然。
+于是我通过 DevOpsDays 的官方网站整理所有 DevOps 的有关材料，随着学习和了解的不断增多，我也渐渐的对 DevOps 有了更进一步的认识。我把学到的材料经过整理后把陆续放在了简书上，形成了&amp;quot; DevOps 前世今生&amp;quot; 这个系列，这个系列还在不断补充新的材料。
+含义越来越丰富的 DevOps DevOps 至今都缺乏一个清晰和统一的认识。对于一场运动来说，这是一件好事，也同样是一件坏事。虽然 Patrick 曾经在自己的博客里一再提到自己对 DevOps 的&amp;quot;正确认识&#39;&#39;，但社区似乎不以为然。
 缺乏“官方定义”好处是人人都可以定义，因此没有一个人或者组织可以垄断 DevOps 定义权。所以每个人都自己可以参与到这一运动中去，不断为其增加新的概念、新的实践和新的工具。这会使 DevOps 社区不断的繁荣。
 而坏处也很明显，对于 DevOps 的后来者 —— 那些没有参与进来的人，需要学习和理解的 DevOps 知识的广度和深度也越来越大。
 以至于后来出现了这幅众所周知的“盲人摸象图”：

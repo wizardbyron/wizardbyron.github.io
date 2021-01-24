@@ -6,11 +6,7 @@
     <description>Recent content in 安全 on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【翻译】微服务安全：所有应该被问到的问题</title>
       <link>https://www.guyu.me/2019/2019-03-22-security-questions-for-microservices/</link>

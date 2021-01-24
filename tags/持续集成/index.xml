@@ -6,11 +6,7 @@
     <description>Recent content in 持续集成 on 顾宇的研习笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 03 Mar 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.guyu.me/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 03 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.guyu.me/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>不要让你的持续集成服务器成为安全隐患</title>
       <link>https://www.guyu.me/2017/2017-03-03-your-ci-may-be-under-attack/</link>
