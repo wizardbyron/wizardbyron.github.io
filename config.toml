@@ -2,3 +2,62 @@ baseURL = 'https://wwww.guyu.me/'
 languageCode = 'zh-cn'
 title = '顾宇的博客'
 theme = "congo"
+
+summaryLength = 100
+
+[author]
+  name = "顾宇"
+  image = "/img/avatar.png"
+  bio = "Stand Alone CompleX"
+  links = [
+    { link = "https://www.guyu.me/" },
+    { github = "https://github.com/wizardbyron" },
+    { linkedin = "https://linkedin.com/in/wizardbyron" }
+  ]
+
+[params]
+  darkMode = "auto"
+  darkToggle = true
+
+[params.homepage]
+  layout = "profile" # valid options: page, profile, custom
+  showRecent = false
+
+[params.article]
+  showDate = true
+  dateFormat = "2 January 2006"
+  showAuthor = true
+  showBreadcrumbs = false
+  showDraftLabel = true
+  showEdit = true
+  editURL = "https://github.com/wizardbyron/wizardbyron.github.io/"
+  editAppendPath = true
+  showHeadingAnchors = true
+  showPagination = true
+  showReadingTime = false
+
+[menu]
+[[menu.main]]
+  name = "主页"
+  url = "/"
+  weight = 5
+
+[[menu.main]]
+  name = "博客"
+  pageRef = "posts"
+  weight = 10
+
+[[menu.main]]
+  name = "分类"
+  pageRef = "categories"
+  weight = 20
+
+[[menu.main]]
+  name = "标签"
+  pageRef = "tags"
+  weight = 30
+
+[[menu.main]]
+  name = "关于"
+  pageRef = "about"
+  weight = 40
