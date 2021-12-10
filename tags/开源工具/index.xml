@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>开源工具 on 顾宇的博客</title><link>https://wwww.guyu.me/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/</link><description>Recent content in 开源工具 on 顾宇的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://wwww.guyu.me/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml"/><item><title>一怒之下，我又写了一个开源流量测试工具</title><link>https://wwww.guyu.me/posts/2018-07-07-why-do-i-write-wade/</link><pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2018-07-07-why-do-i-write-wade/</guid><description>继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。
+背景 # 客户的站点是通过 Wordpress 搭建的，这个应用放在一台 EC2 虚拟机上。奇葩的是，这个应用的 MySQL 数据库也在这台虚拟机上，之前做过一次 RDS 迁移，失败了，原因未知。看起来这个应用和数据库就像筷子兄弟一样，不离不弃，而且没有办法通过 AutoScaling Group 进行水平扩展。也就是说，所有的东西都在一台虚拟机上。
+我所要做的，就是把这个架构重新变成可自动水平扩展且高可用高性能有缓存低消耗具备监控和更加安全且有版本控制并可以通过持续交付流水线来半自动部署的架构。你可以重新读一下上一句加粗文字的内容。没错，目前他们连版本控制都没有，所有的操作在服务器上通过 mv 之间 scp 进行。
+很不巧的时候，这个“筷子兄弟”应用在上周开始，晚上随机的 Down 机，表现为数据库被删。但通过日志可以发现，是由于内存资源不足导致的 MySQL 数据引擎加载不了导致的。
+由于需要做“筷子兄弟”拆分手术，目的是要把数据库和应用程序分开，并且需要进行一些服务的重启和拆分。这些操作中会导致停机时间，为了能够度量这个停机时间，便于做出更好的决策，客户希望在测试环境上能够通过模拟生产环境的工作状态来完成这个任务。我设计了方案，包括以下几点：
+知道每一个可能引起停机的操作引起停机的时长。 测试 RDS 能带来多少的性能提升。 找出整个架构引起停机的根本问题。 在 500 个并发用户访问的情况下，会出现的性能拐点。 能够度量应用的资源损耗。 客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。
+我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。
+于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。
+工具的设计 # There are only two hard things in Computer Science: cache invalidation and naming things.
+&amp;ndash; Phil Karlton
+命名是一件很困难的事情。于是，为了纪念这个事情，一开始我用提出这个需求的客户的名字（Dave）来命名它，但可能不太好记忆。所以最后还是用 Wade （Web Application Downtime Estimation）作为这个工具的名字。它很简单，可以在https://github.com/wizardbyron/wade找到。
+如果我需要知道停机时长，我必须要先能够持续不断的发出 http 请求，并记录下相应 状态不是 200 OK 的返回。我并不希望应用是一个死循环，因此我需要能够加入时间控制。我期望用下面的这样的方式来使用：
+wade -t 10 -u https://www.google.com
+其中，-t 代表时间，10 代表持续分钟，-u 表示要测试的 url。我期望这个工具能够连续的帮我输出每次请求的时间和 HTTP 状态字。</description></item></channel></rss>
