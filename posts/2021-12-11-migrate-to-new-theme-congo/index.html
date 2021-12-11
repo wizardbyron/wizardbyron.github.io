@@ -3,8 +3,8 @@
 <meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
-<title>博客迁移到了新的 Hugo 主题 Congo（刚果） &#183; 顾宇的博客</title>
-<meta name=title content="博客迁移到了新的 Hugo 主题 Congo（刚果） &#183; 顾宇的博客">
+<title>迁移到了新的 Hugo 主题 Congo（刚果） &#183; 顾宇的博客</title>
+<meta name=title content="迁移到了新的 Hugo 主题 Congo（刚果） &#183; 顾宇的博客">
 <meta name=description content>
 <link rel=canonical href=https://wwww.guyu.me/posts/2021-12-11-migrate-to-new-theme-congo/>
 <link type=text/css rel=stylesheet href=/css/schemes/congo.min.b48d6ba061dc77186a2524fb8aac5ac3823b2679a9299ca60325abbccc9c1764c884715f0ba24b4e2776cb3814df4af1f4c854b87207cd5d4c7a254da9b55751.css integrity="sha512-tI1roGHcdxhqJST7iqxaw4I7JnmpKZymAyWrvMycF2TIhHFfC6JLTid2yzgU30rx9MhUuHIHzV1MeiVNqbVXUQ==">
@@ -14,8 +14,8 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
 <link rel=manifest href=/site.webmanifest>
-<meta property="og:title" content="博客迁移到了新的 Hugo 主题 Congo（刚果）">
-<meta property="og:description" content="所谓“写博客30分钟，找主题 6 小时”，这些天一直没更新博客的主要原因是一直在找寻一个简洁明快的博客主题，最终我找到了Congo，中文意义是是“刚果”。
+<meta property="og:title" content="迁移到了新的 Hugo 主题 Congo（刚果）">
+<meta property="og:description" content="你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定未来还会换）
 于是我就花了半天时间把原来 Github Pages 上的博客迁移到了这个主题上，并采用了 Github Action 发布我的博客，以下是迁移步骤：
  备份内容，并做一个全量删除提交 采用 Hugo 新建一个新的博客 安装 Congo 主题 采用 Github Actions 部署博客 覆盖配置，而不要修改 迁移旧的文章和图片  1. 备份内容，并做一个全量删除提交 # 一个博客的核心内容是图片和文章。这些内容在static目录和content目录下，把这些内容保存出来就好。
 然后，通过 git rm -rf --ignore-unmatch *删除所有内容，并删除空的目录。
@@ -33,8 +33,8 @@
 <meta property="article:published_time" content="2021-12-11T00:00:00+00:00">
 <meta property="article:modified_time" content="2021-12-11T00:00:00+00:00">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="博客迁移到了新的 Hugo 主题 Congo（刚果）">
-<meta name=twitter:description content="所谓“写博客30分钟，找主题 6 小时”，这些天一直没更新博客的主要原因是一直在找寻一个简洁明快的博客主题，最终我找到了Congo，中文意义是是“刚果”。
+<meta name=twitter:title content="迁移到了新的 Hugo 主题 Congo（刚果）">
+<meta name=twitter:description content="你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定未来还会换）
 于是我就花了半天时间把原来 Github Pages 上的博客迁移到了这个主题上，并采用了 Github Action 发布我的博客，以下是迁移步骤：
  备份内容，并做一个全量删除提交 采用 Hugo 新建一个新的博客 安装 Congo 主题 采用 Github Actions 部署博客 覆盖配置，而不要修改 迁移旧的文章和图片  1. 备份内容，并做一个全量删除提交 # 一个博客的核心内容是图片和文章。这些内容在static目录和content目录下，把这些内容保存出来就好。
 然后，通过 git rm -rf --ignore-unmatch *删除所有内容，并删除空的目录。
@@ -47,7 +47,7 @@
 这时候通过hugo server预览一下站点，看看主题是否正确加载，然后做一个提交。
 4. 采用 Github Actions 部署博客 # 站点恢复的第一步是进行一次 push，并且发布站点。这时候我建议采用 Github Action 来自动化部署。
  首先，参考Hugos 官方的 Github Pages 部署方式在代码库根目录创建.github/workflows/gh-pages.yml文件，内容如下：  name: github pages on: push: branches: - main  # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"博客迁移到了新的 Hugo 主题 Congo（刚果）","headline":"博客迁移到了新的 Hugo 主题 Congo（刚果）","description":"所谓“写博客30分钟，找主题 6 小时”，这些天一直没更新博客的主要原因是一直在找寻一个简洁明快的博客主题，最终我找到了Congo，中文意义是是“刚果”。\n于是我就花了半天时间把原来 Github Pages 上的博客迁移到了这个主题上，并采用了 Github Action 发布我的博客，以下是迁移步骤：\n 备份内容，并做一个全量删除提交 采用 Hugo 新建一个新的博客 安装 Congo 主题 采用 Github Actions 部署博客 覆盖配置，而不要修改 迁移旧的文章和图片  1. 备份内容，并做一个全量删除提交 # 一个博客的核心内容是图片和文章。这些内容在static目录和content目录下，把这些内容保存出来就好。\n然后，通过 git rm -rf --ignore-unmatch *删除所有内容，并删除空的目录。\n这时候创建一个删除提交，你就有之前删除内容的全量备份了。如果想恢复，只需要 git revert即可。\n2. 采用 Hugo 新建一个新的博客 # 这时候你的目录是空的，你就可以执行hugo new site .重新建立一个站点了，这条命令默认会生成一个没有主题的空结构。\n这个时候，你要提交一次，用于跟踪后续的主题和配置的修改。\n3. 安装 Congo 主题 # 参考 https:\/\/jpanther.github.io\/congo\/docs\/installation\/ 的安装文档，里面有三种安装方式，分别是：\n 采用 Hugo （推荐） 采用 Git Submodule 下载静态文件  我采用了第三种方式下载了静态文件解压的方式来安装主题，简单粗暴，避免我想要更新时忘记一些配置，这样可以减少很多 git 或 hugo 的配置工作。\n别忘了删除theme下面的exampleSite，节省一些空间。\n这时候通过hugo server预览一下站点，看看主题是否正确加载，然后做一个提交。\n4. 采用 Github Actions 部署博客 # 站点恢复的第一步是进行一次 push，并且发布站点。这时候我建议采用 Github Action 来自动化部署。\n 首先，参考Hugos 官方的 Github Pages 部署方式在代码库根目录创建.github\/workflows\/gh-pages.yml文件，内容如下：  name: github pages on: push: branches: - main  # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2021","dateCreated":"2021-12-11T00:00:00\u002b00:00","datePublished":"2021-12-11T00:00:00\u002b00:00","dateModified":"2021-12-11T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2021-12-11-migrate-to-new-theme-congo\/","wordCount":"267","keywords":[]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"迁移到了新的 Hugo 主题 Congo（刚果）","headline":"迁移到了新的 Hugo 主题 Congo（刚果）","description":"你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定未来还会换）\n于是我就花了半天时间把原来 Github Pages 上的博客迁移到了这个主题上，并采用了 Github Action 发布我的博客，以下是迁移步骤：\n 备份内容，并做一个全量删除提交 采用 Hugo 新建一个新的博客 安装 Congo 主题 采用 Github Actions 部署博客 覆盖配置，而不要修改 迁移旧的文章和图片  1. 备份内容，并做一个全量删除提交 # 一个博客的核心内容是图片和文章。这些内容在static目录和content目录下，把这些内容保存出来就好。\n然后，通过 git rm -rf --ignore-unmatch *删除所有内容，并删除空的目录。\n这时候创建一个删除提交，你就有之前删除内容的全量备份了。如果想恢复，只需要 git revert即可。\n2. 采用 Hugo 新建一个新的博客 # 这时候你的目录是空的，你就可以执行hugo new site .重新建立一个站点了，这条命令默认会生成一个没有主题的空结构。\n这个时候，你要提交一次，用于跟踪后续的主题和配置的修改。\n3. 安装 Congo 主题 # 参考 https:\/\/jpanther.github.io\/congo\/docs\/installation\/ 的安装文档，里面有三种安装方式，分别是：\n 采用 Hugo （推荐） 采用 Git Submodule 下载静态文件  我采用了第三种方式下载了静态文件解压的方式来安装主题，简单粗暴，避免我想要更新时忘记一些配置，这样可以减少很多 git 或 hugo 的配置工作。\n别忘了删除theme下面的exampleSite，节省一些空间。\n这时候通过hugo server预览一下站点，看看主题是否正确加载，然后做一个提交。\n4. 采用 Github Actions 部署博客 # 站点恢复的第一步是进行一次 push，并且发布站点。这时候我建议采用 Github Action 来自动化部署。\n 首先，参考Hugos 官方的 Github Pages 部署方式在代码库根目录创建.github\/workflows\/gh-pages.yml文件，内容如下：  name: github pages on: push: branches: - main  # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2021","dateCreated":"2021-12-11T00:00:00\u002b00:00","datePublished":"2021-12-11T00:00:00\u002b00:00","dateModified":"2021-12-11T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2021-12-11-migrate-to-new-theme-congo\/","wordCount":"266","keywords":[]}</script>
 <meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
@@ -82,7 +82,7 @@
 <article class=max-w-prose>
 <header>
 <h1 class="mt-0 text-4xl font-extrabold text-neutral-800 dark:text-neutral">
-博客迁移到了新的 Hugo 主题 Congo（刚果）
+迁移到了新的 Hugo 主题 Congo（刚果）
 </h1>
 <div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
@@ -97,7 +97,7 @@
 </div>
 </header>
 <section class="prose dark:prose-light">
-<p>所谓“写博客30分钟，找主题 6 小时”，这些天一直没更新博客的主要原因是一直在找寻一个简洁明快的博客主题，最终我找到了<a href=https://jpanther.github.io/congo/>Congo</a>，中文意义是是“刚果”。</p>
+<p>你现在看到的主题就是我的博客最新的主题 <a href=https://jpanther.github.io/congo/>Congo</a>，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定未来还会换）</p>
 <p>于是我就花了半天时间把原来 Github Pages 上的博客迁移到了这个主题上，并采用了 Github Action 发布我的博客，以下是迁移步骤：</p>
 <ol>
 <li>备份内容，并做一个全量删除提交</li>
