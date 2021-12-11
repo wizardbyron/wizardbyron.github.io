@@ -6,9 +6,4 @@
 知道每一个可能引起停机的操作引起停机的时长。 测试 RDS 能带来多少的性能提升。 找出整个架构引起停机的根本问题。 在 500 个并发用户访问的情况下，会出现的性能拐点。 能够度量应用的资源损耗。 客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。
 我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。
 于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。
-工具的设计 # There are only two hard things in Computer Science: cache invalidation and naming things.
-&amp;ndash; Phil Karlton
-命名是一件很困难的事情。于是，为了纪念这个事情，一开始我用提出这个需求的客户的名字（Dave）来命名它，但可能不太好记忆。所以最后还是用 Wade （Web Application Downtime Estimation）作为这个工具的名字。它很简单，可以在https://github.com/wizardbyron/wade找到。
-如果我需要知道停机时长，我必须要先能够持续不断的发出 http 请求，并记录下相应 状态不是 200 OK 的返回。我并不希望应用是一个死循环，因此我需要能够加入时间控制。我期望用下面的这样的方式来使用：
-wade -t 10 -u https://www.google.com
-其中，-t 代表时间，10 代表持续分钟，-u 表示要测试的 url。我期望这个工具能够连续的帮我输出每次请求的时间和 HTTP 状态字。</description></item></channel></rss>
+工具的设计 # There are only two hard things in Computer Science: cache invalidation and naming things.</description></item></channel></rss>

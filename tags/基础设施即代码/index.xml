@@ -9,11 +9,7 @@
 随着 VMware，Oracle，Cisco，IBM 推出了各自的解决方案，“脚本工程师”们开始考虑如何管理大量的空闲资源。随着敏捷软件开发逐渐成为主流，基础设施的变更效率显然满足不了敏捷的迭代速度。基础设施的变更带来的风险和周期远远大于应用。如何让基础设施敏捷起来，成为了敏捷软件开发在交付最后一公里需要迫切解决的问题。
 这时候，由于规模和复杂度都很大，脚本工程师们考虑的第一个问题就是：如果规模没办法改变，我们就降低复杂度吧。
 Puppet 和 Chef 的短暂辉煌 # Puppet 是第一个嗅到这个商机的工具，它在第2010年8月的技术雷达上出现在了“试验”环里。
-Ruby 很适合构建领域特定语言（DSL），继 Cucumber 在这方面的成功探索后，脚本工程师们希望通过 DSL 缩小 Dev 和 Ops 之间的差距。作为同一时期的竞争者，Chef 以对开发人员更加友好的方式出现。Chef 相比 Puppet 更有竞争力的一点就是对于 Windows 的支持。
-不过，由于缺乏最佳实践，Puppet 和 Chef 很快就被玩坏了，复杂性的治理难度超过预期。随着治理规模的扩大，Puppet 和 Chef 带来的负面效应逐渐显现。曾经有人这样讽刺 Puppet：
-Puppet 就像蟑螂。当你刚开始用了 Puppet，慢慢的你会发现你的代码库里到处都是 Puppet。
-此外，事实证明 Ruby 是一个便于开发，但是难于维护的语言。Ruby 及其社区的频繁发布和不兼容特性使得后期接手维护的脚本工程师们叫苦不迭，加之 Ruby 工程师的招聘成本和培训成本都更高。即便 Ruby 的 Puppet 和 Chef 工具学习曲线比较平缓，但遗留的基础设施即代码的学习曲线却非常陡峭。基础设施的变更风险很大，且缺乏必要的质量实践，特别是主从模式的中心化还带来了单点故障和复杂度，这些都使得基础设施代码越来越难以维护。
-在敏捷团队中，去中心化、自治的团队往往是被提倡的。于是 Puppet 推出了 standalone 模式，Chef 出现了 chef-solo 这样去中心化的特性。技术雷达很快就出现了与之相对的Librarian-puppet and Librarian-Chef 和 Masterless Chef/Puppet这样去中心化的实践。</description></item><item><title>关于 DevOps ，咱们聊的可能不是一回事</title><link>https://wwww.guyu.me/posts/2017-12-03-we-are-talking-different-devops/</link><pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2017-12-03-we-are-talking-different-devops/</guid><description>在过去的三年中，我作为 DevOps 的咨询师参与了很多企业的 DevOps 转型咨询以及技术实施，也在不同的社区活动中分享了自己在 DevOps 上的实践、理解和观点。
+Ruby 很适合构建领域特定语言（DSL），继 Cucumber 在这方面的成功探索后，脚本工程师们希望通过 DSL 缩小 Dev 和 Ops 之间的差距。作为同一时期的竞争者，Chef 以对开发人员更加友好的方式出现。Chef 相比 Puppet 更有竞争力的一点就是对于 Windows 的支持。</description></item><item><title>关于 DevOps ，咱们聊的可能不是一回事</title><link>https://wwww.guyu.me/posts/2017-12-03-we-are-talking-different-devops/</link><pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2017-12-03-we-are-talking-different-devops/</guid><description>在过去的三年中，我作为 DevOps 的咨询师参与了很多企业的 DevOps 转型咨询以及技术实施，也在不同的社区活动中分享了自己在 DevOps 上的实践、理解和观点。
 随着 DevOps 的盛行，我在很多场合和越来越多的人聊起 DevOps。也在不同的渠道听到了很多人在讲 DevOps。然而，讨论的背后，我发现每个人对 DevOps 所指并不是同一件事情，也由于各执一词导致不欢而散。
 于是我通过 DevOpsDays 的官方网站整理所有 DevOps 的有关材料，随着学习和了解的不断增多，我也渐渐的对 DevOps 有了更进一步的认识。我把学到的材料经过整理后把陆续放在了简书上，形成了&amp;quot; DevOps 前世今生&amp;quot; 这个系列，这个系列还在不断补充新的材料。
 含义越来越丰富的 DevOps # DevOps 至今都缺乏一个清晰和统一的认识。对于一场运动来说，这是一件好事，也同样是一件坏事。虽然 Patrick 曾经在自己的博客里一再提到自己对 DevOps 的&amp;quot;正确认识''，但社区似乎不以为然。
@@ -22,6 +18,4 @@ Puppet 就像蟑螂。当你刚开始用了 Puppet，慢慢的你会发现你的
 以至于后来出现了这幅众所周知的“盲人摸象图”：
 这幅图中包含了很多概念，但主要表现的意义 DevOps 是一系列概念的总和，任何一个单方面的定义只是 DevOps 的一个部分，而不是 DevOps 的整体，随着 DevOps 这个概念的不断膨胀，人们就更难理解 DevOps 了。
 那么，你理解的 DevOps 是指的什么 # 在接触了各类客户和社区之后，我开始尝试理解每个人谈到 DevOps 的时候，他们分别指的是什么，以及所指内容背后的目标和动机。渐渐的，我把我所听到的 DevOps 概念分成如下四类，分别是：
-DevOps 是一组技术/实践 DevOps 是一个角色 DevOps 是一种工作方式 DevOps 是一种组织结构 那么，我们分别来谈谈这四类 DevOps。
-当 DevOps 是一组技术/实践 # 在工程师文化的组织里，对先进技术的渴望是最常见的学习动机。可以促进工程师用更有效率，更优雅的方式解决问题。而对于非工程师文化的组织，新的技术往往是提升其 KPI 的工具。以下是我听到 DevOps 的时候，经常触及的话题：
-高频部署 持续交付 云计算/虚拟化技术 基础设施即代码 Docker 自动化运维 高频部署 # 曾经和某跨国著名银行的外汇交易产品的 IT 产品负责人交流 DevOps。对方很自豪的告诉我，他们产品每天的部署频率超过500次，我听了不以为然。因为，部署频率高不见得是件好事。于是我问了以下几个问题：</description></item></channel></rss>
+DevOps 是一组技术/实践 DevOps 是一个角色 DevOps 是一种工作方式 DevOps 是一种组织结构 那么，我们分别来谈谈这四类 DevOps。</description></item></channel></rss>

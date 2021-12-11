@@ -7,12 +7,7 @@
 但如果你是一个大型组织，特别一个职能分工明确的组织向多个跨职能的全功能组织发展的时候，更多需要处理的是组织内部的复杂关系，重新切割和划分组织边界，组织内部就会出现矛盾。而 DevOps 顾问则是承接和转化矛盾的最理想人选。
 那么，聘用一个外部 DevOps 顾问需要注意哪几点 # 首先，一个外部 DevOps 顾问需要至少两个以上企业或者客户的转型经验，特别是案例总结。因为不同企业在做 DevOps 的时候组织特点决定了不同的组织痛点和方法。做过多个企业的 DevOps 转型后，一个 DevOps 顾问就会明白这些区别。否则，就会把自己过去的经验“复制”过来，以为 DevOps 只有一种，从而拒绝学习组织现有的知识。那么就会盲目复制，导致转型效果和转型期望有很大差距。此外，“转型”是一门艺术，面对什么样的组织，采用什么样的话术和方法也是一门学问。这些细节也会影响 DevOps 转型的效果。
 然后，DevOps 改进涉及到管理提升和技术提升两个方面。DevOps 顾问除了要具备精益，敏捷的管理实践。还要具备自动化测试、自动化运维、持续交付等技术能力。管理实践和技术实践两者都不可少，没有了管理实践，技术实践往往沦落为“工具赌博”，很多买来的工具都没有起到效果。没有了技术实践，管理实践也无法通过自动化取得进展。技术实践和管理实践相辅相成，技术实践是落地管理实践的手段和工具。只有二者紧密结合，才能发出最好的效果。
-最后，DevOps 顾问一定要可以和团队在一起实践，而非在一边“指挥”。有一些 DevOps 教练没有动手实践过，只是“知道”，而非“做到”。这里面就会有很大的风险因素在里面，任何一个实践的落地和见效需要投入和时间。魔鬼都藏在细节里。如果没有做过，就难以避开转型上的“暗礁”
-所以，在面试 DevOps 顾问的时候，要问 DevOps 顾问之前的转型案例，特别是的关注的点。而且不光要有管理实践，还有技术实践。在面试这些的内容的时候不光要讲方法论，还要讲采用什么工具如何落地。落地中间的困难点和关键点事什么。
-为什么招聘一个 DevOps 专家转型效果不好 # 你可能会想，不如招聘一个 DevOps 专家来做。不是说不可以，而是说不要对这种方式做 DevOps 转型抱太高期望。因为他的工作也会受组织制度的制约。为了能够在组织生存下去，避免风险，他就会避免矛盾的发生。而这些矛盾的突破才是转型的关键。因此，聘用一个 DevOps 专家很难解决一些“顽疾”。
-其次，很多专家会将自己的 DevOps 经验“复制”过来。然而，除了 DevOps 的实践本身以外。“转型”也是一系列技巧，如何获得信任，调整对方的预期，如何与对方沟通，在组织内应该说什么不应该说什么，以及怎么说怎么做都是技巧。没有做过“转型”的专家往往会忽略这些关键的细节。
-在这个项目上工作了四个月之后，客户自己招聘了一个资深的应用架构专家。这个应用架构专家只有一家企业的 DevOps 经历，并没有“转型”经验。他申请来做 DevOps 转型。但他低估了 DevOps 转型在组织内部和各利益方的矛盾和挑战，导致自己在转型的过程中“腹背受敌”：如果不继续，自己工作的绩效受影响。如果继续做，又要面对同事之间的矛盾。
-DevOps 顾问的另外一个工作就是要根据一套评估模型来对组织当前的状态进行评估，并给出改进建议。但无论什么样的成熟度模型，要兼顾到不同组织，所以大部分都是定性的条目。也就是说，职能给出“是”或“否”的结论，比如，发布周期是以“月”计算还是以“周”计算。但很难给出定量的结论，比如是三周好还是四周好。所以，如果你需要一些定量性的改进建议，就需要进一步定制化的进行度量。</description></item><item><title>DevOps 模式 - 引入 DevOps 顾问</title><link>https://wwww.guyu.me/posts/2019-07-13-devops-pattern-introduce-devops-consultant/</link><pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-07-13-devops-pattern-introduce-devops-consultant/</guid><description>很多企业并不是 DevOps 运动的早期玩家。当开始注意到 DevOps 的时候，想快速达到 DevOps 实践领先企业的效果，会引入有经验的 DevOps 顾问进行快速的转型。
+最后，DevOps 顾问一定要可以和团队在一起实践，而非在一边“指挥”。有一些 DevOps 教练没有动手实践过，只是“知道”，而非“做到”。这里面就会有很大的风险因素在里面，任何一个实践的落地和见效需要投入和时间。魔鬼都藏在细节里。如果没有做过，就难以避开转型上的“暗礁”</description></item><item><title>DevOps 模式 - 引入 DevOps 顾问</title><link>https://wwww.guyu.me/posts/2019-07-13-devops-pattern-introduce-devops-consultant/</link><pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-07-13-devops-pattern-introduce-devops-consultant/</guid><description>很多企业并不是 DevOps 运动的早期玩家。当开始注意到 DevOps 的时候，想快速达到 DevOps 实践领先企业的效果，会引入有经验的 DevOps 顾问进行快速的转型。
 然而，短期的 DevOps 顾问合同如果不能帮助团队构建 DevOps 制度和 DevOps 文化，DevOps 转型的效果将随 DevOps 专家的离开而离开，使团队得到“DevOps 不适用”的错觉。因此，在引入 DevOps 专家顾问的时候，我们一定要明确 请 DevOps 顾问的目的以及 DevOps 顾问留下的东西。
 模式：引入 DevOps 顾问 (Introduce DevOps Consultant) # 模式名称：引入 DevOps 顾问 (Introduce DevOps Consultant)
 模式别名：引入 DevOps 专家，引入 DevOps 教练
@@ -29,12 +24,7 @@ DevOps 策略模式 # 模式：定义你的 DevOps 反模式：DevOps 教条主�
 模式：定义你的 DevOps (Define Your DevOps) # 模式名称：定义你的 DevOps (Define Your DevOps)
 模式别名：定制化 DevOps 定义 (Customize DevOps Definition)
 模式类别： 策略模式
-风险： 中 - 采用的时候要注意场景和条件，否则会出现反模式。
-价值：中 - 采用该模式产生中期固定的收益，但要持续做才可以获得收益。
-见效时间：快 - 2 周内可看到显著改进。
-说明：
-根据组织的需要，在基于对 DevOps 历史和实践的理解上建立对组织发展有益的 DevOps 的定义。DevOps 的定义包括 DevOps 的组织改进范围，DevOps 的度量，DevOps 的实践。在采用 DevOps 实践的过程中，要先取得 DevOps 共识并基于共识采取 DevOps 度量。否则无法确定 DevOps 带来的改进。
-此外，DevOps 的定义会随着组织在的不同阶段而变化。要定期重新定义当前阶段的DevOps 目标，否则会导致&amp;quot;DevOps教条主义&amp;quot; 反模式和&amp;quot; DevOps 复制者&amp;quot;反模式。</description></item><item><title>DevOps 模式 - 采用模式语言讨论 DevOps</title><link>https://wwww.guyu.me/posts/2019-05-18-about-devops-patterns/</link><pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-05-18-about-devops-patterns/</guid><description>2018年的5月，DevOps 实践手册作者&amp;quot;四人帮&amp;quot;之一的 John Willis 来到了北京，在 DevOps 国际峰会上做了一场名为&amp;quot;DevOps：Almost 10 Years - What A Strange Long Trip It&amp;rsquo;s Been&amp;ldquo;的演讲。除了这个演讲的 PPT 只有一张很长的图片以外，坐在台下的我对他在这篇演讲中 DevOps 的定义有了共鸣。在这次演讲中，他将 DevOps 定义如下：
+风险： 中 - 采用的时候要注意场景和条件，否则会出现反模式。</description></item><item><title>DevOps 模式 - 采用模式语言讨论 DevOps</title><link>https://wwww.guyu.me/posts/2019-05-18-about-devops-patterns/</link><pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-05-18-about-devops-patterns/</guid><description>2018年的5月，DevOps 实践手册作者&amp;quot;四人帮&amp;quot;之一的 John Willis 来到了北京，在 DevOps 国际峰会上做了一场名为&amp;quot;DevOps：Almost 10 Years - What A Strange Long Trip It&amp;rsquo;s Been&amp;ldquo;的演讲。除了这个演讲的 PPT 只有一张很长的图片以外，坐在台下的我对他在这篇演讲中 DevOps 的定义有了共鸣。在这次演讲中，他将 DevOps 定义如下：
 翻译过来就是&amp;quot;DevOps 是一组实践和模式，用来将人力资本转化为高效能的组织资本&amp;rdquo; 。
 关于这段定义，我深以为然。
 然而，在不同的场合和其他人交流时，我对 DevOps 的实践产生了忧虑。一方面，我看到很多朋友在落地某些 DevOps 实践中，由于缺乏经验，出现了种种阻碍 DevOps 产生效益的问题。另一方面，尽管论述如何做 DevOps 的材料足够多。但几乎都是告诉我们&amp;quot;成功的 DevOps”是什么样的，而“出现了问题怎么办”的内容却乏善可陈。
@@ -44,8 +34,4 @@ DevOps 模式类别 # DevOps 的模式分为以下五类：
 **策略模式：**在设计长期的 DevOps 改进中的方向。 **组织模式：**在不同类型、不同规模的组织下的团队分工合作方式。 **管理模式：**提升组织表现的日常工作的流程、活动和制度。 **技术模式：**服务于管理模式的工具及其实践。 **文化模式：**用于提升团队 DevOps 文化的一些活动和方法。 DevOps 模式的格式 # DevOps 模式的将采用下述格式描述：
 模式名称：用来描述模式的正式名称，这个名称描述了该模式的特征。
 模式别名：其它方便记忆的其它名称，别名一般包含了某种助记隐喻。
-模式类别： 策略模式、组织模式、管理模式、技术模式和文化模式的其中一种。
-风险： 采用该模式可能会带来的风险。风险包括以下三种：
-低 - 不用担心，放心采用。该模式没有特殊的场景和附加条件。 中 - 采用的时候要注意场景和条件，否则会出现反模式。 高 - 请在实践过 DevOps 的专家指导下采用，轻易采用会带来严重的后果。 **价值：**采用该 DevOps 模式的转型收益。转型收益包括以下三种：
-低： 采用该模式只会产生短期的收益。 中： 采用该模式产生中期固定的收益，但要持续做。 高： 采用该模式会对组织产生长期的收益。 **见效时间：**采用该 DevOps 模式的转型收益。转型收益包括以下三种：
-慢： 4 周内看不到显著改进。 普通： 2 - 4 周可看到显著改进。 快： 2 周内可看到显著改进。 说明： 对模式的描述和说明。以及产生的收益和风险。</description></item></channel></rss>
+模式类别： 策略模式、组织模式、管理模式、技术模式和文化模式的其中一种。</description></item></channel></rss>

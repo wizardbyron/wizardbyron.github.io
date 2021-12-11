@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>其它 on 顾宇的博客</title><link>https://wwww.guyu.me/categories/%E5%85%B6%E5%AE%83/</link><description>Recent content in 其它 on 顾宇的博客</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 11 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wwww.guyu.me/categories/%E5%85%B6%E5%AE%83/index.xml" rel="self" type="application/rss+xml"/><item><title>迁移到了新的 Hugo 主题 Congo（刚果）</title><link>https://wwww.guyu.me/posts/2021-12-11-migrate-to-new-theme-congo/</link><pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2021-12-11-migrate-to-new-theme-congo/</guid><description>你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定未来还会换）
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>其它 on 顾宇的博客</title><link>https://wwww.guyu.me/categories/%E5%85%B6%E5%AE%83/</link><description>Recent content in 其它 on 顾宇的博客</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 10 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wwww.guyu.me/categories/%E5%85%B6%E5%AE%83/index.xml" rel="self" type="application/rss+xml"/><item><title>博客迁移到了新的 Hugo 主题</title><link>https://wwww.guyu.me/posts/2021-12-11-migrate-to-new-theme-congo/</link><pubDate>Fri, 10 Dec 2021 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2021-12-11-migrate-to-new-theme-congo/</guid><description>你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定未来还会换）
 于是我就花了半天时间把原来 Github Pages 上的博客迁移到了这个主题上，并采用了 Github Action 发布我的博客，以下是迁移步骤：
 备份内容，并做一个全量删除提交 采用 Hugo 新建一个新的博客 安装 Congo 主题 采用 Github Actions 部署博客 覆盖配置，而不要修改 迁移旧的文章和图片 1. 备份内容，并做一个全量删除提交 # 一个博客的核心内容是图片和文章。这些内容在static目录和content目录下，把这些内容保存出来就好。
 然后，通过 git rm -rf --ignore-unmatch *删除所有内容，并删除空的目录。
@@ -7,10 +7,7 @@
 这个时候，你要提交一次，用于跟踪后续的主题和配置的修改。
 3. 安装 Congo 主题 # 参考 https://jpanther.github.io/congo/docs/installation/ 的安装文档，里面有三种安装方式，分别是：
 采用 Hugo （推荐） 采用 Git Submodule 下载静态文件 我采用了第三种方式下载了静态文件解压的方式来安装主题，简单粗暴，避免我想要更新时忘记一些配置，这样可以减少很多 git 或 hugo 的配置工作。
-别忘了删除theme下面的exampleSite，节省一些空间。
-这时候通过hugo server预览一下站点，看看主题是否正确加载，然后做一个提交。
-4. 采用 Github Actions 部署博客 # 站点恢复的第一步是进行一次 push，并且发布站点。这时候我建议采用 Github Action 来自动化部署。
-首先，参考Hugos 官方的 Github Pages 部署方式在代码库根目录创建.github/workflows/gh-pages.yml文件，内容如下： name: github pages on: push: branches: - main # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.</description></item><item><title>2020年的总结</title><link>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</guid><description>你看到的这篇文章，是今年的第一篇，同时也是今年的最后一篇。按照惯例，每年我都会写一篇总结。今年的总结会比往年的要长，就当我唠个长磕吧，把今年要写但没机会写出来的东西总结一下。
+别忘了删除theme下面的exampleSite，节省一些空间。</description></item><item><title>2020年的总结</title><link>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</guid><description>你看到的这篇文章，是今年的第一篇，同时也是今年的最后一篇。按照惯例，每年我都会写一篇总结。今年的总结会比往年的要长，就当我唠个长磕吧，把今年要写但没机会写出来的东西总结一下。
 关于写作、分享和演讲 # 虽然今年没有写博客或者公众号，但今年确是我写作量最大的一年，将近 20 万字。是我往年平均数的两倍。顺利的话，2021年7月会和大家见面。至于是什么主题和内容，这里先卖个关子。
 写作是一个很好的整理自己知识体系的过程。我在写作的时候，经常能发现某些知识掌握的不够扎实。于是研究过，讨论，实践。再把结果如实的写出来。写完之后，自己就对自己的知识体系有了更深的信心。
 由于写作，耽误了和朋友家人相处的时间。在此还要谢谢夫人的支持和抱怨。
@@ -33,14 +30,7 @@
 咨询 敏捷和DevOps 架构 云计算 数字化转型 咨询 # 总的来说，我还是很热爱咨询工作的。一方面可以拓宽眼界，另一方面，可以帮助他人解决问题。在咨询中对学习到的知识有更深刻的理解和更广泛的应用。和同事、客户的合作就形成了一种彼此滋养的关系。
 中国的咨询行业缺乏体系化的职业培养和训练体系，这是由市场客观条件决定的。于是，我在自己做咨询和培养新晋咨询师的过程中总结了一系列原则和方法。一方面帮助自己在咨询项目中成功，另一方面用于帮助很多新晋咨询师。有些方式方法的反复实践印证了一些有效性，当然，咨询项目中还是会因为各种因素不同程度的“悲剧重演”。然而，这些原则和方法可以帮助我走出困境。明年也会将这些心得通过公众号分享出来。
 敏捷和DevOps # 敏捷是一条持续精进且没有尽头的旅程，它是一种有效的生活方式和工作方式。今年我在一个客户上实施了 SAFe，也第一次让我完整了理解了规模化敏捷所要面对和解决的问题。想到之前和一群反对SAFe的人批评一起人云亦云，就觉得惭愧。现在理解到自己也曾经是没有实践过 SAFe的“嘴炮派”。
-在体验了 SAFe 后，我报名参加了 SAFe 的认证咨询师（SPC）培训，并且通过了认证。同时我还通过了 SAFe 敏捷软件工程，SAFe 架构师和 SAFe DevOps 的认证以及培训师资格。学习的越深入，越发现 SAFe 这套体系的厉害之处。SAFe 解决了很多我在经历企业IT治理和数字化转型中所遇到的问题。
-今年给不同的两家客户做了敏捷和 DevOps 转型相关的工作。我发现随着 DevOps 运动的持续深入，企业通过 DevOps 所需要的是一套完整的 IT 治理和研发管理体系。而“DevOps”虽然是当今数字化企业的必备，但新面临的各种问题却超出了 DevOps 的范围。
-但是，我不赞成把 DevOps 泛化和扩大化。否则做 DevOps 就变成了无所不能的“假药”。
-你可以简单理解 IT 行业就是“卖春药”和“卖假药”相互交替的过程。前者给你一个无限憧憬和期望，后者则是实践落地的一地鸡毛。“敏捷”，“DevOps”，“微服务”，“云原生”和数字化转型都被不同的IT巨头们当作春药和假药来卖。
-这是“软技术”跟不上“硬技术”发展过程中的必然。但从制度经济学角度来看，这并不是什么新鲜事。制度转换的过程中有两个交易费用——寻找制度的费用和转变制度的费用，这两者只能在边际上区分开。我要补充的一点是，这两个费用可能是同时发生的。
-在企业数字化的过程中一定会有自己的产品，也会需要构建自己的研发能力。这些能力采购不来，只能尽早开始积累。因为于管理的通用 IT 产品已经无法满足企业构建核心竞争力。因此，产品经理会是未来数字化企业的核心竞争力。所以，对于缺乏产品思维而只会一味“提升研发效能”的组织来说，是一个降维打击。
-你可能会觉得“产品规划”属于“提升研发效能”的领域，我也认可这种想法。这里面涉及到一个“效能的边界”问题。但事实上我所碰到的客户（能代表大部分企业），因为组织结构和权限的关系。并没有把“产品规划”纳入“研发效能”的范畴。所以，这里还是尊重客户对“效能”边界的定义。
-对于以上这些问题，SAFe 5.</description></item><item><title>2019年的总结</title><link>https://wwww.guyu.me/posts/2019-12-31-annual-review-for-2019/</link><pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-12-31-annual-review-for-2019/</guid><description>感谢您的关注和阅读。2018 年的总结拖延到了 2019 写，所以 2019 年的绝不拖延到 2020 年。和去年一样，我依然采用看板的方式管理自己的个人事务，年末的时候把自己完成的事情进行一下梳理，最后来看看今年都有哪些收获，这已经是第三年。以下是今年的总结，向您报告：
+在体验了 SAFe 后，我报名参加了 SAFe 的认证咨询师（SPC）培训，并且通过了认证。同时我还通过了 SAFe 敏捷软件工程，SAFe 架构师和 SAFe DevOps 的认证以及培训师资格。学习的越深入，越发现 SAFe 这套体系的厉害之处。SAFe 解决了很多我在经历企业IT治理和数字化转型中所遇到的问题。</description></item><item><title>2019年的总结</title><link>https://wwww.guyu.me/posts/2019-12-31-annual-review-for-2019/</link><pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-12-31-annual-review-for-2019/</guid><description>感谢您的关注和阅读。2018 年的总结拖延到了 2019 写，所以 2019 年的绝不拖延到 2020 年。和去年一样，我依然采用看板的方式管理自己的个人事务，年末的时候把自己完成的事情进行一下梳理，最后来看看今年都有哪些收获，这已经是第三年。以下是今年的总结，向您报告：
 工作经历 # 今年一共交付了两个项目：一个项目是大型研发组织的的 DevOps 转型。另一个项目是一个全球人力资源相关的微服务应用架构。
 今年交付的 DevOps 转型项目是我第一次碰到千人规模组织的 DevOps 的转型，这个项目从去年 11 月持续到了今年 6 月。因此有一些新的经验是以往的小型试点团队转型所不具备的。我把这个项目的经验写进了千人规模组织级 DevOps 演进的 9 个实践及技巧。这篇内容只是我整个经验中的一部分。此外，通过这个项目我对软件质量有了新的认识。
 此外，我又意识到，当现在人们谈到 DevOps，更多是需要一套现代的完整组织、流程、工具和制度体系。我会在我接下来的项目里完善这个内容。
@@ -48,9 +38,7 @@
 对外分享 # 今年对外分享了 6 场，相比去年少了一半，但是大会规格有所上升，也结实到了很多新朋友。目的还是能够学习到行业里最新的知识。及时获得市场上的最新技术动向。
 20191214-北京-中国软件技术大会-DevOps 的质量从用户故事开始 20191116-北京-Top100Summit-千人规模团队DevOps改进 20191026-北京-NCTS-DevOps的质量从需求质量开始 20190922-深圳-敏捷之旅-20190922-深圳-DevOps质量从用户故事开始 20190706-北京-DOIS-微服务产品团队规模化DevOps演进模式 20190623-深圳-DevOpsMeetup-千人规模DevOps组织演进模式 20190523-香港-CloudExpo-CloudNative DevOps 内容运营 # 我把自己的博客从 Hexo 转到了 Hugos，并且部署后到了腾讯云和Github 上。前者的域名是 www.wizardbyron.cn，后者的域名是 www.guyu.me。我自己做了两个脚本分别部署。
 今年写了十三篇博客。基本上每个月会有一篇，仍然是以 DevOps 和微服务为主。今年是 DevOps 的十周年，同时也是技术雷达的十周年，写了三篇文章纪念技术发展（其实是去年写好的，今年为了跟着技术雷达发表进行了一些修改）：
-从技术雷达看 DevOps 的十年——DevOps与持续交付 从技术雷达看 DevOps 的十年——基础设施即代码与云计算 从技术雷达看 DevOps 的十年——容器技术与微服务 “DevOps 转型实战”系列课程从 GitChat 上下架了，主要是内容有些陈旧，需要修改，原计划把这个课程再版后重新上架。然后因为在项目期间有了新的想法，就变成了“ DevOps 模式和反模式”。因此，我创建了一个”DevOps 模式”的知识星球，希望和大家讨论起来。但目前为止只更新了三篇，没有继续下去。主要还是有一件更重要的事情（后面会讲）。反思了一下，之前写的内容缺乏案例。之后和之前的案例会补充案例，方便大家在场景中应用。明年在完成了更重要的事情后会再更新。
-几乎在同一时间，我创作了一个提升个人影响力的在线音频课程，是我第一次录制音频课程。效果不好，就不多宣传了。通过音频课程的录制，我有了几点体会:
-读稿子会被听出来。 只通过语言的表达能力不如图。 人在只有音频内容的情况下听觉更加敏锐。 人正常语速 5 分钟大概是 1100 字左右，阅读的速度大概是 5 倍以上。 人耳的容错率要比眼睛低得多。 开源项目方面 # 我把以前的 Vivian 项目采用开源项目的工作流 Pipenv 进行了重写，并改名叫 [Rokit](Redirection Optimization Kit)，在这个过程中，我会把相关的内容总结成册，计划开源出来，以开源贡献开源。</description></item><item><title>迟到的 2018 年终总结</title><link>https://wwww.guyu.me/posts/2019-01-07-annual-review-for-2018/</link><pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-01-07-annual-review-for-2018/</guid><description>2018年12月31日 23点50分，我把最后一篇稿件发到 GitChat 上之后，我合上了电脑，准备入睡。这是我 2018 年的个人看板上的倒数第二件事。最后一件事就是这一篇年终总结。受“蔡加尼克效应”的影响，2018年1月1日开始，除了工作时间，剩下的一周所有我都在构思这篇年终总结该如何写。然而，几次起笔和修改都不能让我满意。
+从技术雷达看 DevOps 的十年——DevOps与持续交付 从技术雷达看 DevOps 的十年——基础设施即代码与云计算 从技术雷达看 DevOps 的十年——容器技术与微服务 “DevOps 转型实战”系列课程从 GitChat 上下架了，主要是内容有些陈旧，需要修改，原计划把这个课程再版后重新上架。然后因为在项目期间有了新的想法，就变成了“ DevOps 模式和反模式”。因此，我创建了一个”DevOps 模式”的知识星球，希望和大家讨论起来。但目前为止只更新了三篇，没有继续下去。主要还是有一件更重要的事情（后面会讲）。反思了一下，之前写的内容缺乏案例。之后和之前的案例会补充案例，方便大家在场景中应用。明年在完成了更重要的事情后会再更新。</description></item><item><title>迟到的 2018 年终总结</title><link>https://wwww.guyu.me/posts/2019-01-07-annual-review-for-2018/</link><pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2019-01-07-annual-review-for-2018/</guid><description>2018年12月31日 23点50分，我把最后一篇稿件发到 GitChat 上之后，我合上了电脑，准备入睡。这是我 2018 年的个人看板上的倒数第二件事。最后一件事就是这一篇年终总结。受“蔡加尼克效应”的影响，2018年1月1日开始，除了工作时间，剩下的一周所有我都在构思这篇年终总结该如何写。然而，几次起笔和修改都不能让我满意。
 简单总结如下：
 2018 年的产出 # 2018 年参加了大大小小的分享共计12场，北京、上海和深圳，平均每月一场，详情见：https://wizardbyron.github.io/slides/，PPT 都可以免费下载。
 发表了 15 万字，共计 24 篇，平均每月1篇5000字左右文章，大部分都在简书和 GitChat
@@ -66,5 +54,4 @@ wade，详见一怒之下，我写了一个开源流量测试工具
 这么多的产出，对于我的意义其实更大。如果你是新入职场的毕业生，建议你立刻养成这样的习惯：将自己的项目和职业生涯积累在一个 PPT 上，这个 PPT 是你整个职业生涯和你自身思想的积累，它会指引你未来的方向，它是你无可取代的核心竞争力。在不断完善它的路上，你也更加完善你自己，换句话说，它是你认识自己价值的最好方式，它能帮你从一而终，能给你方向。很遗憾在自己工作的第十个年头才开始打造自己。不过，任何开始都不会太晚。通过2018年，我更体会到了它的价值，任何时候都有有准备好的材料和他人交流。2019年我仍将继续。
 2018 年开通了公众号，但终究没有好好运营。公众号是一个比其它渠道更直接的交流方式，2019 年我将好好运营它。
 从 2017 年开始，我开始采用 Trello 跟踪我自己的事务，一直很难做到 WIP = 1 和按时完成。但实际上，我的产量比2017年翻了一倍。
-2018 年我离开了 ThoughtWorks，这是一个看似必然但是很偶然的决定。必然的是我发现自己没有办法突破自己的瓶颈期。偶然是因为在我不期而遇的生活变故上带来的一些雪中送炭。可惜的是，我依旧没有给自己的剧本演好一个结局：AWS 的课程 和 DevOps 的课程没有完成，自己跟踪了一年多的项目在上线阶段离开。
-写到这，就这样吧~ 它不再烦我了。</description></item></channel></rss>
+2018 年我离开了 ThoughtWorks，这是一个看似必然但是很偶然的决定。必然的是我发现自己没有办法突破自己的瓶颈期。偶然是因为在我不期而遇的生活变故上带来的一些雪中送炭。可惜的是，我依旧没有给自己的剧本演好一个结局：AWS 的课程 和 DevOps 的课程没有完成，自己跟踪了一年多的项目在上线阶段离开。</description></item></channel></rss>

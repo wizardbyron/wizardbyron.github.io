@@ -5,8 +5,4 @@ Culture（文化） Lean（精益） Automated （自动化） Measurement （�
 我把一个团队是否遵循 CLAMS 原则当做是否正确实践 DevOps 的标准之一。
 DevOps 故事由 DevOps Epic （DevOps 史诗）和 DevOps Story （DevOps 故事）组成。和用户故事对应，DevOps 史诗故事可以依据具体情况的不同拆分成不同的 DevOps 故事。
 而无论 DevOps 史诗 还是 DevOps 故事，都包含以下三个因素：
-一定包含 Dev 和 Ops 两个方面
-一定包含 Dev 和 Ops 核查的内容
-一定包含可以度量的内容
-编写 DevOps 史诗故事 # DevOps 史诗故事对于大部分组织来说是类似的，因为这些场景是 DevOps 的核心特征。也就是说，当你的团队完成了 DevOps 史诗故事。那么，你的团队就可以被称作是 DevOps 团队。
-一个 DevOps 的史诗故事格式如下：</description></item></channel></rss>
+一定包含 Dev 和 Ops 两个方面</description></item></channel></rss>
