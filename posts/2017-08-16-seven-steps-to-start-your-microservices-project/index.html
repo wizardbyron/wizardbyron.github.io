@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>提升微服务实施效率的 7 个步骤 &#183; 顾宇的博客</title>
@@ -77,8 +77,8 @@
   最快的时间。
   代价最小的技术栈。
   此外，很多微服务的“爱好者”由于害怕失败，因此将微服务技术始终放在“实验室”里。要勇于面对失败，在生产环境中面对真实的问题，但要采取一些规避风险的措施。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"提升微服务实施效率的 7 个步骤","headline":"提升微服务实施效率的 7 个步骤","description":"本文是GitChat《为什么微服务实施那么难？如何高效推进微服务架构演进》的下半部分。标题和部分内容已做修改。\n 微服务实施常被忽视的 5 个难点中描述了实施微服务常见的主要阻碍。本文针对前文提到的 5 个难点提出了 7 个步骤。每个步骤分别包含了管理和技术两方面的建议。\n如果之前的 5 点都让你膝盖中箭。那么根据我个人的经验，综合解决微服务实施难点的第一步就是：\n步骤1：以终为始，先构建一个独立的敏捷微服务团队 # 我们对微服务的期待就是：可以独立开发，独立部署，独立发布，并且去中心化管理。那么，我们就先构造一只“可以独立开发，独立部署，并且去中心化管理”的团队。\n这个团队为了达到这个目标，会采取各种方法（例如：DevOps，全功能团队）解决阻碍”独立开发，独立部署，独立发布 和 去中心化的问题。而根据康威定理，系统的架构会慢慢向去中心化方向发展。\n一定要意识到，这个过程会打破大型系统自上而下的既有流程并采用更有生产力的方式构建新的组织结构。你索要做的就是要充分信任团队，把它看做是一个微型的技术管理创新。不要用老的方式控制团队的运作，这会打击团队的士气。\n管理建议：\n 让微服务团队完全脱离之前的工作，专心于微服务的工作中。如果分心同时做几件事，每件事都不会做到最好。 给微服务团队一些特权，为了满足“全功能微服务团队的”诉求，特事特办。 如果团队在执行的过程出现了依赖从而阻碍了进度。则需要把依赖标明出来。代码中的依赖容易看见，但组织中的流程依赖很难发现。 为了避免团队对外部的“依赖惯性”，让团队自己想办法在内部解决依赖。 组织流程的改变也是很重要的微服务架构产物，而不仅仅是微服务代码或基础设施。  技术建议：\n 为微服务建立一个全新的代码库，而不要从原先的代码库上克隆或者复制，避免和原团队的开发依赖。 建设一个独立的持续交付流水线，最好是通过“流水线即代码技术”（例如 Jenkinsfile）来自动生成流水线。  步骤2：构建微服务的“电梯演讲” # 成立了微服务团队之后，接下来就是要选择第一个实现的微服务。但是这个微服务应该多大，边界在哪是个问题。这不需要进行严格的设计和反复的论证，只要发现当前的痛点或者想要完成一个假设就足够上路了。让整个过程变轻，而不是变重。\n我的建议是通过“微服务电梯演讲”的方式来定义微服务。格式可以是：\n (XX微服务）用来 在（出现痛点的场景）的情况下 解决了（解决现有的某个问题） 从而（达到什么样的效果） 提升了（微服务的价值）\n 例如：\n （订单查询微服务）用来 在（订单查询数量快速）的情况下 解决了（访问数量迅速升高导致整体应用性能下降的问题） 从而（分离了订单查询请求） 提升了（提升了其他功能的性能）\n 当构造了微服务的电梯演讲，团队就可以以此为原则启动了。当碰到和现有系统冲突的问题，替换几个词比较有帮助你做决策。（语言一定程度上也是具有魔力的）\n把“拆分”换成“移除”。例如：“从现有系统中拆分出订单查询功能” 转变为 ”从现有系统中移除订单查询功能“。思维方式就从一个团队负责两个系统变成了两个团队负责两个系统。\n把“集成”换成“调用”。例如：”用户注册和用户登录需要集成”转变为“用户登录服务需要调用用户注册服务的信息”。思维方式就把两个系统的关系更精确了，从而明确了微服务之间的关系和沟通方式。\n管理建议：\n 把微服务的电梯演讲打印出来挂到墙上，让团队成员铭记于心。这会强化组织对微服务的边界认识。 随着团队的反思和学习，电梯演讲有可能会变更，但一定要让团队形成共识好和一致的意见。 不要期望一次就能划分正确。划分是一个持续权衡取舍的过程。  技术建议：\n 明确了微服务的职责和边界之后再去看代码，否则会被代码的复杂度影响。 领域驱动设计（DDD）可以帮助你更好的划分微服务。领域驱动设计很好的遵循了“关注点分离”（Separation of concerns，SOC）的原则，提出了更成熟、清晰的分层架构。 不会领域驱动设计（DDD）也没有关系。简单的使用“关注点分离原则”也可以帮你达到这一点。例如：从接口中分离出流量较大的接口独立部署，把读数据库和写数据库的 API 分开独立部署，把静态和动态访问分离……等等。  步骤3：以最小的代价发布出第一个微服务 # 要注意两个关键点：一个是“最小的代价”，另一个是“发布”（Release）。\n正如前文所述，微服务架构本身就觉了微服务一定是低成本低风险的渐进式演进。而最大的浪费在于：\n  级别\/职责分工明确的组织沟通结构。\n  “长时间，慢反馈”的行动习惯。\n  先进且学习成本较高的技术栈。\n  因此，“最小的代价”包含了以下三个方面：\n  最精简的独立敏捷全功能团队。\n  最快的时间。\n  代价最小的技术栈。\n  此外，很多微服务的“爱好者”由于害怕失败，因此将微服务技术始终放在“实验室”里。要勇于面对失败，在生产环境中面对真实的问题，但要采取一些规避风险的措施。","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-08-16T00:00:00\u002b00:00","datePublished":"2017-08-16T00:00:00\u002b00:00","dateModified":"2017-08-16T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-08-16-seven-steps-to-start-your-microservices-project\/","wordCount":"257","keywords":["微服务","架构"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"提升微服务实施效率的 7 个步骤","headline":"提升微服务实施效率的 7 个步骤","description":"本文是GitChat《为什么微服务实施那么难？如何高效推进微服务架构演进》的下半部分。标题和部分内容已做修改。\n 微服务实施常被忽视的 5 个难点中描述了实施微服务常见的主要阻碍。本文针对前文提到的 5 个难点提出了 7 个步骤。每个步骤分别包含了管理和技术两方面的建议。\n如果之前的 5 点都让你膝盖中箭。那么根据我个人的经验，综合解决微服务实施难点的第一步就是：\n步骤1：以终为始，先构建一个独立的敏捷微服务团队 # 我们对微服务的期待就是：可以独立开发，独立部署，独立发布，并且去中心化管理。那么，我们就先构造一只“可以独立开发，独立部署，并且去中心化管理”的团队。\n这个团队为了达到这个目标，会采取各种方法（例如：DevOps，全功能团队）解决阻碍”独立开发，独立部署，独立发布 和 去中心化的问题。而根据康威定理，系统的架构会慢慢向去中心化方向发展。\n一定要意识到，这个过程会打破大型系统自上而下的既有流程并采用更有生产力的方式构建新的组织结构。你索要做的就是要充分信任团队，把它看做是一个微型的技术管理创新。不要用老的方式控制团队的运作，这会打击团队的士气。\n管理建议：\n 让微服务团队完全脱离之前的工作，专心于微服务的工作中。如果分心同时做几件事，每件事都不会做到最好。 给微服务团队一些特权，为了满足“全功能微服务团队的”诉求，特事特办。 如果团队在执行的过程出现了依赖从而阻碍了进度。则需要把依赖标明出来。代码中的依赖容易看见，但组织中的流程依赖很难发现。 为了避免团队对外部的“依赖惯性”，让团队自己想办法在内部解决依赖。 组织流程的改变也是很重要的微服务架构产物，而不仅仅是微服务代码或基础设施。  技术建议：\n 为微服务建立一个全新的代码库，而不要从原先的代码库上克隆或者复制，避免和原团队的开发依赖。 建设一个独立的持续交付流水线，最好是通过“流水线即代码技术”（例如 Jenkinsfile）来自动生成流水线。  步骤2：构建微服务的“电梯演讲” # 成立了微服务团队之后，接下来就是要选择第一个实现的微服务。但是这个微服务应该多大，边界在哪是个问题。这不需要进行严格的设计和反复的论证，只要发现当前的痛点或者想要完成一个假设就足够上路了。让整个过程变轻，而不是变重。\n我的建议是通过“微服务电梯演讲”的方式来定义微服务。格式可以是：\n (XX微服务）用来 在（出现痛点的场景）的情况下 解决了（解决现有的某个问题） 从而（达到什么样的效果） 提升了（微服务的价值）\n 例如：\n （订单查询微服务）用来 在（订单查询数量快速）的情况下 解决了（访问数量迅速升高导致整体应用性能下降的问题） 从而（分离了订单查询请求） 提升了（提升了其他功能的性能）\n 当构造了微服务的电梯演讲，团队就可以以此为原则启动了。当碰到和现有系统冲突的问题，替换几个词比较有帮助你做决策。（语言一定程度上也是具有魔力的）\n把“拆分”换成“移除”。例如：“从现有系统中拆分出订单查询功能” 转变为 ”从现有系统中移除订单查询功能“。思维方式就从一个团队负责两个系统变成了两个团队负责两个系统。\n把“集成”换成“调用”。例如：”用户注册和用户登录需要集成”转变为“用户登录服务需要调用用户注册服务的信息”。思维方式就把两个系统的关系更精确了，从而明确了微服务之间的关系和沟通方式。\n管理建议：\n 把微服务的电梯演讲打印出来挂到墙上，让团队成员铭记于心。这会强化组织对微服务的边界认识。 随着团队的反思和学习，电梯演讲有可能会变更，但一定要让团队形成共识好和一致的意见。 不要期望一次就能划分正确。划分是一个持续权衡取舍的过程。  技术建议：\n 明确了微服务的职责和边界之后再去看代码，否则会被代码的复杂度影响。 领域驱动设计（DDD）可以帮助你更好的划分微服务。领域驱动设计很好的遵循了“关注点分离”（Separation of concerns，SOC）的原则，提出了更成熟、清晰的分层架构。 不会领域驱动设计（DDD）也没有关系。简单的使用“关注点分离原则”也可以帮你达到这一点。例如：从接口中分离出流量较大的接口独立部署，把读数据库和写数据库的 API 分开独立部署，把静态和动态访问分离……等等。  步骤3：以最小的代价发布出第一个微服务 # 要注意两个关键点：一个是“最小的代价”，另一个是“发布”（Release）。\n正如前文所述，微服务架构本身就觉了微服务一定是低成本低风险的渐进式演进。而最大的浪费在于：\n  级别\/职责分工明确的组织沟通结构。\n  “长时间，慢反馈”的行动习惯。\n  先进且学习成本较高的技术栈。\n  因此，“最小的代价”包含了以下三个方面：\n  最精简的独立敏捷全功能团队。\n  最快的时间。\n  代价最小的技术栈。\n  此外，很多微服务的“爱好者”由于害怕失败，因此将微服务技术始终放在“实验室”里。要勇于面对失败，在生产环境中面对真实的问题，但要采取一些规避风险的措施。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-08-16T00:00:00\u002b00:00","datePublished":"2017-08-16T00:00:00\u002b00:00","dateModified":"2017-08-16T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-08-16-seven-steps-to-start-your-microservices-project\/","wordCount":"257","keywords":["微服务","架构"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -118,7 +118,7 @@
 <div class="flex flex-row items-center">
 <time datetime="2017-08-16 00:00:00 +0000 UTC">16 August 2017</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-08-16-seven-steps-to-start-your-microservices-project.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-08-16-seven-steps-to-start-your-microservices-project.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -132,7 +132,7 @@
 </blockquote>
 <p>微服务实施常被忽视的 5 个难点中描述了实施微服务常见的主要阻碍。本文针对前文提到的 5 个难点提出了 7 个步骤。每个步骤分别包含了管理和技术两方面的建议。</p>
 <p>如果之前的 5 点都让你膝盖中箭。那么根据我个人的经验，综合解决微服务实施难点的第一步就是：</p>
-<h2 id=步骤1以终为始先构建一个独立的敏捷微服务团队>步骤1：以终为始，先构建一个独立的敏捷微服务团队 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a41%e4%bb%a5%e7%bb%88%e4%b8%ba%e5%a7%8b%e5%85%88%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e7%8b%ac%e7%ab%8b%e7%9a%84%e6%95%8f%e6%8d%b7%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%9b%a2%e9%98%9f aria-label=Anchor>#</a></h2>
+<h2 id=步骤1以终为始先构建一个独立的敏捷微服务团队>步骤1：以终为始，先构建一个独立的敏捷微服务团队 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a41%e4%bb%a5%e7%bb%88%e4%b8%ba%e5%a7%8b%e5%85%88%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e7%8b%ac%e7%ab%8b%e7%9a%84%e6%95%8f%e6%8d%b7%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%9b%a2%e9%98%9f aria-label=锚点>#</a></h2>
 <p>我们对微服务的期待就是：可以独立开发，独立部署，独立发布，并且去中心化管理。那么，我们就先构造一只“可以独立开发，独立部署，并且去中心化管理”的团队。</p>
 <p>这个团队为了达到这个目标，会采取各种方法（例如：DevOps，全功能团队）解决阻碍”独立开发，独立部署，独立发布 和 去中心化的问题。而根据康威定理，系统的架构会慢慢向去中心化方向发展。</p>
 <p>一定要意识到，这个过程会打破大型系统自上而下的既有流程并采用更有生产力的方式构建新的组织结构。你索要做的就是要充分信任团队，把它看做是一个微型的技术管理创新。不要用老的方式控制团队的运作，这会打击团队的士气。</p>
@@ -149,7 +149,7 @@
 <li>为微服务建立一个全新的代码库，而不要从原先的代码库上克隆或者复制，避免和原团队的开发依赖。</li>
 <li>建设一个独立的持续交付流水线，最好是通过“流水线即代码技术”（例如 Jenkinsfile）来自动生成流水线。</li>
 </ul>
-<h2 id=步骤2构建微服务的电梯演讲>步骤2：构建微服务的“电梯演讲” <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a42%e6%9e%84%e5%bb%ba%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9a%84%e7%94%b5%e6%a2%af%e6%bc%94%e8%ae%b2 aria-label=Anchor>#</a></h2>
+<h2 id=步骤2构建微服务的电梯演讲>步骤2：构建微服务的“电梯演讲” <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a42%e6%9e%84%e5%bb%ba%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9a%84%e7%94%b5%e6%a2%af%e6%bc%94%e8%ae%b2 aria-label=锚点>#</a></h2>
 <p>成立了微服务团队之后，接下来就是要选择第一个实现的微服务。但是这个微服务应该多大，边界在哪是个问题。这不需要进行严格的设计和反复的论证，只要发现当前的痛点或者想要完成一个假设就足够上路了。让整个过程变轻，而不是变重。</p>
 <p>我的建议是通过“微服务电梯演讲”的方式来定义微服务。格式可以是：</p>
 <blockquote>
@@ -182,7 +182,7 @@
 <li>领域驱动设计（DDD）可以帮助你更好的划分微服务。领域驱动设计很好的遵循了“关注点分离”（Separation of concerns，SOC）的原则，提出了更成熟、清晰的分层架构。</li>
 <li>不会领域驱动设计（DDD）也没有关系。简单的使用“关注点分离原则”也可以帮你达到这一点。例如：从接口中分离出流量较大的接口独立部署，把读数据库和写数据库的 API 分开独立部署，把静态和动态访问分离……等等。</li>
 </ul>
-<h2 id=步骤3以最小的代价发布出第一个微服务>步骤3：以最小的代价发布出第一个微服务 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a43%e4%bb%a5%e6%9c%80%e5%b0%8f%e7%9a%84%e4%bb%a3%e4%bb%b7%e5%8f%91%e5%b8%83%e5%87%ba%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%be%ae%e6%9c%8d%e5%8a%a1 aria-label=Anchor>#</a></h2>
+<h2 id=步骤3以最小的代价发布出第一个微服务>步骤3：以最小的代价发布出第一个微服务 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a43%e4%bb%a5%e6%9c%80%e5%b0%8f%e7%9a%84%e4%bb%a3%e4%bb%b7%e5%8f%91%e5%b8%83%e5%87%ba%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%be%ae%e6%9c%8d%e5%8a%a1 aria-label=锚点>#</a></h2>
 <p>要注意两个关键点：<strong>一个是“最小的代价”，另一个是“发布”（Release）</strong>。</p>
 <p>正如前文所述，微服务架构本身就觉了微服务一定是低成本低风险的渐进式演进。而最大的浪费在于：</p>
 <ol>
@@ -222,7 +222,7 @@
 <li>如果采用了特性开关，一定要设立删除特性开关和对应旧代码的时间，一般不超过两个月。否则后面大量的特性开关会带来管理成本的提升和代码的凌乱。</li>
 <li>由于团队比较小，功能比较单一，不建议采用分支来构建微服务，而应该采用单主干方式开发。</li>
 </ul>
-<h2 id=步骤4取得快速胜利quick-wins演示showcase驱动开发>步骤4：取得快速胜利（Quick wins），演示（Showcase）驱动开发 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a44%e5%8f%96%e5%be%97%e5%bf%ab%e9%80%9f%e8%83%9c%e5%88%a9quick-wins%e6%bc%94%e7%a4%bashowcase%e9%a9%b1%e5%8a%a8%e5%bc%80%e5%8f%91 aria-label=Anchor>#</a></h2>
+<h2 id=步骤4取得快速胜利quick-wins演示showcase驱动开发>步骤4：取得快速胜利（Quick wins），演示（Showcase）驱动开发 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a44%e5%8f%96%e5%be%97%e5%bf%ab%e9%80%9f%e8%83%9c%e5%88%a9quick-wins%e6%bc%94%e7%a4%bashowcase%e9%a9%b1%e5%8a%a8%e5%bc%80%e5%8f%91 aria-label=锚点>#</a></h2>
 <p>刚开始进行微服务改造的时候一定会是一个试错的过程。如果目标定得太大，会让团队倍感压力，从而士气低落。而制定每日的短期目标，赢得快速胜利则会不断激励团队的士气。通过设定当天结束的产出来确定今天需要做什么是一个非常有效的办法。</p>
 <p>每日演示（Daily Showcase）就是一种推进产出的做法。每天向团队分享今天的工作内容，使小组能够共同学习。并且以当天或者明天的 showcase 作为目标。每个人showcase 的内容一般不超过20分钟，一天的 showcase 时间不超过一小时。可以早上 showcase，也可以下班后 showcase。</p>
 <p>常见的快速胜利目标如下：</p>
@@ -251,7 +251,7 @@
 <li>除了让第一个 HelloWord 微服务尽快发布到生产环境，其它的不要想太多。</li>
 <li>完成了 HelloWord 的发布，然后要考虑如何对发布流程进行改进。而不是上线业务。</li>
 </ul>
-<h2 id=步骤5代码未动devops-先行>步骤5：代码未动，DevOps 先行 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a45%e4%bb%a3%e7%a0%81%e6%9c%aa%e5%8a%a8devops-%e5%85%88%e8%a1%8c aria-label=Anchor>#</a></h2>
+<h2 id=步骤5代码未动devops-先行>步骤5：代码未动，DevOps 先行 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a45%e4%bb%a3%e7%a0%81%e6%9c%aa%e5%8a%a8devops-%e5%85%88%e8%a1%8c aria-label=锚点>#</a></h2>
 <p>微服务解耦的本质是把代码内部的复杂性通过一些工具转化外部复杂性。把代码内部的复杂性分散到各个微服务中以降低整体复杂性和架构风险。在这个过程中会大量采用了 DevOps 技术和工具。也可以说，微服务是 DevOps 文化和技术在走到极致的必然结果。</p>
 <p>以 J2EE 的应用为例，以前Web Server + App Server + MiddleWare + Database 的传统架构被代码更少，更多的基础设施工具所取代。因为基础设施相对于代码来说更加稳定，更加利于扩展。</p>
 <p>我把微服务的技术架构问题比作“搭台唱戏”：首先需要建立好微服务交付和运行的平台，然后让微服务上台“唱戏”。</p>
@@ -283,7 +283,7 @@
 <li>服务注册和发现是微服务架构的核心部分。consul 和 Eureka 是这方面的佼佼者。</li>
 <li>部署（Deploy）和发布（Release）要分开。</li>
 </ul>
-<h2 id=步骤6除了提交代码和发布微服务平台一切都应当自动化>步骤6：除了提交代码和发布，微服务平台一切都应当自动化 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a46%e9%99%a4%e4%ba%86%e6%8f%90%e4%ba%a4%e4%bb%a3%e7%a0%81%e5%92%8c%e5%8f%91%e5%b8%83%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0%e4%b8%80%e5%88%87%e9%83%bd%e5%ba%94%e5%bd%93%e8%87%aa%e5%8a%a8%e5%8c%96 aria-label=Anchor>#</a></h2>
+<h2 id=步骤6除了提交代码和发布微服务平台一切都应当自动化>步骤6：除了提交代码和发布，微服务平台一切都应当自动化 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a46%e9%99%a4%e4%ba%86%e6%8f%90%e4%ba%a4%e4%bb%a3%e7%a0%81%e5%92%8c%e5%8f%91%e5%b8%83%e5%be%ae%e6%9c%8d%e5%8a%a1%e5%b9%b3%e5%8f%b0%e4%b8%80%e5%88%87%e9%83%bd%e5%ba%94%e5%bd%93%e8%87%aa%e5%8a%a8%e5%8c%96 aria-label=锚点>#</a></h2>
 <p>在完成了微服务的基础设施和交付流程之后，就可以开始实现微服务的业务了。这时候需要依据电梯演讲划分出来的微服务进行业务逻辑的开发。在以 DevOps 的方式工作一段时间之后，团队应该养成了一些自动化的习惯，如果没有，就应该检查一下自己的自动化程度。最佳的自动糊理想的状态就是除了代码提交和发布。在这之间的每一个流程和环节都应当由自动化的手段来完成。</p>
 <p>当然，也有不能自动化的部分。根据我的经验，不能自动化的原因主要来自于流程管理的制度要求，而非技术困难。这往往是组织没有依据微服务进行流程变革导致的。这时候需要检讨不能自动化的部分是不是有存在的必要。</p>
 <p>另一方面，虽然自动化可以大量缩短微服务交付时间，提升微服务交付效率。但是自动化的同时需要考虑到安全因素和风险，不能顾此失彼。对于生产来说，可用性和安全性是最重要的部分。</p>
@@ -307,7 +307,7 @@
 <li>关键步骤需要准备自动手动两种方式，必要时可以干预自动过程。</li>
 <li>采用 git 的 hook 技术，在代码 push 之前就可以完成测试和静态检查，提升 CI 的成功率。</li>
 </ul>
-<h2 id=步骤7总结并复制成功经验建立起微服务交付的节奏>步骤7：总结并复制成功经验，建立起微服务交付的节奏 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a47%e6%80%bb%e7%bb%93%e5%b9%b6%e5%a4%8d%e5%88%b6%e6%88%90%e5%8a%9f%e7%bb%8f%e9%aa%8c%e5%bb%ba%e7%ab%8b%e8%b5%b7%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%ba%a4%e4%bb%98%e7%9a%84%e8%8a%82%e5%a5%8f aria-label=Anchor>#</a></h2>
+<h2 id=步骤7总结并复制成功经验建立起微服务交付的节奏>步骤7：总结并复制成功经验，建立起微服务交付的节奏 <a class=heading-anchor href=#%e6%ad%a5%e9%aa%a47%e6%80%bb%e7%bb%93%e5%b9%b6%e5%a4%8d%e5%88%b6%e6%88%90%e5%8a%9f%e7%bb%8f%e9%aa%8c%e5%bb%ba%e7%ab%8b%e8%b5%b7%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%ba%a4%e4%bb%98%e7%9a%84%e8%8a%82%e5%a5%8f aria-label=锚点>#</a></h2>
 <p>当完成了第一个微服务，不要着急开始进行下一个微服务的开发。而是需要进行一次关于可复制经验的总结，识别微服务开发中的经验教训并总结成可复制的经验和产出。</p>
 <p>以下是一些需要总结出来的关键产出：</p>
 <p>微服务开发到发布的端到端流程规范。</p>
@@ -328,7 +328,7 @@
 <li>不要急于在微服务应用规模不大的时候形成微服务模板，否则会限制未来微服务的开发和扩展。</li>
 <li>在微服务不成规模的时候不要放松对微服务平台的改进。</li>
 </ul>
-<h2 id=参考书目>参考书目 <a class=heading-anchor href=#%e5%8f%82%e8%80%83%e4%b9%a6%e7%9b%ae aria-label=Anchor>#</a></h2>
+<h2 id=参考书目>参考书目 <a class=heading-anchor href=#%e5%8f%82%e8%80%83%e4%b9%a6%e7%9b%ae aria-label=锚点>#</a></h2>
 <p>《微服务设计》 是一本微服务各个方面技术的综合参考材料。如果你在实施微服务的过程中碰到了问题，它就是一个解决方案的分类汇总。</p>
 <p>《持续交付》汇集了很多交付最佳实践，当你的微服务实施碰到阻碍时，里面的建议能够让你解决当前的困境。</p>
 <p>《领域驱动设计》和《实现领域驱动设计》为拆分微服务提供了方法论，当团队之间对于微服务的拆分有困难的时候，采用领域驱动的方法往往会得到更好的效果。·</p>
@@ -339,7 +339,7 @@
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -399,15 +399,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

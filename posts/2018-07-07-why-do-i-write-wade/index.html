@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>一怒之下，我又写了一个开源流量测试工具 &#183; 顾宇的博客</title>
@@ -49,8 +49,8 @@ wade -t 10 -u https://www.google.com
 如果我需要知道停机时长，我必须要先能够持续不断的发出 http 请求，并记录下相应 状态不是 200 OK 的返回。我并不希望应用是一个死循环，因此我需要能够加入时间控制。我期望用下面的这样的方式来使用：
 wade -t 10 -u https://www.google.com
 其中，-t 代表时间，10 代表持续分钟，-u 表示要测试的 url。我期望这个工具能够连续的帮我输出每次请求的时间和 HTTP 状态字。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"一怒之下，我又写了一个开源流量测试工具","headline":"一怒之下，我又写了一个开源流量测试工具","description":"继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。\n背景 # 客户的站点是通过 Wordpress 搭建的，这个应用放在一台 EC2 虚拟机上。奇葩的是，这个应用的 MySQL 数据库也在这台虚拟机上，之前做过一次 RDS 迁移，失败了，原因未知。看起来这个应用和数据库就像筷子兄弟一样，不离不弃，而且没有办法通过 AutoScaling Group 进行水平扩展。也就是说，所有的东西都在一台虚拟机上。\n我所要做的，就是把这个架构重新变成可自动水平扩展且高可用高性能有缓存低消耗具备监控和更加安全且有版本控制并可以通过持续交付流水线来半自动部署的架构。你可以重新读一下上一句加粗文字的内容。没错，目前他们连版本控制都没有，所有的操作在服务器上通过 mv 之间 scp 进行。\n很不巧的时候，这个“筷子兄弟”应用在上周开始，晚上随机的 Down 机，表现为数据库被删。但通过日志可以发现，是由于内存资源不足导致的 MySQL 数据引擎加载不了导致的。\n由于需要做“筷子兄弟”拆分手术，目的是要把数据库和应用程序分开，并且需要进行一些服务的重启和拆分。这些操作中会导致停机时间，为了能够度量这个停机时间，便于做出更好的决策，客户希望在测试环境上能够通过模拟生产环境的工作状态来完成这个任务。我设计了方案，包括以下几点：\n 知道每一个可能引起停机的操作引起停机的时长。 测试 RDS 能带来多少的性能提升。 找出整个架构引起停机的根本问题。 在 500 个并发用户访问的情况下，会出现的性能拐点。 能够度量应用的资源损耗。  客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。\n我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。\n于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。\n工具的设计 #  There are only two hard things in Computer Science: cache invalidation and naming things.\n\u0026ndash; Phil Karlton\n 命名是一件很困难的事情。于是，为了纪念这个事情，一开始我用提出这个需求的客户的名字（Dave）来命名它，但可能不太好记忆。所以最后还是用 Wade （Web Application Downtime Estimation）作为这个工具的名字。它很简单，可以在https:\/\/github.com\/wizardbyron\/wade找到。\n如果我需要知道停机时长，我必须要先能够持续不断的发出 http 请求，并记录下相应 状态不是 200 OK 的返回。我并不希望应用是一个死循环，因此我需要能够加入时间控制。我期望用下面的这样的方式来使用：\nwade -t 10 -u https:\/\/www.google.com\n其中，-t 代表时间，10 代表持续分钟，-u 表示要测试的 url。我期望这个工具能够连续的帮我输出每次请求的时间和 HTTP 状态字。","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-07-07T00:00:00\u002b00:00","datePublished":"2018-07-07T00:00:00\u002b00:00","dateModified":"2018-07-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-07-07-why-do-i-write-wade\/","wordCount":"250","keywords":["停机时间","高可用","开源工具","Python","流量测试"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"一怒之下，我又写了一个开源流量测试工具","headline":"一怒之下，我又写了一个开源流量测试工具","description":"继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。\n背景 # 客户的站点是通过 Wordpress 搭建的，这个应用放在一台 EC2 虚拟机上。奇葩的是，这个应用的 MySQL 数据库也在这台虚拟机上，之前做过一次 RDS 迁移，失败了，原因未知。看起来这个应用和数据库就像筷子兄弟一样，不离不弃，而且没有办法通过 AutoScaling Group 进行水平扩展。也就是说，所有的东西都在一台虚拟机上。\n我所要做的，就是把这个架构重新变成可自动水平扩展且高可用高性能有缓存低消耗具备监控和更加安全且有版本控制并可以通过持续交付流水线来半自动部署的架构。你可以重新读一下上一句加粗文字的内容。没错，目前他们连版本控制都没有，所有的操作在服务器上通过 mv 之间 scp 进行。\n很不巧的时候，这个“筷子兄弟”应用在上周开始，晚上随机的 Down 机，表现为数据库被删。但通过日志可以发现，是由于内存资源不足导致的 MySQL 数据引擎加载不了导致的。\n由于需要做“筷子兄弟”拆分手术，目的是要把数据库和应用程序分开，并且需要进行一些服务的重启和拆分。这些操作中会导致停机时间，为了能够度量这个停机时间，便于做出更好的决策，客户希望在测试环境上能够通过模拟生产环境的工作状态来完成这个任务。我设计了方案，包括以下几点：\n 知道每一个可能引起停机的操作引起停机的时长。 测试 RDS 能带来多少的性能提升。 找出整个架构引起停机的根本问题。 在 500 个并发用户访问的情况下，会出现的性能拐点。 能够度量应用的资源损耗。  客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。\n我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。\n于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。\n工具的设计 #  There are only two hard things in Computer Science: cache invalidation and naming things.\n\u0026ndash; Phil Karlton\n 命名是一件很困难的事情。于是，为了纪念这个事情，一开始我用提出这个需求的客户的名字（Dave）来命名它，但可能不太好记忆。所以最后还是用 Wade （Web Application Downtime Estimation）作为这个工具的名字。它很简单，可以在https:\/\/github.com\/wizardbyron\/wade找到。\n如果我需要知道停机时长，我必须要先能够持续不断的发出 http 请求，并记录下相应 状态不是 200 OK 的返回。我并不希望应用是一个死循环，因此我需要能够加入时间控制。我期望用下面的这样的方式来使用：\nwade -t 10 -u https:\/\/www.google.com\n其中，-t 代表时间，10 代表持续分钟，-u 表示要测试的 url。我期望这个工具能够连续的帮我输出每次请求的时间和 HTTP 状态字。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-07-07T00:00:00\u002b00:00","datePublished":"2018-07-07T00:00:00\u002b00:00","dateModified":"2018-07-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-07-07-why-do-i-write-wade\/","wordCount":"250","keywords":["停机时间","高可用","开源工具","Python","流量测试"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -90,7 +90,7 @@ wade -t 10 -u https://www.google.com
 <div class="flex flex-row items-center">
 <time datetime="2018-07-07 00:00:00 +0000 UTC">7 July 2018</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-07-07-why-do-I-write-wade.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-07-07-why-do-I-write-wade.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -100,7 +100,7 @@ wade -t 10 -u https://www.google.com
 </header>
 <section class="prose dark:prose-light">
 <p>继一怒之下我写出了 Vivian（详见“<a href=/posts/2018-06-12-tdd-in-nginx>测试驱动开发 Nginx 配置</a>”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。</p>
-<h2 id=背景>背景 <a class=heading-anchor href=#%e8%83%8c%e6%99%af aria-label=Anchor>#</a></h2>
+<h2 id=背景>背景 <a class=heading-anchor href=#%e8%83%8c%e6%99%af aria-label=锚点>#</a></h2>
 <p>客户的站点是通过 Wordpress 搭建的，这个应用放在一台 EC2 虚拟机上。奇葩的是，这个应用的 MySQL 数据库也在这台虚拟机上，之前做过一次 RDS 迁移，失败了，原因未知。看起来这个应用和数据库就像筷子兄弟一样，不离不弃，而且没有办法通过 AutoScaling Group 进行水平扩展。也就是说，所有的东西都在<strong>一台虚拟机</strong>上。</p>
 <p>我所要做的，就是把这个架构重新变成可<strong>自动水平扩展且高可用高性能有缓存低消耗具备监控和更加安全且有版本控制并可以通过持续交付流水线来半自动部署</strong>的架构。你可以重新读一下上一句加粗文字的内容。没错，目前他们连版本控制都没有，所有的操作在服务器上通过 mv 之间 scp 进行。</p>
 <p>很不巧的时候，这个“筷子兄弟”应用在上周开始，晚上随机的 Down 机，表现为数据库被删。但通过日志可以发现，是由于内存资源不足导致的 MySQL 数据引擎加载不了导致的。</p>
@@ -115,7 +115,7 @@ wade -t 10 -u https://www.google.com
 <p>客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。</p>
 <p>我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。</p>
 <p>于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。</p>
-<h2 id=工具的设计>工具的设计 <a class=heading-anchor href=#%e5%b7%a5%e5%85%b7%e7%9a%84%e8%ae%be%e8%ae%a1 aria-label=Anchor>#</a></h2>
+<h2 id=工具的设计>工具的设计 <a class=heading-anchor href=#%e5%b7%a5%e5%85%b7%e7%9a%84%e8%ae%be%e8%ae%a1 aria-label=锚点>#</a></h2>
 <blockquote>
 <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
 <p>&ndash; Phil Karlton</p>
@@ -131,7 +131,7 @@ wade -t 10 -u https://www.google.com
 </code></pre></div><p>这个需求其实很简单，我大概花了半个小时就完成了。</p>
 <p>在实际应用中，你需要先运行这个程序，然后再执行那些可能引起停机的操作。于是我准备让它运行30分钟，因为这些操作会执行多久我并不清楚。</p>
 <p>很好，经过测试，这些操作只会引起 5 秒左右的停机。</p>
-<h2 id=不过我好像忘了一个重要的事情>不过，我好像忘了一个重要的事情…… <a class=heading-anchor href=#%e4%b8%8d%e8%bf%87%e6%88%91%e5%a5%bd%e5%83%8f%e5%bf%98%e4%ba%86%e4%b8%80%e4%b8%aa%e9%87%8d%e8%a6%81%e7%9a%84%e4%ba%8b%e6%83%85 aria-label=Anchor>#</a></h2>
+<h2 id=不过我好像忘了一个重要的事情>不过，我好像忘了一个重要的事情…… <a class=heading-anchor href=#%e4%b8%8d%e8%bf%87%e6%88%91%e5%a5%bd%e5%83%8f%e5%bf%98%e4%ba%86%e4%b8%80%e4%b8%aa%e9%87%8d%e8%a6%81%e7%9a%84%e4%ba%8b%e6%83%85 aria-label=锚点>#</a></h2>
 <p>那就是这个应用是单线程的，也就是说，这个实际上和真实的场景相差很远。我需要能够有 500 个并发 HTTP 请求，于是我把它改造成了多线程的。<strong>我期望</strong>用下面的这样的方式来使用：</p>
 <p><code>wade -t 10 -n 5 -u https://www.google.com</code></p>
 <p>其中，-n 代表线程数量。</p>
@@ -149,11 +149,11 @@ wade -t 10 -u https://www.google.com
 <p>那个…… 好像，<strong>我刚才对这个服务器进行了一次 DoS （拒绝服务）攻击</strong>。</p>
 <p>加载了 NewRelic，我发现这个应用在加载首页的时候性能是最低的，而大部分的资源都消耗在了 select 查询上。因此，我判断其中的表或者数据有问题，会进行大量加载。其次，可以通过给首页增加页面缓存，或者在数据库库端加入缓存，来缓解资源占用。毕竟，首页的访问时最频繁的。</p>
 <p>最后，我们可以把 wade 在测试中度量到的数据当做是架构演进中的验收测试或者冒烟测试，集成在持续部署流水线中，在变更基础设施或者部署应用之后执行。我们需要非功能的架构级别的自动化测试来保护应用架构的重构。</p>
-<h2 id=反思---少即是多>反思 - 少即是多 <a class=heading-anchor href=#%e5%8f%8d%e6%80%9d---%e5%b0%91%e5%8d%b3%e6%98%af%e5%a4%9a aria-label=Anchor>#</a></h2>
+<h2 id=反思---少即是多>反思 - 少即是多 <a class=heading-anchor href=#%e5%8f%8d%e6%80%9d---%e5%b0%91%e5%8d%b3%e6%98%af%e5%a4%9a aria-label=锚点>#</a></h2>
 <p>如果没有这个工具，想得到以上的答案。我需要同时在三个服务（AWS CloudWatch, NewRelic, Flood.io）之间来回切换，并且搜集到需要的数据。那么多的数据，找到一个简单直接能反应问题的数据也很困难。而在等待账号审批的过程中，我就写下了这个工具。这个工具覆盖了客户会关心的基本场景和数据之间的关系。而这三个工具不能同时都满足（其实NewRelic 其实就差一点点）。虽然每个工具在各自领域 和所面对的客户都是非常强大的工具，而一个真实客户需求的场景 - 找到在正常压力下影响停机时间的因素 - 却很难被满足。</p>
 <p><strong>所以，对于非目标的用户和使用场景，产品丰富的功能和数据有可能是需要被过滤的噪音。一个产品所要面对的用户场景越多样，它所引入的噪音就会越多。而更多的增值服务和高价值服务，则被淹没在了这样的噪音里。</strong></p>
 <p>支付宝和银行的手机端应用就有这样的问题，什么都做的事情，一般什么都做不好。</p>
-<h2 id=最后>最后 <a class=heading-anchor href=#%e6%9c%80%e5%90%8e aria-label=Anchor>#</a></h2>
+<h2 id=最后>最后 <a class=heading-anchor href=#%e6%9c%80%e5%90%8e aria-label=锚点>#</a></h2>
 <p>作为一个两个小时之内完成的工具，wade 缺乏各种自动化测试。但是，从 wade 设计过程我们可以看出，虽然我没有写自动化测试，但是设定期望并完成期望的结果是一致的。从这个角度上讲，<strong>TDD 也是把大脑中对程序的设计过程记载下来的一个活动</strong>。</p>
 </section>
 <footer class=pt-8>
@@ -161,7 +161,7 @@ wade -t 10 -u https://www.google.com
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -221,15 +221,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

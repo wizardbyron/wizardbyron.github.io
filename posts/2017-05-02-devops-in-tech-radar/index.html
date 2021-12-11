@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>DevOps发展的九个趋势 &#183; 顾宇的博客</title>
@@ -45,8 +45,8 @@ AWS Lambda 带来的优势也深深影响了企业级应用领域，Apache OpenW
 而这一社区的创新数量则日渐平缓。一方面，开源社区激烈的竞争淘汰了一部分技术。另一方面，以 Docker 为中心的完整数据中心解决方案在不断的整合开源社区的零散工具并形成最佳实践。为端到端的开发和运维提供更完整的交付体验，各大厂商也相继开始推广自己的企业级整体收费解决方案，这表明 Docker 的使用已经走向成熟。
 在本期的技术雷达里的条目中出现了Mesosphere DC/OS，这是构建统一技术栈数据中心的一个征兆。在这方面Docker EE和Rancher都是非常有力的竞争者。根据我的判断，在未来的 Docker 社区里，统一容器化数据中心的竞争者将会进一步减少。而之前的私有云方案则慢慢会被“以 Docker 为核心数据中心级全栈交付”取代。
 趋势3：不完整的 DevOps 实践阻碍着 DevOps 的发展 # 很遗憾看到单一持续集成实例和不完整的持续集成（CI Theatre）这样的条目出现在技术雷达里。可以感到企业应用 DevOps 技术的紧迫性。这同时也暴露了 DevOps 领域里“缺乏门槛较低且成熟的 DevOps 实践”的问题。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"DevOps发展的九个趋势","headline":"DevOps发展的九个趋势","description":"DevOps 包含了太多方面的技术和实践，很难通过一个统一的工具链来描述其发展。即便如此，我们仍然可以从 ThoughtWorks 技术雷达的条目变动中看出一些趋势。今年，我有幸作为主编参与了最新一期技术雷达的翻译，作为 DevOps 的爱好者，十分高兴能在这一过程中看到 DevOps 未来发展的几个趋势，总结成了这篇文章。\n趋势1：微服务目前仍然是 DevOps 技术应用和发展的主要领域 # 微服务将单块应用系统切割为多个简单独立的应用。从技术上说，这是通过工具把应用程序的内部复杂度转化为外部复杂度，需要一系列工具支撑微服务本身以及服务之间的通信。从组织上说，微服务团队要满足“快速发布，独立部署”的能力，则必须具备 DevOps 的工作方式。\n如何拆解微服务一直是微服务技术应用的最大难点之一，领域驱动设计是比较理想的微服务拆解方法论。社会化代码分析帮助团队通过更精确的数据找到更加合适的拆分点。CodeScene是一个在线服务，它能帮助识别出热点和复杂且难以维护的子系统，通过分析分布式子系统在时间上的耦合发现子系统之间的耦合。此外，它还能帮你认识组织中的康威定律，这会大大降低微服务解耦的难度。\n此外，微服务系统本质上是一个分布式系统，分布式系统之间的通信一直是很重要的问题。本期介绍的Kafka Streams和OpenTracing就是这类技术的条目。Kafka 作为一个成熟的分布式消息系统已经被广泛采用，而 Kafka Streams 则将最佳实践以“库”的方式呈现给开发人员，使得操作 Kafka 更加自然和简单。而 OpenTracing 则弥补了跨越多个微服务之间请求追踪的空白。\n另一方面，**无服务器风格的架构（Serverless architecture ）**把 DevOps 技术在微服务领域的应用推向极致。当应用程序执行环境的管理被新的编程模型和平台取代后，团队的交付生产率得到了进一步的提升。一方面它免去了很多环境管理的工作，包括设备、网络、主机以及对应的软件和配置工作，使得软件运行时环境更加稳定。另一方面，它大大降低了团队采用 DevOps 的技术门槛。然而，端到端的交付以及微服务中的函数管理问题日渐突出，尽管AWS API gateway和AWS Lambda几乎成了 Serverless 架构的代名词，但这二者结合的开发者体验并不佳。于是出现了Serverless framework和CLAUDIA这样的管理工具。\nAWS Lambda 带来的优势也深深影响了企业级应用领域，Apache OpenWhisk就是企业级无服务器领域的选择之一，它使得企业级应用也可以采用无服务器风格的架构构建应用程序。\n在微服务端到端交付流程上，Netflix 开源了自家的Spinnaker，Netflix 作为微服务实践的先锋，不断推出新的开源工具来弥补社区中微服务技术和最佳实践的缺失。 而Spring Cloud则为开发者提供了一系列工具，以便他们在所熟悉的 Spring 技术栈下使用这些服务协调技术(coordination techniques)，如服务发现、负载均衡、熔断和健康检查。\n而在微服务的安全上，最常见的需求之一是通过身份验证和授权功能来保护服务或 API。 这部分功能往往是最重要且不断重复构造的。而Keycloak就是一个开源的身份和访问管理解决方案，用于确保应用程序或微服务的安全。且几乎不需要编写代码，开箱即用。它支持单点登录，社交网络登录和标准协议登录(如 OpenID Connect ， OAuth2 和 SAML 等)。\n趋势2：以 Docker 为核心的数据中心方案逐渐走向成熟 # 在过去的两年，Docker 社区有了突飞猛进的发展，似乎每期技术雷达都会出现 Docker 相关的条目。而 Docker 往往和 DevOps 联系起来，被认为是推动 DevOps 发展的杀手级工具，以至于有些人会以团队是否采用 Docker 作为团队是否具备 DevOps 能力的标志。\n而这一社区的创新数量则日渐平缓。一方面，开源社区激烈的竞争淘汰了一部分技术。另一方面，以 Docker 为中心的完整数据中心解决方案在不断的整合开源社区的零散工具并形成最佳实践。为端到端的开发和运维提供更完整的交付体验，各大厂商也相继开始推广自己的企业级整体收费解决方案，这表明 Docker 的使用已经走向成熟。\n在本期的技术雷达里的条目中出现了Mesosphere DC\/OS，这是构建统一技术栈数据中心的一个征兆。在这方面Docker EE和Rancher都是非常有力的竞争者。根据我的判断，在未来的 Docker 社区里，统一容器化数据中心的竞争者将会进一步减少。而之前的私有云方案则慢慢会被“以 Docker 为核心数据中心级全栈交付”取代。\n趋势3：不完整的 DevOps 实践阻碍着 DevOps 的发展 # 很遗憾看到单一持续集成实例和不完整的持续集成（CI Theatre）这样的条目出现在技术雷达里。可以感到企业应用 DevOps 技术的紧迫性。这同时也暴露了 DevOps 领域里“缺乏门槛较低且成熟的 DevOps 实践”的问题。","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-05-02T00:00:00\u002b00:00","datePublished":"2017-05-02T00:00:00\u002b00:00","dateModified":"2017-05-02T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-05-02-devops-in-tech-radar\/","wordCount":"322","keywords":["技术雷达","Kubernetes","Service Mesh","Docker","Python"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"DevOps发展的九个趋势","headline":"DevOps发展的九个趋势","description":"DevOps 包含了太多方面的技术和实践，很难通过一个统一的工具链来描述其发展。即便如此，我们仍然可以从 ThoughtWorks 技术雷达的条目变动中看出一些趋势。今年，我有幸作为主编参与了最新一期技术雷达的翻译，作为 DevOps 的爱好者，十分高兴能在这一过程中看到 DevOps 未来发展的几个趋势，总结成了这篇文章。\n趋势1：微服务目前仍然是 DevOps 技术应用和发展的主要领域 # 微服务将单块应用系统切割为多个简单独立的应用。从技术上说，这是通过工具把应用程序的内部复杂度转化为外部复杂度，需要一系列工具支撑微服务本身以及服务之间的通信。从组织上说，微服务团队要满足“快速发布，独立部署”的能力，则必须具备 DevOps 的工作方式。\n如何拆解微服务一直是微服务技术应用的最大难点之一，领域驱动设计是比较理想的微服务拆解方法论。社会化代码分析帮助团队通过更精确的数据找到更加合适的拆分点。CodeScene是一个在线服务，它能帮助识别出热点和复杂且难以维护的子系统，通过分析分布式子系统在时间上的耦合发现子系统之间的耦合。此外，它还能帮你认识组织中的康威定律，这会大大降低微服务解耦的难度。\n此外，微服务系统本质上是一个分布式系统，分布式系统之间的通信一直是很重要的问题。本期介绍的Kafka Streams和OpenTracing就是这类技术的条目。Kafka 作为一个成熟的分布式消息系统已经被广泛采用，而 Kafka Streams 则将最佳实践以“库”的方式呈现给开发人员，使得操作 Kafka 更加自然和简单。而 OpenTracing 则弥补了跨越多个微服务之间请求追踪的空白。\n另一方面，**无服务器风格的架构（Serverless architecture ）**把 DevOps 技术在微服务领域的应用推向极致。当应用程序执行环境的管理被新的编程模型和平台取代后，团队的交付生产率得到了进一步的提升。一方面它免去了很多环境管理的工作，包括设备、网络、主机以及对应的软件和配置工作，使得软件运行时环境更加稳定。另一方面，它大大降低了团队采用 DevOps 的技术门槛。然而，端到端的交付以及微服务中的函数管理问题日渐突出，尽管AWS API gateway和AWS Lambda几乎成了 Serverless 架构的代名词，但这二者结合的开发者体验并不佳。于是出现了Serverless framework和CLAUDIA这样的管理工具。\nAWS Lambda 带来的优势也深深影响了企业级应用领域，Apache OpenWhisk就是企业级无服务器领域的选择之一，它使得企业级应用也可以采用无服务器风格的架构构建应用程序。\n在微服务端到端交付流程上，Netflix 开源了自家的Spinnaker，Netflix 作为微服务实践的先锋，不断推出新的开源工具来弥补社区中微服务技术和最佳实践的缺失。 而Spring Cloud则为开发者提供了一系列工具，以便他们在所熟悉的 Spring 技术栈下使用这些服务协调技术(coordination techniques)，如服务发现、负载均衡、熔断和健康检查。\n而在微服务的安全上，最常见的需求之一是通过身份验证和授权功能来保护服务或 API。 这部分功能往往是最重要且不断重复构造的。而Keycloak就是一个开源的身份和访问管理解决方案，用于确保应用程序或微服务的安全。且几乎不需要编写代码，开箱即用。它支持单点登录，社交网络登录和标准协议登录(如 OpenID Connect ， OAuth2 和 SAML 等)。\n趋势2：以 Docker 为核心的数据中心方案逐渐走向成熟 # 在过去的两年，Docker 社区有了突飞猛进的发展，似乎每期技术雷达都会出现 Docker 相关的条目。而 Docker 往往和 DevOps 联系起来，被认为是推动 DevOps 发展的杀手级工具，以至于有些人会以团队是否采用 Docker 作为团队是否具备 DevOps 能力的标志。\n而这一社区的创新数量则日渐平缓。一方面，开源社区激烈的竞争淘汰了一部分技术。另一方面，以 Docker 为中心的完整数据中心解决方案在不断的整合开源社区的零散工具并形成最佳实践。为端到端的开发和运维提供更完整的交付体验，各大厂商也相继开始推广自己的企业级整体收费解决方案，这表明 Docker 的使用已经走向成熟。\n在本期的技术雷达里的条目中出现了Mesosphere DC\/OS，这是构建统一技术栈数据中心的一个征兆。在这方面Docker EE和Rancher都是非常有力的竞争者。根据我的判断，在未来的 Docker 社区里，统一容器化数据中心的竞争者将会进一步减少。而之前的私有云方案则慢慢会被“以 Docker 为核心数据中心级全栈交付”取代。\n趋势3：不完整的 DevOps 实践阻碍着 DevOps 的发展 # 很遗憾看到单一持续集成实例和不完整的持续集成（CI Theatre）这样的条目出现在技术雷达里。可以感到企业应用 DevOps 技术的紧迫性。这同时也暴露了 DevOps 领域里“缺乏门槛较低且成熟的 DevOps 实践”的问题。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-05-02T00:00:00\u002b00:00","datePublished":"2017-05-02T00:00:00\u002b00:00","dateModified":"2017-05-02T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-05-02-devops-in-tech-radar\/","wordCount":"322","keywords":["技术雷达","Kubernetes","Service Mesh","Docker","Python"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -86,7 +86,7 @@ DevOps发展的九个趋势
 <div class="flex flex-row items-center">
 <time datetime="2017-05-02 00:00:00 +0000 UTC">2 May 2017</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-05-02-devops-in-tech-radar.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-05-02-devops-in-tech-radar.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -96,7 +96,7 @@ DevOps发展的九个趋势
 </header>
 <section class="prose dark:prose-light">
 <p>DevOps 包含了太多方面的技术和实践，很难通过一个统一的工具链来描述其发展。即便如此，我们仍然可以从 ThoughtWorks 技术雷达的条目变动中看出一些趋势。今年，我有幸作为主编参与了最新一期技术雷达的翻译，作为 DevOps 的爱好者，十分高兴能在这一过程中看到 DevOps 未来发展的几个趋势，总结成了这篇文章。</p>
-<h2 id=趋势1微服务目前仍然是-devops-技术应用和发展的主要领域>趋势1：微服务目前仍然是 DevOps 技术应用和发展的主要领域 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf1%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9b%ae%e5%89%8d%e4%bb%8d%e7%84%b6%e6%98%af-devops-%e6%8a%80%e6%9c%af%e5%ba%94%e7%94%a8%e5%92%8c%e5%8f%91%e5%b1%95%e7%9a%84%e4%b8%bb%e8%a6%81%e9%a2%86%e5%9f%9f aria-label=Anchor>#</a></h2>
+<h2 id=趋势1微服务目前仍然是-devops-技术应用和发展的主要领域>趋势1：微服务目前仍然是 DevOps 技术应用和发展的主要领域 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf1%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9b%ae%e5%89%8d%e4%bb%8d%e7%84%b6%e6%98%af-devops-%e6%8a%80%e6%9c%af%e5%ba%94%e7%94%a8%e5%92%8c%e5%8f%91%e5%b1%95%e7%9a%84%e4%b8%bb%e8%a6%81%e9%a2%86%e5%9f%9f aria-label=锚点>#</a></h2>
 <p>微服务将单块应用系统切割为多个简单独立的应用。从技术上说，这是通过工具把应用程序的内部复杂度转化为外部复杂度，需要一系列工具支撑微服务本身以及服务之间的通信。从组织上说，微服务团队要满足“快速发布，独立部署”的能力，则必须具备 DevOps 的工作方式。</p>
 <p>如何拆解微服务一直是微服务技术应用的最大难点之一，领域驱动设计是比较理想的微服务拆解方法论。社会化代码分析帮助团队通过更精确的数据找到更加合适的拆分点。<a href=https://codescene.io/>CodeScene</a>是一个在线服务，它能帮助识别出热点和复杂且难以维护的子系统，通过分析分布式子系统在时间上的耦合发现子系统之间的耦合。此外，它还能帮你认识组织中的康威定律，这会大大降低微服务解耦的难度。</p>
 <p>此外，微服务系统本质上是一个分布式系统，分布式系统之间的通信一直是很重要的问题。本期介绍的<a href=http://docs.confluent.io/3.0.0/streams/>Kafka
@@ -105,21 +105,21 @@ Streams</a>和<a href=http://opentracing.io/>OpenTracing</a>就是这类技术�
 <p>AWS Lambda 带来的优势也深深影响了企业级应用领域，<a href=http://openwhisk.org/>Apache OpenWhisk</a>就是企业级无服务器领域的选择之一，它使得企业级应用也可以采用无服务器风格的架构构建应用程序。</p>
 <p>在微服务端到端交付流程上，Netflix 开源了自家的<a href=http://www.spinnaker.io/>Spinnaker</a>，Netflix 作为微服务实践的先锋，不断推出新的开源工具来弥补社区中微服务技术和最佳实践的缺失。 而<a href=http://cloud.spring.io/>Spring Cloud</a>则为开发者提供了一系列工具，以便他们在所熟悉的 Spring 技术栈下使用这些服务协调技术(coordination techniques)，如服务发现、负载均衡、熔断和健康检查。</p>
 <p>而在微服务的安全上，最常见的需求之一是通过身份验证和授权功能来保护服务或 API。 这部分功能往往是最重要且不断重复构造的。而<a href=http://www.keycloak.org/>Keycloak</a>就是一个开源的身份和访问管理解决方案，用于确保应用程序或微服务的安全。且几乎不需要编写代码，开箱即用。它支持单点登录，社交网络登录和标准协议登录(如 OpenID Connect ， OAuth2 和 SAML 等)。</p>
-<h2 id=趋势2以-docker-为核心的数据中心方案逐渐走向成熟>趋势2：以 Docker 为核心的数据中心方案逐渐走向成熟 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf2%e4%bb%a5-docker-%e4%b8%ba%e6%a0%b8%e5%bf%83%e7%9a%84%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%bf%83%e6%96%b9%e6%a1%88%e9%80%90%e6%b8%90%e8%b5%b0%e5%90%91%e6%88%90%e7%86%9f aria-label=Anchor>#</a></h2>
+<h2 id=趋势2以-docker-为核心的数据中心方案逐渐走向成熟>趋势2：以 Docker 为核心的数据中心方案逐渐走向成熟 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf2%e4%bb%a5-docker-%e4%b8%ba%e6%a0%b8%e5%bf%83%e7%9a%84%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%bf%83%e6%96%b9%e6%a1%88%e9%80%90%e6%b8%90%e8%b5%b0%e5%90%91%e6%88%90%e7%86%9f aria-label=锚点>#</a></h2>
 <p>在过去的两年，Docker 社区有了突飞猛进的发展，似乎每期技术雷达都会出现 Docker 相关的条目。而 Docker 往往和 DevOps 联系起来，被认为是推动 DevOps 发展的杀手级工具，以至于有些人会以团队是否采用 Docker 作为团队是否具备 DevOps 能力的标志。</p>
 <p>而这一社区的创新数量则日渐平缓。一方面，开源社区激烈的竞争淘汰了一部分技术。另一方面，以 Docker 为中心的完整数据中心解决方案在不断的整合开源社区的零散工具并形成最佳实践。为端到端的开发和运维提供更完整的交付体验，各大厂商也相继开始推广自己的企业级整体收费解决方案，这表明 Docker 的使用已经走向成熟。</p>
 <p>在本期的技术雷达里的条目中出现了<a href=https://mesosphere.com/product/>Mesosphere DC/OS</a>，这是构建统一技术栈数据中心的一个征兆。在这方面<a href=https://docs.docker.com/enterprise/>Docker EE</a>和<a href=http://rancher.com/>Rancher</a>都是非常有力的竞争者。根据我的判断，在未来的 Docker 社区里，统一容器化数据中心的竞争者将会进一步减少。而之前的私有云方案则慢慢会被“以 Docker 为核心数据中心级全栈交付”取代。</p>
-<h2 id=趋势3不完整的-devops-实践阻碍着-devops-的发展>趋势3：不完整的 DevOps 实践阻碍着 DevOps 的发展 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf3%e4%b8%8d%e5%ae%8c%e6%95%b4%e7%9a%84-devops-%e5%ae%9e%e8%b7%b5%e9%98%bb%e7%a2%8d%e7%9d%80-devops-%e7%9a%84%e5%8f%91%e5%b1%95 aria-label=Anchor>#</a></h2>
+<h2 id=趋势3不完整的-devops-实践阻碍着-devops-的发展>趋势3：不完整的 DevOps 实践阻碍着 DevOps 的发展 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf3%e4%b8%8d%e5%ae%8c%e6%95%b4%e7%9a%84-devops-%e5%ae%9e%e8%b7%b5%e9%98%bb%e7%a2%8d%e7%9d%80-devops-%e7%9a%84%e5%8f%91%e5%b1%95 aria-label=锚点>#</a></h2>
 <p>很遗憾看到<a href=https://www.thoughtworks.com/radar/techniques/a-single-ci-instance-for-all-teams>单一持续集成实例</a>和<a href=https://www.thoughtworks.com/radar/techniques/ci-theatre>不完整的持续集成</a>（<a href=https://www.thoughtworks.com/radar/techniques/ci-theatre>CI Theatre</a>）这样的条目出现在技术雷达里。可以感到企业应用 DevOps 技术的紧迫性。这同时也暴露了 DevOps 领域里“缺乏门槛较低且成熟的 DevOps 实践”的问题。</p>
 <p>大部分企业在 DevOps 转型中仅仅关注到了工具的升级。却忽视了价值流、生产流程中各个活动中的最佳实践以及 DevOps 团队文化的构建，这会使团队陷入 “已经完成 DevOps 转型的假象 ”，而停止了团队的自我改进。</p>
 <p>DevOps 的实践包含组织改进和技术升级两个部分，技术往往是最容易的部分。而缺乏组织改进的技术提升往往很难给组织带来质的飞跃。具备 DevOps 文化的团队则会不断反思和学习，通过共担责任和相互合作不断完善组织的 DevOps 实践。</p>
-<h2 id=趋势4领域特定的-devops-实践开始出现>趋势4：领域特定的 DevOps 实践开始出现 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf4%e9%a2%86%e5%9f%9f%e7%89%b9%e5%ae%9a%e7%9a%84-devops-%e5%ae%9e%e8%b7%b5%e5%bc%80%e5%a7%8b%e5%87%ba%e7%8e%b0 aria-label=Anchor>#</a></h2>
+<h2 id=趋势4领域特定的-devops-实践开始出现>趋势4：领域特定的 DevOps 实践开始出现 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf4%e9%a2%86%e5%9f%9f%e7%89%b9%e5%ae%9a%e7%9a%84-devops-%e5%ae%9e%e8%b7%b5%e5%bc%80%e5%a7%8b%e5%87%ba%e7%8e%b0 aria-label=锚点>#</a></h2>
 <p>DevOps 的最早实践来自于互联网企业的 Web 应用，相应的思想被引入企业级应用并促进了一系列工具的发展。虽然并不是每一种应用软件交付形式都适合 DevOps，但随着 DevOps 的工具不断成熟。其它领域的 DevOps
 实践也开始尝试借鉴 Web 应用领域的自动化工具，并逐渐形成领域级的 DevOps 实践。</p>
 <p>在人工智能领域，<a href=https://www.tensorflow.org/>TensorFlow</a>就是这样一个例子，它可以有多种 DevOps 友好的安装和部署方式 ，例如采用 Docker 进行部署。</p>
 <p>在区块链领域，超级账本(<a href=https://www.hyperledger.org/>HYPERLEDGER</a>) 就是这样一个例子，它提供了一套工具和服务，结合 DevOps 相关技术和实践形成了一个完整的解决方案。</p>
 <p>随着 DevOps 相关概念和技术不断向各个产业领域的深入发展，可以看到 DevOps 技术和实践带来的巨大影响力。然而，每个技术领域都有自己所关注的特性，并不是以往的 DevOps 实践可以全覆盖到的，这恰恰成为了 DevOps 技术和实践发展的契机。我很期待领域特定的 DevOps 技术实践给 DevOps 带来的发展。</p>
-<h2 id=趋势5采用-devops-进行技术债务重组和技术资产管理>趋势5：采用 DevOps 进行技术债务重组和技术资产管理 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf5%e9%87%87%e7%94%a8-devops-%e8%bf%9b%e8%a1%8c%e6%8a%80%e6%9c%af%e5%80%ba%e5%8a%a1%e9%87%8d%e7%bb%84%e5%92%8c%e6%8a%80%e6%9c%af%e8%b5%84%e4%ba%a7%e7%ae%a1%e7%90%86 aria-label=Anchor>#</a></h2>
+<h2 id=趋势5采用-devops-进行技术债务重组和技术资产管理>趋势5：采用 DevOps 进行技术债务重组和技术资产管理 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf5%e9%87%87%e7%94%a8-devops-%e8%bf%9b%e8%a1%8c%e6%8a%80%e6%9c%af%e5%80%ba%e5%8a%a1%e9%87%8d%e7%bb%84%e5%92%8c%e6%8a%80%e6%9c%af%e8%b5%84%e4%ba%a7%e7%ae%a1%e7%90%86 aria-label=锚点>#</a></h2>
 <p>技术债务类似于金融债务，它也会产生利息，这里的利息其实就是指由于鲁莽的设计决策导致需要在未来的开发中付出更多的努力。投资银行业往往采用多种金融工具组合的方式来处理企业的不良债务。而清理技术债务的实践和工具却乏善可陈。</p>
 <p>技术债务不光阻碍了企业通过新技术带来便利，还使企业偿还技术债务所承担的成本越来越高，例如技术人才的流失，技术利息等综合性风险。</p>
 <p>虽然极少会出现企业因技术债务而走向衰败的案例，但新晋企业凭借新技术和商业模式颠覆传统行业并夺取市场份额的报道却不断发生。这从另一方面说明技术债务综合提升了采用新技术的机会成本，使企业不断失去创新和领先的巨大潜力。</p>
@@ -127,7 +127,7 @@ Streams</a>和<a href=http://opentracing.io/>OpenTracing</a>就是这类技术�
 <p>而微服务则是首先通过领域拆分技术债，并用相应工具重组技术债。分离优质技术资产和不良资产，通过分散风险来降低抛弃成本。而将API 当做产品(<a href=https://www.thoughtworks.com/radar/techniques/apis-as-a-product>APIs as a product</a>)可以从一个全新的演进视角去看待技术债，通过可用性测试和用户体验研究帮企业剥离出技术债务中的优质资产和不良资产。</p>
 <p>另一方面，本期技术雷达中出现了<a href=https://www.thoughtworks.com/radar/techniques/legacy-in-a-box>封装遗留系统</a>这样的实践，它往往配合着 Vagrant ， Packer 和 Docker
 这样的工具一起使用。一方面它将技术债务的风险进行了隔离，另一方面它防止了遗留系统上产生的技术债利息的增长。</p>
-<h2 id=趋势6安全成为推动-devops-全面发展的重要力量>趋势6：安全成为推动 DevOps 全面发展的重要力量 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf6%e5%ae%89%e5%85%a8%e6%88%90%e4%b8%ba%e6%8e%a8%e5%8a%a8-devops-%e5%85%a8%e9%9d%a2%e5%8f%91%e5%b1%95%e7%9a%84%e9%87%8d%e8%a6%81%e5%8a%9b%e9%87%8f aria-label=Anchor>#</a></h2>
+<h2 id=趋势6安全成为推动-devops-全面发展的重要力量>趋势6：安全成为推动 DevOps 全面发展的重要力量 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf6%e5%ae%89%e5%85%a8%e6%88%90%e4%b8%ba%e6%8e%a8%e5%8a%a8-devops-%e5%85%a8%e9%9d%a2%e5%8f%91%e5%b1%95%e7%9a%84%e9%87%8d%e8%a6%81%e5%8a%9b%e9%87%8f aria-label=锚点>#</a></h2>
 <p>安全是 DevOps 永远绕不开的话题，也往往是新技术在传统行业（例如金融和电信）应用中的最大阻碍。一方面，组织结构的转型迫使企业要打破原先的部门墙，这意味着很多原先的控制流程不再适用。另一方面，由于大量的 DevOps 技术来源于开源社区，缺乏强大技术实力的企业在应用相关技术时不免会有所担忧。</p>
 <p>从代码中解耦秘密信息的管理则让我们避开了一些开发过程中可能会产生的安全隐患。采用<a href=https://github.com/AGWA/git-crypt>git-crypt</a>这样的工具可以帮我们保证在开发的过程中源代码内部的信息安全。而采用<a href=https://www.vaultproject.io/>HashiCorp Vault</a>则提供了脱离应用程序代码的秘密信息存储机制，使得应用在运行过程中的秘密得到了有效保护。</p>
 <p>Linux Security Module 则一直在技术雷达的“采用”区域，通过 SELinux 和 AppArmor 这样的 LSM
@@ -135,14 +135,14 @@ Streams</a>和<a href=http://opentracing.io/>OpenTracing</a>就是这类技术�
 <p><strong>“合规性即代码”（Compliance as Code）</strong> 是继“基础设施即代码”，“流水线即代码”之后的又一种自动化尝试。<a href=https://github.com/chef/inspec>InSpec</a>作为合规性即代码的提出者和实现者，通过自动化手段确保服务器在部署后的运维生命周期中依然保持安全与合规。它所带来的意义在于将规范制度代码化，得到了确定性的结果和解释。</p>
 <p>在不远的将来，不难想象人们所面对的法律和法规规定不再是一堆会导致歧义的语言文字条目，而是一组由自动化测试构成的测试环境。</p>
 <p>安全性和易用性往往被认为是鱼与熊掌不可兼得的两个方面。在 DevOps 之前，团队吞吐量和系统稳定性指标曾经也面临这样的境遇，然而 DevOps 使得二者可以兼得。同样我也有信心看到在未来 DevOps 的领域里，更多易用且安全的工具将会不断出现。在降低 DevOps 所带来的安全风险的同时，也提升团队开发过程的顺畅性和用户便利性。</p>
-<h2 id=趋势7windows-server-和-net平台下的-devops-技术潜力巨大>趋势7：Windows Server 和 .NET平台下的 DevOps 技术潜力巨大 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf7windows-server-%e5%92%8c-net%e5%b9%b3%e5%8f%b0%e4%b8%8b%e7%9a%84-devops-%e6%8a%80%e6%9c%af%e6%bd%9c%e5%8a%9b%e5%b7%a8%e5%a4%a7 aria-label=Anchor>#</a></h2>
+<h2 id=趋势7windows-server-和-net平台下的-devops-技术潜力巨大>趋势7：Windows Server 和 .NET平台下的 DevOps 技术潜力巨大 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf7windows-server-%e5%92%8c-net%e5%b9%b3%e5%8f%b0%e4%b8%8b%e7%9a%84-devops-%e6%8a%80%e6%9c%af%e6%bd%9c%e5%8a%9b%e5%b7%a8%e5%a4%a7 aria-label=锚点>#</a></h2>
 <p>长期以来，Windows 和 .NET平台下的 DevOps 一直都是一个被低估的领域。一方面，社区缺乏对 Windows  Server 平台的兴趣。另一方面，<a href=https://community.spiceworks.com/networking/articles/2462-server-virtualization-and-os-trends>Windows Server 却有接近 90% 的市场占用率</a>，在 Web 服务器领域则有<a href=https://w3techs.com/technologies/overview/operating_system/all>33.5% 的市场占有率</a>。</p>
 <p>有充足理由证明这是一个潜力巨大的市场。 我们看到了<a href=https://www.thoughtworks.com/radar/tools/cake-and-fake>CAKE 和 FAKE</a>这样的条目，作为 .NET 平台下替代 MSBuild 的构建解决方案， 它增强了 .NET 平台自动化方面的能力。而<a href=https://github.com/HangfireIO/Hangfire>HANGFIRE</a>则提供了更易用和灵活的自动化进程调度框架。我很期待未来有更多 Windows Server 和 .NET 平台 领域的创新。不久前，Docker 已经可以在
 Windows 下运行。可以预见到，Windows Server 和 .NET 平台将会是下一阶段 DevOps 技术实践中值得深入发掘的领域。</p>
-<h2 id=趋势8非功能性自动化测试工具的逐渐完备>趋势8：非功能性自动化测试工具的逐渐完备 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf8%e9%9d%9e%e5%8a%9f%e8%83%bd%e6%80%a7%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%8b%e8%af%95%e5%b7%a5%e5%85%b7%e7%9a%84%e9%80%90%e6%b8%90%e5%ae%8c%e5%a4%87 aria-label=Anchor>#</a></h2>
+<h2 id=趋势8非功能性自动化测试工具的逐渐完备>趋势8：非功能性自动化测试工具的逐渐完备 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf8%e9%9d%9e%e5%8a%9f%e8%83%bd%e6%80%a7%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%8b%e8%af%95%e5%b7%a5%e5%85%b7%e7%9a%84%e9%80%90%e6%b8%90%e5%ae%8c%e5%a4%87 aria-label=锚点>#</a></h2>
 <p>技术能力高低的重要指标，尤其是针对生产环境应用程序的非功能性自动化测试工具。一直以来，技术雷达都在尝试从不同的角度宣扬自动化测试的重要性，从软件的开发阶段延展到了整个应用生命周期甚至整体 IT 资产的管理上。</p>
 <p>这期的技术雷达仍然关注了非功能性自动化测试，<a href=https://github.com/philpep/testinfra>TestInfra</a> 是 ServerSpec 的 Python 实现，它使得用Pytest测试基础设施成为可能。而<a href=https://github.com/metacloud/molecule>MOLECULE</a>旨在帮助开发和测试 Ansible 的 Role 。通过 在虚拟机或容器上为正在运行的 Ansible Role 测试构建脚手架，无需再手工创建这些测试环境。 正如技术雷达所说的：“虽然这是一个相当年轻的项目，但我们看到了其蕴含的巨大潜力。”</p>
-<h2 id=趋势9python-成为-devops-工作中采用的首要编程语言>趋势9：Python 成为 DevOps 工作中采用的首要编程语言 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf9python-%e6%88%90%e4%b8%ba-devops-%e5%b7%a5%e4%bd%9c%e4%b8%ad%e9%87%87%e7%94%a8%e7%9a%84%e9%a6%96%e8%a6%81%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80 aria-label=Anchor>#</a></h2>
+<h2 id=趋势9python-成为-devops-工作中采用的首要编程语言>趋势9：Python 成为 DevOps 工作中采用的首要编程语言 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf9python-%e6%88%90%e4%b8%ba-devops-%e5%b7%a5%e4%bd%9c%e4%b8%ad%e9%87%87%e7%94%a8%e7%9a%84%e9%a6%96%e8%a6%81%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80 aria-label=锚点>#</a></h2>
 <p>早在 DevOps 刚刚开始盛行的时候，Python 就是一个被寄予厚望的语言，因为大部分 DevOps 工具和实践都需要用到 Python。虽然也有人尝试用 Ruby 或者 NodeJS 构建 DevOps 工具，然而都没有 Python 所构建的工具流行。与此同时，仍然不断有人把其它语言下编写的工具转化为 Python 的版本，TestInfra 就是这样一个例子。</p>
 <p>随着 Python 在大数据、人工智能、区块链、微服务以及 Docker 中的发展，可以预见 Python 在日后的领域仍然会发挥重要的作用。</p>
 <p>以上对 DevOps 趋势的解读仅为个人观点，如有不当之处还望指出，关于更多技术在技术</p>
@@ -153,7 +153,7 @@ Windows 下运行。可以预见到，Windows Server 和 .NET 平台将会是下
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -213,15 +213,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

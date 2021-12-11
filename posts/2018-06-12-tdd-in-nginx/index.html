@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>测试驱动开发 Nginx 配置 &#183; 顾宇的博客</title>
@@ -49,8 +49,8 @@ vivian -f example.csv test.">
 安装使用 Vivian # 安装
 pip install vivian 使用
 vivian -f example.csv test.">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"测试驱动开发 Nginx 配置","headline":"测试驱动开发 Nginx 配置","description":"2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，和客户一起完成并购后的产品迁移和技术能力提升的设计、实施和培训。\n客户希望采用新的统一产品，并根据不同地区的业务特色进行一些定制，与此同时，需要进行数据迁移以保证业务可以继续运行。其中一个很关键的步骤是把原系统的 URL 通过重定向的方式到新的产品中，因为有很多的第三方链接和搜索引擎依然保留了原系统中的链接。\n初步统计了一下，将近有3000多个 URL 需要重定向，光是规则和正则表达式就写了 400 多条（没有统一模式的 URL 害死人啊），这就引发了一个问题：我该如何验证这些规则和覆盖这些 URL ？此外，大量的重定向不光对用户来讲不是很好的体验，如果我要优化这些规则，我如何保证我当前的转发规则不被破坏？\n解决方案 # 最早，我们写了一个 Shell 脚本，用 curl命令来验证这些 URL，最初只需要验证 200 条就可以满足需求，时间也不到两分钟。后来，我们采用了一个 Excel 文件来跟踪这些 URL，产品经理只需要把新的重定向 URL 补充到上面，我们就依据这些 URL 来开发 nginx 的重定向规则。\n这让我想到了 TDD：先写出一个自动化测试用例，然后修复这个自动化测试用例。更好的是，有了自动化的测试做保护，你可以放心和安全的对代码进行重构。\n此外，随着更多的 URL 需要重定向，这个数字在不断的增加。原先的 Shell 脚本执行的时间也从最初的 2 分钟增长到了15分钟。\n现有的工具满足不了要求，一怒之下，我决定开发一个自己的工具。它必须具备以下特点：\n 可以通过文件读取规则，进行大批量验证。 多线程并发执行，可以提升效率。 很容易和 CI 集成。 能帮我做一定程度的重定向优化分析。  于是，我在一个周末的时间用 Python 写下了 vivian： 一个多线程的批量自动化重定向验证工具。\n它把原先的 15 分钟的验证时间缩短到了 17 秒，效率提升了 5294 % !!\n此外，我把测试用例集成到了代码库里。并把 vivian 提交到了 pipy，这样我就可以通过 pip 在初始化 CI 上安装了。也无需增加到代码库里变成一个需要维护的代码脚本。\n选择 Python 的原因主要是因为相较于 Ruby, Go, Java, NodeJS 来说。Python 的语言环境比较稳定，几乎每种 Linux 都包含 Python 的运行环境，且容易安装和集成。\n安装使用 Vivian # 安装\npip install vivian 使用\nvivian -f example.csv test.","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-06-12T00:00:00\u002b00:00","datePublished":"2018-06-12T00:00:00\u002b00:00","dateModified":"2018-06-12T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-06-12-tdd-in-nginx\/","wordCount":"675","keywords":["停机时间","Python","流量测试"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"测试驱动开发 Nginx 配置","headline":"测试驱动开发 Nginx 配置","description":"2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，和客户一起完成并购后的产品迁移和技术能力提升的设计、实施和培训。\n客户希望采用新的统一产品，并根据不同地区的业务特色进行一些定制，与此同时，需要进行数据迁移以保证业务可以继续运行。其中一个很关键的步骤是把原系统的 URL 通过重定向的方式到新的产品中，因为有很多的第三方链接和搜索引擎依然保留了原系统中的链接。\n初步统计了一下，将近有3000多个 URL 需要重定向，光是规则和正则表达式就写了 400 多条（没有统一模式的 URL 害死人啊），这就引发了一个问题：我该如何验证这些规则和覆盖这些 URL ？此外，大量的重定向不光对用户来讲不是很好的体验，如果我要优化这些规则，我如何保证我当前的转发规则不被破坏？\n解决方案 # 最早，我们写了一个 Shell 脚本，用 curl命令来验证这些 URL，最初只需要验证 200 条就可以满足需求，时间也不到两分钟。后来，我们采用了一个 Excel 文件来跟踪这些 URL，产品经理只需要把新的重定向 URL 补充到上面，我们就依据这些 URL 来开发 nginx 的重定向规则。\n这让我想到了 TDD：先写出一个自动化测试用例，然后修复这个自动化测试用例。更好的是，有了自动化的测试做保护，你可以放心和安全的对代码进行重构。\n此外，随着更多的 URL 需要重定向，这个数字在不断的增加。原先的 Shell 脚本执行的时间也从最初的 2 分钟增长到了15分钟。\n现有的工具满足不了要求，一怒之下，我决定开发一个自己的工具。它必须具备以下特点：\n 可以通过文件读取规则，进行大批量验证。 多线程并发执行，可以提升效率。 很容易和 CI 集成。 能帮我做一定程度的重定向优化分析。  于是，我在一个周末的时间用 Python 写下了 vivian： 一个多线程的批量自动化重定向验证工具。\n它把原先的 15 分钟的验证时间缩短到了 17 秒，效率提升了 5294 % !!\n此外，我把测试用例集成到了代码库里。并把 vivian 提交到了 pipy，这样我就可以通过 pip 在初始化 CI 上安装了。也无需增加到代码库里变成一个需要维护的代码脚本。\n选择 Python 的原因主要是因为相较于 Ruby, Go, Java, NodeJS 来说。Python 的语言环境比较稳定，几乎每种 Linux 都包含 Python 的运行环境，且容易安装和集成。\n安装使用 Vivian # 安装\npip install vivian 使用\nvivian -f example.csv test.","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-06-12T00:00:00\u002b00:00","datePublished":"2018-06-12T00:00:00\u002b00:00","dateModified":"2018-06-12T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-06-12-tdd-in-nginx\/","wordCount":"675","keywords":["停机时间","Python","流量测试"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -90,7 +90,7 @@ vivian -f example.csv test.">
 <div class="flex flex-row items-center">
 <time datetime="2018-06-12 00:00:00 +0000 UTC">12 June 2018</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-06-12-tdd-in-nginx.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-06-12-tdd-in-nginx.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -102,7 +102,7 @@ vivian -f example.csv test.">
 <p>2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，和客户一起完成并购后的产品迁移和技术能力提升的设计、实施和培训。</p>
 <p>客户希望采用新的统一产品，并根据不同地区的业务特色进行一些定制，与此同时，需要进行数据迁移以保证业务可以继续运行。其中一个很关键的步骤是把原系统的 URL 通过重定向的方式到新的产品中，因为有很多的第三方链接和搜索引擎依然保留了原系统中的链接。</p>
 <p>初步统计了一下，将近有3000多个 URL 需要重定向，光是规则和正则表达式就写了 400 多条（没有统一模式的 URL 害死人啊），这就引发了一个问题：我该如何验证这些规则和覆盖这些 URL ？此外，大量的重定向不光对用户来讲不是很好的体验，如果我要优化这些规则，我如何保证我当前的转发规则不被破坏？</p>
-<h2 id=解决方案>解决方案 <a class=heading-anchor href=#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88 aria-label=Anchor>#</a></h2>
+<h2 id=解决方案>解决方案 <a class=heading-anchor href=#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88 aria-label=锚点>#</a></h2>
 <p>最早，我们写了一个 Shell 脚本，用 <code>curl</code>命令来验证这些 URL，最初只需要验证 200 条就可以满足需求，时间也不到两分钟。后来，我们采用了一个 Excel 文件来跟踪这些 URL，产品经理只需要把新的重定向 URL 补充到上面，我们就依据这些 URL 来开发 nginx 的重定向规则。</p>
 <p>这让我想到了 TDD：先写出一个自动化测试用例，然后修复这个自动化测试用例。更好的是，有了自动化的测试做保护，你可以放心和安全的对代码进行重构。</p>
 <p>此外，随着更多的 URL 需要重定向，这个数字在不断的增加。原先的 Shell 脚本执行的时间也从最初的 2 分钟增长到了15分钟。</p>
@@ -117,7 +117,7 @@ vivian -f example.csv test.">
 <p>它把原先的 15 分钟的验证时间缩短到了 17 秒，效率提升了 5294 % !!</p>
 <p>此外，我把测试用例集成到了代码库里。并把 vivian 提交到了 pipy，这样我就可以通过 pip 在初始化 CI 上安装了。也无需增加到代码库里变成一个需要维护的代码脚本。</p>
 <p>选择 Python 的原因主要是因为相较于 Ruby, Go, Java, NodeJS 来说。Python 的语言环境比较稳定，几乎每种 Linux 都包含 Python 的运行环境，且容易安装和集成。</p>
-<h2 id=安装使用-vivian>安装使用 Vivian <a class=heading-anchor href=#%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8-vivian aria-label=Anchor>#</a></h2>
+<h2 id=安装使用-vivian>安装使用 Vivian <a class=heading-anchor href=#%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8-vivian aria-label=锚点>#</a></h2>
 <p>安装</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip install vivian
 </code></pre></div><p>使用</p>
@@ -153,12 +153,12 @@ redirect_count:1
 <p>失败用例的第五行是访问测试用例源 URL 最后得到的 HTTP 状态。</p>
 <p>失败用例的第六行是访问测试用例源 URL 到最后结果之间的 重定向次数，有了这个数字我们可以优化 URL。</p>
 <p>最后一行表明有多少个用例通过了测试，同时统计了完成这些测试的总时间。</p>
-<h2 id=最佳实践>最佳实践 <a class=heading-anchor href=#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label=Anchor>#</a></h2>
+<h2 id=最佳实践>最佳实践 <a class=heading-anchor href=#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label=锚点>#</a></h2>
 <p>以下是我总结的使用 vivian 的最佳实践场景，希望能对你的 web 服务器维护工作起到帮助。</p>
-<h3 id=采用-excel-生成测试用例>采用 Excel 生成测试用例 <a class=heading-anchor href=#%e9%87%87%e7%94%a8-excel-%e7%94%9f%e6%88%90%e6%b5%8b%e8%af%95%e7%94%a8%e4%be%8b aria-label=Anchor>#</a></h3>
+<h3 id=采用-excel-生成测试用例>采用 Excel 生成测试用例 <a class=heading-anchor href=#%e9%87%87%e7%94%a8-excel-%e7%94%9f%e6%88%90%e6%b5%8b%e8%af%95%e7%94%a8%e4%be%8b aria-label=锚点>#</a></h3>
 <p>Excel，包括 Google Sheet。都是很方便的进行团队交流用的数据文件。对于很多开发和运维工程师来说，如果手动编写测试用例肯定是很费工夫的事情。所以，你只需要创建一个两列的 Excel 文件，分别存储源 URL 和目标 URL。之后你就可以采用 Excel 便捷的复制功能和计算功能生成很多的测试用例。</p>
 <p>不过，需要注意的是，你需要将 Excel 文件保存为 CSV 格式，才可以识别哦。</p>
-<h3 id=采用-tdd-开发-nginx-规则>采用 TDD 开发 nginx 规则 <a class=heading-anchor href=#%e9%87%87%e7%94%a8-tdd-%e5%bc%80%e5%8f%91-nginx-%e8%a7%84%e5%88%99 aria-label=Anchor>#</a></h3>
+<h3 id=采用-tdd-开发-nginx-规则>采用 TDD 开发 nginx 规则 <a class=heading-anchor href=#%e9%87%87%e7%94%a8-tdd-%e5%bc%80%e5%8f%91-nginx-%e8%a7%84%e5%88%99 aria-label=锚点>#</a></h3>
 <p>当有了一个自动化的测试工具，我们就可以构建测试驱动开发实践。下面我举个例子演示一下：</p>
 <p>首先，我希望我的 nginx 配置可以帮我把所有请求通过 301 永久重定向转发到我的博客 <a href=http://wizardbyron.github.io>http://wizardbyron.github.io</a> 上去。</p>
 <p>首先，我需要创建一个虚拟域名，例如：local.testhost.com</p>
@@ -255,7 +255,7 @@ No failed <span style=color:#66d9ef>case</span>.
 <span style=color:#f92672>============================================================</span>
 1/1 PASS in 0.9458322525024414 seconds
 </code></pre></div><p>测试通过！</p>
-<h2 id=用-tdd-的方式重构-nginx-转发规则>用 TDD 的方式重构 nginx 转发规则 <a class=heading-anchor href=#%e7%94%a8-tdd-%e7%9a%84%e6%96%b9%e5%bc%8f%e9%87%8d%e6%9e%84-nginx-%e8%bd%ac%e5%8f%91%e8%a7%84%e5%88%99 aria-label=Anchor>#</a></h2>
+<h2 id=用-tdd-的方式重构-nginx-转发规则>用 TDD 的方式重构 nginx 转发规则 <a class=heading-anchor href=#%e7%94%a8-tdd-%e7%9a%84%e6%96%b9%e5%bc%8f%e9%87%8d%e6%9e%84-nginx-%e8%bd%ac%e5%8f%91%e8%a7%84%e5%88%99 aria-label=锚点>#</a></h2>
 <p>如果可以做 TDD ，那么我们还可以对 Nginx 规则重构，采用正则表达式来精简配置文件。例如，我们有两个 nginx 规则：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-nginx data-lang=nginx><span style=color:#66d9ef>location</span> = <span style=color:#e6db74>/path_to_site_a</span> {
     <span style=color:#f92672>return</span> <span style=color:#ae81ff>301</span> <span style=color:#e6db74>https://wizardbyron.github.io</span>;
@@ -315,10 +315,10 @@ redirect_count:0
 <span style=color:#f92672>============================================================</span>
 2/3 PASS in 0.8479752540588379 seconds
 </code></pre></div><p>在这种模式下，你需要先把需要重定向的测试案例写到文件里，这时候运行 vivian 肯定会成功。之后你就可以优化合并一些正则表达式。由于有了 vivian 结合 docker 这种自动化测试的快速反馈机制。你可以很方便的优化你的 nginx 配置文件，无需部署之后再登录到主机上修改。</p>
-<h3 id=作为冒烟回归测试集成在持续部署流水线里>作为冒烟/回归测试集成在持续部署流水线里 <a class=heading-anchor href=#%e4%bd%9c%e4%b8%ba%e5%86%92%e7%83%9f%e5%9b%9e%e5%bd%92%e6%b5%8b%e8%af%95%e9%9b%86%e6%88%90%e5%9c%a8%e6%8c%81%e7%bb%ad%e9%83%a8%e7%bd%b2%e6%b5%81%e6%b0%b4%e7%ba%bf%e9%87%8c aria-label=Anchor>#</a></h3>
+<h3 id=作为冒烟回归测试集成在持续部署流水线里>作为冒烟/回归测试集成在持续部署流水线里 <a class=heading-anchor href=#%e4%bd%9c%e4%b8%ba%e5%86%92%e7%83%9f%e5%9b%9e%e5%bd%92%e6%b5%8b%e8%af%95%e9%9b%86%e6%88%90%e5%9c%a8%e6%8c%81%e7%bb%ad%e9%83%a8%e7%bd%b2%e6%b5%81%e6%b0%b4%e7%ba%bf%e9%87%8c aria-label=锚点>#</a></h3>
 <p>我们有了自动化的测试工具，我们就可以把 nginx 配置和 测试用例文件保存到代码库里。在自己的 CI 服务器上安装 vivian，Vivian 需要你安装了 python3 和 pip，这对很多 Linux 发行版都不是一件困难的事情。</p>
 <p>安装完成后，你可以在部署完成后用 vivian 检测测试用例当做冒烟测试来检测 nginx 是否配置得当。如果存在失败的 URL，则会以错误退出，你的流水线就会告诉你这个版本还不适合发布。如果你需要不断的修改和优化 nginx 配置文件，这些测试用例就可以作为回归测试，来避免你的修改影响到现有生产环境的配置。</p>
-<h2 id=一起来改进-vivian>一起来改进 Vivian <a class=heading-anchor href=#%e4%b8%80%e8%b5%b7%e6%9d%a5%e6%94%b9%e8%bf%9b-vivian aria-label=Anchor>#</a></h2>
+<h2 id=一起来改进-vivian>一起来改进 Vivian <a class=heading-anchor href=#%e4%b8%80%e8%b5%b7%e6%9d%a5%e6%94%b9%e8%bf%9b-vivian aria-label=锚点>#</a></h2>
 <p>用 Dev 的方式处理 Ops 的工作，也算一种 DevOps 吧！？</p>
 <p>如果你对该工具感兴趣或者发现问题，请不要犹豫直接 Issue 或者 PR：<a href=https://github.com/wizardbyron/vivian>https://github.com/wizardbyron/vivian</a></p>
 </section>
@@ -327,7 +327,7 @@ redirect_count:0
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -387,15 +387,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

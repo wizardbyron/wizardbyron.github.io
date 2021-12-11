@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>讨论微服务之前，你知道微服务的 4 个定义吗？ &#183; 顾宇的博客</title>
@@ -43,8 +43,8 @@ James Lewis 原始版的微服务 6 大特征 # 这个版本起源于2012年，�
 第二个标准是：如果它小到可以随时丢弃并重写，而不是继续维护遗留代码，那么它就足够小。这个标准有个很重要的原则就是 Rewrite over Maintain，即“重写胜于维护”。
   Containerless and installed as well behaved Unix services —— “去容器化并且作为 Unix Service 安装”
 在这个特征中，James Lewis 提倡采用 Jetty 这样的工具集成到 Maven 里，可以很方便的调试或者部署。然后打包成一个可执行的 JAR 包并以 UNIX 守护进程的方式在系统启动时执行。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"讨论微服务之前，你知道微服务的 4 个定义吗？","headline":"讨论微服务之前，你知道微服务的 4 个定义吗？","description":"关于“什么是微服务”的问题，其实并没有一个统一的认识。这些年在不同的场合里和不同背景的朋友都在探讨微服务。但聊得越多，就越发现大家聊的不是同一回事。和 DevOps 一样，“微服务”也是一个内涵十分广泛的词。本文从“Microservice“这个概念的源头出发，总结了 4 个常用的微服务定义。\nJames Lewis 原始版的微服务 6 大特征 # 这个版本起源于2012年，这里首先要注意年份，那时候还没有 Docker，而且 Netflix 的微服务化过程也在这个概念提出之前——2008年就开始了，那时候甚至连 DevOps 还没发明出来。James Lewis 在波兰第 33 次 Degree in Kraków 会议上分享了一个案例，名称是 “Micro Services - Java, the Unix Way”。在这个分享里， James Lewis 分享了在 2011 年中参与的一个项目中所采用的一系列实践，以 UNIX 的哲学重新看待企业级 Java 应用程序，并且把其中的一部分称之为“ Micro-Services ”。\n这个时候的微服务所用的单词和我们现在所用的 Microservices 这个单词有所不同。一方面，采用 Micro 作为形容词，是和 Monolithic 相对，而不是和 Macro 相对是源于操作系统这门大学课程。我们知道，现代的操作系统课程都是以 UNIX 作为案例进行讲解的。而这两个单词来自于“微内核”（Micro-Kernel）和“宏内核”（Monolithic kernel）的比较。而非常见的“微观经济学”和“宏观经济学”中的 Micro 和 Macro 两个相对应的单词。\n另一方面，服务要以复数形式出现，表示的是一个以上。由于汉语里单复数是同型的，所以我们在翻译的时候会出现问题。因此，“微服务”在作为架构的形式出现的时候，我们会用“微服务架构”称呼。单个的微服务从概念上为了和 SOA 以及其它领域的“服务”有所区分，会以“单个微服务”以示区别。而”微服务“单独拿出来是被看作为一系列技术实践的总称。\n在这个分享里，James Lewis将所实践的“微服务架构”总结为 5 大特征：\n  Small with a single responsibility —— “小到只有单一原则”\n在这个特征里，关于微服务有多小有两个标准：\n第一个标准是：如果一个类复杂的超过一个开发人员的理解范围，那么它就太大了，需要被继续拆分。\n第二个标准是：如果它小到可以随时丢弃并重写，而不是继续维护遗留代码，那么它就足够小。这个标准有个很重要的原则就是 Rewrite over Maintain，即“重写胜于维护”。\n  Containerless and installed as well behaved Unix services —— “去容器化并且作为 Unix Service 安装”\n在这个特征中，James Lewis 提倡采用 Jetty 这样的工具集成到 Maven 里，可以很方便的调试或者部署。然后打包成一个可执行的 JAR 包并以 UNIX 守护进程的方式在系统启动时执行。","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-09-14T00:00:00\u002b00:00","datePublished":"2018-09-14T00:00:00\u002b00:00","dateModified":"2018-09-14T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-09-14-four-definitions-of-microservices\/","wordCount":"575","keywords":["微服务"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"讨论微服务之前，你知道微服务的 4 个定义吗？","headline":"讨论微服务之前，你知道微服务的 4 个定义吗？","description":"关于“什么是微服务”的问题，其实并没有一个统一的认识。这些年在不同的场合里和不同背景的朋友都在探讨微服务。但聊得越多，就越发现大家聊的不是同一回事。和 DevOps 一样，“微服务”也是一个内涵十分广泛的词。本文从“Microservice“这个概念的源头出发，总结了 4 个常用的微服务定义。\nJames Lewis 原始版的微服务 6 大特征 # 这个版本起源于2012年，这里首先要注意年份，那时候还没有 Docker，而且 Netflix 的微服务化过程也在这个概念提出之前——2008年就开始了，那时候甚至连 DevOps 还没发明出来。James Lewis 在波兰第 33 次 Degree in Kraków 会议上分享了一个案例，名称是 “Micro Services - Java, the Unix Way”。在这个分享里， James Lewis 分享了在 2011 年中参与的一个项目中所采用的一系列实践，以 UNIX 的哲学重新看待企业级 Java 应用程序，并且把其中的一部分称之为“ Micro-Services ”。\n这个时候的微服务所用的单词和我们现在所用的 Microservices 这个单词有所不同。一方面，采用 Micro 作为形容词，是和 Monolithic 相对，而不是和 Macro 相对是源于操作系统这门大学课程。我们知道，现代的操作系统课程都是以 UNIX 作为案例进行讲解的。而这两个单词来自于“微内核”（Micro-Kernel）和“宏内核”（Monolithic kernel）的比较。而非常见的“微观经济学”和“宏观经济学”中的 Micro 和 Macro 两个相对应的单词。\n另一方面，服务要以复数形式出现，表示的是一个以上。由于汉语里单复数是同型的，所以我们在翻译的时候会出现问题。因此，“微服务”在作为架构的形式出现的时候，我们会用“微服务架构”称呼。单个的微服务从概念上为了和 SOA 以及其它领域的“服务”有所区分，会以“单个微服务”以示区别。而”微服务“单独拿出来是被看作为一系列技术实践的总称。\n在这个分享里，James Lewis将所实践的“微服务架构”总结为 5 大特征：\n  Small with a single responsibility —— “小到只有单一原则”\n在这个特征里，关于微服务有多小有两个标准：\n第一个标准是：如果一个类复杂的超过一个开发人员的理解范围，那么它就太大了，需要被继续拆分。\n第二个标准是：如果它小到可以随时丢弃并重写，而不是继续维护遗留代码，那么它就足够小。这个标准有个很重要的原则就是 Rewrite over Maintain，即“重写胜于维护”。\n  Containerless and installed as well behaved Unix services —— “去容器化并且作为 Unix Service 安装”\n在这个特征中，James Lewis 提倡采用 Jetty 这样的工具集成到 Maven 里，可以很方便的调试或者部署。然后打包成一个可执行的 JAR 包并以 UNIX 守护进程的方式在系统启动时执行。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-09-14T00:00:00\u002b00:00","datePublished":"2018-09-14T00:00:00\u002b00:00","dateModified":"2018-09-14T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-09-14-four-definitions-of-microservices\/","wordCount":"575","keywords":["微服务"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -84,7 +84,7 @@ James Lewis 原始版的微服务 6 大特征 # 这个版本起源于2012年，�
 <div class="flex flex-row items-center">
 <time datetime="2018-09-14 00:00:00 +0000 UTC">14 September 2018</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-09-14-four-definitions-of-microservices.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-09-14-four-definitions-of-microservices.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -94,7 +94,7 @@ James Lewis 原始版的微服务 6 大特征 # 这个版本起源于2012年，�
 </header>
 <section class="prose dark:prose-light">
 <p>关于“什么是微服务”的问题，其实并没有一个统一的认识。这些年在不同的场合里和不同背景的朋友都在探讨微服务。但聊得越多，就越发现大家聊的不是同一回事。和 DevOps 一样，“微服务”也是一个内涵十分广泛的词。本文从“Microservice“这个概念的源头出发，总结了 4 个常用的微服务定义。</p>
-<h2 id=james-lewis-原始版的微服务-6-大特征>James Lewis 原始版的微服务 6 大特征 <a class=heading-anchor href=#james-lewis-%e5%8e%9f%e5%a7%8b%e7%89%88%e7%9a%84%e5%be%ae%e6%9c%8d%e5%8a%a1-6-%e5%a4%a7%e7%89%b9%e5%be%81 aria-label=Anchor>#</a></h2>
+<h2 id=james-lewis-原始版的微服务-6-大特征>James Lewis 原始版的微服务 6 大特征 <a class=heading-anchor href=#james-lewis-%e5%8e%9f%e5%a7%8b%e7%89%88%e7%9a%84%e5%be%ae%e6%9c%8d%e5%8a%a1-6-%e5%a4%a7%e7%89%b9%e5%be%81 aria-label=锚点>#</a></h2>
 <p>这个版本起源于2012年，这里首先要注意年份，那时候还没有 Docker，而且 Netflix 的微服务化过程也在这个概念提出之前——2008年就开始了，那时候甚至连 DevOps 还没发明出来。James Lewis 在波兰第 33 次 Degree in Kraków 会议上分享了一个案例，名称是 “Micro Services - Java, the Unix Way”。在这个分享里， James Lewis 分享了在 2011 年中参与的一个项目中所采用的一系列实践，以 UNIX 的哲学重新看待企业级 Java 应用程序，并且把其中的一部分称之为“ Micro-Services ”。</p>
 <p>这个时候的微服务所用的单词和我们现在所用的 Microservices 这个单词有所不同。一方面，采用 Micro 作为形容词，是和 Monolithic 相对，而不是和 Macro 相对是源于操作系统这门大学课程。我们知道，现代的操作系统课程都是以 UNIX 作为案例进行讲解的。而这两个单词来自于“微内核”（Micro-Kernel）和“宏内核”（Monolithic kernel）的比较。而非常见的“微观经济学”和“宏观经济学”中的 Micro 和 Macro 两个相对应的单词。</p>
 <p>另一方面，服务要以复数形式出现，表示的是一个以上。由于汉语里单复数是同型的，所以我们在翻译的时候会出现问题。因此，“微服务”在作为架构的形式出现的时候，我们会用“微服务架构”称呼。单个的微服务从概念上为了和 SOA 以及其它领域的“服务”有所区分，会以“单个微服务”以示区别。而”微服务“单独拿出来是被看作为一系列技术实践的总称。</p>
@@ -156,7 +156,7 @@ Which are auto-scaling and designed for failure</p>
 <blockquote>
 <p>微服务你可以通过重写而非维护一个分布式的界限上下文，且作为一个无应用容器的操作系统服务部署。并以标准化的应用协议和消息语义，为失败设计且可自动扩展。</p>
 </blockquote>
-<h2 id=martin-fowler--james-lewis-合作版的微服务-9-大特征>Martin Fowler & James Lewis 合作版的微服务 9 大特征 <a class=heading-anchor href=#martin-fowler--james-lewis-%e5%90%88%e4%bd%9c%e7%89%88%e7%9a%84%e5%be%ae%e6%9c%8d%e5%8a%a1-9-%e5%a4%a7%e7%89%b9%e5%be%81 aria-label=Anchor>#</a></h2>
+<h2 id=martin-fowler--james-lewis-合作版的微服务-9-大特征>Martin Fowler & James Lewis 合作版的微服务 9 大特征 <a class=heading-anchor href=#martin-fowler--james-lewis-%e5%90%88%e4%bd%9c%e7%89%88%e7%9a%84%e5%be%ae%e6%9c%8d%e5%8a%a1-9-%e5%a4%a7%e7%89%b9%e5%be%81 aria-label=锚点>#</a></h2>
 <p>由于在 James Lewis 之后，有很多不同的项目也采用“微服务”作为它们的实践的名称。然而，不同的项目之间还是存在一些差异的，且每个人都按照自己的方式在实践“微服务”。因此，基于“求同存异”的原则，Jame Lewis 的同事 —— 大名鼎鼎的 Martin Fowler 采用一种归纳的方式来解决这个问题：<a href="https://www.youtube.com/watch?v=wgdBVIX9ifA">他认为“定义”是一些“共有的特征”(Common characteristics)</a>。Martin Fowler 继续采用了 James Lewis 对这一系列实践的命名，并且做了修改，使之成为一个单独的名词 —— Microservices。</p>
 <p>所以，他将微服务总结为以下<a href=https://martinfowler.com/articles/microservices.html>9大特征</a>：</p>
 <ol>
@@ -193,7 +193,7 @@ Which are auto-scaling and designed for failure</p>
 <p>恰逢一系列互联网公司的成功事迹带来的新实践（持续交付、DevOps）和新技术（Docker）在经历了早期实践者（Early Adopter）实践积累后的结果井喷后。这样的最佳实践的集中反应固然得到了技术人员的掌声。然而，这样的一种定义对于妄图采用“微服务架构“的人来说是一个很高的门槛。如果这样的 9 个特征的总结是对”微服务架构“的定义。那么，为了要满足以上的 9 个定义，则需要花费很大的精力来进行改造，而且已经超出了技术升级和企业 IT 部门的职责范围。此外，即便我们知道其中每个特征所带来的收益，但却很难拿出案例和数据去佐证满足这 9 个特征的改造收益。</p>
 <p>避开这 9 个特征的概念正交性不谈，即便这 9 个特征可以从既有的结果来回答”什么（What）是微服务“，但却没有给出“为什么（Why）要满足这些特征”和”如何（How）同时满足这些特征”。</p>
 <p>如果自己挖的坑填不了，就教给别人来填吧：</p>
-<h2 id=sam-newman-版微服务的两大特征和-7-个原则>Sam Newman 版微服务的两大特征和 7 个原则 <a class=heading-anchor href=#sam-newman-%e7%89%88%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9a%84%e4%b8%a4%e5%a4%a7%e7%89%b9%e5%be%81%e5%92%8c-7-%e4%b8%aa%e5%8e%9f%e5%88%99 aria-label=Anchor>#</a></h2>
+<h2 id=sam-newman-版微服务的两大特征和-7-个原则>Sam Newman 版微服务的两大特征和 7 个原则 <a class=heading-anchor href=#sam-newman-%e7%89%88%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9a%84%e4%b8%a4%e5%a4%a7%e7%89%b9%e5%be%81%e5%92%8c-7-%e4%b8%aa%e5%8e%9f%e5%88%99 aria-label=锚点>#</a></h2>
 <p>同样作为 Martin Fowler 的同事，Sam Newman 在其著作 ”Building Microservice“（中文译名为”微服务设计“）的第一章就重新回答了”什么是微服务架构“并回答了”为什么要采用微服务架构“的问题。</p>
 <p>Sam Newman 在书中是这么定义微服务的（《微服务设计》的翻译）：</p>
 <blockquote>
@@ -238,7 +238,7 @@ Which are auto-scaling and designed for failure</p>
 <li>可组合性：由于各个微服务间不存在依赖关系，所以可以根据用户界面的情况进行灵活的调整和复用，避免对单体应用进行整体的大规模调整。</li>
 <li>对可替代性的优化：由于风险和领域更加独立和隔离。因此，抛弃一个微服务并重写的成本并就变的十分低廉。</li>
 </ol>
-<h2 id=chris-richardson-的微服务架构模式>Chris Richardson 的“微服务架构模式” <a class=heading-anchor href=#chris-richardson-%e7%9a%84%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%9e%b6%e6%9e%84%e6%a8%a1%e5%bc%8f aria-label=Anchor>#</a></h2>
+<h2 id=chris-richardson-的微服务架构模式>Chris Richardson 的“微服务架构模式” <a class=heading-anchor href=#chris-richardson-%e7%9a%84%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%9e%b6%e6%9e%84%e6%a8%a1%e5%bc%8f aria-label=锚点>#</a></h2>
 <p>2017 年，Chris Richardson 使用 Microservices.io 域名开始推广自己的微服务理念。他是这样定义微服务的：</p>
 <blockquote>
 <p>Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of loosely coupled services, which implement business capabilities. The microservice architecture enables the continuous delivery/deployment of large, complex applications. It also enables an organization to evolve its technology stack.</p>
@@ -268,7 +268,7 @@ Which are auto-scaling and designed for failure</p>
 </ol>
 <p>相较于之前的微服务定义而言， Chris Richardson 的微服务体系比较完整，而不仅仅是总结和列举实践。Chris Richardson 的"微服务架构模式"不光回答了“什么是（What）微服务”，也回答了“为什么（Why）要用微服务”，“什么时候（When）用微服务”，“什么场景（Where）下”以及“如何（How）实现微服务”的问题。</p>
 <p>Chris Richardson 还编写了一套微服务的指南，可以在<a href=https://www.nginx.com/blog/introduction-to-microservices/>这里</a> 查看。</p>
-<h2 id=比什么是微服务更重要的事>比”什么是微服务“更重要的事 <a class=heading-anchor href=#%e6%af%94%e4%bb%80%e4%b9%88%e6%98%af%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%9b%b4%e9%87%8d%e8%a6%81%e7%9a%84%e4%ba%8b aria-label=Anchor>#</a></h2>
+<h2 id=比什么是微服务更重要的事>比”什么是微服务“更重要的事 <a class=heading-anchor href=#%e6%af%94%e4%bb%80%e4%b9%88%e6%98%af%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%9b%b4%e9%87%8d%e8%a6%81%e7%9a%84%e4%ba%8b aria-label=锚点>#</a></h2>
 <p>本文总结了微服务常见的 4 个定义。但比这些定义更重要的是你为什么要用微服务？你想从微服务中获得什么益处？你是否了解为了追求这些益处所带来的代价？如果不先明确这些问题，在不理解微服务架构或者技术所带来的的风险和成本。盲目的采用所谓的微服务，可能带来的结果并不理想。</p>
 <p>不过，在讨论这些问题之前，坐下来统一一下对微服务的理解，会提升我们讨论和实践微服务的效率。</p>
 </section>
@@ -277,7 +277,7 @@ Which are auto-scaling and designed for failure</p>
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -337,15 +337,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

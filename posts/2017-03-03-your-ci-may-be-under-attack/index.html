@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>不要让你的持续集成服务器成为安全隐患 &#183; 顾宇的博客</title>
@@ -85,8 +85,8 @@ sudo sh -c “cp \~/.ssh/authorized\_keys \~/.ssh/authorized\_keys.bak” sudo s
 所以，不能为了方便而留下安全隐患。在关键操作上设置为手动操作，并通过一定的机制保证关键操作的可靠性才是最佳实践。
 构建安全 CI 的几个实践 #  采用Sibling的方式在Docker里运行CI任务。 账户密码管理统一采用LDAP认证，如果过期则从外部修改。 CI的登录权限和其它的认证方式（比如GItHub，Okta等）集成起来。并用组限制登录。 对于生产环境的CI，通过更加细粒度的权限限制来隔离一些危险操作。  官方的安全指南 # 不少CI软件的官方都提供了最佳实践以及安全指南帮助我们更好的构建CI服务器。请务必在构建CI前阅读并理解这些安全实践和措施，并遵照安全最佳实践构建CI服务器：
 Jenkins 最佳实践：https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Best+Practices">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"不要让你的持续集成服务器成为安全隐患","headline":"不要让你的持续集成服务器成为安全隐患","description":"最近临时接手了一个客户测试环境和产品环境的维护工作。接手的客户资产里包含：代码库，生产环境主机，测试环境主机以及搭建在测试环境主机上的CI（基于Jenkins）。这个CI可以用来部署测试环境和生产环境的应用。\n不久，接到了客户的一个维护请求：把最新的生产环境数据同步到测试环境里。\n这个维护工作需要通过SSH登录到测试环境主机上进行操作。测试主机是通过 authorized_keys 进行 SSH 认证的，因此没有用户名和密码。这样有两个好处：一方面无需生产环境用户名密码。一方面可以按需吊销不再用的客户端。这样可以避免密码泄露。所以我需要把自己的 ssh public key 交给管理员，让他把我的 key 加到可访问列表里。\n悲剧的是，管理员告诉我他的 key 因为更换电脑的关系没有及时更新。所以，他也登录不上去了。而且之前所有的管理员的 key 都失效了。我手上只有CI的管理员的用户名和密码，于是一个邪恶的想法就诞生了：\n既然 CI 可以执行脚本，那么我是否可以通过CI把我的key注入进去 ？\n于是我用Execute Shell的Job变成了我的命令行，通过CI运行日志得知了宿主用户的文件目录信息。然后把自己的ssh public key加到了登录列表里（此处省略敏感信息）：\nsudo sh -c “cp \\~\/.ssh\/authorized\\_keys \\~\/.ssh\/authorized\\_keys.bak” sudo sh -c \u0026#34;echo ‘{**你的****ssh public key**}’ \\\u0026gt;\\\u0026gt; \\~\/.ssh\/authorized\\_keys\u0026#34; It works !\n我成功的登录了机器，但这却暴露了一个问题：CI有可能会成为一个安全隐患。\n首先，CI可以执行代码。这就意味着它有可能执行有害代码。\n其次，CI缺乏足够的用户鉴权，这很有可能导致未授权用户访问。\n那么，如何构建一个更安全的 CI 服务器 # rootless原则 #  “神操纵着万物，你感觉得到他，但永远看不见他。” ——《圣经·希伯来书 11:27》\n 在服务器的世界里，root用户就是神，具有至高的权力和力量。如果有人获得了”神力“，后果可能不堪设想。\n无论是Web服务器，还是CI服务器。都是这个世界里的二等公民，权限和力量都应该受到约束。执行的时候应该“\n此外，应该极力避免sudo的滥用，尤其是对那些从外部访问的用户。很多情况下，为了操作方便，很多用户都有sudo的权限。但这恰恰造成了低权限用户提升自己的访问权限进行有害操作。\n在上述的故事里，因为没有对Jenkins的主机用户做有效的隔离，导致了我可以用sudo注入自己的key获得机器的访问权限。\n沙盒隔离原则 # 因为CI会执行脚本或运行程序，而这些程序和脚本极有可能是不安全的。所以，CI任务应该在隔离的安全沙盒中执行，例如：受限的用户，受限的权限，受限的空间。\n在上述的故事里，我就通过CI执行了一段不安全的脚本成功获得了登录主机的权限。\n如果这些任务执行在隔离并受控的Docker容器里，那么会安全得多。\n也可以考虑采用TravisCI这样的第三方CI服务来保证安全性。\n备份和备份核查原则 # 在上述的故事里，因为缺乏有效的备份机制，导致了所有人都失去了对主机的访问。此外，我在修改authorized_keys的时候先进行了备份。这样，如果我注入失败，还可以还原。\n这里的备份，不光是对配置，数据的备份，还有岗位的备份。\n如果有备份的管理员，完全不会出现这种事情。\n如果有备份QA服务器，完全可以不需要当前的QA服务器。\n在做任何变更前，都应该做好备份以及还原的准备。因为任何变更都会带来“蝴蝶效应”。\n但是，光备份是不够的。如果备份不能有效还原，那和没有备份没有什么区别。所以，要定时的进行备份恢复测试。确保备份在各种情况下可用。\n多重要素身份验证原则 # 上述的CI是暴露在互联网中的，任何一个人访问到这个站点，通过一定程度的密码破解，就可以获得这个CI的访问控制权限。从而可以做出上述的操作。\n所以，有了用户名和密码，并不一定是可信用户。所以需要通过更多的手段，诸如手机短信验证码或者第三方认证集成来验证用户的身份。\n关键操作手动验证原则 # 试想一下，如果上述的例子我并没有服务器的访问权限。而是通过提交未经审查的代码自动运行测试脚本。实际上也会造成同样的效果。\n有时候我们会为了方便，让CI自动触发测试。但是，恰恰是这种“方便”，却带来了额外的安全隐患。而这样的方便，不光方便了自己，也方便了恶意入侵者。\n所以，不能为了方便而留下安全隐患。在关键操作上设置为手动操作，并通过一定的机制保证关键操作的可靠性才是最佳实践。\n构建安全 CI 的几个实践 #  采用Sibling的方式在Docker里运行CI任务。 账户密码管理统一采用LDAP认证，如果过期则从外部修改。 CI的登录权限和其它的认证方式（比如GItHub，Okta等）集成起来。并用组限制登录。 对于生产环境的CI，通过更加细粒度的权限限制来隔离一些危险操作。  官方的安全指南 # 不少CI软件的官方都提供了最佳实践以及安全指南帮助我们更好的构建CI服务器。请务必在构建CI前阅读并理解这些安全实践和措施，并遵照安全最佳实践构建CI服务器：\nJenkins 最佳实践：https:\/\/wiki.jenkins-ci.org\/display\/JENKINS\/Jenkins\u002bBest\u002bPractices","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-03-03T00:00:00\u002b00:00","datePublished":"2017-03-03T00:00:00\u002b00:00","dateModified":"2017-03-03T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-03-03-your-ci-may-be-under-attack\/","wordCount":"104","keywords":["安全","持续集成"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"不要让你的持续集成服务器成为安全隐患","headline":"不要让你的持续集成服务器成为安全隐患","description":"最近临时接手了一个客户测试环境和产品环境的维护工作。接手的客户资产里包含：代码库，生产环境主机，测试环境主机以及搭建在测试环境主机上的CI（基于Jenkins）。这个CI可以用来部署测试环境和生产环境的应用。\n不久，接到了客户的一个维护请求：把最新的生产环境数据同步到测试环境里。\n这个维护工作需要通过SSH登录到测试环境主机上进行操作。测试主机是通过 authorized_keys 进行 SSH 认证的，因此没有用户名和密码。这样有两个好处：一方面无需生产环境用户名密码。一方面可以按需吊销不再用的客户端。这样可以避免密码泄露。所以我需要把自己的 ssh public key 交给管理员，让他把我的 key 加到可访问列表里。\n悲剧的是，管理员告诉我他的 key 因为更换电脑的关系没有及时更新。所以，他也登录不上去了。而且之前所有的管理员的 key 都失效了。我手上只有CI的管理员的用户名和密码，于是一个邪恶的想法就诞生了：\n既然 CI 可以执行脚本，那么我是否可以通过CI把我的key注入进去 ？\n于是我用Execute Shell的Job变成了我的命令行，通过CI运行日志得知了宿主用户的文件目录信息。然后把自己的ssh public key加到了登录列表里（此处省略敏感信息）：\nsudo sh -c “cp \\~\/.ssh\/authorized\\_keys \\~\/.ssh\/authorized\\_keys.bak” sudo sh -c \u0026#34;echo ‘{**你的****ssh public key**}’ \\\u0026gt;\\\u0026gt; \\~\/.ssh\/authorized\\_keys\u0026#34; It works !\n我成功的登录了机器，但这却暴露了一个问题：CI有可能会成为一个安全隐患。\n首先，CI可以执行代码。这就意味着它有可能执行有害代码。\n其次，CI缺乏足够的用户鉴权，这很有可能导致未授权用户访问。\n那么，如何构建一个更安全的 CI 服务器 # rootless原则 #  “神操纵着万物，你感觉得到他，但永远看不见他。” ——《圣经·希伯来书 11:27》\n 在服务器的世界里，root用户就是神，具有至高的权力和力量。如果有人获得了”神力“，后果可能不堪设想。\n无论是Web服务器，还是CI服务器。都是这个世界里的二等公民，权限和力量都应该受到约束。执行的时候应该“\n此外，应该极力避免sudo的滥用，尤其是对那些从外部访问的用户。很多情况下，为了操作方便，很多用户都有sudo的权限。但这恰恰造成了低权限用户提升自己的访问权限进行有害操作。\n在上述的故事里，因为没有对Jenkins的主机用户做有效的隔离，导致了我可以用sudo注入自己的key获得机器的访问权限。\n沙盒隔离原则 # 因为CI会执行脚本或运行程序，而这些程序和脚本极有可能是不安全的。所以，CI任务应该在隔离的安全沙盒中执行，例如：受限的用户，受限的权限，受限的空间。\n在上述的故事里，我就通过CI执行了一段不安全的脚本成功获得了登录主机的权限。\n如果这些任务执行在隔离并受控的Docker容器里，那么会安全得多。\n也可以考虑采用TravisCI这样的第三方CI服务来保证安全性。\n备份和备份核查原则 # 在上述的故事里，因为缺乏有效的备份机制，导致了所有人都失去了对主机的访问。此外，我在修改authorized_keys的时候先进行了备份。这样，如果我注入失败，还可以还原。\n这里的备份，不光是对配置，数据的备份，还有岗位的备份。\n如果有备份的管理员，完全不会出现这种事情。\n如果有备份QA服务器，完全可以不需要当前的QA服务器。\n在做任何变更前，都应该做好备份以及还原的准备。因为任何变更都会带来“蝴蝶效应”。\n但是，光备份是不够的。如果备份不能有效还原，那和没有备份没有什么区别。所以，要定时的进行备份恢复测试。确保备份在各种情况下可用。\n多重要素身份验证原则 # 上述的CI是暴露在互联网中的，任何一个人访问到这个站点，通过一定程度的密码破解，就可以获得这个CI的访问控制权限。从而可以做出上述的操作。\n所以，有了用户名和密码，并不一定是可信用户。所以需要通过更多的手段，诸如手机短信验证码或者第三方认证集成来验证用户的身份。\n关键操作手动验证原则 # 试想一下，如果上述的例子我并没有服务器的访问权限。而是通过提交未经审查的代码自动运行测试脚本。实际上也会造成同样的效果。\n有时候我们会为了方便，让CI自动触发测试。但是，恰恰是这种“方便”，却带来了额外的安全隐患。而这样的方便，不光方便了自己，也方便了恶意入侵者。\n所以，不能为了方便而留下安全隐患。在关键操作上设置为手动操作，并通过一定的机制保证关键操作的可靠性才是最佳实践。\n构建安全 CI 的几个实践 #  采用Sibling的方式在Docker里运行CI任务。 账户密码管理统一采用LDAP认证，如果过期则从外部修改。 CI的登录权限和其它的认证方式（比如GItHub，Okta等）集成起来。并用组限制登录。 对于生产环境的CI，通过更加细粒度的权限限制来隔离一些危险操作。  官方的安全指南 # 不少CI软件的官方都提供了最佳实践以及安全指南帮助我们更好的构建CI服务器。请务必在构建CI前阅读并理解这些安全实践和措施，并遵照安全最佳实践构建CI服务器：\nJenkins 最佳实践：https:\/\/wiki.jenkins-ci.org\/display\/JENKINS\/Jenkins\u002bBest\u002bPractices","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-03-03T00:00:00\u002b00:00","datePublished":"2017-03-03T00:00:00\u002b00:00","dateModified":"2017-03-03T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-03-03-your-ci-may-be-under-attack\/","wordCount":"104","keywords":["安全","持续集成"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -126,7 +126,7 @@ Jenkins 最佳实践：https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Best+
 <div class="flex flex-row items-center">
 <time datetime="2017-03-03 00:00:00 +0000 UTC">3 March 2017</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-03-03-your-ci-may-be-under-attack.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-03-03-your-ci-may-be-under-attack.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -147,8 +147,8 @@ sudo sh -c <span style=color:#e6db74>&#34;echo ‘{**你的****ssh public key**}
 <p>我成功的登录了机器，但这却暴露了一个问题：CI有可能会成为一个安全隐患。</p>
 <p>首先，CI可以执行代码。这就意味着它有可能执行有害代码。</p>
 <p>其次，CI缺乏足够的用户鉴权，这很有可能导致未授权用户访问。</p>
-<h2 id=那么如何构建一个更安全的-ci-服务器>那么，如何构建一个更安全的 <strong>CI</strong> 服务器 <a class=heading-anchor href=#%e9%82%a3%e4%b9%88%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%9b%b4%e5%ae%89%e5%85%a8%e7%9a%84-ci-%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label=Anchor>#</a></h2>
-<h3 id=rootless原则><strong>rootless</strong>原则 <a class=heading-anchor href=#rootless%e5%8e%9f%e5%88%99 aria-label=Anchor>#</a></h3>
+<h2 id=那么如何构建一个更安全的-ci-服务器>那么，如何构建一个更安全的 <strong>CI</strong> 服务器 <a class=heading-anchor href=#%e9%82%a3%e4%b9%88%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%9b%b4%e5%ae%89%e5%85%a8%e7%9a%84-ci-%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label=锚点>#</a></h2>
+<h3 id=rootless原则><strong>rootless</strong>原则 <a class=heading-anchor href=#rootless%e5%8e%9f%e5%88%99 aria-label=锚点>#</a></h3>
 <blockquote>
 <p><strong>“神操纵着万物，你感觉得到他，但永远看不见他。”</strong>
 ——<strong>《圣经·希伯来书 11:27》</strong></p>
@@ -157,37 +157,37 @@ sudo sh -c <span style=color:#e6db74>&#34;echo ‘{**你的****ssh public key**}
 <p>无论是Web服务器，还是CI服务器。都是这个世界里的二等公民，权限和力量都应该受到约束。执行的时候应该“</p>
 <p>此外，应该极力避免sudo的滥用，尤其是对那些从外部访问的用户。很多情况下，为了操作方便，很多用户都有sudo的权限。但这恰恰造成了低权限用户提升自己的访问权限进行有害操作。</p>
 <p>在上述的故事里，因为没有对<strong>Jenkins</strong>的主机用户做有效的隔离，导致了我可以用<strong>sudo</strong>注入自己的<strong>key</strong>获得机器的访问权限。</p>
-<h3 id=沙盒隔离原则>沙盒隔离原则 <a class=heading-anchor href=#%e6%b2%99%e7%9b%92%e9%9a%94%e7%a6%bb%e5%8e%9f%e5%88%99 aria-label=Anchor>#</a></h3>
+<h3 id=沙盒隔离原则>沙盒隔离原则 <a class=heading-anchor href=#%e6%b2%99%e7%9b%92%e9%9a%94%e7%a6%bb%e5%8e%9f%e5%88%99 aria-label=锚点>#</a></h3>
 <p>因为CI会执行脚本或运行程序，而这些程序和脚本极有可能是不安全的。所以，CI任务应该在隔离的安全沙盒中执行，例如：受限的用户，受限的权限，受限的空间。</p>
 <p>在上述的故事里，我就通过CI执行了一段不安全的脚本成功获得了登录主机的权限。</p>
 <p>如果这些任务执行在隔离并受控的Docker容器里，那么会安全得多。</p>
 <p>也可以考虑采用TravisCI这样的第三方CI服务来保证安全性。</p>
-<h3 id=备份和备份核查原则>备份和备份核查原则 <a class=heading-anchor href=#%e5%a4%87%e4%bb%bd%e5%92%8c%e5%a4%87%e4%bb%bd%e6%a0%b8%e6%9f%a5%e5%8e%9f%e5%88%99 aria-label=Anchor>#</a></h3>
+<h3 id=备份和备份核查原则>备份和备份核查原则 <a class=heading-anchor href=#%e5%a4%87%e4%bb%bd%e5%92%8c%e5%a4%87%e4%bb%bd%e6%a0%b8%e6%9f%a5%e5%8e%9f%e5%88%99 aria-label=锚点>#</a></h3>
 <p>在上述的故事里，因为缺乏有效的备份机制，导致了所有人都失去了对主机的访问。此外，我在修改authorized_keys的时候先进行了备份。这样，如果我注入失败，还可以还原。</p>
 <p>这里的备份，不光是对配置，数据的备份，还有岗位的备份。</p>
 <p>如果有备份的管理员，完全不会出现这种事情。</p>
 <p>如果有备份QA服务器，完全可以不需要当前的QA服务器。</p>
 <p>在做任何变更前，都应该做好备份以及还原的准备。因为任何变更都会带来“蝴蝶效应”。</p>
 <p>但是，光备份是不够的。如果备份不能有效还原，那和没有备份没有什么区别。所以，要定时的进行备份恢复测试。确保备份在各种情况下可用。</p>
-<h3 id=多重要素身份验证原则>多重要素身份验证原则 <a class=heading-anchor href=#%e5%a4%9a%e9%87%8d%e8%a6%81%e7%b4%a0%e8%ba%ab%e4%bb%bd%e9%aa%8c%e8%af%81%e5%8e%9f%e5%88%99 aria-label=Anchor>#</a></h3>
+<h3 id=多重要素身份验证原则>多重要素身份验证原则 <a class=heading-anchor href=#%e5%a4%9a%e9%87%8d%e8%a6%81%e7%b4%a0%e8%ba%ab%e4%bb%bd%e9%aa%8c%e8%af%81%e5%8e%9f%e5%88%99 aria-label=锚点>#</a></h3>
 <p>上述的CI是暴露在互联网中的，任何一个人访问到这个站点，通过一定程度的密码破解，就可以获得这个CI的访问控制权限。从而可以做出上述的操作。</p>
 <p>所以，有了用户名和密码，并不一定是可信用户。所以需要通过更多的手段，诸如手机短信验证码或者第三方认证集成来验证用户的身份。</p>
-<h3 id=关键操作手动验证原则>关键操作手动验证原则 <a class=heading-anchor href=#%e5%85%b3%e9%94%ae%e6%93%8d%e4%bd%9c%e6%89%8b%e5%8a%a8%e9%aa%8c%e8%af%81%e5%8e%9f%e5%88%99 aria-label=Anchor>#</a></h3>
+<h3 id=关键操作手动验证原则>关键操作手动验证原则 <a class=heading-anchor href=#%e5%85%b3%e9%94%ae%e6%93%8d%e4%bd%9c%e6%89%8b%e5%8a%a8%e9%aa%8c%e8%af%81%e5%8e%9f%e5%88%99 aria-label=锚点>#</a></h3>
 <p>试想一下，如果上述的例子我并没有服务器的访问权限。而是通过提交未经审查的代码自动运行测试脚本。实际上也会造成同样的效果。</p>
 <p>有时候我们会为了方便，让CI自动触发测试。但是，恰恰是这种“方便”，却带来了额外的安全隐患。而这样的方便，不光方便了自己，也方便了恶意入侵者。</p>
 <p>所以，不能为了方便而留下安全隐患。在关键操作上设置为手动操作，并通过一定的机制保证关键操作的可靠性才是最佳实践。</p>
-<h2 id=构建安全-ci-的几个实践>构建安全 CI 的几个实践 <a class=heading-anchor href=#%e6%9e%84%e5%bb%ba%e5%ae%89%e5%85%a8-ci-%e7%9a%84%e5%87%a0%e4%b8%aa%e5%ae%9e%e8%b7%b5 aria-label=Anchor>#</a></h2>
+<h2 id=构建安全-ci-的几个实践>构建安全 CI 的几个实践 <a class=heading-anchor href=#%e6%9e%84%e5%bb%ba%e5%ae%89%e5%85%a8-ci-%e7%9a%84%e5%87%a0%e4%b8%aa%e5%ae%9e%e8%b7%b5 aria-label=锚点>#</a></h2>
 <ul>
 <li>采用<a href=https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/>Sibling</a>的方式在Docker里运行CI任务。</li>
 <li>账户密码管理统一采用LDAP认证，如果过期则从外部修改。</li>
 <li>CI的登录权限和其它的认证方式（比如GItHub，Okta等）集成起来。并用组限制登录。</li>
 <li>对于生产环境的CI，通过更加细粒度的权限限制来隔离一些危险操作。</li>
 </ul>
-<h2 id=官方的安全指南>官方的安全指南 <a class=heading-anchor href=#%e5%ae%98%e6%96%b9%e7%9a%84%e5%ae%89%e5%85%a8%e6%8c%87%e5%8d%97 aria-label=Anchor>#</a></h2>
+<h2 id=官方的安全指南>官方的安全指南 <a class=heading-anchor href=#%e5%ae%98%e6%96%b9%e7%9a%84%e5%ae%89%e5%85%a8%e6%8c%87%e5%8d%97 aria-label=锚点>#</a></h2>
 <p>不少CI软件的官方都提供了最佳实践以及安全指南帮助我们更好的构建CI服务器。请务必在构建CI前阅读并理解这些安全实践和措施，并遵照安全最佳实践构建CI服务器：</p>
 <p><strong>Jenkins 最佳实践：</strong><a href=https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Best+Practices>https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Best+Practices</a></p>
 <p><strong>Jenkins 官方安全指南</strong>：<a href=https://wiki.jenkins-ci.org/display/JENKINS/Securing+Jenkins>https://wiki.jenkins-ci.org/display/JENKINS/Securing+Jenkins</a></p>
-<h2 id=如果没有这些如果>如果没有这些如果 <a class=heading-anchor href=#%e5%a6%82%e6%9e%9c%e6%b2%a1%e6%9c%89%e8%bf%99%e4%ba%9b%e5%a6%82%e6%9e%9c aria-label=Anchor>#</a></h2>
+<h2 id=如果没有这些如果>如果没有这些如果 <a class=heading-anchor href=#%e5%a6%82%e6%9e%9c%e6%b2%a1%e6%9c%89%e8%bf%99%e4%ba%9b%e5%a6%82%e6%9e%9c aria-label=锚点>#</a></h2>
 <p>上面提到了太多的如果。如果这些“如果”能发生在事前，这些问题就不会产生。CI本身是开发的最佳实践，但如果缺乏安全的意识，一味的追求方便和高效，则会带来很大的安全隐患。技通过一些简单而基础的措施和手段，我们就能大大的减少安全隐患。</p>
 <p><strong>感谢 ThoughtWorks 高级咨询师赵朝朝，蒋帆对本文的建议</strong>。</p>
 </section>
@@ -196,7 +196,7 @@ sudo sh -c <span style=color:#e6db74>&#34;echo ‘{**你的****ssh public key**}
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -256,15 +256,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

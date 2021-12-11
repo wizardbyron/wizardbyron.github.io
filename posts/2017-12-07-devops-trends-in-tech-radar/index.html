@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>从最新一期技术雷达看 DevOps 的发展 &#183; 顾宇的博客</title>
@@ -41,8 +41,8 @@
 趋势4：领域特定的DevOps实践开始出现 # 现状：虽然并没有十分特别的领域特定的 DevOps 技术出现。但受到 DevOps 启发的 DesignOps 和 DevSecOps 也分别有了自己的社区群体。期待它们在未来有进一步的表现。
 趋势5：采用DevOps进行技术债务重组和技术资产管理 # 结果：我写下这个趋势的第二周就进入了这样一个技术资产管理项目并工作到现在。在这 6 个月中我和同事们采用了 DevOps 理念和技术进行技术资产重组和互联网企业 IT 资产并购，并体会到了其中的诸多益处，大大节约了产品上线时间和上线风险，而且产品的开支的随着时间以更快的速度递减。随着 CloudNative 的技术和概念的成熟，相信这类的项目和案例会越来越丰富。
 趋势6：安全成为推动DevOps全面发展的重要力量 # 结果：OWASP Top10 和 OWASP Top10 Mobile 的姗姗来迟虽然并未进入本期技术雷达。但并不表明技术雷达对安全有所松懈，这反而是一种更加负责的态度。而安全相关的实践已从使用工具进入安全场景的设计。例如最新期的 3Rs 安全 和 上一期就提到的 KeyCloak，以及本期提到的用于安全的 Sidecar 模式。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"从最新一期技术雷达看 DevOps 的发展","headline":"从最新一期技术雷达看 DevOps 的发展","description":"今年4月份，我第一次以主编的身份参加技术雷达的翻译工作。有幸第一时间参加到技术雷达的翻译过程中。通过我在翻译其间对条目的了解和观察，我写下了《DevOps发展的九个趋势》\n今年11月份，我再一次以执行主编的身份参加第17期技术雷达的翻译工作。17 期技术雷达中两大主题：Kubernetes 和 Cloud as the New Normal 都是 DevOps 相关的。而且本期技术雷达涌现了众多 DevOps 相关的新条目。一方面说明了 DevOps 在 IT 业的重要性日渐增加，一方面也支撑起了 DevOps 社区在工具和实践上的创新。虽然每个人对 DevOps 的理解不尽相同，但能持续的着眼在具体的问题并提供实际的解决方案则是值得称道的。\n这些新的变化对我上一期的 DevOps 技术趋势判断和发展有了新的思考和认识，借由此文分享给大家。\n回顾2017年 DevOps 发展 # 在今年 4月第16期技术雷达发布后，我分析了 DevOps 发展的九个趋势。我认为这九个趋势代表了2017年 DevOps 技术的发展方向。让我们来结合最新的技术雷达回顾一下2017年这些趋势的发展。\n趋势1：微服务目前仍然是DevOps技术应用和发展的主要领域 # 现状：微服务的相关技术仍然不断涌现。但人们似乎过于乐观的估计了微服务的投资回报速度。架构演进是一个长期的过程，而实践中的陷阱和问题越来越多。不断涌现的诸多工具和解决方案说明了微服务的反思已经开始。让我们期待更多微服务的案例出现。\n趋势2：以Docker为核心的数据中心方案逐渐走向成熟 # 现状：Kubernetes 生态圈在 Docker 编排工具的争霸大战中笑道了最后，本期技术雷达把 Kubernetes 移动到了“采用”中，证明 Kubernetes 是经得住时间考验的工具。随着越来越多的厂商和社区开始围绕 Kubernetes 构建自己的产品，我相信基于 Kubernetes 的产品和工具会越来越多。\n趋势3：不完整的DevOps实践阻碍着DevOps的发展 # 现状：虽然 DevOps 社区的活跃程度催生了一大批的工具和平台，但却在推广实践上发力不足。接受了局部技术改进后的 DevOps 演进似乎立刻停止，使得 DevOps 难以发挥出更大的价值。随着时间的发展，这种局面会愈来愈常见。如方法论的推广落后于工具的发展，那么 DevOps 运动的寿终正寝也将为期不远。\n趋势4：领域特定的DevOps实践开始出现 # 现状：虽然并没有十分特别的领域特定的 DevOps 技术出现。但受到 DevOps 启发的 DesignOps 和 DevSecOps 也分别有了自己的社区群体。期待它们在未来有进一步的表现。\n趋势5：采用DevOps进行技术债务重组和技术资产管理 # 结果：我写下这个趋势的第二周就进入了这样一个技术资产管理项目并工作到现在。在这 6 个月中我和同事们采用了 DevOps 理念和技术进行技术资产重组和互联网企业 IT 资产并购，并体会到了其中的诸多益处，大大节约了产品上线时间和上线风险，而且产品的开支的随着时间以更快的速度递减。随着 CloudNative 的技术和概念的成熟，相信这类的项目和案例会越来越丰富。\n趋势6：安全成为推动DevOps全面发展的重要力量 # 结果：OWASP Top10 和 OWASP Top10 Mobile 的姗姗来迟虽然并未进入本期技术雷达。但并不表明技术雷达对安全有所松懈，这反而是一种更加负责的态度。而安全相关的实践已从使用工具进入安全场景的设计。例如最新期的 3Rs 安全 和 上一期就提到的 KeyCloak，以及本期提到的用于安全的 Sidecar 模式。","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-12-07T00:00:00\u002b00:00","datePublished":"2017-12-07T00:00:00\u002b00:00","dateModified":"2017-12-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-12-07-devops-trends-in-tech-radar\/","wordCount":"308","keywords":["TechRadar","Kubernetes","Service Mesh","Docker","Python","自动化"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"从最新一期技术雷达看 DevOps 的发展","headline":"从最新一期技术雷达看 DevOps 的发展","description":"今年4月份，我第一次以主编的身份参加技术雷达的翻译工作。有幸第一时间参加到技术雷达的翻译过程中。通过我在翻译其间对条目的了解和观察，我写下了《DevOps发展的九个趋势》\n今年11月份，我再一次以执行主编的身份参加第17期技术雷达的翻译工作。17 期技术雷达中两大主题：Kubernetes 和 Cloud as the New Normal 都是 DevOps 相关的。而且本期技术雷达涌现了众多 DevOps 相关的新条目。一方面说明了 DevOps 在 IT 业的重要性日渐增加，一方面也支撑起了 DevOps 社区在工具和实践上的创新。虽然每个人对 DevOps 的理解不尽相同，但能持续的着眼在具体的问题并提供实际的解决方案则是值得称道的。\n这些新的变化对我上一期的 DevOps 技术趋势判断和发展有了新的思考和认识，借由此文分享给大家。\n回顾2017年 DevOps 发展 # 在今年 4月第16期技术雷达发布后，我分析了 DevOps 发展的九个趋势。我认为这九个趋势代表了2017年 DevOps 技术的发展方向。让我们来结合最新的技术雷达回顾一下2017年这些趋势的发展。\n趋势1：微服务目前仍然是DevOps技术应用和发展的主要领域 # 现状：微服务的相关技术仍然不断涌现。但人们似乎过于乐观的估计了微服务的投资回报速度。架构演进是一个长期的过程，而实践中的陷阱和问题越来越多。不断涌现的诸多工具和解决方案说明了微服务的反思已经开始。让我们期待更多微服务的案例出现。\n趋势2：以Docker为核心的数据中心方案逐渐走向成熟 # 现状：Kubernetes 生态圈在 Docker 编排工具的争霸大战中笑道了最后，本期技术雷达把 Kubernetes 移动到了“采用”中，证明 Kubernetes 是经得住时间考验的工具。随着越来越多的厂商和社区开始围绕 Kubernetes 构建自己的产品，我相信基于 Kubernetes 的产品和工具会越来越多。\n趋势3：不完整的DevOps实践阻碍着DevOps的发展 # 现状：虽然 DevOps 社区的活跃程度催生了一大批的工具和平台，但却在推广实践上发力不足。接受了局部技术改进后的 DevOps 演进似乎立刻停止，使得 DevOps 难以发挥出更大的价值。随着时间的发展，这种局面会愈来愈常见。如方法论的推广落后于工具的发展，那么 DevOps 运动的寿终正寝也将为期不远。\n趋势4：领域特定的DevOps实践开始出现 # 现状：虽然并没有十分特别的领域特定的 DevOps 技术出现。但受到 DevOps 启发的 DesignOps 和 DevSecOps 也分别有了自己的社区群体。期待它们在未来有进一步的表现。\n趋势5：采用DevOps进行技术债务重组和技术资产管理 # 结果：我写下这个趋势的第二周就进入了这样一个技术资产管理项目并工作到现在。在这 6 个月中我和同事们采用了 DevOps 理念和技术进行技术资产重组和互联网企业 IT 资产并购，并体会到了其中的诸多益处，大大节约了产品上线时间和上线风险，而且产品的开支的随着时间以更快的速度递减。随着 CloudNative 的技术和概念的成熟，相信这类的项目和案例会越来越丰富。\n趋势6：安全成为推动DevOps全面发展的重要力量 # 结果：OWASP Top10 和 OWASP Top10 Mobile 的姗姗来迟虽然并未进入本期技术雷达。但并不表明技术雷达对安全有所松懈，这反而是一种更加负责的态度。而安全相关的实践已从使用工具进入安全场景的设计。例如最新期的 3Rs 安全 和 上一期就提到的 KeyCloak，以及本期提到的用于安全的 Sidecar 模式。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-12-07T00:00:00\u002b00:00","datePublished":"2017-12-07T00:00:00\u002b00:00","dateModified":"2017-12-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-12-07-devops-trends-in-tech-radar\/","wordCount":"308","keywords":["TechRadar","Kubernetes","Service Mesh","Docker","Python","自动化"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -82,7 +82,7 @@
 <div class="flex flex-row items-center">
 <time datetime="2017-12-07 00:00:00 +0000 UTC">7 December 2017</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-12-07-devops-trends-in-tech-radar.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-12-07-devops-trends-in-tech-radar.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -94,31 +94,31 @@
 <p>今年4月份，我第一次以主编的身份参加技术雷达的翻译工作。有幸第一时间参加到技术雷达的翻译过程中。通过我在翻译其间对条目的了解和观察，我写下了《<a href=/posts/2017-05-02-devops-in-tech-radar>DevOps发展的九个趋势</a>》</p>
 <p>今年11月份，我再一次以执行主编的身份参加<a href=https://www.thoughtworks.com/cn/radar>第17期技术雷达</a>的翻译工作。17 期技术雷达中两大主题：Kubernetes 和 Cloud as the New Normal 都是 DevOps 相关的。而且本期技术雷达涌现了众多 DevOps 相关的新条目。一方面说明了 DevOps 在 IT 业的重要性日渐增加，一方面也支撑起了 DevOps 社区在工具和实践上的创新。虽然每个人对 DevOps 的理解不尽相同，但能持续的着眼在具体的问题并提供实际的解决方案则是值得称道的。</p>
 <p>这些新的变化对我上一期的 DevOps 技术趋势判断和发展有了新的思考和认识，借由此文分享给大家。</p>
-<h2 id=回顾2017年-devops-发展>回顾2017年 DevOps 发展 <a class=heading-anchor href=#%e5%9b%9e%e9%a1%be2017%e5%b9%b4-devops-%e5%8f%91%e5%b1%95 aria-label=Anchor>#</a></h2>
+<h2 id=回顾2017年-devops-发展>回顾2017年 DevOps 发展 <a class=heading-anchor href=#%e5%9b%9e%e9%a1%be2017%e5%b9%b4-devops-%e5%8f%91%e5%b1%95 aria-label=锚点>#</a></h2>
 <p>在今年 4月第16期技术雷达发布后，我分析了 DevOps 发展的九个趋势。我认为这九个趋势代表了2017年 DevOps 技术的发展方向。让我们来结合最新的技术雷达回顾一下2017年这些趋势的发展。</p>
-<h3 id=趋势1微服务目前仍然是devops技术应用和发展的主要领域>趋势1：微服务目前仍然是DevOps技术应用和发展的主要领域 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf1%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9b%ae%e5%89%8d%e4%bb%8d%e7%84%b6%e6%98%afdevops%e6%8a%80%e6%9c%af%e5%ba%94%e7%94%a8%e5%92%8c%e5%8f%91%e5%b1%95%e7%9a%84%e4%b8%bb%e8%a6%81%e9%a2%86%e5%9f%9f aria-label=Anchor>#</a></h3>
+<h3 id=趋势1微服务目前仍然是devops技术应用和发展的主要领域>趋势1：微服务目前仍然是DevOps技术应用和发展的主要领域 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf1%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9b%ae%e5%89%8d%e4%bb%8d%e7%84%b6%e6%98%afdevops%e6%8a%80%e6%9c%af%e5%ba%94%e7%94%a8%e5%92%8c%e5%8f%91%e5%b1%95%e7%9a%84%e4%b8%bb%e8%a6%81%e9%a2%86%e5%9f%9f aria-label=锚点>#</a></h3>
 <p><strong>现状</strong>：微服务的相关技术仍然不断涌现。但人们似乎过于乐观的估计了微服务的投资回报速度。架构演进是一个长期的过程，而实践中的陷阱和问题越来越多。不断涌现的诸多工具和解决方案说明了微服务的反思已经开始。让我们期待更多微服务的案例出现。</p>
-<h3 id=趋势2以docker为核心的数据中心方案逐渐走向成熟>趋势2：以Docker为核心的数据中心方案逐渐走向成熟 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf2%e4%bb%a5docker%e4%b8%ba%e6%a0%b8%e5%bf%83%e7%9a%84%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%bf%83%e6%96%b9%e6%a1%88%e9%80%90%e6%b8%90%e8%b5%b0%e5%90%91%e6%88%90%e7%86%9f aria-label=Anchor>#</a></h3>
+<h3 id=趋势2以docker为核心的数据中心方案逐渐走向成熟>趋势2：以Docker为核心的数据中心方案逐渐走向成熟 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf2%e4%bb%a5docker%e4%b8%ba%e6%a0%b8%e5%bf%83%e7%9a%84%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%bf%83%e6%96%b9%e6%a1%88%e9%80%90%e6%b8%90%e8%b5%b0%e5%90%91%e6%88%90%e7%86%9f aria-label=锚点>#</a></h3>
 <p><strong>现状</strong>：Kubernetes 生态圈在 Docker 编排工具的争霸大战中笑道了最后，本期技术雷达把 Kubernetes 移动到了“采用”中，证明 Kubernetes 是经得住时间考验的工具。随着越来越多的厂商和社区开始围绕 Kubernetes 构建自己的产品，我相信基于 Kubernetes 的产品和工具会越来越多。</p>
-<h3 id=趋势3不完整的devops实践阻碍着devops的发展>趋势3：不完整的DevOps实践阻碍着DevOps的发展 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf3%e4%b8%8d%e5%ae%8c%e6%95%b4%e7%9a%84devops%e5%ae%9e%e8%b7%b5%e9%98%bb%e7%a2%8d%e7%9d%80devops%e7%9a%84%e5%8f%91%e5%b1%95 aria-label=Anchor>#</a></h3>
+<h3 id=趋势3不完整的devops实践阻碍着devops的发展>趋势3：不完整的DevOps实践阻碍着DevOps的发展 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf3%e4%b8%8d%e5%ae%8c%e6%95%b4%e7%9a%84devops%e5%ae%9e%e8%b7%b5%e9%98%bb%e7%a2%8d%e7%9d%80devops%e7%9a%84%e5%8f%91%e5%b1%95 aria-label=锚点>#</a></h3>
 <p><strong>现状</strong>：虽然 DevOps 社区的活跃程度催生了一大批的工具和平台，但却在推广实践上发力不足。接受了局部技术改进后的 DevOps 演进似乎立刻停止，使得 DevOps 难以发挥出更大的价值。随着时间的发展，这种局面会愈来愈常见。如方法论的推广落后于工具的发展，那么 DevOps 运动的寿终正寝也将为期不远。</p>
-<h3 id=趋势4领域特定的devops实践开始出现>趋势4：领域特定的DevOps实践开始出现 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf4%e9%a2%86%e5%9f%9f%e7%89%b9%e5%ae%9a%e7%9a%84devops%e5%ae%9e%e8%b7%b5%e5%bc%80%e5%a7%8b%e5%87%ba%e7%8e%b0 aria-label=Anchor>#</a></h3>
+<h3 id=趋势4领域特定的devops实践开始出现>趋势4：领域特定的DevOps实践开始出现 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf4%e9%a2%86%e5%9f%9f%e7%89%b9%e5%ae%9a%e7%9a%84devops%e5%ae%9e%e8%b7%b5%e5%bc%80%e5%a7%8b%e5%87%ba%e7%8e%b0 aria-label=锚点>#</a></h3>
 <p><strong>现状</strong>：虽然并没有十分特别的领域特定的 DevOps 技术出现。但受到 DevOps 启发的 DesignOps 和 DevSecOps
 也分别有了自己的社区群体。期待它们在未来有进一步的表现。</p>
-<h3 id=趋势5采用devops进行技术债务重组和技术资产管理>趋势5：采用DevOps进行技术债务重组和技术资产管理 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf5%e9%87%87%e7%94%a8devops%e8%bf%9b%e8%a1%8c%e6%8a%80%e6%9c%af%e5%80%ba%e5%8a%a1%e9%87%8d%e7%bb%84%e5%92%8c%e6%8a%80%e6%9c%af%e8%b5%84%e4%ba%a7%e7%ae%a1%e7%90%86 aria-label=Anchor>#</a></h3>
+<h3 id=趋势5采用devops进行技术债务重组和技术资产管理>趋势5：采用DevOps进行技术债务重组和技术资产管理 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf5%e9%87%87%e7%94%a8devops%e8%bf%9b%e8%a1%8c%e6%8a%80%e6%9c%af%e5%80%ba%e5%8a%a1%e9%87%8d%e7%bb%84%e5%92%8c%e6%8a%80%e6%9c%af%e8%b5%84%e4%ba%a7%e7%ae%a1%e7%90%86 aria-label=锚点>#</a></h3>
 <p><strong>结果</strong>：我写下这个趋势的第二周就进入了这样一个技术资产管理项目并工作到现在。在这 6 个月中我和同事们采用了 DevOps 理念和技术进行技术资产重组和互联网企业 IT 资产并购，并体会到了其中的诸多益处，大大节约了产品上线时间和上线风险，而且产品的开支的随着时间以更快的速度递减。随着 CloudNative 的技术和概念的成熟，相信这类的项目和案例会越来越丰富。</p>
-<h3 id=趋势6安全成为推动devops全面发展的重要力量>趋势6：安全成为推动DevOps全面发展的重要力量 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf6%e5%ae%89%e5%85%a8%e6%88%90%e4%b8%ba%e6%8e%a8%e5%8a%a8devops%e5%85%a8%e9%9d%a2%e5%8f%91%e5%b1%95%e7%9a%84%e9%87%8d%e8%a6%81%e5%8a%9b%e9%87%8f aria-label=Anchor>#</a></h3>
+<h3 id=趋势6安全成为推动devops全面发展的重要力量>趋势6：安全成为推动DevOps全面发展的重要力量 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf6%e5%ae%89%e5%85%a8%e6%88%90%e4%b8%ba%e6%8e%a8%e5%8a%a8devops%e5%85%a8%e9%9d%a2%e5%8f%91%e5%b1%95%e7%9a%84%e9%87%8d%e8%a6%81%e5%8a%9b%e9%87%8f aria-label=锚点>#</a></h3>
 <p><strong>结果</strong>：OWASP Top10 和 OWASP Top10 Mobile 的姗姗来迟虽然并未进入本期技术雷达。但并不表明技术雷达对安全有所松懈，这反而是一种更加负责的态度。而安全相关的实践已从使用工具进入安全场景的设计。例如最新期的 3Rs 安全 和 上一期就提到的 KeyCloak，以及本期提到的用于安全的 Sidecar 模式。</p>
-<h3 id=趋势7windows-server和net平台下的devops技术潜力巨大>趋势7：Windows Server和.NET平台下的DevOps技术潜力巨大 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf7windows-server%e5%92%8cnet%e5%b9%b3%e5%8f%b0%e4%b8%8b%e7%9a%84devops%e6%8a%80%e6%9c%af%e6%bd%9c%e5%8a%9b%e5%b7%a8%e5%a4%a7 aria-label=Anchor>#</a></h3>
+<h3 id=趋势7windows-server和net平台下的devops技术潜力巨大>趋势7：Windows Server和.NET平台下的DevOps技术潜力巨大 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf7windows-server%e5%92%8cnet%e5%b9%b3%e5%8f%b0%e4%b8%8b%e7%9a%84devops%e6%8a%80%e6%9c%af%e6%bd%9c%e5%8a%9b%e5%b7%a8%e5%a4%a7 aria-label=锚点>#</a></h3>
 <p><strong>现状</strong>：随着 Azrue 的成熟 和 Windows Conatiners 的推出，Windows 领域的 DevOps 关键工具链即将打通。但是 MS-DevOps 的“最后一公里”显得比较艰难。MS-DevOps 的社区的发展并不活跃，使得 Windows Server 的相关实践略显不足，这进一步限制了 DevOps 相关技术在 Windows 平台上的作为。</p>
-<h3 id=趋势8非功能性自动化测试工具的逐渐完备>趋势8：非功能性自动化测试工具的逐渐完备 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf8%e9%9d%9e%e5%8a%9f%e8%83%bd%e6%80%a7%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%8b%e8%af%95%e5%b7%a5%e5%85%b7%e7%9a%84%e9%80%90%e6%b8%90%e5%ae%8c%e5%a4%87 aria-label=Anchor>#</a></h3>
+<h3 id=趋势8非功能性自动化测试工具的逐渐完备>趋势8：非功能性自动化测试工具的逐渐完备 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf8%e9%9d%9e%e5%8a%9f%e8%83%bd%e6%80%a7%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%8b%e8%af%95%e5%b7%a5%e5%85%b7%e7%9a%84%e9%80%90%e6%b8%90%e5%ae%8c%e5%a4%87 aria-label=锚点>#</a></h3>
 <p><strong>现状</strong>：更多的工具开始围绕“自动化测试”展开，关于自动化测试为开发带来的诸多益处以无需多言。在本期技术雷达里我们看到了更多这样的技术出现，例如：TDD in Containers，Flood.io 用于负载测试，Heptio Sonobuoy
 用于合规测试。而一个成熟稳健的架构，必须要经得起来自各方面的测试。</p>
-<h3 id=趋势9python成为devops工作中所不可或缺的语言>趋势9：Python成为DevOps工作中所不可或缺的语言 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf9python%e6%88%90%e4%b8%badevops%e5%b7%a5%e4%bd%9c%e4%b8%ad%e6%89%80%e4%b8%8d%e5%8f%af%e6%88%96%e7%bc%ba%e7%9a%84%e8%af%ad%e8%a8%80 aria-label=Anchor>#</a></h3>
+<h3 id=趋势9python成为devops工作中所不可或缺的语言>趋势9：Python成为DevOps工作中所不可或缺的语言 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf9python%e6%88%90%e4%b8%badevops%e5%b7%a5%e4%bd%9c%e4%b8%ad%e6%89%80%e4%b8%8d%e5%8f%af%e6%88%96%e7%bc%ba%e7%9a%84%e8%af%ad%e8%a8%80 aria-label=锚点>#</a></h3>
 <p><strong>现状</strong>：Python 仍然重要，但 Go 语言在 Ops 相关工具中的地位也在逐步提升。</p>
-<h2 id=2018-年的-devops-技术的发展趋势>2018 年的 DevOps 技术的发展趋势 <a class=heading-anchor href=#2018-%e5%b9%b4%e7%9a%84-devops-%e6%8a%80%e6%9c%af%e7%9a%84%e5%8f%91%e5%b1%95%e8%b6%8b%e5%8a%bf aria-label=Anchor>#</a></h2>
+<h2 id=2018-年的-devops-技术的发展趋势>2018 年的 DevOps 技术的发展趋势 <a class=heading-anchor href=#2018-%e5%b9%b4%e7%9a%84-devops-%e6%8a%80%e6%9c%af%e7%9a%84%e5%8f%91%e5%b1%95%e8%b6%8b%e5%8a%bf aria-label=锚点>#</a></h2>
 <p>虽然条目众多，但我们可以从技术雷达中整理出 4 个 DevOps 发展脉络：</p>
-<h3 id=趋势1微服务的实践进入深水区>趋势1：微服务的实践进入深水区 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf1%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9a%84%e5%ae%9e%e8%b7%b5%e8%bf%9b%e5%85%a5%e6%b7%b1%e6%b0%b4%e5%8c%ba aria-label=Anchor>#</a></h3>
+<h3 id=趋势1微服务的实践进入深水区>趋势1：微服务的实践进入深水区 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf1%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9a%84%e5%ae%9e%e8%b7%b5%e8%bf%9b%e5%85%a5%e6%b7%b1%e6%b0%b4%e5%8c%ba aria-label=锚点>#</a></h3>
 <p>微服务在部分企业的成功给所有的企业描述了一个美好的愿景，但通往这条美好之路的路程则并不那么一帆风顺。</p>
 <p>微服务是成功的结果，而非成功的原因，我把成功的架构转型经验的结果架构称之为微服务架构。但这并不是微服务成功的动因，毕竟这些最初成功应用微服务企业最开始的时候并没有“微服务”的概念。而能够让微服务成功一定是在特定场景下遵守了某些重要的原则。而这些特定的场景和原则似乎被人忽视，而只能从表象上描述这一成功的结果。</p>
 <p>随着微服务在各种场景下的应用，针对不同行业，不同组织，不同技术上下文的实践被慢慢总结出来。有些是成功经验，有些则是反思。例如: **Service Mesh （服务啮合）**和 **Overambitious API gateways（过度庞大的API网关产品）**就是相互关联的技术。而 <strong>KONG API Gateway</strong> 就是一个十分不错的 API 网关工具，但结合了不同的上下文，可以得到不同的结果。</p>
@@ -126,10 +126,10 @@
 <p>另一方面，成功的经验和重复被证明成功的微服务实践则作为框架被流传了下来。Spring
 Cloud 作为微服务解决方案的杰出代表继续在技术雷达中拥有自己的一席之地，以至于现在任何一本关于微服务的书都是以 Spring Cloud 展开的。此外，技术雷达里有增添了 Spring Cloud 的新成员：Spring Cloud Contract 是和 Spring 框架结合紧密的消费者驱动契约测试的工具。这说明消费者驱动的契约测试被证明是有效的微服务测试方法。尽管技术雷达第一次提出消费者驱动的契约测试已经过去了3年。</p>
 <p>当微服务的架构转型到了深水区，微服务的标准实践架构即将出现，一扫微服务生态圈的混乱情况。就如曾经发生在 Docker 社区中的一样。</p>
-<h3 id=趋势2如果你正在使用-docker请向-kubernetes-迁移>趋势2：如果你正在使用 Docker，请向 Kubernetes 迁移 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf2%e5%a6%82%e6%9e%9c%e4%bd%a0%e6%ad%a3%e5%9c%a8%e4%bd%bf%e7%94%a8-docker%e8%af%b7%e5%90%91-kubernetes-%e8%bf%81%e7%a7%bb aria-label=Anchor>#</a></h3>
+<h3 id=趋势2如果你正在使用-docker请向-kubernetes-迁移>趋势2：如果你正在使用 Docker，请向 Kubernetes 迁移 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf2%e5%a6%82%e6%9e%9c%e4%bd%a0%e6%ad%a3%e5%9c%a8%e4%bd%bf%e7%94%a8-docker%e8%af%b7%e5%90%91-kubernetes-%e8%bf%81%e7%a7%bb aria-label=锚点>#</a></h3>
 <p>技术雷达一直保持着对 Docker 社区的关注度，因为这是我们普遍采用的技术。但在大规模的使用上面，技术雷达则相对保守，尽管技术雷达从 2015 年就开始关注 Kubernetes ，但直到这次才放到“采用”区域里，证明了Kubernetes 已经非常成熟。围绕着 Kubernetes 生态工具链也逐渐完善，无论是厂商（Google 的 GKE 解决方案，还是 AWS 的 EKS）提供的完整平台。还是社区的 Kops 和 Sonobuoy 这样的，都不断在增强 Kubernetes 在生产环境的实际应用能力。</p>
 <p>如果你之前也在观望容器大战，现在可以果断进入 Kubernetes 了，如果你准备在生产环境使用 Docker，请优先考虑 Kubernetes。如果你已经用了 Kubernetes，那么恭喜你！希望你能将你的杰出实践经验分享给大家。</p>
-<h3 id=趋势3cloud-native-devops>趋势3：Cloud Native DevOps <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf3cloud-native-devops aria-label=Anchor>#</a></h3>
+<h3 id=趋势3cloud-native-devops>趋势3：Cloud Native DevOps <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf3cloud-native-devops aria-label=锚点>#</a></h3>
 <p>云计算技术不光极大降低了 IT 运营成本，更改变了开发和运维的工作方式。DevOps 在企业级的应用遇到的更多阻力在云端，无论是应用架构还是工作方式。</p>
 <p>很多企业仍然仅仅把云平台当做一个 “远程托管机房”，并没有发挥出云平台组件和 SDK 带来的组合性优势。</p>
 <p>CloudNative 最大的思维转变当属 Stateless Infrastructure（无状态基础设施）。这样可以大幅度保障应用的可用性和水平扩展能力，当传统的计算资源和存储资源已经通过云计算技术达到了海量。应用的瓶颈就来自于应用架构和基础设施结构。如果还在思考基础设施的状态如何监控和保存，就又进入了老的思维模式，只不过换了新的工具而已。</p>
@@ -140,12 +140,12 @@ IT 资产总和管理成本。例如：<strong>CircleCI</strong> 和 <strong>Bui
 <p>由于众所周知的原因，我们无法访问本期技术雷达提到的 GCP（Google Cloud Platform），有限的使用 AWS 和
 Azure，但仍然无法阻挡云计算的发展迅猛之势。</p>
 <p>当云计算平台提供了一系列廉价而又灵活的基础设施之后。实践 DevOps 的你需要思考如何把传统的实践推向极致。</p>
-<h3 id=趋势4自动化更多的自动化>趋势4：自动化，更多的自动化 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf4%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9b%b4%e5%a4%9a%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96 aria-label=Anchor>#</a></h3>
+<h3 id=趋势4自动化更多的自动化>趋势4：自动化，更多的自动化 <a class=heading-anchor href=#%e8%b6%8b%e5%8a%bf4%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9b%b4%e5%a4%9a%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96 aria-label=锚点>#</a></h3>
 <p>自动化永远是 DevOps 的核心主题之一，各种自动化测试工具和平台的兴起似乎在说明我们以往的自动化测试是不够的。新的自动化测试工具和方法正在越来越多。本期我们看到了关于 <strong>TDD in Containers</strong> 和 <strong>Sonobuoy</strong>，由于新版本 <strong>Chrome 的 Headless</strong> 模式的发布，未来的自动化测试则会越来越多，越来越完整。</p>
 <p>我们可以把基础设施想象成一个软件产品，通过基础设施流水线构建这样的产品。我们甚至可以使用基础设施流水线把生产环境的更新做到极致：每天进行生产环境的从头构建，自动化配置网络以及基础设施，自动化还原数据库备份，每天产生一个可用的架构。这样的生产环境上就会有两个架构：一个生产中，一个待生产。你不在需要开发环境和测试环境，每天的工作都保存在待生产的架构上。由于第二天就要发布，因此今天会把所有的工作控制在明天发布之前完毕，而且要符合生产要求。这样就可以迫使团队把自己的工作自动化并且提升交付质量。也避免在自己的电脑上或者某个代码分支上存储很久。</p>
 <p>数据中心的灾后重建就是极为痛苦的事情，因此需要做灾备预演。而现有的阶段性灾难预演已经无法满足要求。所以对于云端的基础设施来说，有灾难要预演，没有灾难要制造灾难预演。这样可以使你基础设施和应用架构达到极端的可用性和可恢复性，同时实现了3Rs安全。就像《持续交付》一书中所说的：经常做那些让你感到痛苦的事情。由于 AWS 提供了 VPC 级别的隔离，我已经可以通过 CloudFormation + Ansible 做到这一点，未来会把相关经验分享给大家。</p>
 <p>另一方面，我们看到了 基于算法的IT运维（Algorithmic IT Operations），甚至提出了 AIOps 的概念。但基于算法的运维仍处在初步阶段。虽然我很乐于看见新的技术发展趋势，但每个领域的 AI 热潮是掩盖了真正的问题，还是让我们更快的找到了问题的正确答案？还有待观察。</p>
-<h2 id=最后>最后 <a class=heading-anchor href=#%e6%9c%80%e5%90%8e aria-label=Anchor>#</a></h2>
+<h2 id=最后>最后 <a class=heading-anchor href=#%e6%9c%80%e5%90%8e aria-label=锚点>#</a></h2>
 <p>17 期的技术雷达的关注重点在 DevOps 上。一方面说明企业级应用正在全面的向云迁移，另一方面也说明云平台上的技术发展也在同样进步。在这个过程中我们遇到了新的问题，同时也遇到了新的机遇。当前这一系列的DevOps 技术的浪潮会带来什么样的发展，明年的技术雷达将会揭晓。</p>
 </section>
 <footer class=pt-8>
@@ -153,7 +153,7 @@ Azure，但仍然无法阻挡云计算的发展迅猛之势。</p>
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -213,15 +213,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

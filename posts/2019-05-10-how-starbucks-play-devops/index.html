@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>从星巴克店面运营学习 DevOps &#183; 顾宇的博客</title>
@@ -103,8 +103,8 @@
 待做咖啡杯队列和饮品制作流水线 # 此时待做咖啡队列就是一个个打上标记的空杯子。当空杯子数量超过5个，吧台里就需要有第二个人参与咖啡的制作，以减少待做队列里的积压。
 简单的说，一杯标准的意式咖啡会包括三个环节：
  制作浓缩咖啡(Espresso)。 制作奶沫。 混合并添加糖浆/冰块等配料。  在这三步中，第一步制作浓缩咖啡是需要等待的，在这期间星伙伴可以选择同时做其它的咖啡、制作奶沫或者增加配料。所以，咖啡不是一杯一杯交付的，而是一批一批交付的。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"从星巴克店面运营学习 DevOps","headline":"从星巴克店面运营学习 DevOps","description":"某次在星巴克等咖啡的时候，闲来无事开始观察店员的的工作。可能是出于职业习惯，我开始观察和分析星巴克的工作流程。突然发现星巴克的咖啡交付过程很像一个敏捷软件开发团队的交付过程。后来通过进一步观察和细聊，发现星巴克的店面运营是一个 DevOps 运作的榜样。\n如果我们把星巴克的店员们看做是一个开发\/运维团队，把咖啡的交付看作软件的交付，把店面的基础设施维护和清洁看作是运维工作。我们就发现了一个很好的 DevOps 学习榜样。\n让我们看看星巴克店面是如何做 DevOps 的。\n星巴克咖啡交付团队的角色组成 # 在星巴克里，大家都相互称对方为星伙伴。我个人理解是通过弱化职级称谓提升每个人的责任心。所有的店员分为四个角色：\n  店面主管（SS或IC）：负责店面整体的管理。\n  收银：负责点单、推荐产品和收款。\n  吧台：负责制作饮品。\n  CS：负责门店补货，清理桌面。\n  店面主管主要负责团队的任务安排，你可以把它当做是 PM 或者 Scrum Master。在一切都井然有序的情况下，他的工作和一般的员工是一样的。只要他发现了临时需要处理的情况，他才会根据店面的资源来安排临时性的工作。\n吧台内部分为三个部分：收银点单区、咖啡制作区、咖啡待取区，如下图所示：\n收银点单区的店员根据客人的需求点单，然后记录到咖啡杯上。\n咖啡制作区的店员会根据杯子上的标记制作饮品。\n制作完成后的咖啡会放到咖啡待取区等客人来取。\n所有的店员都具备所有的技能（全栈工程师），并通过标准化的考试上岗。你会看到在星巴克里有绿色围裙和黑色围裙。黑色围裙的咖啡师是经过考试的，考试合格后会发黑色围裙作为通过认证的标志。\n 反思：你的工程师有标准化的技能考试吗？\n 星巴克咖啡交付团队的 DevOps 单向工作流 # 说到 DevOps，不能不提到\u0026quot;三步工作法\u0026quot;。首先，我们要用到第一步——构建端到端单向工作流——来观察星巴克店面是如何构建单向工作流的。\n我们可以把交付一杯咖啡的流程和软件开发的交付一个用户故事的流程的关系做如下对应：\n  需求分析：和客人交流并记录客人对咖啡的需求。\n  产品开发：按照需求制作咖啡。\n  产品发布：制作完成并通知客人取咖啡。\n  基础设施运维：咖啡店面的日常清扫和补货。\n  在这个基础上，我们看看一杯咖啡从点单开始，星巴克的持续交付流水线就是它设备的摆放顺序，确保杯子的单一方向流动，避免返工和逆向流动。\n点单：虽然星巴克的咖啡是流水化工业制品。但是也是存在定制的，比如类别、口味、冷热、大小。虽然顾客有需求，但需求控制在一定范围之内(哪些做得到，哪些做不到)并且通过产品价位板告知顾客。\n 反思：你的团队能做什么，不能做什么，什么时候做完，你是否对交付成果有信心？这些信心来自哪里？如果没有信心，如何获得信心？\n 标记：在点单阶段，收银会把客户的每一个需求记录到杯子上，包括顾客的姓名。星巴克咖啡采取的是“预付费”(先付费再生产)而非“后付费”（先生产再买单）的方式。这些记录是对一杯咖啡需求验收标准的分解。通过杯子大小来控制每个需求点的验收和用量。\n 反思：你的团队开发需求时是否把每个验收条件记录下来并且在不同的阶段控制质量和用时？\n 制作：每个带着记号的咖啡杯就是一个格式化的需求文档。上面详细的记录了这个顾客的需求，并且这些需求可以验证。每杯咖啡都有标准的验收样例和工序，所以每个店员都知道完成的标准是什么。这样，即便不是点单的店员，看到杯子上的记号，也能做出符合顾客验收条件的咖啡。此外，每个杯子上都会有顾客姓名的标记，以免点错单。\n 反思：你的团队需求文档中的信息是否可以做到无解释交接？\n 出品：星巴克“完成”的定义是“顾客拿到了咖啡”，而不是“咖啡制作完毕”。如果顾客没有确认拿到的咖啡符合需求，是没有完成的。如果顾客对咖啡不满意，是可以要求重做的。这时候，会由专门的店员负责重新制作咖啡，直到顾客满意为止。\n 反思：你的软件开发流程中“完成”的定义是开发完成？测试完成？还是上线发布完成？\n 制作区运营：星巴克从点单开始，到制作咖啡过程中所有的设备、物料、卫生等都要每天维护使之保持最佳使用状态。这些基础设施的使用都是高可用且可以按需伸缩的：两个收银机、两台咖啡机——如果一台坏了，有另外一台备份。默认情况下只使用一台，如果到了忙时两台才会同时使用。这一切都要通过星巴克店面的看板信号机制来动态协调。\n 反思：你的软件交付基础设施和人员是否具备动态协调的能力？为什么？\n 星巴克咖啡交付的看板系统 # 当我们构建了单向的价值流之后，来看看星巴克是如何应用 DevOps 第二工作法——构建快速反馈的。\n首先，从上述流程中，我们可以看到星巴克的四个积压队列(Backlog)，分别是：点单队列、待制咖啡队列、制作中咖啡队列、待取咖啡队列。\n这四个队列构成了星巴克咖啡交付的看板系统，每个环节都是一个单独的队列，并且通过不同的看板可视化积压情况。\n点单队列 # 如果你正在点单，收银员会在你犹豫的时候帮你推荐。然后它会记下你姓名，咖啡的类别和定制化的要求。并记录在杯子上，放到待做咖啡队列。\n一般星巴克的店面都会有两个收银台。平常的情况下只有一名星伙伴收银。如果有客户在收银机排队，就是需求分析资源不足的信号，收银台需要补人。收银台补人的原则是把两个人看作一个单位，如果超出了 2.5 个单位。收银台需要再补充另外一个人。如果两个收银还是不够，值班主管会让一个伙伴拿着点单卡(如下图)提前记录客人需要。这样可以节约在收银台前的时候，客人选择和犹豫时耽误的时间。\n这样就避免了点单队列（需求分析）的积压。\n待做咖啡杯队列和饮品制作流水线 # 此时待做咖啡队列就是一个个打上标记的空杯子。当空杯子数量超过5个，吧台里就需要有第二个人参与咖啡的制作，以减少待做队列里的积压。\n简单的说，一杯标准的意式咖啡会包括三个环节：\n 制作浓缩咖啡(Espresso)。 制作奶沫。 混合并添加糖浆\/冰块等配料。  在这三步中，第一步制作浓缩咖啡是需要等待的，在这期间星伙伴可以选择同时做其它的咖啡、制作奶沫或者增加配料。所以，咖啡不是一杯一杯交付的，而是一批一批交付的。","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2019","dateCreated":"2019-05-10T00:00:00\u002b00:00","datePublished":"2019-05-10T00:00:00\u002b00:00","dateModified":"2019-05-10T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2019-05-10-how-starbucks-play-devops\/","wordCount":"121","keywords":["三步工作法","看板","持续交付"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"从星巴克店面运营学习 DevOps","headline":"从星巴克店面运营学习 DevOps","description":"某次在星巴克等咖啡的时候，闲来无事开始观察店员的的工作。可能是出于职业习惯，我开始观察和分析星巴克的工作流程。突然发现星巴克的咖啡交付过程很像一个敏捷软件开发团队的交付过程。后来通过进一步观察和细聊，发现星巴克的店面运营是一个 DevOps 运作的榜样。\n如果我们把星巴克的店员们看做是一个开发\/运维团队，把咖啡的交付看作软件的交付，把店面的基础设施维护和清洁看作是运维工作。我们就发现了一个很好的 DevOps 学习榜样。\n让我们看看星巴克店面是如何做 DevOps 的。\n星巴克咖啡交付团队的角色组成 # 在星巴克里，大家都相互称对方为星伙伴。我个人理解是通过弱化职级称谓提升每个人的责任心。所有的店员分为四个角色：\n  店面主管（SS或IC）：负责店面整体的管理。\n  收银：负责点单、推荐产品和收款。\n  吧台：负责制作饮品。\n  CS：负责门店补货，清理桌面。\n  店面主管主要负责团队的任务安排，你可以把它当做是 PM 或者 Scrum Master。在一切都井然有序的情况下，他的工作和一般的员工是一样的。只要他发现了临时需要处理的情况，他才会根据店面的资源来安排临时性的工作。\n吧台内部分为三个部分：收银点单区、咖啡制作区、咖啡待取区，如下图所示：\n收银点单区的店员根据客人的需求点单，然后记录到咖啡杯上。\n咖啡制作区的店员会根据杯子上的标记制作饮品。\n制作完成后的咖啡会放到咖啡待取区等客人来取。\n所有的店员都具备所有的技能（全栈工程师），并通过标准化的考试上岗。你会看到在星巴克里有绿色围裙和黑色围裙。黑色围裙的咖啡师是经过考试的，考试合格后会发黑色围裙作为通过认证的标志。\n 反思：你的工程师有标准化的技能考试吗？\n 星巴克咖啡交付团队的 DevOps 单向工作流 # 说到 DevOps，不能不提到\u0026quot;三步工作法\u0026quot;。首先，我们要用到第一步——构建端到端单向工作流——来观察星巴克店面是如何构建单向工作流的。\n我们可以把交付一杯咖啡的流程和软件开发的交付一个用户故事的流程的关系做如下对应：\n  需求分析：和客人交流并记录客人对咖啡的需求。\n  产品开发：按照需求制作咖啡。\n  产品发布：制作完成并通知客人取咖啡。\n  基础设施运维：咖啡店面的日常清扫和补货。\n  在这个基础上，我们看看一杯咖啡从点单开始，星巴克的持续交付流水线就是它设备的摆放顺序，确保杯子的单一方向流动，避免返工和逆向流动。\n点单：虽然星巴克的咖啡是流水化工业制品。但是也是存在定制的，比如类别、口味、冷热、大小。虽然顾客有需求，但需求控制在一定范围之内(哪些做得到，哪些做不到)并且通过产品价位板告知顾客。\n 反思：你的团队能做什么，不能做什么，什么时候做完，你是否对交付成果有信心？这些信心来自哪里？如果没有信心，如何获得信心？\n 标记：在点单阶段，收银会把客户的每一个需求记录到杯子上，包括顾客的姓名。星巴克咖啡采取的是“预付费”(先付费再生产)而非“后付费”（先生产再买单）的方式。这些记录是对一杯咖啡需求验收标准的分解。通过杯子大小来控制每个需求点的验收和用量。\n 反思：你的团队开发需求时是否把每个验收条件记录下来并且在不同的阶段控制质量和用时？\n 制作：每个带着记号的咖啡杯就是一个格式化的需求文档。上面详细的记录了这个顾客的需求，并且这些需求可以验证。每杯咖啡都有标准的验收样例和工序，所以每个店员都知道完成的标准是什么。这样，即便不是点单的店员，看到杯子上的记号，也能做出符合顾客验收条件的咖啡。此外，每个杯子上都会有顾客姓名的标记，以免点错单。\n 反思：你的团队需求文档中的信息是否可以做到无解释交接？\n 出品：星巴克“完成”的定义是“顾客拿到了咖啡”，而不是“咖啡制作完毕”。如果顾客没有确认拿到的咖啡符合需求，是没有完成的。如果顾客对咖啡不满意，是可以要求重做的。这时候，会由专门的店员负责重新制作咖啡，直到顾客满意为止。\n 反思：你的软件开发流程中“完成”的定义是开发完成？测试完成？还是上线发布完成？\n 制作区运营：星巴克从点单开始，到制作咖啡过程中所有的设备、物料、卫生等都要每天维护使之保持最佳使用状态。这些基础设施的使用都是高可用且可以按需伸缩的：两个收银机、两台咖啡机——如果一台坏了，有另外一台备份。默认情况下只使用一台，如果到了忙时两台才会同时使用。这一切都要通过星巴克店面的看板信号机制来动态协调。\n 反思：你的软件交付基础设施和人员是否具备动态协调的能力？为什么？\n 星巴克咖啡交付的看板系统 # 当我们构建了单向的价值流之后，来看看星巴克是如何应用 DevOps 第二工作法——构建快速反馈的。\n首先，从上述流程中，我们可以看到星巴克的四个积压队列(Backlog)，分别是：点单队列、待制咖啡队列、制作中咖啡队列、待取咖啡队列。\n这四个队列构成了星巴克咖啡交付的看板系统，每个环节都是一个单独的队列，并且通过不同的看板可视化积压情况。\n点单队列 # 如果你正在点单，收银员会在你犹豫的时候帮你推荐。然后它会记下你姓名，咖啡的类别和定制化的要求。并记录在杯子上，放到待做咖啡队列。\n一般星巴克的店面都会有两个收银台。平常的情况下只有一名星伙伴收银。如果有客户在收银机排队，就是需求分析资源不足的信号，收银台需要补人。收银台补人的原则是把两个人看作一个单位，如果超出了 2.5 个单位。收银台需要再补充另外一个人。如果两个收银还是不够，值班主管会让一个伙伴拿着点单卡(如下图)提前记录客人需要。这样可以节约在收银台前的时候，客人选择和犹豫时耽误的时间。\n这样就避免了点单队列（需求分析）的积压。\n待做咖啡杯队列和饮品制作流水线 # 此时待做咖啡队列就是一个个打上标记的空杯子。当空杯子数量超过5个，吧台里就需要有第二个人参与咖啡的制作，以减少待做队列里的积压。\n简单的说，一杯标准的意式咖啡会包括三个环节：\n 制作浓缩咖啡(Espresso)。 制作奶沫。 混合并添加糖浆\/冰块等配料。  在这三步中，第一步制作浓缩咖啡是需要等待的，在这期间星伙伴可以选择同时做其它的咖啡、制作奶沫或者增加配料。所以，咖啡不是一杯一杯交付的，而是一批一批交付的。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2019","dateCreated":"2019-05-10T00:00:00\u002b00:00","datePublished":"2019-05-10T00:00:00\u002b00:00","dateModified":"2019-05-10T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2019-05-10-how-starbucks-play-devops\/","wordCount":"121","keywords":["三步工作法","看板","持续交付"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -144,7 +144,7 @@
 <div class="flex flex-row items-center">
 <time datetime="2019-05-10 00:00:00 +0000 UTC">10 May 2019</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2019-05-10-how-starbucks-play-devops.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2019-05-10-how-starbucks-play-devops.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -157,7 +157,7 @@
 <p>如果我们把星巴克的店员们看做是一个开发/运维团队，把咖啡的交付看作软件的交付，把店面的基础设施维护和清洁看作是运维工作。我们就发现了一个很好的 DevOps 学习榜样。</p>
 <p><img src=/img/post/20190510/busy-time.jpg alt=星巴克忙碌的咖啡流水线></p>
 <p>让我们看看星巴克店面是如何做 DevOps 的。</p>
-<h2 id=星巴克咖啡交付团队的角色组成>星巴克咖啡交付团队的角色组成 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e5%9b%a2%e9%98%9f%e7%9a%84%e8%a7%92%e8%89%b2%e7%bb%84%e6%88%90 aria-label=Anchor>#</a></h2>
+<h2 id=星巴克咖啡交付团队的角色组成>星巴克咖啡交付团队的角色组成 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e5%9b%a2%e9%98%9f%e7%9a%84%e8%a7%92%e8%89%b2%e7%bb%84%e6%88%90 aria-label=锚点>#</a></h2>
 <p>在星巴克里，大家都相互称对方为星伙伴。我个人理解是通过弱化职级称谓提升每个人的责任心。所有的店员分为四个角色：</p>
 <ul>
 <li>
@@ -183,7 +183,7 @@
 <blockquote>
 <p>反思：你的工程师有标准化的技能考试吗？</p>
 </blockquote>
-<h2 id=星巴克咖啡交付团队的-devops-单向工作流>星巴克咖啡交付团队的 DevOps 单向工作流 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e5%9b%a2%e9%98%9f%e7%9a%84-devops-%e5%8d%95%e5%90%91%e5%b7%a5%e4%bd%9c%e6%b5%81 aria-label=Anchor>#</a></h2>
+<h2 id=星巴克咖啡交付团队的-devops-单向工作流>星巴克咖啡交付团队的 DevOps 单向工作流 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e5%9b%a2%e9%98%9f%e7%9a%84-devops-%e5%8d%95%e5%90%91%e5%b7%a5%e4%bd%9c%e6%b5%81 aria-label=锚点>#</a></h2>
 <p>说到 DevOps，不能不提到"三步工作法"。首先，我们要用到第一步——构建端到端单向工作流——来观察星巴克店面是如何构建单向工作流的。</p>
 <p>我们可以把交付一杯咖啡的流程和软件开发的交付一个用户故事的流程的关系做如下对应：</p>
 <ol>
@@ -222,16 +222,16 @@
 <blockquote>
 <p>反思：你的软件交付基础设施和人员是否具备动态协调的能力？为什么？</p>
 </blockquote>
-<h2 id=星巴克咖啡交付的看板系统>星巴克咖啡交付的看板系统 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e7%9a%84%e7%9c%8b%e6%9d%bf%e7%b3%bb%e7%bb%9f aria-label=Anchor>#</a></h2>
+<h2 id=星巴克咖啡交付的看板系统>星巴克咖啡交付的看板系统 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e7%9a%84%e7%9c%8b%e6%9d%bf%e7%b3%bb%e7%bb%9f aria-label=锚点>#</a></h2>
 <p>当我们构建了单向的价值流之后，来看看星巴克是如何应用 DevOps 第二工作法——构建快速反馈的。</p>
 <p>首先，从上述流程中，我们可以看到星巴克的四个积压队列(Backlog)，分别是：点单队列、待制咖啡队列、制作中咖啡队列、待取咖啡队列。</p>
 <p>这四个队列构成了星巴克咖啡交付的看板系统，每个环节都是一个单独的队列，并且通过不同的看板可视化积压情况。</p>
-<h3 id=点单队列>点单队列 <a class=heading-anchor href=#%e7%82%b9%e5%8d%95%e9%98%9f%e5%88%97 aria-label=Anchor>#</a></h3>
+<h3 id=点单队列>点单队列 <a class=heading-anchor href=#%e7%82%b9%e5%8d%95%e9%98%9f%e5%88%97 aria-label=锚点>#</a></h3>
 <p><img src=/img/post/20190510/order-queue.jpg alt=点单队列></p>
 <p>如果你正在点单，收银员会在你犹豫的时候帮你推荐。然后它会记下你姓名，咖啡的类别和定制化的要求。并记录在杯子上，放到待做咖啡队列。</p>
 <p>一般星巴克的店面都会有两个收银台。平常的情况下只有一名星伙伴收银。如果有客户在收银机排队，就是需求分析资源不足的信号，收银台需要补人。收银台补人的原则是把两个人看作一个单位，如果超出了 2.5 个单位。收银台需要再补充另外一个人。如果两个收银还是不够，值班主管会让一个伙伴拿着点单卡(如下图)提前记录客人需要。这样可以节约在收银台前的时候，客人选择和犹豫时耽误的时间。</p>
 <p>这样就避免了点单队列（需求分析）的积压。</p>
-<h3 id=待做咖啡杯队列和饮品制作流水线>待做咖啡杯队列和饮品制作流水线 <a class=heading-anchor href=#%e5%be%85%e5%81%9a%e5%92%96%e5%95%a1%e6%9d%af%e9%98%9f%e5%88%97%e5%92%8c%e9%a5%ae%e5%93%81%e5%88%b6%e4%bd%9c%e6%b5%81%e6%b0%b4%e7%ba%bf aria-label=Anchor>#</a></h3>
+<h3 id=待做咖啡杯队列和饮品制作流水线>待做咖啡杯队列和饮品制作流水线 <a class=heading-anchor href=#%e5%be%85%e5%81%9a%e5%92%96%e5%95%a1%e6%9d%af%e9%98%9f%e5%88%97%e5%92%8c%e9%a5%ae%e5%93%81%e5%88%b6%e4%bd%9c%e6%b5%81%e6%b0%b4%e7%ba%bf aria-label=锚点>#</a></h3>
 <p><img src=/img/post/20190510/cup-queue.jpg alt="咖啡需求的 Backlog"></p>
 <p>此时待做咖啡队列就是一个个打上标记的空杯子。当空杯子数量超过5个，吧台里就需要有第二个人参与咖啡的制作，以减少待做队列里的积压。</p>
 <p>简单的说，一杯标准的意式咖啡会包括三个环节：</p>
@@ -242,17 +242,17 @@
 </ol>
 <p>在这三步中，第一步制作浓缩咖啡是需要等待的，在这期间星伙伴可以选择同时做其它的咖啡、制作奶沫或者增加配料。所以，咖啡不是一杯一杯交付的，而是一批一批交付的。</p>
 <p>这样就减少的咖啡制作（开发）的积压。</p>
-<h3 id=待取咖啡杯队列>待取咖啡杯队列 <a class=heading-anchor href=#%e5%be%85%e5%8f%96%e5%92%96%e5%95%a1%e6%9d%af%e9%98%9f%e5%88%97 aria-label=Anchor>#</a></h3>
+<h3 id=待取咖啡杯队列>待取咖啡杯队列 <a class=heading-anchor href=#%e5%be%85%e5%8f%96%e5%92%96%e5%95%a1%e6%9d%af%e9%98%9f%e5%88%97 aria-label=锚点>#</a></h3>
 <p><img src=/img/post/20190510/waitting-area.jpg alt=待取咖啡杯></p>
 <p>当咖啡做完后，会加上盖子，咖啡师会根据杯子上的标记呼唤顾客的姓名。如果堆积的咖啡比较多，就会有一名星伙伴在咖啡待取区，通过呼叫客人的名字专门负责向客人交付咖啡。</p>
 <p>这样就减少了咖啡待取区（发布部署）的积压。</p>
-<h3 id=店内外桌面队列>店内外桌面队列 <a class=heading-anchor href=#%e5%ba%97%e5%86%85%e5%a4%96%e6%a1%8c%e9%9d%a2%e9%98%9f%e5%88%97 aria-label=Anchor>#</a></h3>
+<h3 id=店内外桌面队列>店内外桌面队列 <a class=heading-anchor href=#%e5%ba%97%e5%86%85%e5%a4%96%e6%a1%8c%e9%9d%a2%e9%98%9f%e5%88%97 aria-label=锚点>#</a></h3>
 <p>严格的说，店内的桌面的收拾是定时的。星巴克会有专门的伙伴，定时的来清理店面桌子上的咖啡杯和餐盘。这个角色就是我们之前说的 CS。由于店面内的清洁并不需要及时响应，所以只需要定时批量清洁就可以。</p>
 <p>他们会采用定时器（上图左一胸口夹着的东西）来记录循环时间和需要做的事情，就相当于一个定时任务队列。并且通过把工作任务分类，任务清单可以确保每个步骤没有遗漏。</p>
 <blockquote>
 <p>反思：你有维护清单吗？是否是定时任务检查的？</p>
 </blockquote>
-<h3 id=动态的减少各环节积压>动态的减少各环节积压 <a class=heading-anchor href=#%e5%8a%a8%e6%80%81%e7%9a%84%e5%87%8f%e5%b0%91%e5%90%84%e7%8e%af%e8%8a%82%e7%a7%af%e5%8e%8b aria-label=Anchor>#</a></h3>
+<h3 id=动态的减少各环节积压>动态的减少各环节积压 <a class=heading-anchor href=#%e5%8a%a8%e6%80%81%e7%9a%84%e5%87%8f%e5%b0%91%e5%90%84%e7%8e%af%e8%8a%82%e7%a7%af%e5%8e%8b aria-label=锚点>#</a></h3>
 <p>从上文我们看到，任何一个队列的积压都是一个信号，这样的信号系统在使得每个人各司其职，无需主管协调。让店员能够及时的处理积压，无论需求积压(制作咖啡的量)有多大，都保保证稳定的产出。店面主管的作用就是时刻看住这五个队列，是否需要临时进行资源调配：</p>
 <ol>
 <li>
@@ -289,19 +289,19 @@
 <blockquote>
 <p>反思：你是否制定了相应的轮岗机制让每个团队成员体验不同交付环节的工作？</p>
 </blockquote>
-<h2 id=星巴克咖啡交付的自动化基础设施>星巴克咖啡交付的自动化基础设施 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=Anchor>#</a></h2>
+<h2 id=星巴克咖啡交付的自动化基础设施>星巴克咖啡交付的自动化基础设施 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=锚点>#</a></h2>
 <p>星巴克的意式咖啡机和别处的咖啡机是不同的：咖啡豆的豆仓、研磨、出品意式浓缩在一台机器上。打奶沫的拉杆也是只有两档：开和关。</p>
 <p>而大多数的意式咖啡机是和磨豆机分离的，制作意式浓缩前需要经历磨粉、压饼、萃取、去渣、冲洗 5 个步骤。相较于传统的咖啡机的磨粉、压饼、控制奶沫虽然缺少了定制性。但针对于大多数非专业的客群，这些标准和固定化的出品已经能满足需求。这样的自动化基础设施可以保证出品的稳定性。</p>
 <blockquote>
 <p>反思：你是否分析了自己的交付流程的每一个动作？你是否拥有了自动化基础设施来降低技能的门槛并保证稳定的质量？</p>
 </blockquote>
-<h2 id=星巴克咖啡交付团队的自我学习和改进>星巴克咖啡交付团队的自我学习和改进 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e5%9b%a2%e9%98%9f%e7%9a%84%e8%87%aa%e6%88%91%e5%ad%a6%e4%b9%a0%e5%92%8c%e6%94%b9%e8%bf%9b aria-label=Anchor>#</a></h2>
+<h2 id=星巴克咖啡交付团队的自我学习和改进>星巴克咖啡交付团队的自我学习和改进 <a class=heading-anchor href=#%e6%98%9f%e5%b7%b4%e5%85%8b%e5%92%96%e5%95%a1%e4%ba%a4%e4%bb%98%e5%9b%a2%e9%98%9f%e7%9a%84%e8%87%aa%e6%88%91%e5%ad%a6%e4%b9%a0%e5%92%8c%e6%94%b9%e8%bf%9b aria-label=锚点>#</a></h2>
 <p>制定目标的时候都有奖励和惩罚，惩罚的内容很简单，就是做最脏最累的工作：按照店面的整洁规范打扫，这被称之为深度清洁。并且不会让惩罚成为一种精神负担和压力。</p>
 <blockquote>
 <p>反思：你是否可以通过把“提升熟练程度”当做一种替代的考评机制来提升团队成员的专业程度？</p>
 </blockquote>
 <p>如果你下一次去星巴克，也许能尝试带着 DevOps 的眼睛去发现其中的秘密。</p>
-<h2 id=参考>参考 <a class=heading-anchor href=#%e5%8f%82%e8%80%83 aria-label=Anchor>#</a></h2>
+<h2 id=参考>参考 <a class=heading-anchor href=#%e5%8f%82%e8%80%83 aria-label=锚点>#</a></h2>
 <p><a href=https://www.jianshu.com/p/4155510a5ecf>星巴克营运岗位体系</a></p>
 <p>我是顾宇，是一名在埃森哲工作的职业咨询师。我目前专注于产品服务设计、敏捷软件开发、DevOps 、云计算以及应用架构领域的技术和实践落地。热爱阅读、写作、旅行和健身。具有强大的好奇心的经济学和脑科学爱好者，喜欢结交不同领域的朋友，一起体验并分享世界上未知的美好。</p>
 <p>欢迎关注我的公众号：顾宇的研习笔记</p>
@@ -312,7 +312,7 @@
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -372,15 +372,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>

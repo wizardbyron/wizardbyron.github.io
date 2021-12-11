@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 顾宇的博客</title><link>https://wwww.guyu.me/posts/</link><description>Recent content in Posts on 顾宇的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://wwww.guyu.me/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>2020年的总结</title><link>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</guid><description>你看到的这篇文章，是今年的第一篇，同时也是今年的最后一篇。按照惯例，每年我都会写一篇总结。今年的总结会比往年的要长，就当我唠个长磕吧，把今年要写但没机会写出来的东西总结一下。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 顾宇的博客</title><link>https://wwww.guyu.me/posts/</link><description>Recent content in Posts on 顾宇的博客</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 10 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://wwww.guyu.me/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>博客迁移到了新的 Hugo 主题 Congo（刚果）</title><link>https://wwww.guyu.me/posts/2021-12-11-migrate-to-new-theme-congo/</link><pubDate>Fri, 10 Dec 2021 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2021-12-11-migrate-to-new-theme-congo/</guid><description>所谓“写博客30分钟，找主题 6 小时”，这些天一直没更新博客的主要原因是一直在找寻一个简洁明快的博客主题，最终我找到了Congo，中文意义是是“刚果”。
+于是我就花了半天时间把原来 Github Pages 上的博客迁移到了这个主题上，并采用了 Github Action 发布我的博客，以下是迁移步骤：
+备份内容，并做一个全量删除提交 采用 Hugo 新建一个新的博客 安装 Congo 主题 采用 Github Actions 部署博客 覆盖配置，而不要修改 迁移旧的文章和图片 1. 备份内容，并做一个全量删除提交 # 一个博客的核心内容是图片和文章。这些内容在static目录和content目录下，把这些内容保存出来就好。
+然后，通过 git rm -rf --ignore-unmatch *删除所有内容，并删除空的目录。
+这时候创建一个删除提交，你就有之前删除内容的全量备份了。如果想恢复，只需要 git revert即可。
+2. 采用 Hugo 新建一个新的博客 # 这时候你的目录是空的，你就可以执行hugo new site .重新建立一个站点了，这条命令默认会生成一个没有主题的空结构。
+这个时候，你要提交一次，用于跟踪后续的主题和配置的修改。
+3. 安装 Congo 主题 # 参考 https://jpanther.github.io/congo/docs/installation/ 的安装文档，里面有三种安装方式，分别是：
+采用 Hugo （推荐） 采用 Git Submodule 下载静态文件 我采用了第三种方式下载了静态文件解压的方式来安装主题，简单粗暴，避免我想要更新时忘记一些配置，这样可以减少很多 git 或 hugo 的配置工作。
+别忘了删除theme下面的exampleSite，节省一些空间。
+这时候通过hugo server预览一下站点，看看主题是否正确加载，然后做一个提交。
+4. 采用 Github Actions 部署博客 # 站点恢复的第一步是进行一次 push，并且发布站点。这时候我建议采用 Github Action 来自动化部署。
+首先，参考Hugos 官方的 Github Pages 部署方式在代码库根目录创建.github/workflows/gh-pages.yml文件，内容如下： name: github pages on: push: branches: - main # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.</description></item><item><title>2020年的总结</title><link>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://wwww.guyu.me/posts/2020-12-31-annual-review-for-2020/</guid><description>你看到的这篇文章，是今年的第一篇，同时也是今年的最后一篇。按照惯例，每年我都会写一篇总结。今年的总结会比往年的要长，就当我唠个长磕吧，把今年要写但没机会写出来的东西总结一下。
 关于写作、分享和演讲 # 虽然今年没有写博客或者公众号，但今年确是我写作量最大的一年，将近 20 万字。是我往年平均数的两倍。顺利的话，2021年7月会和大家见面。至于是什么主题和内容，这里先卖个关子。
 写作是一个很好的整理自己知识体系的过程。我在写作的时候，经常能发现某些知识掌握的不够扎实。于是研究过，讨论，实践。再把结果如实的写出来。写完之后，自己就对自己的知识体系有了更深的信心。
 由于写作，耽误了和朋友家人相处的时间。在此还要谢谢夫人的支持和抱怨。

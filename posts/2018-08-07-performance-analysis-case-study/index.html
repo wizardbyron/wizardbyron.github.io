@@ -1,6 +1,6 @@
-<!doctype html><html lang=zh-cn class=dark><head>
+<!doctype html><html lang=zh class=dark><head>
 <meta charset=utf-8>
-<meta http-equiv=content-language content="zh-cn">
+<meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
 <title>公有云(AWS)上的生产环境性能分析案例 &#183; 顾宇的博客</title>
@@ -41,8 +41,8 @@
 &ldquo;删库？别慌！&rdquo; # 作为一个运维工程师，最悲催的事情就是“人在家中坐，锅从天上来”。这天是世界杯的某一场小组赛，而我刚吃完晚饭正在洗碗。突然被客户的 P1 告警（P1 - Priority 1，最高级别告警）惊吓到，得知“萨瓦迪卡”被删库了。
 判断的依据是：
  “萨瓦迪卡”主页打开是 Wordpress 的初始化安装页面。证明应用是正常的，数据不在了。 在服务器上用 MySQL 客户端登录数据库，找不到“萨瓦迪卡”的数据库。  还好客户每天有全量数据备份，于是客户快速从全量备份恢复了数据库，只是缺少了从备份点到故障点的业务数据。全量数据库的备份文件有 10 GiB，这么大的表如果采用 mysqldump 会因为锁表而导致 10 分钟左右的停机时间（别问我怎么知道的）。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"公有云(AWS)上的生产环境性能分析案例","headline":"公有云(AWS)上的生产环境性能分析案例","description":"本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。\n案例背景 # 案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以\u0026quot;萨瓦迪卡\u0026quot;指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress \u002b MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上平移到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。\n知识点： GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，AWS 的 FreeTier 免费计划是按 GB 计算的哦！\n除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库\/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：\n“萨瓦迪卡”的生产环境可以被认为是一个裸奔的肉鸡。我曾经一度它已经被轮番入侵很久了，只是还没有被发现而已。而且，“萨瓦迪卡”生产环境的唯一一台服务器的内存率使用经常超过 95%，我很担心它的状况，任何一个小的 DoS，都不需要 DDoS，就可以让它整站宕机了。\n我于是把我的担忧汇报给了客户，客户也意识到了问题。在我发现问题之前的一个月就启动了“萨瓦迪卡”的翻新（Revamp）项目，让这个应用保持原样（Keep it as is），直到 6 个月后新项目上线，替换掉当前应用。\n然而，没想到我一语成谶。一天，“萨瓦迪卡”被删库了！\n\u0026ldquo;删库？别慌！\u0026rdquo; # 作为一个运维工程师，最悲催的事情就是“人在家中坐，锅从天上来”。这天是世界杯的某一场小组赛，而我刚吃完晚饭正在洗碗。突然被客户的 P1 告警（P1 - Priority 1，最高级别告警）惊吓到，得知“萨瓦迪卡”被删库了。\n判断的依据是：\n “萨瓦迪卡”主页打开是 Wordpress 的初始化安装页面。证明应用是正常的，数据不在了。 在服务器上用 MySQL 客户端登录数据库，找不到“萨瓦迪卡”的数据库。  还好客户每天有全量数据备份，于是客户快速从全量备份恢复了数据库，只是缺少了从备份点到故障点的业务数据。全量数据库的备份文件有 10 GiB，这么大的表如果采用 mysqldump 会因为锁表而导致 10 分钟左右的停机时间（别问我怎么知道的）。","inLanguage":"zh-cn","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-08-07T00:00:00\u002b00:00","datePublished":"2018-08-07T00:00:00\u002b00:00","dateModified":"2018-08-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-08-07-performance-analysis-case-study\/","wordCount":"402","keywords":["停机时间","性能","AWS","wade","流量测试"]}</script>
-<meta name=generator content="Hugo 0.90.0">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"公有云(AWS)上的生产环境性能分析案例","headline":"公有云(AWS)上的生产环境性能分析案例","description":"本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。\n案例背景 # 案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以\u0026quot;萨瓦迪卡\u0026quot;指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress \u002b MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上平移到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。\n知识点： GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，AWS 的 FreeTier 免费计划是按 GB 计算的哦！\n除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库\/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：\n“萨瓦迪卡”的生产环境可以被认为是一个裸奔的肉鸡。我曾经一度它已经被轮番入侵很久了，只是还没有被发现而已。而且，“萨瓦迪卡”生产环境的唯一一台服务器的内存率使用经常超过 95%，我很担心它的状况，任何一个小的 DoS，都不需要 DDoS，就可以让它整站宕机了。\n我于是把我的担忧汇报给了客户，客户也意识到了问题。在我发现问题之前的一个月就启动了“萨瓦迪卡”的翻新（Revamp）项目，让这个应用保持原样（Keep it as is），直到 6 个月后新项目上线，替换掉当前应用。\n然而，没想到我一语成谶。一天，“萨瓦迪卡”被删库了！\n\u0026ldquo;删库？别慌！\u0026rdquo; # 作为一个运维工程师，最悲催的事情就是“人在家中坐，锅从天上来”。这天是世界杯的某一场小组赛，而我刚吃完晚饭正在洗碗。突然被客户的 P1 告警（P1 - Priority 1，最高级别告警）惊吓到，得知“萨瓦迪卡”被删库了。\n判断的依据是：\n “萨瓦迪卡”主页打开是 Wordpress 的初始化安装页面。证明应用是正常的，数据不在了。 在服务器上用 MySQL 客户端登录数据库，找不到“萨瓦迪卡”的数据库。  还好客户每天有全量数据备份，于是客户快速从全量备份恢复了数据库，只是缺少了从备份点到故障点的业务数据。全量数据库的备份文件有 10 GiB，这么大的表如果采用 mysqldump 会因为锁表而导致 10 分钟左右的停机时间（别问我怎么知道的）。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-08-07T00:00:00\u002b00:00","datePublished":"2018-08-07T00:00:00\u002b00:00","dateModified":"2018-08-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-08-07-performance-analysis-case-study\/","wordCount":"402","keywords":["停机时间","性能","AWS","wade","流量测试"]}</script>
+<meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://www.guyu.me/ rel=me>
 <link href=https://github.com/wizardbyron rel=me>
@@ -82,7 +82,7 @@
 <div class="flex flex-row items-center">
 <time datetime="2018-08-07 00:00:00 +0000 UTC">7 August 2018</time><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-08-07-performance-analysis-case-study.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content">
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-08-07-performance-analysis-case-study.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -92,7 +92,7 @@
 </header>
 <section class="prose dark:prose-light">
 <p>本文是我在 gitchat 上的文章<a href=https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html>云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）</a>的前半部分，本文对原文有所修改和总结。交流实录请<a href=https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html>点击这里</a>。</p>
-<h2 id=案例背景>案例背景 <a class=heading-anchor href=#%e6%a1%88%e4%be%8b%e8%83%8c%e6%99%af aria-label=Anchor>#</a></h2>
+<h2 id=案例背景>案例背景 <a class=heading-anchor href=#%e6%a1%88%e4%be%8b%e8%83%8c%e6%99%af aria-label=锚点>#</a></h2>
 <p>案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以"萨瓦迪卡"指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress + MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上<strong>平移</strong>到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。</p>
 <p><strong>知识点：</strong> GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，<strong>AWS 的 FreeTier 免费计划是按 GB 计算的哦！</strong></p>
 <p>除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：</p>
@@ -100,7 +100,7 @@
 <p>“萨瓦迪卡”的生产环境可以被认为是一个裸奔的肉鸡。我曾经一度它已经被轮番入侵很久了，只是还没有被发现而已。而且，“萨瓦迪卡”生产环境的唯一一台服务器的内存率使用经常超过 95%，我很担心它的状况，任何一个小的 DoS，都不需要 DDoS，就可以让它整站宕机了。</p>
 <p>我于是把我的担忧汇报给了客户，客户也意识到了问题。在我发现问题之前的一个月就启动了“萨瓦迪卡”的<strong>翻新</strong>（Revamp）项目，让这个应用<strong>保持原样</strong>（Keep it as is），直到 6 个月后新项目上线，替换掉当前应用。</p>
 <p>然而，没想到我一语成谶。一天，“萨瓦迪卡”被删库了！</p>
-<h2 id=删库别慌>&ldquo;删库？别慌！&rdquo; <a class=heading-anchor href=#%e5%88%a0%e5%ba%93%e5%88%ab%e6%85%8c aria-label=Anchor>#</a></h2>
+<h2 id=删库别慌>&ldquo;删库？别慌！&rdquo; <a class=heading-anchor href=#%e5%88%a0%e5%ba%93%e5%88%ab%e6%85%8c aria-label=锚点>#</a></h2>
 <p>作为一个运维工程师，最悲催的事情就是“人在家中坐，锅从天上来”。这天是世界杯的某一场小组赛，而我刚吃完晚饭正在洗碗。突然被客户的 P1 告警（P1 - Priority 1，最高级别告警）惊吓到，得知“萨瓦迪卡”被删库了。</p>
 <p>判断的依据是：</p>
 <ol>
@@ -108,7 +108,7 @@
 <li>在服务器上用 MySQL 客户端登录数据库，找不到“萨瓦迪卡”的数据库。</li>
 </ol>
 <p>还好客户每天有全量数据备份，于是客户快速从全量备份恢复了数据库，只是缺少了从备份点到故障点的业务数据。全量数据库的备份文件有 10 GiB，这么大的表如果采用 <code>mysqldump</code> 会因为锁表而导致 10 分钟左右的停机时间（别问我怎么知道的）。</p>
-<h2 id=问题分析>问题分析 <a class=heading-anchor href=#%e9%97%ae%e9%a2%98%e5%88%86%e6%9e%90 aria-label=Anchor>#</a></h2>
+<h2 id=问题分析>问题分析 <a class=heading-anchor href=#%e9%97%ae%e9%a2%98%e5%88%86%e6%9e%90 aria-label=锚点>#</a></h2>
 <p>在恢复应用的同时，我们也开始进行了分析的工作。首先，我们怀疑是被攻击了。于是通过 AWS 的 CloudTrail（一种审计工具，用来记录登录 AWS 用户的操作）和 主机上的命令历史（history 命令）和登录日志进行分析，结果一无所获。其次，我开始检查 MySQL 的日志（<code>/var/lib/mysql/*.err</code>），在日志上发现如下片段：</p>
 <pre tabindex=0><code class=language-log data-lang=log>InnoDB: Log scan progressed past the checkpoint lsn 126908965949
 180622 17:21:09  InnoDB: Database was not shut down normally!
@@ -135,7 +135,7 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 <p>你可能会想，只需要增加一些基础设施监控和 APM （Application Performance Monitoring，应用性能监控）就可以得到相应的数据了。然而，在生产环境的性能度量没那么简单。</p>
 <p>**首先，我们要保证生产环境的业务连续性。**APM 也是一种应用程序，也会占用资源，你如何确定安装和运行 APM 的过程不会造成生产环境停机？其次，如果一定会造成停机，那么会停机多久？当这些问题都是未知的情况下，鲁莽的行为只能增加更多的不确定性风险。</p>
 <p><strong>因此，在迁移之前，我们要模拟生产环境进行度量并进行分析</strong>。</p>
-<h3 id=设计性能度量>设计性能度量 <a class=heading-anchor href=#%e8%ae%be%e8%ae%a1%e6%80%a7%e8%83%bd%e5%ba%a6%e9%87%8f aria-label=Anchor>#</a></h3>
+<h3 id=设计性能度量>设计性能度量 <a class=heading-anchor href=#%e8%ae%be%e8%ae%a1%e6%80%a7%e8%83%bd%e5%ba%a6%e9%87%8f aria-label=锚点>#</a></h3>
 <p>性能度量是一个从“未知”到“已知”的过程。</p>
 <p>**首先，你需要明确所要度量的问题。**你可以和你的小组一起商定需要解决的问题。在上面这个案例里，我们所需要回答的问题包括：</p>
 <ol>
@@ -146,14 +146,14 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 <li>性能拐点在哪里？</li>
 </ol>
 <p>当然，对于 CPU，网络和存储，你也可以设计以上的问题。</p>
-<h3 id=然后找到数据基线-benchmark>然后，找到数据基线 (Benchmark) <a class=heading-anchor href=#%e7%84%b6%e5%90%8e%e6%89%be%e5%88%b0%e6%95%b0%e6%8d%ae%e5%9f%ba%e7%ba%bf-benchmark aria-label=Anchor>#</a></h3>
+<h3 id=然后找到数据基线-benchmark>然后，找到数据基线 (Benchmark) <a class=heading-anchor href=#%e7%84%b6%e5%90%8e%e6%89%be%e5%88%b0%e6%95%b0%e6%8d%ae%e5%9f%ba%e7%ba%bf-benchmark aria-label=锚点>#</a></h3>
 <p>由于资源的使用是和用户访问数量息息相关的，你还需要知道资源使用的<strong>均值</strong>，<strong>峰值</strong>， <strong>边际值</strong>。</p>
 <p><strong>均值</strong>是资源使用基线，也就是最小值。</p>
 <p><strong>峰值</strong>是资源使用的警告线，如果过去发生过这么高。</p>
 <p><strong>边际值</strong>是指每单位的用户请求所消耗的资源。</p>
 <p>一般来说，这些数据都可以从云计算提供商的<strong>非侵入式监控服务</strong>获得，它的数据收集不会影响资源的性能。例如 AWS 的 CloudWatch 。我们可以根据过去 6 个月或者 3个月的时间来估计均值和峰值。**但由于未来是不确定的，因此过去 6 个月或者 3 个月的数据是建立在“未来访问量不会突变”的假设基础上的。**例如，如果有类似于“6·18” 或者 “双十一” 的流量高峰，则日常的数据参考意义不大。</p>
 <p>如果缺乏这样的手段，就要通过复制生产环境来度量了。</p>
-<h2 id=复制生产环境>复制生产环境 <a class=heading-anchor href=#%e5%a4%8d%e5%88%b6%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83 aria-label=Anchor>#</a></h2>
+<h2 id=复制生产环境>复制生产环境 <a class=heading-anchor href=#%e5%a4%8d%e5%88%b6%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83 aria-label=锚点>#</a></h2>
 <p><strong>复制生产环境的一点原则就是“尽量减少不同”</strong>，尽可能的按照生产环境的配置来构建你的沙盒环境以得到更接近真实的数据。很多云提供商都提供镜像（Image）或者快照（Snapshot）的功能用来复制当前有状态的资源。有时候二者是同一个意思。如果有区别，二者的区别在于以下几点：</p>
 <ol>
 <li>镜像是全量，快照是增量。</li>
@@ -164,7 +164,7 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 <p>无论是哪一种，我们都要选择一个对生产环境影响最小的方案。在 AWS 中，我们可以根据当前的虚拟机实例构建虚拟机镜像 AMI （Amazon Machine Images）。它提供两种方式：一种是不重启（no reboot），这种方式的缺点是会造成构建镜像时间点以后的数据丢失。另外一种是在构建之前重启实例，这样不会导致数据丢失。</p>
 <p>**对于上述的案例来说，生产数据的完整性并不会影响我们的度量，因此，无需重启实例。**但如果你要度量重启实例会带来多少数据丢失，则需要重启实例。</p>
 <p>此外，为了保证你不会误操作，我建议你在非生产环境的云计算账号下重建应用。<strong>如果你一定要在同一个账户中进行复制，请确保你做好了生产环境资源隔离。</strong></p>
-<h2 id=设计测试场景>设计测试场景 <a class=heading-anchor href=#%e8%ae%be%e8%ae%a1%e6%b5%8b%e8%af%95%e5%9c%ba%e6%99%af aria-label=Anchor>#</a></h2>
+<h2 id=设计测试场景>设计测试场景 <a class=heading-anchor href=#%e8%ae%be%e8%ae%a1%e6%b5%8b%e8%af%95%e5%9c%ba%e6%99%af aria-label=锚点>#</a></h2>
 <p>当你在测试环境下复制了生产环境，你就有了一个安全的沙箱来进行测试了。当我们开始进行性能测试的时候，我们要通过“<strong>整体</strong>”的测试来计算对“<strong>局部</strong>”的影响。并找到。以“萨瓦迪卡”为例，我们通过 AWS 上的数据得到了“萨瓦迪卡”生产环境的平均响应时间：0.2 ~ 0.4 秒，RPM（Requests Per Minute 每分钟请求）大概在 4500 左右。</p>
 <p>因此我们设计了如下测试场景：</p>
 <ol>
@@ -189,7 +189,7 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 <li>升级虚拟机 Linux 中的软件包和安全补丁会带来 5 秒钟左右的停机。</li>
 <li>APM （NewRelic）的安装会占用 63 MiB 左右内存且无停机时间。</li>
 </ol>
-<h2 id=编写性能度量报告>编写性能度量报告 <a class=heading-anchor href=#%e7%bc%96%e5%86%99%e6%80%a7%e8%83%bd%e5%ba%a6%e9%87%8f%e6%8a%a5%e5%91%8a aria-label=Anchor>#</a></h2>
+<h2 id=编写性能度量报告>编写性能度量报告 <a class=heading-anchor href=#%e7%bc%96%e5%86%99%e6%80%a7%e8%83%bd%e5%ba%a6%e9%87%8f%e6%8a%a5%e5%91%8a aria-label=锚点>#</a></h2>
 <p>当我们完成了性能度量的时候，就要编写一份性能度量报告。性能度量报告包含以下 6 个部分：</p>
 <ol>
 <li><strong>背景</strong>：主要回答为什么（Why）要做这一次性能度量。</li>
@@ -207,7 +207,7 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/avatar.png>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
-Author
+作者
 </div>
 <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
@@ -267,15 +267,15 @@ Author
 顾宇
 </p>
 <p class="text-xs text-neutral-300 dark:text-neutral-600">
-Powered by <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a>
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
 </p>
 </div>
 <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title="Switch to dark appearance">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title="Switch to light appearance">
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>
