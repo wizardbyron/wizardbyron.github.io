@@ -15,47 +15,15 @@
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
 <link rel=manifest href=/site.webmanifest>
 <meta property="og:title" content="DevOps 前世今生 - DevOps 的目标和核心">
-<meta property="og:description" content="在#DevOps的前世今生# 2. Dev和Ops矛盾缘何而来？一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和 Ops 的核心矛盾：
-Dev和Ops 的矛盾主要是面向适应性的敏捷软件交付和面向经验性的传统运维之间的矛盾。
-但这个矛盾最先 John Allspaw 和 Paul Hammond在 “10+ Deploys Per Day： Dev and Ops Cooperation at Flickr” 提出，并以“Cooperation”作为整个演讲的核心，讲述了他们解决这个矛盾的实践经验。这个演讲中：
-重新定义Ops的工作目标 # 在一个组织中，如果相关利益者的利益不一致，在既定流程的进行中一定会碰到诸多阻力。而在这一点上，首先做得就是把 Dev 和 Ops 的利益一致化，从而减少Ops对软件交付的阻力。在演讲中，John Allspaw 和 Paul Hammond 首先挑战的是对 Dev 和 Ops 的传统观点。
-传统的观点认为Dev和Ops的工作是不同的：
-Dev的工作是增添新的功能。
-Ops的工作是保证站点的稳定和高性能。
-他们认为，保证站点的稳定和高性能不是 Ops 的工作目标。
-Ops的工作目标应该是激活业务（enable the business），而这一点和Dev是一致的。
-理想往往是美好的，现实往往是残酷的。激活业务会带来更多的变更，而更多的变更会引起故障！
-面对这样的问题，就需要做出一个选择：为了保障稳定性减少变更，还是及时按需变更？
-阿拉伯有一个谚语：“你若不想做，会找到一个借口。你若想做，会找到一个方法。”
-Flicker 并没有屈服于压力，他们选择让问题向目标妥协，而不是目标向问题妥协。他们的手段是：
-构建相互合作的工具和文化 # 降低变更风险的关键就是在于提高可靠性，这不仅仅是Dev在软件开发中，也需要Ops把可靠性通过非功能性需求（性能要求，扩展性，安全性等）注入到软件开发过程中。通过系统交付过程中的质量內建而不是事后检验来提升交付质量。
-而 Dev 和 Ops 的具体矛盾点表现在以下两方面：
-在价值流下游的 Ops 评审认为价值链上游的 Dev 软件非功能质量不满足要求，因此阻止变更。
-在价值流上游的 Dev 无法获得价值链下游的 Ops 的真实运行环境，因此无法提升交付质量。">
+<meta property="og:description" content="在#DevOps的前世今生# 2. Dev和Ops矛盾缘何而来？一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wwww.guyu.me/posts/2017-02-14-core-devops-concepts/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2017-02-14T00:00:00+00:00">
 <meta property="article:modified_time" content="2017-02-14T00:00:00+00:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="DevOps 前世今生 - DevOps 的目标和核心">
-<meta name=twitter:description content="在#DevOps的前世今生# 2. Dev和Ops矛盾缘何而来？一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和 Ops 的核心矛盾：
-Dev和Ops 的矛盾主要是面向适应性的敏捷软件交付和面向经验性的传统运维之间的矛盾。
-但这个矛盾最先 John Allspaw 和 Paul Hammond在 “10+ Deploys Per Day： Dev and Ops Cooperation at Flickr” 提出，并以“Cooperation”作为整个演讲的核心，讲述了他们解决这个矛盾的实践经验。这个演讲中：
-重新定义Ops的工作目标 # 在一个组织中，如果相关利益者的利益不一致，在既定流程的进行中一定会碰到诸多阻力。而在这一点上，首先做得就是把 Dev 和 Ops 的利益一致化，从而减少Ops对软件交付的阻力。在演讲中，John Allspaw 和 Paul Hammond 首先挑战的是对 Dev 和 Ops 的传统观点。
-传统的观点认为Dev和Ops的工作是不同的：
-Dev的工作是增添新的功能。
-Ops的工作是保证站点的稳定和高性能。
-他们认为，保证站点的稳定和高性能不是 Ops 的工作目标。
-Ops的工作目标应该是激活业务（enable the business），而这一点和Dev是一致的。
-理想往往是美好的，现实往往是残酷的。激活业务会带来更多的变更，而更多的变更会引起故障！
-面对这样的问题，就需要做出一个选择：为了保障稳定性减少变更，还是及时按需变更？
-阿拉伯有一个谚语：“你若不想做，会找到一个借口。你若想做，会找到一个方法。”
-Flicker 并没有屈服于压力，他们选择让问题向目标妥协，而不是目标向问题妥协。他们的手段是：
-构建相互合作的工具和文化 # 降低变更风险的关键就是在于提高可靠性，这不仅仅是Dev在软件开发中，也需要Ops把可靠性通过非功能性需求（性能要求，扩展性，安全性等）注入到软件开发过程中。通过系统交付过程中的质量內建而不是事后检验来提升交付质量。
-而 Dev 和 Ops 的具体矛盾点表现在以下两方面：
-在价值流下游的 Ops 评审认为价值链上游的 Dev 软件非功能质量不满足要求，因此阻止变更。
-在价值流上游的 Dev 无法获得价值链下游的 Ops 的真实运行环境，因此无法提升交付质量。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"DevOps 前世今生 - DevOps 的目标和核心","headline":"DevOps 前世今生 - DevOps 的目标和核心","description":"在#DevOps的前世今生# 2. Dev和Ops矛盾缘何而来？一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和 Ops 的核心矛盾：\nDev和Ops 的矛盾主要是面向适应性的敏捷软件交付和面向经验性的传统运维之间的矛盾。\n但这个矛盾最先 John Allspaw 和 Paul Hammond在 “10\u002b Deploys Per Day： Dev and Ops Cooperation at Flickr” 提出，并以“Cooperation”作为整个演讲的核心，讲述了他们解决这个矛盾的实践经验。这个演讲中：\n重新定义Ops的工作目标 # 在一个组织中，如果相关利益者的利益不一致，在既定流程的进行中一定会碰到诸多阻力。而在这一点上，首先做得就是把 Dev 和 Ops 的利益一致化，从而减少Ops对软件交付的阻力。在演讲中，John Allspaw 和 Paul Hammond 首先挑战的是对 Dev 和 Ops 的传统观点。\n传统的观点认为Dev和Ops的工作是不同的：\nDev的工作是增添新的功能。\nOps的工作是保证站点的稳定和高性能。\n他们认为，保证站点的稳定和高性能不是 Ops 的工作目标。\nOps的工作目标应该是激活业务（enable the business），而这一点和Dev是一致的。\n理想往往是美好的，现实往往是残酷的。激活业务会带来更多的变更，而更多的变更会引起故障！\n面对这样的问题，就需要做出一个选择：为了保障稳定性减少变更，还是及时按需变更？\n阿拉伯有一个谚语：“你若不想做，会找到一个借口。你若想做，会找到一个方法。”\nFlicker 并没有屈服于压力，他们选择让问题向目标妥协，而不是目标向问题妥协。他们的手段是：\n构建相互合作的工具和文化 # 降低变更风险的关键就是在于提高可靠性，这不仅仅是Dev在软件开发中，也需要Ops把可靠性通过非功能性需求（性能要求，扩展性，安全性等）注入到软件开发过程中。通过系统交付过程中的质量內建而不是事后检验来提升交付质量。\n而 Dev 和 Ops 的具体矛盾点表现在以下两方面：\n在价值流下游的 Ops 评审认为价值链上游的 Dev 软件非功能质量不满足要求，因此阻止变更。\n在价值流上游的 Dev 无法获得价值链下游的 Ops 的真实运行环境，因此无法提升交付质量。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-02-14T00:00:00\u002b00:00","datePublished":"2017-02-14T00:00:00\u002b00:00","dateModified":"2017-02-14T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-02-14-core-devops-concepts\/","wordCount":"246","keywords":["DevOps 历史"]}</script>
+<meta name=twitter:description content="在#DevOps的前世今生# 2. Dev和Ops矛盾缘何而来？一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"DevOps 前世今生 - DevOps 的目标和核心","headline":"DevOps 前世今生 - DevOps 的目标和核心","description":"在#DevOps的前世今生# 2. Dev和Ops矛盾缘何而来？一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-02-14T00:00:00\u002b00:00","datePublished":"2017-02-14T00:00:00\u002b00:00","dateModified":"2017-02-14T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-02-14-core-devops-concepts\/","wordCount":"3343","keywords":["DevOps 历史"]}</script>
 <meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -96,7 +64,7 @@ DevOps 前世今生 - DevOps 的目标和核心
 </h1>
 <div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
-<time datetime="2017-02-14 00:00:00 +0000 UTC">14 February 2017</time><span class="px-2 text-primary-500">&#183;</span>
+<time datetime="2017-02-14 00:00:00 +0000 UTC">14 February 2017</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>7 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
 <a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-02-14-core-devops-concepts.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>

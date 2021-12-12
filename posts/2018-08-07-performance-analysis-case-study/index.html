@@ -15,21 +15,15 @@
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
 <link rel=manifest href=/site.webmanifest>
 <meta property="og:title" content="公有云(AWS)上的生产环境性能分析案例">
-<meta property="og:description" content="本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。
-案例背景 # 案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以&#34;萨瓦迪卡&#34;指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress + MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上平移到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。
-知识点： GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，AWS 的 FreeTier 免费计划是按 GB 计算的哦！
-除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：">
+<meta property="og:description" content="本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。 案例背景 #">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wwww.guyu.me/posts/2018-08-07-performance-analysis-case-study/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2018-08-07T00:00:00+00:00">
 <meta property="article:modified_time" content="2018-08-07T00:00:00+00:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="公有云(AWS)上的生产环境性能分析案例">
-<meta name=twitter:description content="本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。
-案例背景 # 案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以&#34;萨瓦迪卡&#34;指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress + MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上平移到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。
-知识点： GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，AWS 的 FreeTier 免费计划是按 GB 计算的哦！
-除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"公有云(AWS)上的生产环境性能分析案例","headline":"公有云(AWS)上的生产环境性能分析案例","description":"本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。\n案例背景 # 案例是一个泰国网站的生产环境（请脑补一句“萨瓦迪卡”，为了叙述方便，下文中均以\u0026quot;萨瓦迪卡\u0026quot;指代这个网站。）“萨瓦迪卡”是一个 采用 Wordpress \u002b MySQL搭建的应用。这个遗留系统已经工作了五年。客户已经把在其它 VPS 上平移到 AWS 上。平移（lift and shift）是说原样复制，而迁移（migration）还要进行改造。而客户唯一发挥 AWS 优势的一点就是用了一个配置很高的 EC2 虚拟机 —— m4.4xlarge。这样一台配置的虚拟机有 16 个虚拟 CPU，64 GiB 的内存，以及 2000 Mbps 的网络带宽，最高 3000 IOPS 的 200GiB 的块存储设备（也就是硬盘）。\n知识点： GiB 是用二进制计算的，GB 是用十进制计算的。1 GiB 是 2的30 次方，而1 GB 是10 的 9 次方，1 GiB 略大于 1GB。 而且，AWS 的 FreeTier 免费计划是按 GB 计算的哦！\n除了基本的网络和虚拟机以外，“萨瓦迪卡” 的所有东西都放在一台虚拟机上。没错，是所有东西——Web 服务器，反向代理，数据库，上传的文件——都放在一台虚拟机上。唯一个一个负载均衡用来承载 HTTPS 证书，没有使用集群，没有高可用，没有数据库\/应用分离，没有防火墙，没有 WAF，没有 APM，没有 CDN 而且，没有持续交付流水线，所有部署都要 ssh 到机器上进行操作。如图所示：","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-08-07T00:00:00\u002b00:00","datePublished":"2018-08-07T00:00:00\u002b00:00","dateModified":"2018-08-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-08-07-performance-analysis-case-study\/","wordCount":"402","keywords":["停机时间","性能","AWS","wade","流量测试"]}</script>
+<meta name=twitter:description content="本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。 案例背景 #">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"公有云(AWS)上的生产环境性能分析案例","headline":"公有云(AWS)上的生产环境性能分析案例","description":"本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）的前半部分，本文对原文有所修改和总结。交流实录请点击这里。 案例背景 #","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-08-07T00:00:00\u002b00:00","datePublished":"2018-08-07T00:00:00\u002b00:00","dateModified":"2018-08-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-08-07-performance-analysis-case-study\/","wordCount":"4399","keywords":["停机时间","性能","AWS","wade","流量测试"]}</script>
 <meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -70,7 +64,7 @@
 </h1>
 <div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
-<time datetime="2018-08-07 00:00:00 +0000 UTC">7 August 2018</time><span class="px-2 text-primary-500">&#183;</span>
+<time datetime="2018-08-07 00:00:00 +0000 UTC">7 August 2018</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>9 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
 <a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-08-07-performance-analysis-case-study.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>

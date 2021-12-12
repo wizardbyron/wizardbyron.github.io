@@ -15,33 +15,15 @@
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
 <link rel=manifest href=/site.webmanifest>
 <meta property="og:title" content="测试驱动开发 Nginx 配置">
-<meta property="og:description" content="2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，和客户一起完成并购后的产品迁移和技术能力提升的设计、实施和培训。
-客户希望采用新的统一产品，并根据不同地区的业务特色进行一些定制，与此同时，需要进行数据迁移以保证业务可以继续运行。其中一个很关键的步骤是把原系统的 URL 通过重定向的方式到新的产品中，因为有很多的第三方链接和搜索引擎依然保留了原系统中的链接。
-初步统计了一下，将近有3000多个 URL 需要重定向，光是规则和正则表达式就写了 400 多条（没有统一模式的 URL 害死人啊），这就引发了一个问题：我该如何验证这些规则和覆盖这些 URL ？此外，大量的重定向不光对用户来讲不是很好的体验，如果我要优化这些规则，我如何保证我当前的转发规则不被破坏？
-解决方案 # 最早，我们写了一个 Shell 脚本，用 curl命令来验证这些 URL，最初只需要验证 200 条就可以满足需求，时间也不到两分钟。后来，我们采用了一个 Excel 文件来跟踪这些 URL，产品经理只需要把新的重定向 URL 补充到上面，我们就依据这些 URL 来开发 nginx 的重定向规则。
-这让我想到了 TDD：先写出一个自动化测试用例，然后修复这个自动化测试用例。更好的是，有了自动化的测试做保护，你可以放心和安全的对代码进行重构。
-此外，随着更多的 URL 需要重定向，这个数字在不断的增加。原先的 Shell 脚本执行的时间也从最初的 2 分钟增长到了15分钟。
-现有的工具满足不了要求，一怒之下，我决定开发一个自己的工具。它必须具备以下特点：
- 可以通过文件读取规则，进行大批量验证。 多线程并发执行，可以提升效率。 很容易和 CI 集成。 能帮我做一定程度的重定向优化分析。  于是，我在一个周末的时间用 Python 写下了 vivian： 一个多线程的批量自动化重定向验证工具。
-它把原先的 15 分钟的验证时间缩短到了 17 秒，效率提升了 5294 % !!
-此外，我把测试用例集成到了代码库里。并把 vivian 提交到了 pipy，这样我就可以通过 pip 在初始化 CI 上安装了。也无需增加到代码库里变成一个需要维护的代码脚本。">
+<meta property="og:description" content="2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wwww.guyu.me/posts/2018-06-12-tdd-in-nginx/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2018-06-12T00:00:00+00:00">
 <meta property="article:modified_time" content="2018-06-12T00:00:00+00:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="测试驱动开发 Nginx 配置">
-<meta name=twitter:description content="2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，和客户一起完成并购后的产品迁移和技术能力提升的设计、实施和培训。
-客户希望采用新的统一产品，并根据不同地区的业务特色进行一些定制，与此同时，需要进行数据迁移以保证业务可以继续运行。其中一个很关键的步骤是把原系统的 URL 通过重定向的方式到新的产品中，因为有很多的第三方链接和搜索引擎依然保留了原系统中的链接。
-初步统计了一下，将近有3000多个 URL 需要重定向，光是规则和正则表达式就写了 400 多条（没有统一模式的 URL 害死人啊），这就引发了一个问题：我该如何验证这些规则和覆盖这些 URL ？此外，大量的重定向不光对用户来讲不是很好的体验，如果我要优化这些规则，我如何保证我当前的转发规则不被破坏？
-解决方案 # 最早，我们写了一个 Shell 脚本，用 curl命令来验证这些 URL，最初只需要验证 200 条就可以满足需求，时间也不到两分钟。后来，我们采用了一个 Excel 文件来跟踪这些 URL，产品经理只需要把新的重定向 URL 补充到上面，我们就依据这些 URL 来开发 nginx 的重定向规则。
-这让我想到了 TDD：先写出一个自动化测试用例，然后修复这个自动化测试用例。更好的是，有了自动化的测试做保护，你可以放心和安全的对代码进行重构。
-此外，随着更多的 URL 需要重定向，这个数字在不断的增加。原先的 Shell 脚本执行的时间也从最初的 2 分钟增长到了15分钟。
-现有的工具满足不了要求，一怒之下，我决定开发一个自己的工具。它必须具备以下特点：
- 可以通过文件读取规则，进行大批量验证。 多线程并发执行，可以提升效率。 很容易和 CI 集成。 能帮我做一定程度的重定向优化分析。  于是，我在一个周末的时间用 Python 写下了 vivian： 一个多线程的批量自动化重定向验证工具。
-它把原先的 15 分钟的验证时间缩短到了 17 秒，效率提升了 5294 % !!
-此外，我把测试用例集成到了代码库里。并把 vivian 提交到了 pipy，这样我就可以通过 pip 在初始化 CI 上安装了。也无需增加到代码库里变成一个需要维护的代码脚本。">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"测试驱动开发 Nginx 配置","headline":"测试驱动开发 Nginx 配置","description":"2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，和客户一起完成并购后的产品迁移和技术能力提升的设计、实施和培训。\n客户希望采用新的统一产品，并根据不同地区的业务特色进行一些定制，与此同时，需要进行数据迁移以保证业务可以继续运行。其中一个很关键的步骤是把原系统的 URL 通过重定向的方式到新的产品中，因为有很多的第三方链接和搜索引擎依然保留了原系统中的链接。\n初步统计了一下，将近有3000多个 URL 需要重定向，光是规则和正则表达式就写了 400 多条（没有统一模式的 URL 害死人啊），这就引发了一个问题：我该如何验证这些规则和覆盖这些 URL ？此外，大量的重定向不光对用户来讲不是很好的体验，如果我要优化这些规则，我如何保证我当前的转发规则不被破坏？\n解决方案 # 最早，我们写了一个 Shell 脚本，用 curl命令来验证这些 URL，最初只需要验证 200 条就可以满足需求，时间也不到两分钟。后来，我们采用了一个 Excel 文件来跟踪这些 URL，产品经理只需要把新的重定向 URL 补充到上面，我们就依据这些 URL 来开发 nginx 的重定向规则。\n这让我想到了 TDD：先写出一个自动化测试用例，然后修复这个自动化测试用例。更好的是，有了自动化的测试做保护，你可以放心和安全的对代码进行重构。\n此外，随着更多的 URL 需要重定向，这个数字在不断的增加。原先的 Shell 脚本执行的时间也从最初的 2 分钟增长到了15分钟。\n现有的工具满足不了要求，一怒之下，我决定开发一个自己的工具。它必须具备以下特点：\n 可以通过文件读取规则，进行大批量验证。 多线程并发执行，可以提升效率。 很容易和 CI 集成。 能帮我做一定程度的重定向优化分析。  于是，我在一个周末的时间用 Python 写下了 vivian： 一个多线程的批量自动化重定向验证工具。\n它把原先的 15 分钟的验证时间缩短到了 17 秒，效率提升了 5294 % !!\n此外，我把测试用例集成到了代码库里。并把 vivian 提交到了 pipy，这样我就可以通过 pip 在初始化 CI 上安装了。也无需增加到代码库里变成一个需要维护的代码脚本。","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-06-12T00:00:00\u002b00:00","datePublished":"2018-06-12T00:00:00\u002b00:00","dateModified":"2018-06-12T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-06-12-tdd-in-nginx\/","wordCount":"675","keywords":["停机时间","Python","流量测试"]}</script>
+<meta name=twitter:description content="2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"测试驱动开发 Nginx 配置","headline":"测试驱动开发 Nginx 配置","description":"2017年中，我参与了一个亚太地区互联网公司并购的项目，客户收购了亚太地区 7 个国家的同行业互联网企业和产品。我作为其中的 DevOps 咨询师和 DevOps 工程师，","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-06-12T00:00:00\u002b00:00","datePublished":"2018-06-12T00:00:00\u002b00:00","dateModified":"2018-06-12T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-06-12-tdd-in-nginx\/","wordCount":"2930","keywords":["停机时间","Python","流量测试"]}</script>
 <meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -82,7 +64,7 @@
 </h1>
 <div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
-<time datetime="2018-06-12 00:00:00 +0000 UTC">12 June 2018</time><span class="px-2 text-primary-500">&#183;</span>
+<time datetime="2018-06-12 00:00:00 +0000 UTC">12 June 2018</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>6 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
 <a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-06-12-tdd-in-nginx.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>

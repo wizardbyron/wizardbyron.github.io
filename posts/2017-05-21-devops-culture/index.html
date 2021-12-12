@@ -15,33 +15,15 @@
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
 <link rel=manifest href=/site.webmanifest>
 <meta property="og:title" content="DevOps前世今生 - DevOps 的文化">
-<meta property="og:description" content="用工具堆砌的DevOps 幻觉 # 在第一届 DevOpsDays结束后，DevOps 运动则如星火燎原之势在全球发展开来。随着 DevOps 思想的不断传播，相对的质疑和批评也从未停止过。以至于到今天对于 DevOps 的定义还是众说纷纭，争论不休。
-当人们还在争论 DevOps的时候，一批基于敏捷的工程实践和自动化工具带着 DevOps 的标签走入了人们的视野。人们开始认为 DevOps 就是使用这些工具进行自动化。
-在早期的 DevOps 实践里，开发和运维仍然是分离的。而在很多企业中，运维部门往往是核心部门，评审应用软件的架构设计和上线要求。于是运维部门开始利用这些被称作为“DevOps”的自动化工具管理设备和应用系统。并且将自己相关的实践打赏了“DevOps”的标签传播开来。
-于此同时，开发团队开始采用这些工具构建开发用的测试环境。并将运维需求带入了开发流程中，这促进了內建质量。并且利用持续集成服务器（Continous Integration Serever） 构建持续交付流水线（Continuous delivery pipeline）来可视化软件交付的进度和流程，并通过流水线完成了自动化部署。持续集成服务器连接了开发和运维！
-这就是DevOps ？
-“同床异梦” 的 DevOps # 虽然开发团队和运维团队使用的工具变了，然而事情却没有改变：我们仍然能看到”流程结合在一起，但工作目标仍然分离“的两个团队：运维团队仍然牢牢控制着环境，控制着上线标准和上线流程。通过补充更多自动化的测试和验证手段构建更加严格的控制着变更的入口和出口。开发团队仍然不停的为了满足运维团队制定的更加严格的开发规范更加努力的学习各种工具而不断加班。
-运维团队仍然不关心开发团队是否需要帮助，开发团队也依然不了解运维团队在做什么。如果没有 DevOps文化的建立，DevOps 仅仅是“通过自动化工具和手段构建的标准流程”而已。
-有人甚至开始把这两个团队融合在了一起，变成了一个团队。这在一定程度上缓解了这种矛盾，但是相互指责却并没有让团队凝聚起来更加具有战斗力。而是变成了一个缓慢而争论不休的“Dev和Ops 法庭”：项目经理或者产品经理成为了法官，Dev 和 Ops 则轮番成为原告和被告。
-这不是 DevOps !
-早期的 DevOps文化：信任和尊重 # 早在 “10+ Deploys Per Day: Dev and Ops Cooperation at Flickr” 的演讲里，就总结出了 Dev 和 Ops 的合作并不能仅仅只有工具，还需要依托文化把某些行为和价值观带到组织内部。这个演讲很有洞见的总结了 Dev 和 Ops 的不同观点和思维模式，并从 Dev 和 Ops 的立场分别给出了促进合作的建议。这其中包括：">
+<meta property="og:description" content="用工具堆砌的DevOps 幻觉 # 在第一届 DevOpsDays结束后，DevOps 运动则如星火燎原之势在全球发展开来。随着 DevOps 思想的不断传播，相对">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wwww.guyu.me/posts/2017-05-21-devops-culture/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2017-05-21T00:00:00+00:00">
 <meta property="article:modified_time" content="2017-05-21T00:00:00+00:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="DevOps前世今生 - DevOps 的文化">
-<meta name=twitter:description content="用工具堆砌的DevOps 幻觉 # 在第一届 DevOpsDays结束后，DevOps 运动则如星火燎原之势在全球发展开来。随着 DevOps 思想的不断传播，相对的质疑和批评也从未停止过。以至于到今天对于 DevOps 的定义还是众说纷纭，争论不休。
-当人们还在争论 DevOps的时候，一批基于敏捷的工程实践和自动化工具带着 DevOps 的标签走入了人们的视野。人们开始认为 DevOps 就是使用这些工具进行自动化。
-在早期的 DevOps 实践里，开发和运维仍然是分离的。而在很多企业中，运维部门往往是核心部门，评审应用软件的架构设计和上线要求。于是运维部门开始利用这些被称作为“DevOps”的自动化工具管理设备和应用系统。并且将自己相关的实践打赏了“DevOps”的标签传播开来。
-于此同时，开发团队开始采用这些工具构建开发用的测试环境。并将运维需求带入了开发流程中，这促进了內建质量。并且利用持续集成服务器（Continous Integration Serever） 构建持续交付流水线（Continuous delivery pipeline）来可视化软件交付的进度和流程，并通过流水线完成了自动化部署。持续集成服务器连接了开发和运维！
-这就是DevOps ？
-“同床异梦” 的 DevOps # 虽然开发团队和运维团队使用的工具变了，然而事情却没有改变：我们仍然能看到”流程结合在一起，但工作目标仍然分离“的两个团队：运维团队仍然牢牢控制着环境，控制着上线标准和上线流程。通过补充更多自动化的测试和验证手段构建更加严格的控制着变更的入口和出口。开发团队仍然不停的为了满足运维团队制定的更加严格的开发规范更加努力的学习各种工具而不断加班。
-运维团队仍然不关心开发团队是否需要帮助，开发团队也依然不了解运维团队在做什么。如果没有 DevOps文化的建立，DevOps 仅仅是“通过自动化工具和手段构建的标准流程”而已。
-有人甚至开始把这两个团队融合在了一起，变成了一个团队。这在一定程度上缓解了这种矛盾，但是相互指责却并没有让团队凝聚起来更加具有战斗力。而是变成了一个缓慢而争论不休的“Dev和Ops 法庭”：项目经理或者产品经理成为了法官，Dev 和 Ops 则轮番成为原告和被告。
-这不是 DevOps !
-早期的 DevOps文化：信任和尊重 # 早在 “10+ Deploys Per Day: Dev and Ops Cooperation at Flickr” 的演讲里，就总结出了 Dev 和 Ops 的合作并不能仅仅只有工具，还需要依托文化把某些行为和价值观带到组织内部。这个演讲很有洞见的总结了 Dev 和 Ops 的不同观点和思维模式，并从 Dev 和 Ops 的立场分别给出了促进合作的建议。这其中包括：">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"DevOps前世今生 - DevOps 的文化","headline":"DevOps前世今生 - DevOps 的文化","description":"用工具堆砌的DevOps 幻觉 # 在第一届 DevOpsDays结束后，DevOps 运动则如星火燎原之势在全球发展开来。随着 DevOps 思想的不断传播，相对的质疑和批评也从未停止过。以至于到今天对于 DevOps 的定义还是众说纷纭，争论不休。\n当人们还在争论 DevOps的时候，一批基于敏捷的工程实践和自动化工具带着 DevOps 的标签走入了人们的视野。人们开始认为 DevOps 就是使用这些工具进行自动化。\n在早期的 DevOps 实践里，开发和运维仍然是分离的。而在很多企业中，运维部门往往是核心部门，评审应用软件的架构设计和上线要求。于是运维部门开始利用这些被称作为“DevOps”的自动化工具管理设备和应用系统。并且将自己相关的实践打赏了“DevOps”的标签传播开来。\n于此同时，开发团队开始采用这些工具构建开发用的测试环境。并将运维需求带入了开发流程中，这促进了內建质量。并且利用持续集成服务器（Continous Integration Serever） 构建持续交付流水线（Continuous delivery pipeline）来可视化软件交付的进度和流程，并通过流水线完成了自动化部署。持续集成服务器连接了开发和运维！\n这就是DevOps ？\n“同床异梦” 的 DevOps # 虽然开发团队和运维团队使用的工具变了，然而事情却没有改变：我们仍然能看到”流程结合在一起，但工作目标仍然分离“的两个团队：运维团队仍然牢牢控制着环境，控制着上线标准和上线流程。通过补充更多自动化的测试和验证手段构建更加严格的控制着变更的入口和出口。开发团队仍然不停的为了满足运维团队制定的更加严格的开发规范更加努力的学习各种工具而不断加班。\n运维团队仍然不关心开发团队是否需要帮助，开发团队也依然不了解运维团队在做什么。如果没有 DevOps文化的建立，DevOps 仅仅是“通过自动化工具和手段构建的标准流程”而已。\n有人甚至开始把这两个团队融合在了一起，变成了一个团队。这在一定程度上缓解了这种矛盾，但是相互指责却并没有让团队凝聚起来更加具有战斗力。而是变成了一个缓慢而争论不休的“Dev和Ops 法庭”：项目经理或者产品经理成为了法官，Dev 和 Ops 则轮番成为原告和被告。\n这不是 DevOps !\n早期的 DevOps文化：信任和尊重 # 早在 “10\u002b Deploys Per Day: Dev and Ops Cooperation at Flickr” 的演讲里，就总结出了 Dev 和 Ops 的合作并不能仅仅只有工具，还需要依托文化把某些行为和价值观带到组织内部。这个演讲很有洞见的总结了 Dev 和 Ops 的不同观点和思维模式，并从 Dev 和 Ops 的立场分别给出了促进合作的建议。这其中包括：","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-05-21T00:00:00\u002b00:00","datePublished":"2017-05-21T00:00:00\u002b00:00","dateModified":"2017-05-21T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-05-21-devops-culture\/","wordCount":"231","keywords":["DevOps 文化"]}</script>
+<meta name=twitter:description content="用工具堆砌的DevOps 幻觉 # 在第一届 DevOpsDays结束后，DevOps 运动则如星火燎原之势在全球发展开来。随着 DevOps 思想的不断传播，相对">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"DevOps前世今生 - DevOps 的文化","headline":"DevOps前世今生 - DevOps 的文化","description":"用工具堆砌的DevOps 幻觉 # 在第一届 DevOpsDays结束后，DevOps 运动则如星火燎原之势在全球发展开来。随着 DevOps 思想的不断传播，相对","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2017","dateCreated":"2017-05-21T00:00:00\u002b00:00","datePublished":"2017-05-21T00:00:00\u002b00:00","dateModified":"2017-05-21T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2017-05-21-devops-culture\/","wordCount":"4538","keywords":["DevOps 文化"]}</script>
 <meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -82,7 +64,7 @@ DevOps前世今生 - DevOps 的文化
 </h1>
 <div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
-<time datetime="2017-05-21 00:00:00 +0000 UTC">21 May 2017</time><span class="px-2 text-primary-500">&#183;</span>
+<time datetime="2017-05-21 00:00:00 +0000 UTC">21 May 2017</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>10 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
 <a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2017-05-21-devops-culture.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>

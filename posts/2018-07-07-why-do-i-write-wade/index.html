@@ -15,31 +15,15 @@
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
 <link rel=manifest href=/site.webmanifest>
 <meta property="og:title" content="一怒之下，我又写了一个开源流量测试工具">
-<meta property="og:description" content="继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。
-背景 # 客户的站点是通过 Wordpress 搭建的，这个应用放在一台 EC2 虚拟机上。奇葩的是，这个应用的 MySQL 数据库也在这台虚拟机上，之前做过一次 RDS 迁移，失败了，原因未知。看起来这个应用和数据库就像筷子兄弟一样，不离不弃，而且没有办法通过 AutoScaling Group 进行水平扩展。也就是说，所有的东西都在一台虚拟机上。
-我所要做的，就是把这个架构重新变成可自动水平扩展且高可用高性能有缓存低消耗具备监控和更加安全且有版本控制并可以通过持续交付流水线来半自动部署的架构。你可以重新读一下上一句加粗文字的内容。没错，目前他们连版本控制都没有，所有的操作在服务器上通过 mv 之间 scp 进行。
-很不巧的时候，这个“筷子兄弟”应用在上周开始，晚上随机的 Down 机，表现为数据库被删。但通过日志可以发现，是由于内存资源不足导致的 MySQL 数据引擎加载不了导致的。
-由于需要做“筷子兄弟”拆分手术，目的是要把数据库和应用程序分开，并且需要进行一些服务的重启和拆分。这些操作中会导致停机时间，为了能够度量这个停机时间，便于做出更好的决策，客户希望在测试环境上能够通过模拟生产环境的工作状态来完成这个任务。我设计了方案，包括以下几点：
- 知道每一个可能引起停机的操作引起停机的时长。 测试 RDS 能带来多少的性能提升。 找出整个架构引起停机的根本问题。 在 500 个并发用户访问的情况下，会出现的性能拐点。 能够度量应用的资源损耗。  客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。
-我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。
-于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。
-工具的设计 #  There are only two hard things in Computer Science: cache invalidation and naming things.">
+<meta property="og:description" content="继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。 背景 # 客户的站点是通">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wwww.guyu.me/posts/2018-07-07-why-do-i-write-wade/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2018-07-07T00:00:00+00:00">
 <meta property="article:modified_time" content="2018-07-07T00:00:00+00:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="一怒之下，我又写了一个开源流量测试工具">
-<meta name=twitter:description content="继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。
-背景 # 客户的站点是通过 Wordpress 搭建的，这个应用放在一台 EC2 虚拟机上。奇葩的是，这个应用的 MySQL 数据库也在这台虚拟机上，之前做过一次 RDS 迁移，失败了，原因未知。看起来这个应用和数据库就像筷子兄弟一样，不离不弃，而且没有办法通过 AutoScaling Group 进行水平扩展。也就是说，所有的东西都在一台虚拟机上。
-我所要做的，就是把这个架构重新变成可自动水平扩展且高可用高性能有缓存低消耗具备监控和更加安全且有版本控制并可以通过持续交付流水线来半自动部署的架构。你可以重新读一下上一句加粗文字的内容。没错，目前他们连版本控制都没有，所有的操作在服务器上通过 mv 之间 scp 进行。
-很不巧的时候，这个“筷子兄弟”应用在上周开始，晚上随机的 Down 机，表现为数据库被删。但通过日志可以发现，是由于内存资源不足导致的 MySQL 数据引擎加载不了导致的。
-由于需要做“筷子兄弟”拆分手术，目的是要把数据库和应用程序分开，并且需要进行一些服务的重启和拆分。这些操作中会导致停机时间，为了能够度量这个停机时间，便于做出更好的决策，客户希望在测试环境上能够通过模拟生产环境的工作状态来完成这个任务。我设计了方案，包括以下几点：
- 知道每一个可能引起停机的操作引起停机的时长。 测试 RDS 能带来多少的性能提升。 找出整个架构引起停机的根本问题。 在 500 个并发用户访问的情况下，会出现的性能拐点。 能够度量应用的资源损耗。  客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。
-我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。
-于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。
-工具的设计 #  There are only two hard things in Computer Science: cache invalidation and naming things.">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"一怒之下，我又写了一个开源流量测试工具","headline":"一怒之下，我又写了一个开源流量测试工具","description":"继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。\n背景 # 客户的站点是通过 Wordpress 搭建的，这个应用放在一台 EC2 虚拟机上。奇葩的是，这个应用的 MySQL 数据库也在这台虚拟机上，之前做过一次 RDS 迁移，失败了，原因未知。看起来这个应用和数据库就像筷子兄弟一样，不离不弃，而且没有办法通过 AutoScaling Group 进行水平扩展。也就是说，所有的东西都在一台虚拟机上。\n我所要做的，就是把这个架构重新变成可自动水平扩展且高可用高性能有缓存低消耗具备监控和更加安全且有版本控制并可以通过持续交付流水线来半自动部署的架构。你可以重新读一下上一句加粗文字的内容。没错，目前他们连版本控制都没有，所有的操作在服务器上通过 mv 之间 scp 进行。\n很不巧的时候，这个“筷子兄弟”应用在上周开始，晚上随机的 Down 机，表现为数据库被删。但通过日志可以发现，是由于内存资源不足导致的 MySQL 数据引擎加载不了导致的。\n由于需要做“筷子兄弟”拆分手术，目的是要把数据库和应用程序分开，并且需要进行一些服务的重启和拆分。这些操作中会导致停机时间，为了能够度量这个停机时间，便于做出更好的决策，客户希望在测试环境上能够通过模拟生产环境的工作状态来完成这个任务。我设计了方案，包括以下几点：\n 知道每一个可能引起停机的操作引起停机的时长。 测试 RDS 能带来多少的性能提升。 找出整个架构引起停机的根本问题。 在 500 个并发用户访问的情况下，会出现的性能拐点。 能够度量应用的资源损耗。  客户已经购买了 NewRelic 和 Flood.io （我在 17 期技术雷达里提交的条目，叉会腰。）但是 Flood.io 的账号分配需要一个额外的审批才可以使用，也就是说，我得等到第二天才能使用。\n我想，也许 github 上会有这样的工具能够满足我这个简单的需求，搜了一圈，没有合适的。\n于是，一怒之下，我用了大概两个小时的时间用 Python 编写了这样一个测试工具。\n工具的设计 #  There are only two hard things in Computer Science: cache invalidation and naming things.","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-07-07T00:00:00\u002b00:00","datePublished":"2018-07-07T00:00:00\u002b00:00","dateModified":"2018-07-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-07-07-why-do-i-write-wade\/","wordCount":"250","keywords":["停机时间","高可用","开源工具","Python","流量测试"]}</script>
+<meta name=twitter:description content="继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。 背景 # 客户的站点是通">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"一怒之下，我又写了一个开源流量测试工具","headline":"一怒之下，我又写了一个开源流量测试工具","description":"继一怒之下我写出了 Vivian（详见“测试驱动开发 Nginx 配置”）之后。又在等待客户审批流程的时间里自己写了一个流量测试工具。 背景 # 客户的站点是通","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-07-07T00:00:00\u002b00:00","datePublished":"2018-07-07T00:00:00\u002b00:00","dateModified":"2018-07-07T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2018-07-07-why-do-i-write-wade\/","wordCount":"2570","keywords":["停机时间","高可用","开源工具","Python","流量测试"]}</script>
 <meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -80,7 +64,7 @@
 </h1>
 <div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
-<time datetime="2018-07-07 00:00:00 +0000 UTC">7 July 2018</time><span class="px-2 text-primary-500">&#183;</span>
+<time datetime="2018-07-07 00:00:00 +0000 UTC">7 July 2018</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>6 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
 <a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/posts/2018-07-07-why-do-I-write-wade.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
