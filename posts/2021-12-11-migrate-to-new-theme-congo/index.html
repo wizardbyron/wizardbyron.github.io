@@ -23,7 +23,7 @@
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="博客迁移到了新的 Hugo 主题">
 <meta name=twitter:description content="你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"博客迁移到了新的 Hugo 主题","headline":"博客迁移到了新的 Hugo 主题","description":"你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2021","dateCreated":"2021-12-11T00:00:00\u002b00:00","datePublished":"2021-12-11T00:00:00\u002b00:00","dateModified":"2021-12-11T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2021-12-11-migrate-to-new-theme-congo\/","wordCount":"1789","keywords":[]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"博客迁移到了新的 Hugo 主题","headline":"博客迁移到了新的 Hugo 主题","description":"你现在看到的主题就是我的博客最新的主题 Congo，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2021","dateCreated":"2021-12-11T00:00:00\u002b00:00","datePublished":"2021-12-11T00:00:00\u002b00:00","dateModified":"2021-12-11T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/posts\/2021-12-11-migrate-to-new-theme-congo\/","wordCount":"1840","keywords":[]}</script>
 <meta name=generator content="Hugo 0.90.1">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -159,9 +159,10 @@
 <p>我的主页就是 profile 模式，会显示作者的基本信息和头像。</p>
 <p>如果要开启首页，需要在<code>content</code>文件夹下增加 <code>_index.md</code>文件。</p>
 <h3 id=开启-i18n-的中文名称>开启 i18n 的中文名称 <a class=heading-anchor href=#%e5%bc%80%e5%90%af-i18n-%e7%9a%84%e4%b8%ad%e6%96%87%e5%90%8d%e7%a7%b0 aria-label=锚点>#</a></h3>
-<p>Hugo 没有简体中文（zh-cn）和繁体中文（zh-tw）的配置，统一只有 zh 配置。在主题的<code>i18</code>里有各种配置的中文配置。</p>
+<p>Hugo 没有简体中文（zh-cn）和繁体中文（zh-tw）的配置，统一只有 zh 配置。在主题的<code>i18</code>里有各种配置的中文配置。同时别忘了打开 Hugo 自身的<code>hasCJKLanguage = true</code>。否则，阅读时间和字数统计会不准确。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=color:#a6e22e>languageCode</span> = <span style=color:#e6db74>&#39;zh&#39;</span>
 <span style=color:#a6e22e>defaultContentLanguage</span> = <span style=color:#e6db74>&#39;zh&#39;</span>
+<span style=color:#a6e22e>hasCJKLanguage</span> = <span style=color:#66d9ef>true</span>
 </code></pre></div><h3 id=在线编辑>在线编辑 <a class=heading-anchor href=#%e5%9c%a8%e7%ba%bf%e7%bc%96%e8%be%91 aria-label=锚点>#</a></h3>
 <p>这个是我很喜欢的一个功能，这样就可以点击博客标题下方的图标进入编辑模式，如下图所示：</p>
 <p><img src=/img/post/20211211/edit-icon.png alt=编辑图标></p>
