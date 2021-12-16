@@ -60,6 +60,11 @@ hasCJKLanguage = true
   weight = 30
 
 [[menu.main]]
+  name = "实践指南"
+  url = "/guides"
+  weight = 40
+
+[[menu.main]]
   name = "关于我"
   pageRef = "about"
-  weight = 40
+  weight = 50
