@@ -5,6 +5,7 @@ category:
   - DevOps
 tags:
   - DevOps
+draft: true
 ---
 
 > [2019-08-24] 在写完《 DevOps前世今生 - DevOps 的文化》之后，这个系列我就停止更新了。在这期间发生了两件事：1. 《DevOps Handbook》出版，我准备阅读完《DevOps Handbook》后再继续写。2. 我在不同的社区活动中分享了自己对 DevOps 的理解，和不同行业的朋友交流了很多，很受启发，于是写下了[关于 DevOps ，咱们聊的可能不是一回事](https://www.guyu.me/posts/2017-12-03-we-are-talking-different-devops/)。没想到这个系列一搁置就是两年（咨询师的工作充满了太多不确定性）。
