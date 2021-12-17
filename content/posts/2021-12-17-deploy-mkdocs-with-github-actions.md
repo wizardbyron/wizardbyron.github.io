@@ -1,7 +1,6 @@
 ---
 title: "通过 Github Actions 部署 Mkdocs 文档"
-date: 2021-12-16T20:12:49+08:00
-draft: true
+date: 2021-12-17
 category: 
   - 其它
 tags:
