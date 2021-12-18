@@ -3,6 +3,10 @@ title: 博客迁移到了新的 Hugo 主题
 date: 2021-12-11
 categories: 
   - 其它
+tags:
+  - Hugo
+  - Github Pages
+  - Github Actions
 ---
 
 你现在看到的主题就是我的博客最新的主题 [Congo](https://jpanther.github.io/congo/)，这些天一直没更新博客的主要原因是一直在寻找一个简洁明快的博客主题，最后就它了！（不过说不定未来还会换）
