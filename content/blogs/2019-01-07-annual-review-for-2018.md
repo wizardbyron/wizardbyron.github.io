@@ -25,9 +25,9 @@ tags:
 
 开发了两个开源软件，2019年要继续完善，0.1.0 Release
 
-[vivian](https://github.com/wizardbyron/vivian)，详见[测试驱动开发 Nginx 配置](/posts/2018-06-12-tdd-in-nginx)
+[vivian](https://github.com/wizardbyron/vivian)，详见[测试驱动开发 Nginx 配置](/blogs/2018-06-12-tdd-in-nginx)
 
-[wade](https://github.com/wizardbyron/vivian)，详见[一怒之下，我写了一个开源流量测试工具](/posts/2018-07-07-why-do-I-write-wade)
+[wade](https://github.com/wizardbyron/vivian)，详见[一怒之下，我写了一个开源流量测试工具](/blogs/2018-07-07-why-do-I-write-wade)
 
 ## 其次是一点感想
 
