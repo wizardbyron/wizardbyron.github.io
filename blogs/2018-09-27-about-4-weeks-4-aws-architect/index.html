@@ -1,0 +1,306 @@
+<!doctype html><html lang=zh class=dark><head>
+<meta charset=utf-8>
+<meta http-equiv=content-language content="zh">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<title>关于四周四 AWS 架构工作坊的设计和实践 &#183; 顾宇的博客</title>
+<meta name=title content="关于四周四 AWS 架构工作坊的设计和实践 &#183; 顾宇的博客">
+<meta name=description content>
+<link rel=canonical href=https://wwww.guyu.me/blogs/2018-09-27-about-4-weeks-4-aws-architect/>
+<link type=text/css rel=stylesheet href=/css/schemes/slate.min.1fa9cfe6ea431f51b6669ad59d531a840711f25edf67f90d0227253371e1da49fdcc25506150e39fb99ac2c95a6012b2c4bbdd6c41b841b186419cbd7e115768.css integrity="sha512-H6nP5upDH1G2ZprVnVMahAcR8l7fZ/kNAiclM3Hh2kn9zCVQYVDjn7mawslaYBKyxLvdbEG4QbGGQZy9fhFXaA==">
+<link type=text/css rel=stylesheet href=/css/compiled/main.min.4076b9cf114dd23cca017f3365e2205a4c9a4b2c0ef4193ccd08883f76e554aa40f674a8f6e77a1b2895be0975ba8e019b0c59996c2eea32e4970ca4d5221653.css integrity="sha512-QHa5zxFN0jzKAX8zZeIgWkyaSywO9Bk8zQiIP3blVKpA9nSo9ud6GyiVvgl1uo4BmwxZmWwu6jLklwyk1SIWUw==">
+<script>function loadPreferredAppearance(){localStorage.preferredAppearance==="dark"||!("preferredAppearance"in localStorage)&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}function setPreferredAppearance(a){a=="default"?localStorage.removeItem("preferredAppearance"):localStorage.preferredAppearance=a,loadPreferredAppearance()}loadPreferredAppearance(),window.matchMedia("(prefers-color-scheme: dark)").addListener(loadPreferredAppearance)</script>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/site.webmanifest>
+<meta property="og:title" content="关于四周四 AWS 架构工作坊的设计和实践">
+<meta property="og:description" content="背景 # 2017 年的年末，我在 REA Asia 团队担任 DevOps 工程师的角色。当时刚刚完成一个站点 AWS 端到端的上线，这也是我第一次完整的从零独立设计完成一个 AWS 上 Web 的架构设">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wwww.guyu.me/blogs/2018-09-27-about-4-weeks-4-aws-architect/"><meta property="article:section" content="blogs">
+<meta property="article:published_time" content="2018-09-27T00:00:00+00:00">
+<meta property="article:modified_time" content="2018-09-27T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="关于四周四 AWS 架构工作坊的设计和实践">
+<meta name=twitter:description content="背景 # 2017 年的年末，我在 REA Asia 团队担任 DevOps 工程师的角色。当时刚刚完成一个站点 AWS 端到端的上线，这也是我第一次完整的从零独立设计完成一个 AWS 上 Web 的架构设">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Blogs","name":"关于四周四 AWS 架构工作坊的设计和实践","headline":"关于四周四 AWS 架构工作坊的设计和实践","description":"背景 # 2017 年的年末，我在 REA Asia 团队担任 DevOps 工程师的角色。当时刚刚完成一个站点 AWS 端到端的上线，这也是我第一次完整的从零独立设计完成一个 AWS 上 Web 的架构设","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2018","dateCreated":"2018-09-27T00:00:00\u002b00:00","datePublished":"2018-09-27T00:00:00\u002b00:00","dateModified":"2018-09-27T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/blogs\/2018-09-27-about-4-weeks-4-aws-architect\/","wordCount":"5867","keywords":["AWS","工作坊"]}</script>
+<meta name=generator content="Hugo 0.91.0">
+<meta name=author content="顾宇">
+<link href=https://linkedin.com/in/wizardbyron rel=me>
+<link href=https://github.com/wizardbyron rel=me>
+</head>
+<body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl"><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-800 dark:text-neutral">
+<div>
+<a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" rel=me href=/>顾宇的博客</a>
+</div>
+<nav>
+<ul class="flex flex-col list-none sm:flex-row">
+<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+<a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/ title>主页</a>
+</li>
+<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+<a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/blogs/ title=Blogs>博客</a>
+</li>
+<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+<a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/categories/ title=Categories>分类</a>
+</li>
+<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+<a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/tags/ title=Tags>标签</a>
+</li>
+<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+<a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/guides title>实践指南</a>
+</li>
+<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+<a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/about/ title=关于我>关于我</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=flex-grow>
+<article class=max-w-prose>
+<header>
+<h1 class="mt-0 text-4xl font-extrabold text-neutral-800 dark:text-neutral">
+关于四周四 AWS 架构工作坊的设计和实践
+</h1>
+<div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
+<div class="flex flex-row items-center">
+<time datetime="2018-09-27 00:00:00 +0000 UTC">27 September 2018</time><span class="px-2 text-primary-500">&#183;</span><span>5867 字</span><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>12 分钟</span><span class="px-2 text-primary-500">&#183;</span>
+<span class=mb-[2px]>
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/blogs/2018-09-27-about-4-weeks-4-AWS-architect.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
+</span>
+</a>
+</span>
+</div>
+</div>
+</header>
+<section class="prose dark:prose-light">
+<h2 id=背景>背景 <a class=heading-anchor href=#%e8%83%8c%e6%99%af aria-label=锚点>#</a></h2>
+<p>2017 年的年末，我在 REA Asia 团队担任 DevOps 工程师的角色。当时刚刚完成一个站点 AWS 端到端的上线，这也是我第一次完整的从零独立设计完成一个 AWS 上 Web 的架构设计以及自动化实现。这也使得我能够亲自实践如何从零设计和实现一个兼具安全和稳定，并且 DevOps 友好的应用架构。于是我十分想把过程中遇到的体会和心得能够记录下来。</p>
+<p>偶然在 To China 邮件列表里看到了三周三页面工作坊成功结束的消息。于是我想，何不把我过去所做的内容分解一下，变成四周四架构？</p>
+<h2 id=学习的假象和真相>学习的假象和真相 <a class=heading-anchor href=#%e5%ad%a6%e4%b9%a0%e7%9a%84%e5%81%87%e8%b1%a1%e5%92%8c%e7%9c%9f%e7%9b%b8 aria-label=锚点>#</a></h2>
+<p>2016年，我在武汉 Office 出差，当时因为学习了 Coursera 上的 “Learning How To Learn” 课程，了解了很多关于大脑科学，和学习心理学的知识。为了更好的掌握这些知识，现学现卖，在武汉 Office 开设了两期的 “高效学习” 工作坊。</p>
+<p>两期工作坊一方面验证了书上包括 “Learning How To Learn” 视频上讲的理论，也让我如何在设计课程中有了更多的灵感和经验。当然，每一期学习者都会成为我学习心理学实验中的“小白鼠”，当然这是后话。但这也是我逐步开始研究人和人之间学习能力差异性的开始。</p>
+<p>随着自己的体验和工作坊的开展，我发现了以下两个常见的学习假象和真相：</p>
+<h3 id=假象学习只需要买书看视频在网上找文档就可以了>假象：学习，只需要买书，看视频，在网上找文档就可以了 <a class=heading-anchor href=#%e5%81%87%e8%b1%a1%e5%ad%a6%e4%b9%a0%e5%8f%aa%e9%9c%80%e8%a6%81%e4%b9%b0%e4%b9%a6%e7%9c%8b%e8%a7%86%e9%a2%91%e5%9c%a8%e7%bd%91%e4%b8%8a%e6%89%be%e6%96%87%e6%a1%a3%e5%b0%b1%e5%8f%af%e4%bb%a5%e4%ba%86 aria-label=锚点>#</a></h3>
+<h3 id=真相学习是一个很艰难的过程找一个好的教练效果事半功倍>真相：学习是一个很艰难的过程，找一个好的教练，效果事半功倍 <a class=heading-anchor href=#%e7%9c%9f%e7%9b%b8%e5%ad%a6%e4%b9%a0%e6%98%af%e4%b8%80%e4%b8%aa%e5%be%88%e8%89%b0%e9%9a%be%e7%9a%84%e8%bf%87%e7%a8%8b%e6%89%be%e4%b8%80%e4%b8%aa%e5%a5%bd%e7%9a%84%e6%95%99%e7%bb%83%e6%95%88%e6%9e%9c%e4%ba%8b%e5%8d%8a%e5%8a%9f%e5%80%8d aria-label=锚点>#</a></h3>
+<p>如果我们设定一个学习目标，而且我们有验证和度量这个学习目标的方式。从起点到终点，有无数条路径。对于已知的知识来说。最慢的路径就是看书，其次是视频。如果你不是一个长期自学并且严于律己的人，达到学习目标是一个漫长而又痛苦的过程。想想那些你的计划，和执行。这也就是为什么达到健身效果的最有效方式是找一个教练：他最重要的职责是在你容易放弃的时候帮助坚持下来。</p>
+<p>一方面，有可能是因为学习过程本身困难，压力很大。另一方面，就是会有其它的事情阻碍你的专注。因此，达到学习目标最快速的途径就是找到好的教练，制定适合你自己的学习课程，按部就班的完成内容的练习和检测。</p>
+<h3 id=假象完成课程就学会了相应的技能>假象：完成课程，就学会了相应的技能 <a class=heading-anchor href=#%e5%81%87%e8%b1%a1%e5%ae%8c%e6%88%90%e8%af%be%e7%a8%8b%e5%b0%b1%e5%ad%a6%e4%bc%9a%e4%ba%86%e7%9b%b8%e5%ba%94%e7%9a%84%e6%8a%80%e8%83%bd aria-label=锚点>#</a></h3>
+<h3 id=真相只有你能够教别人才是完全掌握了>真相：只有你能够教别人，才是完全掌握了 <a class=heading-anchor href=#%e7%9c%9f%e7%9b%b8%e5%8f%aa%e6%9c%89%e4%bd%a0%e8%83%bd%e5%a4%9f%e6%95%99%e5%88%ab%e4%ba%ba%e6%89%8d%e6%98%af%e5%ae%8c%e5%85%a8%e6%8e%8c%e6%8f%a1%e4%ba%86 aria-label=锚点>#</a></h3>
+<p>“蔡加尼克效应”，是一种记忆效应，简单的来说，就是你不会记得已经完成的事情，而是一直记得未完成的事情。也就是说，当你完成了学习过程，你会忘记之前学过的内容，因为它对你的重要性已经不强了。这点很容易理解，尽管你高中大学很多课当时考了高分，但现在让你再考，你会忘记当初学习的内容。因为，学习的目的是为了考试和分数，当考试和分数这个压力没有了，你自然会把内容忘记。</p>
+<p>我自己的亲身经历也能提供证据，在我刚加入 ThoughtWorks 的第一年的14个月里，我一口气完成了 Coursera 的 9 门在线课程的认证。然而现在让我回想起来，记住的并不多，因为缺乏实践和使用，它们随着我回收的神经细胞一起回收了。</p>
+<p>因此，不断的复习，并且通过教别人的方式复习是最有效的验证和巩固方式，你不光能够在准备内容的时候巩固自己所学。也可以在和学员的交流中发现自己需要补充的知识。</p>
+<h2 id=现有课程的问题>现有课程的问题 <a class=heading-anchor href=#%e7%8e%b0%e6%9c%89%e8%af%be%e7%a8%8b%e7%9a%84%e9%97%ae%e9%a2%98 aria-label=锚点>#</a></h2>
+<p>很多的课程以在线材料的方式出现，包括视频课程，在线文字课程。这种方式的缺点在于只有输出，学习者是否获得了对应的知识和技能是无法验证的。它们并不是一个“学习体验旅程”，而是学习体验中的元素。学习体验旅程的中心是学习者。如何围绕学习者构造的，而不是内容输出者。</p>
+<h3 id=如何验证学习的效果>如何验证学习的效果？ <a class=heading-anchor href=#%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e5%ad%a6%e4%b9%a0%e7%9a%84%e6%95%88%e6%9e%9c aria-label=锚点>#</a></h3>
+<p>在线课程无法证明你“掌握”了，但可以证明你“了解”了。当然，这个“了解”，一定程度上处于学习者的主观判断。而一场考试则是考验你是否“记忆”了。对于在线课程来说，只能确保输出，但很难确保输入。</p>
+<p>因为存在两个问题：</p>
+<p>一方面就是我们无法控制学习者的状态，无法及时的给学习者帮助和反馈。另一个方面就是学习者掌握的内容如何确认学习者真的掌握了，或者能够验证掌握的程度？</p>
+<p>因此，课程一定要设计出能够帮助学习者自身度量自己掌握程度的验证方式，目前比较好的量化效果，就是考试。</p>
+<h3 id=如何验证学习的价值>如何验证学习的价值？ <a class=heading-anchor href=#%e5%a6%82%e4%bd%95%e9%aa%8c%e8%af%81%e5%ad%a6%e4%b9%a0%e7%9a%84%e4%bb%b7%e5%80%bc aria-label=锚点>#</a></h3>
+<p>这个课程给学习者带来的价值是什么？对于学习者来说课程往往是一个 0 到 1 的过程，而从 1 到 100 则需要个人的精进。而且，每个人的诉求并不相同，如何保证每个人都有所得，就需要设定好学习者期望。</p>
+<p>所以，提供的价值对于学习者来说很有限，但如果养成了良好的习惯或者正确的认识，则能加速个人 1 到 100 的过程。因此，课程的设计一定要能够做到以下两点：</p>
+<ol>
+<li>针对特定学习者，内容能够由浅入深，并且可以度量。</li>
+<li>提供由浅入深中“不变”的那个部分的专项训练。</li>
+<li>在召集学员的时候明确以上两点。</li>
+</ol>
+<p>因此，课程做到保证“师父领进门”，而“修行在个人”就只能靠学员平时在工作中对学习内容的应用了。</p>
+<h2 id=设计一个-mvp>设计一个 MVP <a class=heading-anchor href=#%e8%ae%be%e8%ae%a1%e4%b8%80%e4%b8%aa-mvp aria-label=锚点>#</a></h2>
+<p>根据以上我的经验，再加上“精益创业”的熏陶，我就开始进行第一个 MVP 的设计和实践。</p>
+<p>首先采用逆向工作法，从学习者的可度量结果出发，反向推导应该设计什么样的内容，以及如何掌握。利用“蔡加尼克效应”，让工作坊的内容在课堂上完成不了，利用持续性的压力迫使学习者不断在脑中复习。通过学习者的反馈进行不断的调整。</p>
+<p>既然叫做四周四架构，目的就是要四周的时间在 AWS 上搭建四种不同的应用架构，从最简单的应用开始，逐步增加内容。并用实际的场景驱动架构的演进。</p>
+<p>MVP 的用户是没有 AWS 经验或者 AWS 经验尚浅的 Developer，使他们在学习之后能够达到以下效果：</p>
+<ol>
+<li>了解在 AWS 上端到端构建应用的过程。</li>
+<li>学会 AWS 上常用服务的使用要点。</li>
+<li>实际构建 CI 服务器并亲自完成 CD 过程。</li>
+<li>了解基础设施即代码并自动化以上三点内容。</li>
+<li>对实际的工作产生积极的作用。</li>
+</ol>
+<p>我邀请了我的 Sponsee 赵朝朝和张冬毅帮我提供了知识体系的内容。整个工作坊包括以下三方面内容：</p>
+<ol>
+<li>基础的 Ops 知识：网络、安全、CDN、操作系统、命令、脚本等。</li>
+<li>AWS 的组件知识：通过一个端到端的应用搭建，了解每一个 AWS 服务组件的用法。</li>
+<li>真实环境下的最佳实践：基础设施即代码，CI/CD，基础设施流水线，技术雷达相关条目等。</li>
+</ol>
+<p>并且，从“安全第一”的角度下对每个课程进行设计，启发学习者对安全问题的思考。所以根据我自己的经验，我进行了如下的设计</p>
+<p><strong>工作坊的设计有以下几个原则：</strong></p>
+<ol>
+<li>安全：每个实践都会首先从安全的角度考虑。（Security In Our DNA）</li>
+<li>自动化：从第一周开始到最后一周都是采用基础设施即代码自动化完成。</li>
+<li>最佳实践：考虑常见场景，并讨论最优解决方案。</li>
+<li>技术雷达：本课程采用了最新一期技术雷达的相关工具和技术。</li>
+<li>作业实践：每次课程都留有作业，根据时间分为小作业（平均6个小时）和大作业（平均10个小时）。</li>
+<li>提升自学能力：在工作坊中通过 Lightning Talk 分享知识点，通过分享和反思提升自学能力和团队学习能力。参与本工作坊的学习者要成为下未来工作坊的 Coach，”以教为学“，通过教来检验自己的学习和掌握成果，并巩固复习其中的知识。</li>
+</ol>
+<p><strong>AWS 组件和服务：</strong>
+管理类：CloudWatch, CloudFormation
+安全类：IAM，KMS, Certificate Manager
+网络和内容类：Route 53，Cloudfront，VPC, Subnet，Internet Gateway, Security Group，API Gateway
+计算类：EC2, ELB, AutoScaling Group, LaunchConfiguration，Lambda
+存储类：S3
+数据库：RDS，DynamoDB</p>
+<p><strong>工具：</strong>
+SaaS 服务类：cloudping.info, cloudcraft.co, flood.io
+运维工具类：ansible, docker, crontab
+应用工具类：hexo, jenkins, wordpress, serverless framework</p>
+<p><strong>工作坊所用到场景实践和工具：</strong></p>
+<ol>
+<li>基础设施即代码</li>
+<li>基础设施流水线（请参考 第 17 期技术雷达）</li>
+<li>Flood.io 负载测试 （请参考 第 17 期技术雷达）</li>
+<li>数据库的备份和恢复</li>
+<li>自动化水平扩展</li>
+</ol>
+<h2 id=第一次获取反馈--第-0-期学习者>第一次获取反馈 —— 第 0 期学习者 <a class=heading-anchor href=#%e7%ac%ac%e4%b8%80%e6%ac%a1%e8%8e%b7%e5%8f%96%e5%8f%8d%e9%a6%88--%e7%ac%ac-0-%e6%9c%9f%e5%ad%a6%e4%b9%a0%e8%80%85 aria-label=锚点>#</a></h2>
+<p>最开始的时候我召集了几个熟识的同事，包括同一组的同事。运用每周二、四的晚上 2 ~ 3 个小时来进行分享和理解。同时布置作业，所以每堂课分成4个部分：</p>
+<ol>
+<li>作业点评 - 30 分钟：除了第一次课外，</li>
+<li>学习者 Session - 30分钟：学习者 Pair 或者独立完成一个 Session，Session 的 题目除了布置的内容以外。更多的是课堂上产生的问题。例如 HTTPS 的原理，加密解密，基本的网络知识</li>
+<li>本次内容和本次作业 - 30 分钟：25分钟用来讲解本次的内容，5分钟用来留作业。</li>
+<li>收集反馈 - 30分钟：收集学习者的反馈。</li>
+</ol>
+<p>MVP 需要验证以下问题：</p>
+<ol>
+<li>时间是否足够</li>
+<li>难度是否适当</li>
+<li>作业占用学习者的精力的多少</li>
+<li>布置的 Session 是否达到效果</li>
+<li>验证 AWS 支出会有多少</li>
+</ol>
+<p>首先，我挑选了一些学习者。看看对 AWS 熟悉程度不同的学习者对课程内容难度的消化情况。其中，2名零基础学习者，2名有一点 AWS 使用经验的 Dev，以及开始或者正在 AWS 上做 Ops 的学习者。</p>
+<p>其次，采用“目标驱动的自学”，并采用 Session 和作业的方式进行验证，使得学习者通过多感官刺激记忆住学习的内容。并在过程中，借由驱动自己解决新出现的问题来提升自己的学习能力和效果。</p>
+<p>最后，利用“蔡加尼克效应”持续不断的在学习者的大脑中增加“未完成”的印象，使得这种压力和记忆有足够的时间来留下学习印象。</p>
+<p><strong>通过第一次的实践，我获得了如下结果：</strong></p>
+<ol>
+<li>内容太多，Workshop 内的时间并不充裕。第一期完成的时间比预期（4周）要多，内容进行了 80% 花费了7 周的时间。</li>
+<li>难度偏高，除了课时内容，需要每天占用至少 2 小时来完成作业。如果增加学习压力的话，效果未必好，疲劳度会提升，影响工作和进一步学习。</li>
+<li>学习者自己讲的 Session 能够很好的传递积累和学习知识。</li>
+<li>工作坊的支出在 78 元附近，包含一个自己的域名（9 美元），采用 Free Tier 政策则能省下更多。</li>
+</ol>
+<p>获得了以上的结果后，我就开始准备第一期学习者的招募计划。</p>
+<h2 id=第二次获取反馈--第-1-期-学习者>第二次获取反馈 —— 第 1 期 学习者 <a class=heading-anchor href=#%e7%ac%ac%e4%ba%8c%e6%ac%a1%e8%8e%b7%e5%8f%96%e5%8f%8d%e9%a6%88--%e7%ac%ac-1-%e6%9c%9f-%e5%ad%a6%e4%b9%a0%e8%80%85 aria-label=锚点>#</a></h2>
+<p>当第0期还未结束之际，我就开始招募第一期的学习者，为了保证效果，限定10名学习者（面向 Office，从不同的5个项目组依据性别比例随机选择2名）。此外，加上我所在团队的成员，共有20人报名。</p>
+<p>根据第一期的经验，同时删减第一期的内容，减少作业量，</p>
+<p>第一期学习者需要验证以下几点：</p>
+<ol>
+<li>什么样程度的学习者对这个课程感兴趣？</li>
+<li>调整过的内容是否合适？</li>
+<li>“蔡加尼克效应”对 0 期学习者的影响是否有效？</li>
+<li>0 期学习者是否能够采用教别人的方式完成知识的巩固？</li>
+<li>学习完成后给项目和自己能给自己带来多少真实的提高？</li>
+</ol>
+<p>邀请 0 期的学习者成为第 1 期的 Coach 有两个动因：一方面是验证蔡加尼克效应的真实效果，另一方面是巩固第 0 期所学的知识。</p>
+<p>在过程中，根据学习者的反馈，对课程的设置及时进行调整。分别增加了一次作业讲解，为了让大家更加熟悉基础设施即代码。此外，为了阶段性巩固学习成果，将第六周改为了一次“期中考试”，以巩固之前所学。期中考试的结果还是反映了一些问题的，于是在这一期课程进入尾声的时候，我增加了期末考试。并且计划将期末考试的时间推迟两个月左右，来看看考试效果。</p>
+<p>针对整个学习的内容，我把考试分为了笔试和上机两个部分。主要目的是能够运用 AWS 服务完成一个应用端到端架构的基本原理，次要目的是检测学习者对学习内容掌握的清晰程度。因此，笔试部分为 40 道不定项选择题，每题 1 分。这种题目的要求比较高，只有清晰掌握了知识，才可以做全对。40道题里的难度设置为：10 分“送分题”，关于工作坊所学内容的一般性常识，10 分基础题，只要参加工作坊完成过作业就可以答对的题。10 题难题，答案中有所混淆，十分熟练才可以大队。10题陷阱题，目的是为了矫正认知，所以基本上一定会做错。</p>
+<p>上机部分以第 3 周，也就是工作坊中最难的架构为场景，设计了12个考点，每题 5分，共 60 分。 简单，中等，困难各 4 道。简单题目就是直接指出在 AWS 中要完成的事情，再一次巩固学习内容。中等题目是设定一定目标，提示 AWS 组件，而完成的内容需要自己来实现。困难题目只是表明目标和检测方法，没有任何提示。这样从分数上来说，就可以收集到学习者的结果和课程设计期望之间的差距，以便下一期设计好课程。</p>
+<p>在进行正式考试之前，我分别找了两位同学进行“试考”，以确保题目正确并达到想要的效果，避免出错题。</p>
+<p><strong>通过第1次的实践，我获得了如下结果：</strong></p>
+<ol>
+<li>这个 MVP 依然很大，将学习时间碎片化并不利于对内容的掌握。学习内容对于目标的完成来说并不利。</li>
+<li>吸引到的学习者都不是专业做 Ops 工作的，知识结构上存在短板，但和 AWS 有一定交集，并没有经过系统的学习。</li>
+<li>人数必须在10人以内，否则时间会被分散，不利于集中使用，难以达到预期的效果。</li>
+<li>内容很紧凑，如果中间有一次没有来，之后来的可能性很低。</li>
+<li>课程时间太少，作业完成程度不高，加之缺乏练习，遗忘很快。“蔡加尼克效应”此处失败，在于学习者对这件事情的重视程度上。</li>
+<li>AWS 零基础或者具备基本经验</li>
+<li>Session 占用的课上时间会导致拖堂。如果按时结束，则内容则完成不了。</li>
+<li>Lambda 的部分所需要的时间比预期的更加长，而且场景有点复杂。</li>
+<li>考试是非常有效的验证学习结果的方式。</li>
+<li>通过考试发现，对内容的掌握程度和自己的已有知识关系很大。也就是说，分数高的学习者，工作中也在做类似的工作。分数低的学习者，学习内容能给她带来的作用很有限。</li>
+</ol>
+<h2 id=即将推出的-aws-四阶工作坊>即将推出的 AWS 四阶工作坊 <a class=heading-anchor href=#%e5%8d%b3%e5%b0%86%e6%8e%a8%e5%87%ba%e7%9a%84-aws-%e5%9b%9b%e9%98%b6%e5%b7%a5%e4%bd%9c%e5%9d%8a aria-label=锚点>#</a></h2>
+<p>第 1 期开始的过程中，我不断在度量和总结，并且依据反馈及时调整了课程的设置以及内容的增减，以改进这门课的设计。接下来的第 2 期课程，会有以下变化。</p>
+<p>增加了课时：每一个架构都由 16 个学时构成，按照 2 天 * 8 小时的方式计算， 4 周 总计需要 64 个学时。这 64 个学时可以自由安排：可以是一周内的5个工作日，也可以是两个周六周日，也可以是四个周六或者周日。这样课程可以满足更多场景的需要。因此，这个工作坊就不能再叫 4 周 4 AWS 架构了。我把内容再次切割成更加轻量级的单元，学习的压力更小，效果更佳。</p>
+<p>此外，在设计考试的时候这让我想到了考驾照。于是，我重新修订了目标和课程名称。将四周四 AWS 架构 改称为“ AWS 技能水平资格认证”（以下简称 “AWS 老司机驾照”），把原先的 4 周 4 AWS 架构变成科目一，科目二，即将增加的中高级内容（正在开发）则放到科目三和科目四中。</p>
+<p>我把原先的 4 周四架构拆成 两个部分，Serverless 部分单独成为一个两天的工作坊，暂时剥离 AWS 老司机。剩下的内容再次删减成两个部分，一部分是简单的 EC2 Server 的设计和使用，重要强调基础设施即代码能力（一阶），用两天的时间完成。另一部分是真实的 Web 应用场景，把独，CDN，VPC 规划 和 RDS 放到另外两天的课程（二阶）。</p>
+<p><strong>第二期的设计如下：</strong></p>
+<ol>
+<li>重新定位的学习者目标：巩固 AWS 的每一个应用架构的场景和知识。</li>
+<li>更小的学习压力，更容易的输出和度量。</li>
+<li>采用周末一天或者两天，全天的方式，集中的完成一个内容。</li>
+<li>更多的课堂指导实践的机会，当堂消化内容。</li>
+<li>每一次一定会有上一次的内容相关的考试，通过反馈来校正和巩固自己的学习效果。</li>
+</ol>
+<p>这一次的效果和反馈如何呢？期待你的加入和分享。</p>
+<p>与此同时， “AWS 老司机驾照” 的科目三和科目四正在开发中。目前的计划是采用 Terraform 构建一个 Kubernetes 集群，并且引入 Spinnaker 作为流水线，部署一个 微服务架构的应用并引入 Chaos Monkeys 做可用性验证。全程会采用技术雷达推荐的实践和工具，并且同样结合真实的项目场景进行驱动。</p>
+</section>
+<footer class=pt-8>
+<div class=flex>
+<img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/author.jpg>
+<div class=place-self-center>
+<div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
+作者
+</div>
+<div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+顾宇
+</div>
+<div class="text-sm text-neutral-700 dark:text-neutral-400">Stand Alone CompleX</div>
+<div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+<a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://linkedin.com/in/wizardbyron target=_blank alt=Linkedin rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" class="svg-inline--fa fa-linkedin fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentcolor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span>
+</a>
+<a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/wizardbyron target=_blank alt=Github rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+<div class="pt-8 article-pagination">
+<hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+<div class="flex justify-between pt-3">
+<span>
+<a class=flex href=/blogs/2018-11-08-how-do-we-measure-microservices-success/>
+<span class="mr-3 article-pagination-direction">&larr;</span>
+<span class="flex flex-col">
+<span class="article-pagination-title mt-[0.1rem] leading-6">我们如何衡量微服务的成功？</span>
+<span class="mt-[0.1rem] text-xs text-neutral-400 dark:text-neutral-500">
+<time datetime="2018-11-08 00:00:00 +0000 UTC">8 November 2018</time>
+</span>
+</span>
+</a>
+</span>
+<span>
+<a class="flex text-right" href=/blogs/2018-09-14-four-definitions-of-microservices/>
+<span class="flex flex-col">
+<span class="article-pagination-title mt-[0.1rem] leading-6">讨论微服务之前，你知道微服务的 4 个定义吗？</span>
+<span class="mt-[0.1rem] text-xs text-neutral-400 dark:text-neutral-500">
+<time datetime="2018-09-14 00:00:00 +0000 UTC">14 September 2018</time>
+</span>
+</span>
+<span class="ml-3 article-pagination-direction">&rarr;</span>
+</a>
+</span>
+</div>
+</div>
+</footer>
+</article>
+</main><footer class=py-10>
+<div class="flex justify-between">
+<div>
+<p class="text-sm text-neutral-400 dark:text-neutral-500">
+&copy;
+2021
+顾宇
+</p>
+<p class="text-xs text-neutral-300 dark:text-neutral-600">
+由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
+</p>
+</div>
+<div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
+<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
+</span>
+</button>
+<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
+</span>
+</button>
+</div>
+</div>
+</footer>
+</body>
+</html>
