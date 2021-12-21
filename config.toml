@@ -46,7 +46,7 @@ hasCJKLanguage = true
 
 [[menu.main]]
   name = "博客"
-  pageRef = "posts"
+  pageRef = "blogs"
   weight = 10
 
 [[menu.main]]
