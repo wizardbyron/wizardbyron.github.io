@@ -42,16 +42,11 @@ hasCJKLanguage = true
 [[menu.main]]
   name = "主页"
   url = "/"
-  weight = 5
+  weight = 10
 
 [[menu.main]]
   name = "博客"
   pageRef = "blogs"
-  weight = 10
-
-[[menu.main]]
-  name = "分类"
-  pageRef = "categories"
   weight = 20
 
 [[menu.main]]
