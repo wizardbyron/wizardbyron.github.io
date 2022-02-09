@@ -1,14 +1,11 @@
 ---
 title: Serverless 风格的微服务的持续交付
 date: 2018-02-01
-categories: 
-  - 微服务
 tags:
-  - Serverless
-  - Lambda
-  - 微服务
-  - AWS
-  - 持续交付
+- Serverless
+- 微服务
+- AWS
+- 持续交付
 ---
 
 “Serverless 风格微服务的持续交付（上）：架构案例”中，我们介绍了一个无服务器风格的微服务的架构案例。这个案例中混合了各种风格的微服务

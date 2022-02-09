@@ -1,10 +1,9 @@
 ---
-title: DevOps前世今生 - DevOps 的文化
+title: DevOps前世今生 - 4. DevOps 的文化
 date: 2017-05-21
-categories: 
-- DevOps
 tags:
-- DevOps 文化
+- DevOps
+- DevOps 前世今生
 ---
 
 ## 用工具堆砌的DevOps 幻觉

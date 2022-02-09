@@ -1,11 +1,8 @@
 ---
 title: 翻译-混沌工程的原则
 date: 2018-03-01
-categories: 
-  - DevOps
 tags:
-  - 停机时间
-  - Chaos Enginnering
+  - DevOps
   - 混沌工程
 ---
 

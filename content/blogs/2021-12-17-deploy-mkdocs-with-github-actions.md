@@ -1,12 +1,8 @@
 ---
 title: "通过 Github Actions 部署 Mkdocs 文档"
 date: 2021-12-17
-category: 
-  - 其它
 tags:
-  - Hugo
-  - Github Pages
-  - Github Actions
+- 其它
 ---
 
 Mkdocs 是一个采用 Python 构建轻量级的静态 HTML 在线文档框架，内置部署到 Github Pages 的功能。我用来创建[实践指南](/guides/)，用来做个人的知识积累。

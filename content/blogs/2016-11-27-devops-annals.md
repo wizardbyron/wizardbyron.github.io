@@ -1,10 +1,9 @@
 ---
-title: DevOps 前世今生 - DevOps 编年史
+title: DevOps 前世今生 - 1. DevOps 编年史
 date: 2016-11-27
-categories: 
- - DevOps
 tags: 
- - DevOps 历史
+- DevOps
+- DevOps 前世今生
 ---
 
 

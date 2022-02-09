@@ -1,13 +1,12 @@
 ---
 title: 云原生下的 DevSecOps 实践
 date: 2019-03-17
-categories: 
-  - DevOps
 tags:
-  - CloudNative
-  - 安全
-  - Serverless
-  - BeyondCorp
+- 云原生
+- 安全
+- Serverless
+- BeyondCorp
+- DevSecOps
 ---
 
 ## 云原生的安全挑战

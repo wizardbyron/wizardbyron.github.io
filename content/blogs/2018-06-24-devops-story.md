@@ -1,10 +1,8 @@
 ---
 title: 采用 DevOps 故事落地 DevOps
 date: 2018-06-24
-categories: 
-  - DevOps
 tags:
-  - DevOps 故事
+  - DevOps
 ---
 
 在 2009 年第一届 DevOpsDays 上，《敏捷教练》的作者 Rachel Davies 作为第一届 DevOpsDays 上的第一位分享嘉宾。分享了在 BBC 采用用户故事跟踪非功能需求的经验。然而这一实践并不如 DevOps 的其它实践那样广泛。这个实践实际上很简单，就是把非功能需求做为用户故事的 AC 放入故事卡里。

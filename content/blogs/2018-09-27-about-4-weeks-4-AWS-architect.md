@@ -1,11 +1,9 @@
 ---
 title: 关于四周四 AWS 架构工作坊的设计和实践
 date: 2018-09-27
-category: 
-  - AWS
 tags:
   - AWS
-  - 工作坊
+  - 其它
 ---
 
 ## 背景

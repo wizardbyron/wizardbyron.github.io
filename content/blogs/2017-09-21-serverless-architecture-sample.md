@@ -1,13 +1,10 @@
 ---
 title: Serverless 风格的微服务的架构案例
 date: 2017-09-21
-categories: 
-  - 微服务
 tags:
-  - Serverless
-  - Lambda
-  - AWS
-  - 持续交付
+- Serverless
+- AWS
+- 持续交付
 ---
 
 Serverless 架构最早可以追溯到 Ken Fromm 发表的文章《[Why The Future Of Software And Apps Is Serverless](http://readwrite.com/2012/10/15/why-the-future-of-software-and-apps-is-serverless/)》。在这篇文章里， Ken Fromm 描述了在未来云计算基础设施普及的情况下。在构建应用程序的时候，开发人员和运维人员无需担心服务器如何安装配置，如何设置网络和负载均衡，无需监控状态，甚至不再会出现服务器相关的工作内容。这样可以让原本建设机房的时间成本和货币成本从按年计算缩短至按秒计算。
