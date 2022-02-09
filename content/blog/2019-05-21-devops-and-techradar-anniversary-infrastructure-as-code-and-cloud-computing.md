@@ -86,7 +86,7 @@ Vagrant 和 Packer 这样的组合深深影响了 Docker，这个我们后面再
 
 下面是基础设施即代码相关条目的发展历程一览图。实线为同一条目变动，虚线为相关不同条目变动：
 
-![基础设施即代码相关条目](/img/post/20190521/techradar-infrastructure-as-code.png)
+![基础设施即代码相关条目](/img/blog/20190521/techradar-infrastructure-as-code.png)
 
 相关条目：[Puppet](https://www.thoughtworks.com/radar/tools/puppet)，[Librarian-puppet and Librarian-Chef](https://www.thoughtworks.com/radar/tools/librarian-puppet-and-librarian-chef)，[Masterless Chef/Puppet](https://www.thoughtworks.com/radar/techniques/masterless-chef-puppet)，[Provisioning Testing](https://www.thoughtworks.com/radar/techniques/provisioning-testing)，[Testinfra](https://www.thoughtworks.com/radar/tools/testinfra)，[Serverspec](https://www.thoughtworks.com/radar/tools/serverspec)，[Terraform](https://www.thoughtworks.com/radar/tools/terraform)，[Terragrunt](https://www.thoughtworks.com/radar/tools/terragrunt)。
 
@@ -182,7 +182,7 @@ OpenStack是由NASA（美国国家航空航天局）和Rackspace合作研发并�
 
 下面是云计算相关条目的发展历程一览图。实线为同一条目变动，虚线为相关不同条目变动：
 
-![基础设施即代码相关条目](/img/post/20190521/techradar-cloud-computing.png)
+![基础设施即代码相关条目](/img/blog/20190521/techradar-cloud-computing.png)
 
 当大规模的基础设施能够通过开发的方式管理起来以后。似乎运维工程师也变成了一类开发者——基础设施开发者。而和一般应用程序开发者的区别就是面向的领域和使用的工具不同。而基础设施即代码技术和云计算的结合使用可以大大降低基础设施的复杂度。于是我们就可以驾驭更加复杂的应用程序了，特别是微服务。请期待下一篇：从技术雷达看DevOps十年——容器和微服务。
 

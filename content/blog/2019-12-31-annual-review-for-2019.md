@@ -31,7 +31,7 @@ tags:
 
 ## 内容运营
 
-我把自己的博客从 Hexo 转到了 Hugos，并且部署后到了腾讯云和Github 上。前者的域名是 [www.wizardbyron.cn](https://www.wizardbyron.cn)，后者的域名是 [www.guyu.me](https://www.guyu.me)。我自己做了两个脚本分别部署。
+我把自己的博客从 Hexo 转到了 Hugos，并且部署后到了腾讯云和Github 上。前者的域名是 [www.wizardbyron.cn](https://www.wizardbyron.cn)，后者的域名是 [www.guyu.me]()。我自己做了两个脚本分别部署。
 
 今年写了十三篇博客。基本上每个月会有一篇，仍然是以 DevOps 和微服务为主。今年是 DevOps 的十周年，同时也是技术雷达的十周年，写了三篇文章纪念技术发展（其实是去年写好的，今年为了跟着技术雷达发表进行了一些修改）：
 

@@ -97,7 +97,7 @@ DevOps 和技术雷达都将迎来自己的不愁之年。作为 IT 行业技术
 
 下面是持续交付和 DevOps 相关条目的发展历程一览图。实线为同一条目的变化，虚线为影响的相关条目：
 
-![DevOps和持续交付相关条目](/img/post/20190416/techradar-devops-and-cd.png)
+![DevOps和持续交付相关条目](/img/blog/20190416/techradar-devops-and-cd.png)
 
 DevOps 和持续交付的理念在10年中不断发酵，影响了之后工具和技术的发展，技术雷达捕捉到了这些全球的趋势。让我们从最早开始改变的数据中心和云计算看看 DevOps 带来的影响。
 

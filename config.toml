@@ -46,7 +46,7 @@ hasCJKLanguage = true
 
 [[menu.main]]
   name = "博客"
-  pageRef = "blogs"
+  pageRef = "blog"
   weight = 20
 
 [[menu.main]]
@@ -56,7 +56,7 @@ hasCJKLanguage = true
 
 [[menu.main]]
   name = "实践指南"
-  url = "/guides"
+  url = "/guide"
   weight = 40
 
 [[menu.main]]
