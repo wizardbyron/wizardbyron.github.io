@@ -183,7 +183,7 @@ Chris Richardson 将“单体架构”和“微服务架构”看做两种架构
 
 值得注意的是，Chris Richardson 所采用的例子虽然在同样的上下文中，但由于特征不同并不具备可比较性。因此，他采用了在[”单体架构模式“（Pattern: Monolithic Architecture）](https://microservices.io/patterns/monolithic.html)的基础上描述其局限性的方法引出了[”微服务架构模式“（Pattern: Microservice Architecture）](https://microservices.io/patterns/microservices.html)。严格的说，Chris Richardson 的“单体架构模式“是一种对现状的和举例，并没有给出其特征和方法的描述，因此不能称之为模式。而”微服务架构模式“则[又是一系列模式的总和](https://microservices.io/patterns/cn/index.html)，如下图所示：
 
-![PatternsRelatedToMicroservices](/img/post/20180914/MicroservicePatternLanguage.jpg)
+![PatternsRelatedToMicroservices](/img/blog/20180914/MicroservicePatternLanguage.jpg)
 
 从这个角度看，Chris Richardson 的这些模式并没有突破 Sam Newman 在《微服务设计》中总结出的实践。但相较于我们所知道的微服务的优点。Chris Richardson 也列出了微服务的缺点：
 

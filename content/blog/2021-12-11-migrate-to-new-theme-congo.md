@@ -87,13 +87,13 @@ jobs:
 
 提交后你就可以看到 Github Actions 里多了一个 Workflow，如下图所示：
 
-![Github Actions 执行部署任务](/img/post/20211211/gh-actions.png)
+![Github Actions 执行部署任务](/img/blog/20211211/gh-actions.png)
 
 ## 5. 修改 Github Pages 配置
 
 * github pages 默认推荐采用`gh-pages`分支来存放静态站点的内容。`gh-pages.yml`里的配置已经会帮你把生成的文件提交到`gh-pages`分支上。所以，要在代码库的 `Settings` 里的 `Pages` 里设置采用 `gh-pages` 分支发布你的站点。如下图所示：
 
-![Github Pages 配置界面](/img/post/20211211/gh-pages-settings.png)
+![Github Pages 配置界面](/img/blog/20211211/gh-pages-settings.png)
 
 * 这时候，如果你需要用自己的域名增加 CNAME 记录，你就要额外在 `static`目录下创建`CNAME`文件，里面只需要写入你的域名。并且在上图的配置中填入你的 CNAME。
 
@@ -129,7 +129,7 @@ hasCJKLanguage = true
 
 这个是我很喜欢的一个功能，这样就可以点击博客标题下方的图标进入编辑模式，如下图所示：
 
-![编辑图标](/img/post/20211211/edit-icon.png)
+![编辑图标](/img/blog/20211211/edit-icon.png)
 
 点击这个图标默认会跳转到这篇文档的原始 markdown，这样当你在 Web 上提交之后，Github Actions 会自动帮你部署。不需要一定要有笔记本电脑在手边。
 
