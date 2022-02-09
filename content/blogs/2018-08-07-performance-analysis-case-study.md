@@ -1,14 +1,12 @@
 ---
 title: 公有云(AWS)上的生产环境性能分析案例
 date: 2018-08-07
-categories: 
-  - DevOps
 tags:
-  - 停机时间
-  - 性能
-  - AWS
-  - wade
-  - 流量测试
+- 停机时间
+- 性能
+- AWS
+- 开源
+- 流量测试
 ---
 本文是我在 gitchat 上的文章[云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）](https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html)的前半部分，本文对原文有所修改和总结。交流实录请[点击这里](https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html)。
 

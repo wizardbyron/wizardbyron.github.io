@@ -1,8 +1,6 @@
 ---
 title: DevOps 模式 - 引入 DevOps 顾问
 date: 2019-07-13
-categories: 
-  - DevOps
 tags:
   - DevOps 模式
 ---

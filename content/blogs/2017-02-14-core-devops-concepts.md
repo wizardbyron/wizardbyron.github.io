@@ -1,10 +1,8 @@
 ---
-title: DevOps 前世今生 - DevOps 的目标和核心
+title: DevOps 前世今生 - 3. DevOps 的目标和核心
 date: 2017-02-14
-categories: 
-  - DevOps
 tags:
-  - DevOps 历史
+- DevOps 前世今生
 ---
 
 在[**\#DevOps的前世今生\# 2. Dev和Ops矛盾缘何而来？**](https://www.guyu.me/blogs/2017-01-17-where-did-devops-issues-come)一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和 Ops 的核心矛盾：

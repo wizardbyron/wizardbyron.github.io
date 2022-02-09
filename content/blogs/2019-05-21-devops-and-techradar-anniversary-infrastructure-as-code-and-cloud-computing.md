@@ -1,9 +1,8 @@
 ---
 title: 从技术雷达看 DevOps 的十年——基础设施即代码与云计算
 date: 2019-05-21
-categories: 
- - DevOps
 tags: 
+ - DevOps
  - 基础设施即代码
  - 云计算
  - 技术雷达

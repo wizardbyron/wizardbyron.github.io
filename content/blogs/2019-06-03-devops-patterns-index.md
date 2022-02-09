@@ -1,8 +1,6 @@
 ---
 title: DevOps 模式 - 索引
 date: 2019-06-02
-categories: 
-  - DevOps
 tags:
   - DevOps 模式
 ---

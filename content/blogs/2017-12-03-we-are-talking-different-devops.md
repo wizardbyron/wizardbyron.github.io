@@ -1,10 +1,8 @@
 ---
 title:  关于 DevOps ，咱们聊的可能不是一回事
 date: 2017-12-03
-categories: 
-  - DevOps
 tags:
-  - DevOps
+- DevOps
 ---
 
 在过去的三年中，我作为 DevOps 的咨询师参与了很多企业的 DevOps 转型咨询以及技术实施，也在不同的社区活动中分享了自己在  DevOps 上的实践、理解和观点。

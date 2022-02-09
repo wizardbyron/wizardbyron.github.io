@@ -1,12 +1,12 @@
 ---
 title: 从技术雷达看 DevOps 的十年——容器技术与微服务
 date: 2019-07-11
-categories: 
- - DevOps
 tags: 
- - DevOps 历史
+ - DevOps
  - 技术雷达
-
+ - 微服务
+ - Docker
+ - Kubernetes
 ---
 
 > 本文原文发表于 2019 年 7 月 11 日的 [ThoughtWorks 洞见](https://insights.thoughtworks.cn/container-technology-and-micro-services/)，后经过修改发表到博客上。

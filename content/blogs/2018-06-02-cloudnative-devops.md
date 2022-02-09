@@ -1,13 +1,10 @@
 ---
 title: 云原生 DevOps
 date: 2018-06-02
-categories: 
-  - DevOps
 tags:
-  - CloudNative
+  - 云原生
   - 安全
   - Serverless
-  - Lambda
 ---
 
 回头遥望，DevOps 将迎来自己的十岁生日。对于整个行业，这十年 DevOps给 IT 行业所带来的冲击并没有因为时间的增长而放慢革新的脚步，反而越发的剧烈和深远。

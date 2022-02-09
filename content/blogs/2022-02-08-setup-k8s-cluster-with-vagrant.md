@@ -1,6 +1,10 @@
 ---
 title: "通过 Vagrant 一键初始化 K8S 集群"
 date: 2022-02-08
+tags:
+- Kubernetes
+- 云原生
+- 开源
 ---
 ## 起因
 

@@ -1,8 +1,6 @@
 ---
 title: DevOps 模式 - 定义你的DevOps
 date: 2019-05-26
-category: 
-  - DevOps
 tags:
   - DevOps 模式
 ---

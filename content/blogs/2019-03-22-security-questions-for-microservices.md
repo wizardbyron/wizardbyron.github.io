@@ -1,11 +1,9 @@
 ---
 title: 【翻译】微服务安全：所有应该被问到的问题
 date: 2019-03-22
-categories: 
-  - 微服务
 tags:
-  - 安全
-  - 微服务
+- 安全
+- 微服务
 ---
 
 > 本文节选自 [Graham Lea](http://www.grahamlea.com) 的博客：[Microservices Security: All The Questions You Should Be Asking](http://www.grahamlea.com/2015/07/microservices-security-questions/)

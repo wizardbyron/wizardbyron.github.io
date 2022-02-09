@@ -1,15 +1,13 @@
 ---
 title:  从最新一期技术雷达看 DevOps 的发展
 date: 2017-12-07
-categories: 
-- DevOps
 tags:
-- TechRadar
+- 技术雷达
+- DevOps
 - Kubernetes
 - Service Mesh
 - Docker
 - Python
-- 自动化
 ---
 今年4月份，我第一次以主编的身份参加技术雷达的翻译工作。有幸第一时间参加到技术雷达的翻译过程中。通过我在翻译其间对条目的了解和观察，我写下了《[DevOps发展的九个趋势](https://www.guyu.me/blogs/2017-05-02-devops-in-tech-radar)》
 

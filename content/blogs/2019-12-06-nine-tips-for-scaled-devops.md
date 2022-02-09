@@ -1,10 +1,8 @@
 ---
 title: 千人规模组织级 DevOps 演进的 9 个实践技巧
 date: 2019-12-06
-categories: 
-  - DevOps
 tags:
-  - DevOps 模式
+- DevOps
 ---
 
 > 本文已收录至 2020 年出版的[《研发质量保障与工程效率》](https://book.douban.com/subject/35413388/)一书中，书中内容有所调整。

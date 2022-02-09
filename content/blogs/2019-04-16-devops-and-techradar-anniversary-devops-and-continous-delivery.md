@@ -1,11 +1,10 @@
 ---
 title: 从技术雷达看 DevOps 的十年——DevOps与持续交付
 date: 2019-04-16
-categories: 
- - DevOps
 tags: 
- - DevOps 历史
+ - DevOps
  - 技术雷达
+ - 持续交付
 ---
 
 > 本文原文发表于 2019 年 4 月 16 日的 [ThoughtWorks 洞见](https://insights.thoughtworks.cn/devops-and-continuous-delivery/)，后经过修改发表到博客上。

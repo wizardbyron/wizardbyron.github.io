@@ -1,10 +1,9 @@
 ---
-title: DevOps 前世今生 - DevOps 矛盾从何而来
+title: DevOps 前世今生 - 2. DevOps 矛盾从何而来
 date: 2017-01-27
-categories: 
-  - DevOps
 tags:
-  - DevOps 历史
+- DevOps
+- DevOps 前世今生
 ---
 
 在[**#DevOps的前世今生# 1.DevOps编年史**](https://www.guyu.me/blogs/2016-11-27-devops-annals)一文中，通过追溯 DevOps 活动产生的历史起源，我们发现了 DevOps 是敏捷思想从软件开发端(**Dev**)到系统维护端(**Ops**)的延伸。无论是 DevOpsDays 的创始人 **Patrick Debois**，还是同时期的 The Agile Admin。都想通过敏捷来改进传统的系统维护工作以及软件开发部门和系统维护部门的合作关系。但是，DevOps 的矛盾从何而来？这还要从 Dev 和 Ops 的起源开始讲起。

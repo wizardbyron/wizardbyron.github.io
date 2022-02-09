@@ -1,8 +1,6 @@
 ---
 title:  DevOps发展的九个趋势
 date: 2017-05-02
-categories: 
-  - DevOps
 tags:
 - 技术雷达
 - Kubernetes
