@@ -141,7 +141,7 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 如果你无法模拟足够多的真实用户数据，把以上的工具生成的脚本或配置放到 [flood.io](https://flood.io) 上运行，得到更好的参考报告，如下图所示：
 ![flood.io](/img/post/20180807/floodio.png)
 
-如果你需要度量某些操作的停机时间，你可以在进行负载测试的时候进行操作。也可以使用我写的小工具 [wade](https://github.com/wizardbyron/wade) （Web Application Downtime Estimation）来测试。关于 wade 的故事可以参考 [一怒之下，我写了一个开源流量测试工具](/blogs/2018-07-07-why-do-I-write-wade.md)。
+如果你需要度量某些操作的停机时间，你可以在进行负载测试的时候进行操作。也可以使用我写的小工具 [wade](https://github.com/wizardbyron/wade) （Web Application Downtime Estimation）来测试。关于 wade 的故事可以参考 [一怒之下，我写了一个开源流量测试工具](https://www.guyu.me/blogs/2018-07-07-why-do-I-write-wade.md)。
 
 通过模拟“萨瓦迪卡”的访问数据，我得到了以下数据：
 
@@ -164,4 +164,4 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 6. **结论**：根据数据的计算解答第 2 步 提出的关键问题。
 7. **建议**：根据度量数据得出的下一步优化建议。
 
-至此，我们完成了对生产环境性能的分析。接下来，就要为性能设计架构迁移方案了。请关注下篇《[AWS 上的生产环境架构优化案例](/blogs/2018-08-08-architecutre-optimization-case-study)》
+至此，我们完成了对生产环境性能的分析。接下来，就要为性能设计架构迁移方案了。请关注下篇《[AWS 上的生产环境架构优化案例](https://www.guyu.me/blogs/2018-08-08-architecutre-optimization-case-study)》

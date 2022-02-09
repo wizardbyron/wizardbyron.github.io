@@ -13,7 +13,7 @@ tags:
 
 本文是我在 gitchat 上的文章[云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）](https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html)的后半部分，本文对原文有所修改和总结。交流实录请[点击这里](https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html)。
 
-在[AWS 上的生产环境性能分析案例](/blogs/2018-08-07-performance-analysis-case-study)一文中，记录了我对客户应用生产环境的一次性能分析。接下来，我们要根据所发现的性能问题进行架构优化，以提升可用性和性能。同时，这篇文章也总结了应用迁移到云上的套路。
+在[AWS 上的生产环境性能分析案例](https://www.guyu.me/blogs/2018-08-07-performance-analysis-case-study)一文中，记录了我对客户应用生产环境的一次性能分析。接下来，我们要根据所发现的性能问题进行架构优化，以提升可用性和性能。同时，这篇文章也总结了应用迁移到云上的套路。
 
 ## 设计云计算平台迁移计划和方案
 
