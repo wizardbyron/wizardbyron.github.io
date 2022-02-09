@@ -7,7 +7,7 @@ tags:
   - DevOps 历史
 ---
 
-在[**\#DevOps的前世今生\# 2. Dev和Ops矛盾缘何而来？**](/blogs/2017-01-17-where-did-devops-issues-come)一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和 Ops 的核心矛盾：
+在[**\#DevOps的前世今生\# 2. Dev和Ops矛盾缘何而来？**](https://www.guyu.me/blogs/2017-01-17-where-did-devops-issues-come)一文中，通过Dev和Ops的历史发展总结出了Dev和Ops矛盾的历史渊源，以及 Dev 和 Ops 的核心矛盾：
 
 **Dev**和**Ops** 的矛盾主要是面向适应性的敏捷软件交付和面向经验性的传统运维之间的矛盾。
 

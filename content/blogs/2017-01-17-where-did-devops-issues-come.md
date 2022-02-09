@@ -7,7 +7,7 @@ tags:
   - DevOps 历史
 ---
 
-在[**#DevOps的前世今生# 1.DevOps编年史**](/blogs/2016-11-27-devops-annals)一文中，通过追溯 DevOps 活动产生的历史起源，我们发现了 DevOps 是敏捷思想从软件开发端(**Dev**)到系统维护端(**Ops**)的延伸。无论是 DevOpsDays 的创始人 **Patrick Debois**，还是同时期的 The Agile Admin。都想通过敏捷来改进传统的系统维护工作以及软件开发部门和系统维护部门的合作关系。但是，DevOps 的矛盾从何而来？这还要从 Dev 和 Ops 的起源开始讲起。
+在[**#DevOps的前世今生# 1.DevOps编年史**](https://www.guyu.me/blogs/2016-11-27-devops-annals)一文中，通过追溯 DevOps 活动产生的历史起源，我们发现了 DevOps 是敏捷思想从软件开发端(**Dev**)到系统维护端(**Ops**)的延伸。无论是 DevOpsDays 的创始人 **Patrick Debois**，还是同时期的 The Agile Admin。都想通过敏捷来改进传统的系统维护工作以及软件开发部门和系统维护部门的合作关系。但是，DevOps 的矛盾从何而来？这还要从 Dev 和 Ops 的起源开始讲起。
 
 ## 上古时代——抱着计算机使用手册，自开发自运维
 
@@ -74,7 +74,7 @@ Library，信息技术基础设施库）这样的最佳实践库，也使“系�
 
 那么，如果将敏捷的文化和原则引入运维，会如何？
 
-请期待下一篇：[#DevOps的前世今生# 3.DevOps的文化和原则](/blogs/2017-02-14-core-devops-concepts)
+请期待下一篇：[#DevOps的前世今生# 3.DevOps的文化和原则](https://www.guyu.me/blogs/2017-02-14-core-devops-concepts)
 
 **感谢ThoughtWorks总监咨询师史凯对本文的改进意见和建议**。
 
