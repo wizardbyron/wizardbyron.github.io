@@ -23,7 +23,7 @@
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）">
 <meta name=twitter:description content="在网上搜索规范化的 K8S 的部署架构图画法时，发现了 Redhat 的一篇博客。觉得非常不错，遂翻译分享之。 原文: https://github.com/raffaelespazzoli/kdl 介绍 # 这篇博文介绍了 Kubernetes API 对象的图形表示法：K">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Blogs","name":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","headline":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","description":"在网上搜索规范化的 K8S 的部署架构图画法时，发现了 Redhat 的一篇博客。觉得非常不错，遂翻译分享之。 原文: https:\/\/github.com\/raffaelespazzoli\/kdl 介绍 # 这篇博文介绍了 Kubernetes API 对象的图形表示法：K","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2022","dateCreated":"2022-02-15T00:00:00\u002b00:00","datePublished":"2022-02-15T00:00:00\u002b00:00","dateModified":"2022-02-15T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/blog\/2022-02-15-kdl\/","wordCount":"2125","keywords":["kubernetes"]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Blogs","name":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","headline":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","description":"在网上搜索规范化的 K8S 的部署架构图画法时，发现了 Redhat 的一篇博客。觉得非常不错，遂翻译分享之。 原文: https:\/\/github.com\/raffaelespazzoli\/kdl 介绍 # 这篇博文介绍了 Kubernetes API 对象的图形表示法：K","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2022","dateCreated":"2022-02-15T00:00:00\u002b00:00","datePublished":"2022-02-15T00:00:00\u002b00:00","dateModified":"2022-02-15T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/blog\/2022-02-15-kdl\/","wordCount":"2084","keywords":["kubernetes"]}</script>
 <meta name=generator content="Hugo 0.92.2">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -61,7 +61,7 @@
 </h1>
 <div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
-<time datetime="2022-02-15 00:00:00 +0000 UTC">15 February 2022</time><span class="px-2 text-primary-500">&#183;</span><span>2125 字</span><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>5 分钟</span><span class="px-2 text-primary-500">&#183;</span>
+<time datetime="2022-02-15 00:00:00 +0000 UTC">15 February 2022</time><span class="px-2 text-primary-500">&#183;</span><span>2084 字</span><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>5 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
 <a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/blog/2022-02-15-kdl.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
@@ -225,7 +225,7 @@
 <p>这些小矩形是黄色的，因为代表网络配置。您可以将每个端口与实际暴露该端口相关的容器连接起来。 但在大多数情况下，这不是必需的，因为大多数 pod 只有一个容器。</p>
 <p>在 pod 的底部，我们有 <a href=https://kubernetes.io/docs/concepts/storage/volumes/>附加卷</a>。 卷的名称应显示在矩形中。 在大多数情况下，这些将是持久卷。 如果卷类型不是持久卷，则显示它可能是相关的。 此外，有时显示安装点也很重要。 以下是卷的符号示例：</p>
 <p><img src=/img/blog/20220215/volume-example.png alt=VolumeExample></p>
-<p>在 Pod 的右侧，具有与 Pod 的配置相关的卷：<a href=https://kubernetes.io/docs/concepts/configuration/secret/>secrets</a> 和 [configmaps](https://kubernetes .io/docs/tasks/configure-pod-container/configmap/）。 对于数据卷，应该指明卷的名称，通常区分<strong>configmaps</strong>和<strong>secret</strong>很重要，所以还应该指明卷的类型，如果需要还可以显示挂载点。 这里有些例子：</p>
+<p>在 Pod 的右侧，具有与 Pod 的配置相关的卷：<a href=https://kubernetes.io/docs/concepts/configuration/secret/>secrets</a> 和 <a href=https://kubernetes.io/docs/tasks/configure-pod-container/configmap/>configmaps</a>。 对于数据卷，应该指明卷的名称，通常区分<strong>configmaps</strong>和<strong>secret</strong>很重要，所以还应该指明卷的类型，如果需要还可以显示挂载点。 这里有些例子：</p>
 <p><img src=/img/blog/20220215/secret-example.png alt=SecretExample></p>
 <h2 id=网络>网络 <a class=heading-anchor href=#%e7%bd%91%e7%bb%9c aria-label=锚点>#</a></h2>
 <p>网络对象有两种: <a href=https://kubernetes.io/docs/concepts/services-networking/service/>services</a> 和 <a href=https://kubernetes.io/docs/concepts/services-networking/ingress/>ingresses</a> (<a href=https://docs.openshift.com/container-platform/latest/architecture/core_concepts/routes.html>routes</a> 在 OpenShift 里有).</p>
@@ -272,11 +272,11 @@
 <p>如果服务允许从集群外部到内部 pod 的流量（例如负载均衡器或节点端口或外部 IP），则应在集群边缘进行描述。</p>
 <p><img src=/img/blog/20220215/edge-service.png alt=EdgeService></p>
 <p>相同的概念适用于调节出站流量（例如外部名称）的服务，尽管在这种情况下它们可能会出现在 Kubernetes 集群矩形的底部。</p>
-<h3 id=ingresses>Ingresses <a class=heading-anchor href=#ingresses aria-label=锚点>#</a></h3>
-<p>Ingresses 可以用平行四边形表示，如下图：</p>
+<h3 id=ingress>Ingress <a class=heading-anchor href=#ingress aria-label=锚点>#</a></h3>
+<p>Ingress 可以用平行四边形表示，如下图：</p>
 <p><img src=/img/blog/20220215/ingress-template.png alt=IngressTemplate></p>
-<p>Ingresses 显示入口名称和可选的主机暴露。 Ingresses 将连接到服务（相同的规则适用于 OpenShift 路由）。</p>
-<p>Ingresses 始终显示在 OpenShift 集群的边缘。</p>
+<p>Ingress 显示 Ingress 名称以及可选的 host。 Ingress 将连接到服务（相同的规则适用于 OpenShift 路由）。</p>
+<p>Ingress 始终显示在 OpenShift 集群的边缘。</p>
 <p><img src=/img/blog/20220215/edge-ingress.png alt=EdgeIngress></p>
 <h4 id=路由-openshift>路由 (OpenShift) <a class=heading-anchor href=#%e8%b7%af%e7%94%b1-openshift aria-label=锚点>#</a></h4>
 <p>OpenShift 路由使用与 Ingress 相同的符号表示。</p>
