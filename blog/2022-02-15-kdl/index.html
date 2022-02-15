@@ -6,7 +6,7 @@
 <title>【翻译】Kubernetes 部署语言（Kubernetes Deployment Language） &#183; 顾宇的博客</title>
 <meta name=title content="【翻译】Kubernetes 部署语言（Kubernetes Deployment Language） &#183; 顾宇的博客">
 <meta name=description content>
-<link rel=canonical href=https://wwww.guyu.me/blog/20220215-kdl/>
+<link rel=canonical href=https://wwww.guyu.me/blog/2022-02-15-kdl/>
 <link type=text/css rel=stylesheet href=/css/schemes/slate.min.1fa9cfe6ea431f51b6669ad59d531a840711f25edf67f90d0227253371e1da49fdcc25506150e39fb99ac2c95a6012b2c4bbdd6c41b841b186419cbd7e115768.css integrity="sha512-H6nP5upDH1G2ZprVnVMahAcR8l7fZ/kNAiclM3Hh2kn9zCVQYVDjn7mawslaYBKyxLvdbEG4QbGGQZy9fhFXaA==">
 <link type=text/css rel=stylesheet href=/css/compiled/main.min.4076b9cf114dd23cca017f3365e2205a4c9a4b2c0ef4193ccd08883f76e554aa40f674a8f6e77a1b2895be0975ba8e019b0c59996c2eea32e4970ca4d5221653.css integrity="sha512-QHa5zxFN0jzKAX8zZeIgWkyaSywO9Bk8zQiIP3blVKpA9nSo9ud6GyiVvgl1uo4BmwxZmWwu6jLklwyk1SIWUw==">
 <script>function loadPreferredAppearance(){localStorage.preferredAppearance==="dark"||!("preferredAppearance"in localStorage)&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}function setPreferredAppearance(a){a=="default"?localStorage.removeItem("preferredAppearance"):localStorage.preferredAppearance=a,loadPreferredAppearance()}loadPreferredAppearance(),window.matchMedia("(prefers-color-scheme: dark)").addListener(loadPreferredAppearance)</script>
@@ -17,13 +17,13 @@
 <meta property="og:title" content="【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）">
 <meta property="og:description" content="在网上搜索规范化的 K8S 的部署架构图画法时，发现了 Redhat 的一篇博客。觉得非常不错，遂翻译分享之。 原文: https://github.com/raffaelespazzoli/kdl 介绍 # 这篇博文介绍了 Kubernetes API 对象的图形表示法：K">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://wwww.guyu.me/blog/20220215-kdl/"><meta property="article:section" content="blog">
+<meta property="og:url" content="https://wwww.guyu.me/blog/2022-02-15-kdl/"><meta property="article:section" content="blog">
 <meta property="article:published_time" content="2022-02-11T16:00:04+08:00">
 <meta property="article:modified_time" content="2022-02-11T16:00:04+08:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）">
 <meta name=twitter:description content="在网上搜索规范化的 K8S 的部署架构图画法时，发现了 Redhat 的一篇博客。觉得非常不错，遂翻译分享之。 原文: https://github.com/raffaelespazzoli/kdl 介绍 # 这篇博文介绍了 Kubernetes API 对象的图形表示法：K">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Blogs","name":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","headline":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","description":"在网上搜索规范化的 K8S 的部署架构图画法时，发现了 Redhat 的一篇博客。觉得非常不错，遂翻译分享之。 原文: https:\/\/github.com\/raffaelespazzoli\/kdl 介绍 # 这篇博文介绍了 Kubernetes API 对象的图形表示法：K","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2022","dateCreated":"2022-02-11T16:00:04\u002b08:00","datePublished":"2022-02-11T16:00:04\u002b08:00","dateModified":"2022-02-11T16:00:04\u002b08:00","url":"https:\/\/wwww.guyu.me\/blog\/20220215-kdl\/","wordCount":"2125","keywords":["kubernetes"]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Blogs","name":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","headline":"【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）","description":"在网上搜索规范化的 K8S 的部署架构图画法时，发现了 Redhat 的一篇博客。觉得非常不错，遂翻译分享之。 原文: https:\/\/github.com\/raffaelespazzoli\/kdl 介绍 # 这篇博文介绍了 Kubernetes API 对象的图形表示法：K","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2022","dateCreated":"2022-02-11T16:00:04\u002b08:00","datePublished":"2022-02-11T16:00:04\u002b08:00","dateModified":"2022-02-11T16:00:04\u002b08:00","url":"https:\/\/wwww.guyu.me\/blog\/2022-02-15-kdl\/","wordCount":"2125","keywords":["kubernetes"]}</script>
 <meta name=generator content="Hugo 0.92.2">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
@@ -63,7 +63,7 @@
 <div class="flex flex-row items-center">
 <time datetime="2022-02-11 16:00:04 +0800 +0800">11 February 2022</time><span class="px-2 text-primary-500">&#183;</span><span>2125 字</span><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>5 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
-<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/blog/20220215-kdl.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
+<a href=https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content/blog/2022-02-15-kdl.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title=编辑内容>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentcolor" d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1.0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7.0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174 402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7-43.2-43.2c-4.1-4.1-10.8-4.1-14.8.0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>
 </span>
 </a>
@@ -321,6 +321,15 @@ BankService 应用程序是一个由部署配置控制的无状态 pod，该部�
 <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
 <div class="flex justify-between pt-3">
 <span>
+<a class=flex href=/blog/kdl/>
+<span class="mr-3 article-pagination-direction">&larr;</span>
+<span class="flex flex-col">
+<span class="article-pagination-title mt-[0.1rem] leading-6">【翻译】Kubernetes 部署语言（Kubernetes Deployment Language）</span>
+<span class="mt-[0.1rem] text-xs text-neutral-400 dark:text-neutral-500">
+<time datetime="2022-02-15 00:00:00 +0000 UTC">15 February 2022</time>
+</span>
+</span>
+</a>
 </span>
 <span>
 <a class="flex text-right" href=/blog/2022-02-08-setup-k8s-cluster-with-vagrant/>
