@@ -3,13 +3,12 @@
 <meta http-equiv=content-language content="zh">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="ie=edge">
-<title>云原生下的 DevSecOps 实践 &#183; 顾宇的博客</title>
-<meta name=title content="云原生下的 DevSecOps 实践 &#183; 顾宇的博客">
+<title>云原生下的 DevSecOps 实践 &#183; 顾宇的博客</title><meta name=title content="云原生下的 DevSecOps 实践 &#183; 顾宇的博客">
 <meta name=description content>
 <link rel=canonical href=https://wwww.guyu.me/blog/2019-03-17-cloudnative-devsecops-practices/>
 <link type=text/css rel=stylesheet href=/css/schemes/slate.min.1fa9cfe6ea431f51b6669ad59d531a840711f25edf67f90d0227253371e1da49fdcc25506150e39fb99ac2c95a6012b2c4bbdd6c41b841b186419cbd7e115768.css integrity="sha512-H6nP5upDH1G2ZprVnVMahAcR8l7fZ/kNAiclM3Hh2kn9zCVQYVDjn7mawslaYBKyxLvdbEG4QbGGQZy9fhFXaA==">
 <link type=text/css rel=stylesheet href=/css/compiled/main.min.4076b9cf114dd23cca017f3365e2205a4c9a4b2c0ef4193ccd08883f76e554aa40f674a8f6e77a1b2895be0975ba8e019b0c59996c2eea32e4970ca4d5221653.css integrity="sha512-QHa5zxFN0jzKAX8zZeIgWkyaSywO9Bk8zQiIP3blVKpA9nSo9ud6GyiVvgl1uo4BmwxZmWwu6jLklwyk1SIWUw==">
-<script>function loadPreferredAppearance(){localStorage.preferredAppearance==="dark"||!("preferredAppearance"in localStorage)&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}function setPreferredAppearance(a){a=="default"?localStorage.removeItem("preferredAppearance"):localStorage.preferredAppearance=a,loadPreferredAppearance()}loadPreferredAppearance(),window.matchMedia("(prefers-color-scheme: dark)").addListener(loadPreferredAppearance)</script>
+<script>function loadPreferredAppearance(){localStorage.preferredAppearance==="dark"||!("preferredAppearance"in localStorage)&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}function setPreferredAppearance(e){e=="default"?localStorage.removeItem("preferredAppearance"):localStorage.preferredAppearance=e,loadPreferredAppearance()}loadPreferredAppearance(),window.matchMedia("(prefers-color-scheme: dark)").addListener(loadPreferredAppearance)</script>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
@@ -24,42 +23,31 @@
 <meta name=twitter:title content="云原生下的 DevSecOps 实践">
 <meta name=twitter:description content="云原生的安全挑战 # 云环境的安全跟企业内网的安全是不一样的，有可能我做一个网络分段，拔一根网线就安全了，但是云计算是不太一样的。先说一下在 DevOps 的">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Blogs","name":"云原生下的 DevSecOps 实践","headline":"云原生下的 DevSecOps 实践","description":"云原生的安全挑战 # 云环境的安全跟企业内网的安全是不一样的，有可能我做一个网络分段，拔一根网线就安全了，但是云计算是不太一样的。先说一下在 DevOps 的","inLanguage":"zh","author":{"@type":"Person","name":"顾宇"},"creator":{"@type":"Person","name":"顾宇"},"copyrightHolder":"顾宇","copyrightYear":"2019","dateCreated":"2019-03-17T00:00:00\u002b00:00","datePublished":"2019-03-17T00:00:00\u002b00:00","dateModified":"2019-03-17T00:00:00\u002b00:00","url":"https:\/\/wwww.guyu.me\/blog\/2019-03-17-cloudnative-devsecops-practices\/","wordCount":"5835","keywords":["云原生","安全","Serverless","BeyondCorp","DevSecOps"]}</script>
-<meta name=generator content="Hugo 0.92.2">
+<meta name=generator content="Hugo 0.93.2">
 <meta name=author content="顾宇">
 <link href=https://linkedin.com/in/wizardbyron rel=me>
 <link href=https://github.com/wizardbyron rel=me>
-</head>
-<body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl"><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-800 dark:text-neutral">
+</head><body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl"><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-800 dark:text-neutral">
 <div>
 <a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" rel=me href=/>顾宇的博客</a>
-</div>
-<nav>
+</div><nav>
 <ul class="flex flex-col list-none sm:flex-row">
 <li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
 <a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/ title>主页</a>
-</li>
-<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+</li><li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
 <a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/blog/ title=Blogs>博客</a>
-</li>
-<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+</li><li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
 <a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/tags/ title=Tags>标签</a>
-</li>
-<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+</li><li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
 <a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/guide title>实践指南</a>
-</li>
-<li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+</li><li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
 <a class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small" href=/about/ title=关于我>关于我</a>
-</li>
-</ul>
-</nav>
-</header>
-<main class=flex-grow>
+</li></ul></nav></header><main class=flex-grow>
 <article class=max-w-prose>
 <header>
 <h1 class="mt-0 text-4xl font-extrabold text-neutral-800 dark:text-neutral">
 云原生下的 DevSecOps 实践
-</h1>
-<div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
+</h1><div class="mt-8 mb-12 text-base text-neutral-400 dark:text-neutral-500">
 <div class="flex flex-row items-center">
 <time datetime="2019-03-17 00:00:00 +0000 UTC">17 March 2019</time><span class="px-2 text-primary-500">&#183;</span><span>5835 字</span><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>12 分钟</span><span class="px-2 text-primary-500">&#183;</span>
 <span class=mb-[2px]>
@@ -68,85 +56,27 @@
 </span>
 </a>
 </span>
-</div>
-</div>
-</header>
-<section class="prose dark:prose-light">
-<h2 id=云原生的安全挑战>云原生的安全挑战 <a class=heading-anchor href=#%e4%ba%91%e5%8e%9f%e7%94%9f%e7%9a%84%e5%ae%89%e5%85%a8%e6%8c%91%e6%88%98 aria-label=锚点>#</a></h2>
-<p>云环境的安全跟企业内网的安全是不一样的，有可能我做一个网络分段，拔一根网线就安全了，但是云计算是不太一样的。先说一下在 DevOps 的发展历程中安全相关的发展，在 DevOps 运动的早期，你会看家大家是不提安全的，只提合作和自动化。</p>
-<p>怎么样把开发和运维两端能够更快的进行沟通，提出我们的交付效率和问题响应速度，安全仍然只是传统运维上已经有的安全内容，但是并不会单独考虑安全在 DevOps 中的重要性。</p>
-<p>但是你会发现慢慢的随着自动化程度增强，你会觉得这个安全也是实践 DevOps 中的一个瓶颈，你要解决这个问题，我不如把安全放到 DevOps 整个环里面作为重要的一环来考虑，我们会把一些安全的手段自动化加入到 DevOps 流程中。</p>
-<p>像昨天讲到的，我们会把一些扫描放到持续交付流水线里面，我们会在线做一些验证，但是这些所谓的 DevOps 更多的有 DevOps 网站，我们把安全手段通过自动化的方式加入到 DevOps 的反馈环和流水线，这就是 DevSecOps。</p>
-<p>然而，在云原生环境下，我们需要在一个安全的框架下，重新考虑 DevOps，设计DevOps 的人员、场景、使用。通过更多的方式，而不仅仅是自动化的方式，在座有没有做安全的同学？有没有做 DBA 数据库的？有点可惜。</p>
-<p>希望大家可以理解。你在做安全的时候，你会发现更多的安全问题是人为因素。因为我们技术上的保证尤其是在运维层面已经非常成熟了，你只要符合某个规范，把安全的点都考虑到，其实你运维端的安全就已经做得不错了。</p>
-<p>我们可能偏向于应用端的安全，应用端的安全有一个BSI，在你的整个应用开发周期里面考虑安全因素，你的应用有可能是你的安全最大的漏洞。但是你考虑这一点以后，你会发现DevOps不好串起来、也不好用，我们要考虑人的因素在DevOps体系里面是怎么样的。</p>
-<h2 id=软件定义安全>软件定义安全 <a class=heading-anchor href=#%e8%bd%af%e4%bb%b6%e5%ae%9a%e4%b9%89%e5%ae%89%e5%85%a8 aria-label=锚点>#</a></h2>
-<p>在座了解 BeyondCorp 的同学有吗？谷歌去年发表了一篇论文，这篇论文讲的是在未来的云环境下怎么定义安全。因为在云环境下要连接第三方服务和不同供应商之间就会更加复杂，它安不安全你是不知道的，它不安全会造成非常大的损失，它所能受到的是很大的影响。
-这是一个模型，有相应的论文，后面我会把论文全篇发送给大家。他在里面讲到三个原则：</p>
-<p>第一个原则是所有网络都不可信，所有网络包括你自己的网络都是不可信的，比如在企业里面我的PC笔记本电脑和企业无线路由器连接的网络也是不可信的，你不要以为在企业里面有企业内网，电脑设备就一定安全了，这种情况下在 BeyondCorp 里面所有网络都是不可信的。</p>
-<p>第二是基于已知的用户和设备进行授权访问，如果网络是不可信的，你要访问资源一定要经过用户和设备进行授权访问。在座的有没有不知道是MFA多因子认证的？MFA是我们比较通用的一个实践，在如何确定你是你的问题上，这几个元素里面、这几个因子里面，你只要满足其中两个就可以证明你是你。</p>
-<p>第三个原则是对所有服务的访问必须进行身份验证，授权和加密。我们想到再做一个安全小调查，从用户的输入开始到最后存储数据库里面所有部分都进行加密的同学请举手，我们可能想到第一个问题是麻烦，第二个问题是可能有性能问题，现在加密技术的性能还是不错的，但是会有一些麻烦，而麻烦和应用性之间是有一个平衡的。在这里面我们在Beynod和Corp里面，为了保证数据安全性，我们一定要做身份授权和加密。</p>
-<p>另外一个是3R企业安全—云原生的安全，这是他们给的标题，我觉得这个非常不错。有没有听过3R企业安全的？这证明我的实践比较新，这也是去年的实践。什么叫3R呢？一是Rotate，经常更新用户的口令，每天都更新数据库密码的同学请举手？一天更新几次？</p>
-<p>这个做得不错，等一会儿我要介绍跟你一样的实践。二是Repave从0开始构建，每天从基础设施开始构建的同学请举手，我的网络和机器全部拆掉了，每天把应用重新构建一次，没有，我举手。三是Repair及时打补丁，这个我相信有同学做吧，每天做这个的举手，你们的运维做得非常不错，等一会儿解释一下。</p>
-<h2 id=数据库流水线>数据库流水线 <a class=heading-anchor href=#%e6%95%b0%e6%8d%ae%e5%ba%93%e6%b5%81%e6%b0%b4%e7%ba%bf aria-label=锚点>#</a></h2>
-<p>这是我们做的案例，没有人管理密码的数据库。大家可以看到，这是一个数据库用户常见分析结构，Root是数据库最大的权限。在所有的用户里面没有一个活着的人知道用户密码的，Root有下面所有的权限，包括有用户管理和配置管理的权限，以及下面所有的权限。
-Power User是DDL语言，每一个都是针对我们数据库权限的访问，通过这种分层访问的方式来决定数据库里面的用户分配。我们应用访问数据库也会有一个用户，就是App User，目前是没有人知道密码的。我们首先会有权限架构，权限架构会扩大分配应用。</p>
-<p>我们的数据库是构建了一个流水线，前年有一个实践叫基础设施流水线，我们建立了一个数据库流水线。从左边到右边看，左边第一个配置是把PaaS平台的网络配置关于数据库的配置好，如果有变动就相当于重新建。
+</div></div></header><section class="prose dark:prose-light">
+<h2 id=云原生的安全挑战>云原生的安全挑战 <a class=heading-anchor href=#%e4%ba%91%e5%8e%9f%e7%94%9f%e7%9a%84%e5%ae%89%e5%85%a8%e6%8c%91%e6%88%98 aria-label=锚点>#</a></h2><p>云环境的安全跟企业内网的安全是不一样的，有可能我做一个网络分段，拔一根网线就安全了，但是云计算是不太一样的。先说一下在 DevOps 的发展历程中安全相关的发展，在 DevOps 运动的早期，你会看家大家是不提安全的，只提合作和自动化。</p><p>怎么样把开发和运维两端能够更快的进行沟通，提出我们的交付效率和问题响应速度，安全仍然只是传统运维上已经有的安全内容，但是并不会单独考虑安全在 DevOps 中的重要性。</p><p>但是你会发现慢慢的随着自动化程度增强，你会觉得这个安全也是实践 DevOps 中的一个瓶颈，你要解决这个问题，我不如把安全放到 DevOps 整个环里面作为重要的一环来考虑，我们会把一些安全的手段自动化加入到 DevOps 流程中。</p><p>像昨天讲到的，我们会把一些扫描放到持续交付流水线里面，我们会在线做一些验证，但是这些所谓的 DevOps 更多的有 DevOps 网站，我们把安全手段通过自动化的方式加入到 DevOps 的反馈环和流水线，这就是 DevSecOps。</p><p>然而，在云原生环境下，我们需要在一个安全的框架下，重新考虑 DevOps，设计DevOps 的人员、场景、使用。通过更多的方式，而不仅仅是自动化的方式，在座有没有做安全的同学？有没有做 DBA 数据库的？有点可惜。</p><p>希望大家可以理解。你在做安全的时候，你会发现更多的安全问题是人为因素。因为我们技术上的保证尤其是在运维层面已经非常成熟了，你只要符合某个规范，把安全的点都考虑到，其实你运维端的安全就已经做得不错了。</p><p>我们可能偏向于应用端的安全，应用端的安全有一个BSI，在你的整个应用开发周期里面考虑安全因素，你的应用有可能是你的安全最大的漏洞。但是你考虑这一点以后，你会发现DevOps不好串起来、也不好用，我们要考虑人的因素在DevOps体系里面是怎么样的。</p><h2 id=软件定义安全>软件定义安全 <a class=heading-anchor href=#%e8%bd%af%e4%bb%b6%e5%ae%9a%e4%b9%89%e5%ae%89%e5%85%a8 aria-label=锚点>#</a></h2><p>在座了解 BeyondCorp 的同学有吗？谷歌去年发表了一篇论文，这篇论文讲的是在未来的云环境下怎么定义安全。因为在云环境下要连接第三方服务和不同供应商之间就会更加复杂，它安不安全你是不知道的，它不安全会造成非常大的损失，它所能受到的是很大的影响。
+这是一个模型，有相应的论文，后面我会把论文全篇发送给大家。他在里面讲到三个原则：</p><p>第一个原则是所有网络都不可信，所有网络包括你自己的网络都是不可信的，比如在企业里面我的PC笔记本电脑和企业无线路由器连接的网络也是不可信的，你不要以为在企业里面有企业内网，电脑设备就一定安全了，这种情况下在 BeyondCorp 里面所有网络都是不可信的。</p><p>第二是基于已知的用户和设备进行授权访问，如果网络是不可信的，你要访问资源一定要经过用户和设备进行授权访问。在座的有没有不知道是MFA多因子认证的？MFA是我们比较通用的一个实践，在如何确定你是你的问题上，这几个元素里面、这几个因子里面，你只要满足其中两个就可以证明你是你。</p><p>第三个原则是对所有服务的访问必须进行身份验证，授权和加密。我们想到再做一个安全小调查，从用户的输入开始到最后存储数据库里面所有部分都进行加密的同学请举手，我们可能想到第一个问题是麻烦，第二个问题是可能有性能问题，现在加密技术的性能还是不错的，但是会有一些麻烦，而麻烦和应用性之间是有一个平衡的。在这里面我们在Beynod和Corp里面，为了保证数据安全性，我们一定要做身份授权和加密。</p><p>另外一个是3R企业安全—云原生的安全，这是他们给的标题，我觉得这个非常不错。有没有听过3R企业安全的？这证明我的实践比较新，这也是去年的实践。什么叫3R呢？一是Rotate，经常更新用户的口令，每天都更新数据库密码的同学请举手？一天更新几次？</p><p>这个做得不错，等一会儿我要介绍跟你一样的实践。二是Repave从0开始构建，每天从基础设施开始构建的同学请举手，我的网络和机器全部拆掉了，每天把应用重新构建一次，没有，我举手。三是Repair及时打补丁，这个我相信有同学做吧，每天做这个的举手，你们的运维做得非常不错，等一会儿解释一下。</p><h2 id=数据库流水线>数据库流水线 <a class=heading-anchor href=#%e6%95%b0%e6%8d%ae%e5%ba%93%e6%b5%81%e6%b0%b4%e7%ba%bf aria-label=锚点>#</a></h2><p>这是我们做的案例，没有人管理密码的数据库。大家可以看到，这是一个数据库用户常见分析结构，Root是数据库最大的权限。在所有的用户里面没有一个活着的人知道用户密码的，Root有下面所有的权限，包括有用户管理和配置管理的权限，以及下面所有的权限。
+Power User是DDL语言，每一个都是针对我们数据库权限的访问，通过这种分层访问的方式来决定数据库里面的用户分配。我们应用访问数据库也会有一个用户，就是App User，目前是没有人知道密码的。我们首先会有权限架构，权限架构会扩大分配应用。</p><p>我们的数据库是构建了一个流水线，前年有一个实践叫基础设施流水线，我们建立了一个数据库流水线。从左边到右边看，左边第一个配置是把PaaS平台的网络配置关于数据库的配置好，如果有变动就相当于重新建。
 当然我们用了一些高可用的手段，让它的变动不那么大，我们会新建数据库，用PaaS平台数据库配置。数据库配置文件，建好数据库之后需要配置文件，当然数据库配置文件完成之后需要数据库重启。但是有些 PaaS 平台包括公有云不用重启，创建之后这两边就变成一块了，这是我说的数据库的基础设施。
 这里左边是数据基础设施，右边是数据库实例，我们把这些全部放到流水线里面。而这两份除了最基本的创建用户、删减用户、增加用户名和密码之后，我们可能还有一些用户数据是由应用程序触发的，我们就会放到另外一条流水线里面。
 这边完成之后会驱动这边。所以我们可以做到每天把数据库重新干了再恢复，中间会有一个差额，这个数额我们会通过打标志的方式迁移过来。
-另外一种比较快的方式是数据库镜像，现在很多公有云数据库会做数据库镜像，很快就能还原出数据库实例。我知道在AWS上有一个没有服务器实例的数据库，大家有兴趣的可以尝试一下，当然中国区应该没有，是在国外的区域。</p>
-<p>没有人管理的密码数据库还有一点，就是我们的应用流水线。我们每次应用部署的时候都会更新访问应用的用户名密码。我们的方式是每次部署的时候创建一个新的用户，我们的用户名就是 app-user-version，每次部署的时候都会有新的用户，他的密码是自动随机生成的。每次生成密码的时候，按需可以随机创建新的基础设施，如果我的配置没有变更，他的变动是很小的，是秒级的，可能我点基础设施没有变动就快速过去了。</p>
-<p>另外一点，在这个基础设施上再部署新的应用，你会奇怪自动创建新用户的权限是哪里的。这个自动创建新用户的权限，我们会取得一个临时的权限，在创建完新用户之后取得一个权限，不是Root权限。</p>
-<p>创建权限之后再把它的权限回收，我创建完用户之后就把用户权限回收了，也就是说，保证我使用这个权限的时候，当场的情况下只有一次授权，谁都没有碰过任何用户名密码，因为我每次用户名密码都是自动随机生成的，只有应用程序自己知道密码是什么样的，这是我们每次部署都会更换密码的一个方式。
-我们在以前创建应用数据中心的时候是从左边开始的，网络到应用程序我们都管，后面我们有云之后，到 IaaS 平台的时候，操作平台可能是 IaaS 平台给定的，上面是我们处理的。到了 PaaS 和 SaaS 之后有更多事情交给云环境，我们所需要写的程序越来越少。我前面说到，后 DevOps 时代你所需要管理的基础设施是越来越少的，但是管理基础设施的复杂度会越来越高。</p>
-<h2 id=serverless-first>Serverless First <a class=heading-anchor href=#serverless-first aria-label=锚点>#</a></h2>
-<p>什么叫做无服务器优先。就是我们在发布应用程序的时候制定以下原则，作为一个程序员，我希望:</p>
-<ol>
-<li>我写的代码直接部署到某个地方就可以运行(FaaS);</li>
-<li>若1不可得，那就把我的运行时和代码一起打包直接部署运行。（利用Docker 或者 虚拟机镜像）</li>
-<li>若2还是不行，那我希望能够把我需要的运行时在代码部署前自动化配置好。(Infrastructure as code)</li>
-<li>若3再不可得，我希望能够有API支持我用代码配置环境。(API)</li>
-</ol>
-<p>也就是说，当你开始写代码的时候，首先就要做好如何部署的准备。然后通过部署的方式来定义你的开发模型。在所有的部署方式里，Serverless 无疑是成本最低、稳定性最好的。之后的几条部署方式的稳定性则越来越弱。</p>
-<p>这里讲到CLI calls API，你做的事情是通过你的命令和API处理的。在座有没有用过AWS应用的，它会给你一个命令，AWS应用后面跟着服务、服务跟着操作，每个操作都可以通过CLI工具完成，这个东西是非常好编程的。而不是给你一大堆核心界面点来点去，那样的东西是非常不好管理的。</p>
-<p>这种面向资源的计算思维，每次CLI API都是异步的，性能上还会好一点。另外一点是在这种情况下你需要有全云端运维机制，知道你所对应的资源是不是完成你所要完成的工作，这就是一种方式。</p>
-<p>右边是国外比较通用的，左边是对应的产品。以前我们做应用性能测试的时候要买点做各种各样的事情，自己要开发、自己要找工具、自己要搭建。我们现在首先我们用这些运维工具，我们不再自己搭建了，我们在云端就用云端的服务，非常成熟。</p>
-<p>比如说查日志，我们看到很多ELK教程，很多人都把ELK搭建起来，但是现在已经不太用了，有从ELK调整到EFK的吗？我们已经不再用自己搭建的方式，而是买成熟实践和稳定实践的方式做这件事情。全云端运维，右边是国内对应的产品。</p>
-<p>全云端在线协作开发，AWS上的Cloud9被AWS收购的，我们的整个开发环境都是在云上的。你只要有一个浏览器，不需要在自己的配置上装安装包、装Java，虽然Java马上要收费了，我们未来可能不会再用Java了，我们会用全云端在线协作开发。</p>
-<p>国内也有同样的产品叫行云趣码，这个产品跟前面的Cloud9不一样，行云趣码产品可以接不同的云环境。你只要有任何的云环境，就可以在上面搭建这样的环境。所以你的开发人员入门使用这些东西的时间就会大大缩短，我打开浏览器就开发了，不用考虑语言冲突和各种SDK的麻烦。</p>
-<p>另外一个是FaaS应用，函数即服务。最早是 AWS Lambda，我两年前讲 AWS Lambda的时候还是一个很新的概念，这两年各种平台都已经出现了。你只写应用端的一些代码，剩下的都不需要管。</p>
-<p>之前用 serverless 框架可以很容易的集成到持续交付流水线里面，然后去运行 FaaS 服务。有了 FaaS 服务，还是你自己手工搭建数据的时代，现在有了更多 FaaS 平台。首先我们可以看 Pythonanywhere，作为一个程序员是很幸福的，因为你可以马上转变成大数据工程师。有了这个工具之后就可以快速的把 FaaS 部署到线上，直接成为一个应用，而不需要搭建环境。如果是私有云需要像前面搭建一些 Webtask 等，它就可以快速帮你生成。</p>
-<h2 id=去中心化持续集成>去中心化持续集成 <a class=heading-anchor href=#%e5%8e%bb%e4%b8%ad%e5%bf%83%e5%8c%96%e6%8c%81%e7%bb%ad%e9%9b%86%e6%88%90 aria-label=锚点>#</a></h2>
-<p>我们的去中心化持续集成没有持续集成服务器，集成怎么做？我可以给大家讲一下，这是我们做去中心化的持续集成步骤。第一是git push，git 有一个功能，在你提交Push命令之前可以增加一些代码做测试，这样就不用CI做测试。第二是代码提交门禁，采用单一主干提交，进行部署，部署后测试，最后是发布。</p>
-<p>在这个过程中，第一个是手工操作、第二个是手工操作，中间全部是自动化，也就是所有上线都是自动化，有什么集成测试，集成测试也是我应用的一种，直接上线进行部署后测试。</p>
-<p>我们在提交预测做一些单元测试的事情，但是切忌不要用分支，如果增加分支就给源代码和延迟提交的借口，所以单一主干提交，当然你的管理就会更麻烦。我们部署的时候直接是函数式微服务的部署，因为我只修改那一点就只部署那一点，最后是部署测试。</p>
-<p>如果微服务要测试之外，微服务直接跨服务的业务也需要测试，而这种功能测试也是端到端的应用。在这种情况下，我们是没有集成服务器的，因为你也不需要。</p>
-<p>有没有在座的同学提交代码之后直接上生产环境的?中间也不需要手工操作发布，直接发布到生产环境的有没有？厉害厉害，我们花了三年才做到这一步，中间主要是在测试这个地方花了很大的功夫。</p>
-<p>除了我们刚才的功能测试之外，我们还有 ATDD，ATDD 是验收测试驱动开发，大家可以了解一下。通过这种方式，我们可以把手工操作代码提交到生产环境下，增加信心和保证。因为你不会考虑到上去之后有什么问题，你能考虑的问题都用自动化测试的方式解决，当然也不能特别绝对。</p>
-<p>另外一点，小心采用 FaaS 的时候不要变成 Nano-Service。以前微服务是中间部分，FaaS 微服务可能会有更多函数。但是如果你的管理复杂性增高，可能你管理服务的复杂性，包括来回调用、相互依赖、事务处理更多，可能就会进入一种反模式，这种情况是需要避免的。</p>
-<h2 id=chaos-engineering>Chaos Engineering <a class=heading-anchor href=#chaos-engineering aria-label=锚点>#</a></h2>
-<p>这个有在用的吗？没有。这个实践后来叫做混乱工程，混乱工程是什么意思呢？混乱工程是它随机在计算机把你的几个实例下线或者服务搞坏，看你的服务是不是正常使用。基于这种方式，你可以用这种工具，在网上查混乱工程或者Chaos Engineering。</p>
-<p>这个要重点讲一下，首先我们假设这个系统是正常的。我们需要采用几个关键指标来定义“正常”。第二是假设这个正常的状态，你会把这个状态的所有服务器和实例拆成两个组，一个是控制组、一个是实验组。
+另外一种比较快的方式是数据库镜像，现在很多公有云数据库会做数据库镜像，很快就能还原出数据库实例。我知道在AWS上有一个没有服务器实例的数据库，大家有兴趣的可以尝试一下，当然中国区应该没有，是在国外的区域。</p><p>没有人管理的密码数据库还有一点，就是我们的应用流水线。我们每次应用部署的时候都会更新访问应用的用户名密码。我们的方式是每次部署的时候创建一个新的用户，我们的用户名就是 app-user-version，每次部署的时候都会有新的用户，他的密码是自动随机生成的。每次生成密码的时候，按需可以随机创建新的基础设施，如果我的配置没有变更，他的变动是很小的，是秒级的，可能我点基础设施没有变动就快速过去了。</p><p>另外一点，在这个基础设施上再部署新的应用，你会奇怪自动创建新用户的权限是哪里的。这个自动创建新用户的权限，我们会取得一个临时的权限，在创建完新用户之后取得一个权限，不是Root权限。</p><p>创建权限之后再把它的权限回收，我创建完用户之后就把用户权限回收了，也就是说，保证我使用这个权限的时候，当场的情况下只有一次授权，谁都没有碰过任何用户名密码，因为我每次用户名密码都是自动随机生成的，只有应用程序自己知道密码是什么样的，这是我们每次部署都会更换密码的一个方式。
+我们在以前创建应用数据中心的时候是从左边开始的，网络到应用程序我们都管，后面我们有云之后，到 IaaS 平台的时候，操作平台可能是 IaaS 平台给定的，上面是我们处理的。到了 PaaS 和 SaaS 之后有更多事情交给云环境，我们所需要写的程序越来越少。我前面说到，后 DevOps 时代你所需要管理的基础设施是越来越少的，但是管理基础设施的复杂度会越来越高。</p><h2 id=serverless-first>Serverless First <a class=heading-anchor href=#serverless-first aria-label=锚点>#</a></h2><p>什么叫做无服务器优先。就是我们在发布应用程序的时候制定以下原则，作为一个程序员，我希望:</p><ol>
+<li>我写的代码直接部署到某个地方就可以运行(FaaS);</li><li>若1不可得，那就把我的运行时和代码一起打包直接部署运行。（利用Docker 或者 虚拟机镜像）</li><li>若2还是不行，那我希望能够把我需要的运行时在代码部署前自动化配置好。(Infrastructure as code)</li><li>若3再不可得，我希望能够有API支持我用代码配置环境。(API)</li></ol><p>也就是说，当你开始写代码的时候，首先就要做好如何部署的准备。然后通过部署的方式来定义你的开发模型。在所有的部署方式里，Serverless 无疑是成本最低、稳定性最好的。之后的几条部署方式的稳定性则越来越弱。</p><p>这里讲到CLI calls API，你做的事情是通过你的命令和API处理的。在座有没有用过AWS应用的，它会给你一个命令，AWS应用后面跟着服务、服务跟着操作，每个操作都可以通过CLI工具完成，这个东西是非常好编程的。而不是给你一大堆核心界面点来点去，那样的东西是非常不好管理的。</p><p>这种面向资源的计算思维，每次CLI API都是异步的，性能上还会好一点。另外一点是在这种情况下你需要有全云端运维机制，知道你所对应的资源是不是完成你所要完成的工作，这就是一种方式。</p><p>右边是国外比较通用的，左边是对应的产品。以前我们做应用性能测试的时候要买点做各种各样的事情，自己要开发、自己要找工具、自己要搭建。我们现在首先我们用这些运维工具，我们不再自己搭建了，我们在云端就用云端的服务，非常成熟。</p><p>比如说查日志，我们看到很多ELK教程，很多人都把ELK搭建起来，但是现在已经不太用了，有从ELK调整到EFK的吗？我们已经不再用自己搭建的方式，而是买成熟实践和稳定实践的方式做这件事情。全云端运维，右边是国内对应的产品。</p><p>全云端在线协作开发，AWS上的Cloud9被AWS收购的，我们的整个开发环境都是在云上的。你只要有一个浏览器，不需要在自己的配置上装安装包、装Java，虽然Java马上要收费了，我们未来可能不会再用Java了，我们会用全云端在线协作开发。</p><p>国内也有同样的产品叫行云趣码，这个产品跟前面的Cloud9不一样，行云趣码产品可以接不同的云环境。你只要有任何的云环境，就可以在上面搭建这样的环境。所以你的开发人员入门使用这些东西的时间就会大大缩短，我打开浏览器就开发了，不用考虑语言冲突和各种SDK的麻烦。</p><p>另外一个是FaaS应用，函数即服务。最早是 AWS Lambda，我两年前讲 AWS Lambda的时候还是一个很新的概念，这两年各种平台都已经出现了。你只写应用端的一些代码，剩下的都不需要管。</p><p>之前用 serverless 框架可以很容易的集成到持续交付流水线里面，然后去运行 FaaS 服务。有了 FaaS 服务，还是你自己手工搭建数据的时代，现在有了更多 FaaS 平台。首先我们可以看 Pythonanywhere，作为一个程序员是很幸福的，因为你可以马上转变成大数据工程师。有了这个工具之后就可以快速的把 FaaS 部署到线上，直接成为一个应用，而不需要搭建环境。如果是私有云需要像前面搭建一些 Webtask 等，它就可以快速帮你生成。</p><h2 id=去中心化持续集成>去中心化持续集成 <a class=heading-anchor href=#%e5%8e%bb%e4%b8%ad%e5%bf%83%e5%8c%96%e6%8c%81%e7%bb%ad%e9%9b%86%e6%88%90 aria-label=锚点>#</a></h2><p>我们的去中心化持续集成没有持续集成服务器，集成怎么做？我可以给大家讲一下，这是我们做去中心化的持续集成步骤。第一是git push，git 有一个功能，在你提交Push命令之前可以增加一些代码做测试，这样就不用CI做测试。第二是代码提交门禁，采用单一主干提交，进行部署，部署后测试，最后是发布。</p><p>在这个过程中，第一个是手工操作、第二个是手工操作，中间全部是自动化，也就是所有上线都是自动化，有什么集成测试，集成测试也是我应用的一种，直接上线进行部署后测试。</p><p>我们在提交预测做一些单元测试的事情，但是切忌不要用分支，如果增加分支就给源代码和延迟提交的借口，所以单一主干提交，当然你的管理就会更麻烦。我们部署的时候直接是函数式微服务的部署，因为我只修改那一点就只部署那一点，最后是部署测试。</p><p>如果微服务要测试之外，微服务直接跨服务的业务也需要测试，而这种功能测试也是端到端的应用。在这种情况下，我们是没有集成服务器的，因为你也不需要。</p><p>有没有在座的同学提交代码之后直接上生产环境的?中间也不需要手工操作发布，直接发布到生产环境的有没有？厉害厉害，我们花了三年才做到这一步，中间主要是在测试这个地方花了很大的功夫。</p><p>除了我们刚才的功能测试之外，我们还有 ATDD，ATDD 是验收测试驱动开发，大家可以了解一下。通过这种方式，我们可以把手工操作代码提交到生产环境下，增加信心和保证。因为你不会考虑到上去之后有什么问题，你能考虑的问题都用自动化测试的方式解决，当然也不能特别绝对。</p><p>另外一点，小心采用 FaaS 的时候不要变成 Nano-Service。以前微服务是中间部分，FaaS 微服务可能会有更多函数。但是如果你的管理复杂性增高，可能你管理服务的复杂性，包括来回调用、相互依赖、事务处理更多，可能就会进入一种反模式，这种情况是需要避免的。</p><h2 id=chaos-engineering>Chaos Engineering <a class=heading-anchor href=#chaos-engineering aria-label=锚点>#</a></h2><p>这个有在用的吗？没有。这个实践后来叫做混乱工程，混乱工程是什么意思呢？混乱工程是它随机在计算机把你的几个实例下线或者服务搞坏，看你的服务是不是正常使用。基于这种方式，你可以用这种工具，在网上查混乱工程或者Chaos Engineering。</p><p>这个要重点讲一下，首先我们假设这个系统是正常的。我们需要采用几个关键指标来定义“正常”。第二是假设这个正常的状态，你会把这个状态的所有服务器和实例拆成两个组，一个是控制组、一个是实验组。
 第三是我们会引入一些反映真实世界的变量，比如说断电、攻击、负载过高之类的东西，硬盘故障、网络连接故障等干扰实验组，看最后的应用表现是不是一致的。如果实验组部分被这些因素扰动，它应该和你正常的部分行为是一致的。
-如果它们两之间没有差异，就证明验证通过。如果它们之间有差异，反驳这个正常的假设并找到差异来修复应用系统。这就是通过找到不稳定的因素让它变得更稳定。这个测试你可以每天去做，也可以隔一段时间做一次，但是我建议每天去做，像我们以前做的每日可发布一样。</p>
-<p>另外在安全方面也是这样的，这个工具 ChaoSingr，目前很初级，大家可以记一下。这个工具目前只是涉及到 AWS，它是引入一些安全方面的变量，破坏安全控制和访问策略，看有没有入侵的可能性。它的理论和上面是一样的，假设我们的应用是安全的，然后来定义什么样是安全的，我们做了哪些措施保证安全。我们找出另外一组来，用一些安全方面的手段去除这些策略，看有没有其它手段保护住。</p>
-<h2 id=总结>总结 <a class=heading-anchor href=#%e6%80%bb%e7%bb%93 aria-label=锚点>#</a></h2>
-<p>我们在DevOps Cloud Native的实践有几个是比较重点的。第一是安全第一，从安全的角度设计 DevOps 流程和工具，而不是把安全引入到 DevOps 里面。另外一个是BeyondCorp、一个是 3R 企业安全，能够重建应用和基础设施，让入侵及时被处理掉，让它没有足够时间做这些事情。
-第二是 Serverless First，当你开始用运维工具、开源工具开发应用的时候，尽可能要有AWS Lambda 方式，因为你需要维护的基础设施越少，你的应用弹性就会更好。最后是混乱工程 Chaos Engineering，让你云上包括私有云上的基础设施都在一个非常稳定的状态下做测试。我们架构的只有一点是最核心的，就是为你的失败可能出现的情况进行设计。</p>
-</section>
-<footer class=pt-8>
+如果它们两之间没有差异，就证明验证通过。如果它们之间有差异，反驳这个正常的假设并找到差异来修复应用系统。这就是通过找到不稳定的因素让它变得更稳定。这个测试你可以每天去做，也可以隔一段时间做一次，但是我建议每天去做，像我们以前做的每日可发布一样。</p><p>另外在安全方面也是这样的，这个工具 ChaoSingr，目前很初级，大家可以记一下。这个工具目前只是涉及到 AWS，它是引入一些安全方面的变量，破坏安全控制和访问策略，看有没有入侵的可能性。它的理论和上面是一样的，假设我们的应用是安全的，然后来定义什么样是安全的，我们做了哪些措施保证安全。我们找出另外一组来，用一些安全方面的手段去除这些策略，看有没有其它手段保护住。</p><h2 id=总结>总结 <a class=heading-anchor href=#%e6%80%bb%e7%bb%93 aria-label=锚点>#</a></h2><p>我们在DevOps Cloud Native的实践有几个是比较重点的。第一是安全第一，从安全的角度设计 DevOps 流程和工具，而不是把安全引入到 DevOps 里面。另外一个是BeyondCorp、一个是 3R 企业安全，能够重建应用和基础设施，让入侵及时被处理掉，让它没有足够时间做这些事情。
+第二是 Serverless First，当你开始用运维工具、开源工具开发应用的时候，尽可能要有AWS Lambda 方式，因为你需要维护的基础设施越少，你的应用弹性就会更好。最后是混乱工程 Chaos Engineering，让你云上包括私有云上的基础设施都在一个非常稳定的状态下做测试。我们架构的只有一点是最核心的，就是为你的失败可能出现的情况进行设计。</p></section><footer class=pt-8>
 <div class=flex>
 <img class="w-24 h-24 !mt-0 !mb-0 mr-4 rounded-full" src=/img/author.jpg>
 <div class=place-self-center>
 <div class="text-[0.6rem] leading-3 text-neutral-400 dark:text-neutral-500 uppercase">
 作者
-</div>
-<div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+</div><div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
 顾宇
-</div>
-<div class="text-sm text-neutral-700 dark:text-neutral-400">Stand Alone CompleX</div>
-<div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+</div><div class="text-sm text-neutral-700 dark:text-neutral-400">Stand Alone CompleX</div><div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
 <a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://linkedin.com/in/wizardbyron target=_blank alt=Linkedin rel="me noopener noreferrer">
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" class="svg-inline--fa fa-linkedin fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentcolor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"/></svg>
 </span>
@@ -155,10 +85,7 @@ Power User是DDL语言，每一个都是针对我们数据库权限的访问，�
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
 </span>
 </a>
-</div>
-</div>
-</div>
-<div class="pt-8 article-pagination">
+</div></div></div><div class="pt-8 article-pagination">
 <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
 <div class="flex justify-between pt-3">
 <span>
@@ -183,33 +110,22 @@ Power User是DDL语言，每一个都是针对我们数据库权限的访问，�
 <span class="ml-3 article-pagination-direction">&rarr;</span>
 </a>
 </span>
-</div>
-</div>
-</footer>
-</article>
-</main><footer class=py-10>
+</div></div></footer></article></main><footer class=py-10>
 <div class="flex justify-between">
 <div>
 <p class="text-sm text-neutral-400 dark:text-neutral-500">
 &copy;
 2022
 顾宇
-</p>
-<p class="text-xs text-neutral-300 dark:text-neutral-600">
+</p><p class="text-xs text-neutral-300 dark:text-neutral-600">
 由 <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:underline-primary-300 hover:text-primary-400" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a> 强力驱动
-</p>
-</div>
-<div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
-<button id=dark-toggle onclick="setPreferredAppearance('dark')" oncontextmenu="return setPreferredAppearance('default'),!1" class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
+</p></div><div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
+<button id=dark-toggle onclick='setPreferredAppearance("dark")' oncontextmenu='return setPreferredAppearance("default"),!1' class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400" title=切换为深色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M283.211 512c78.962.0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954.0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156.0 00283.211.0c-141.309.0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
 </span>
 </button>
-<button id=light-toggle onclick="setPreferredAppearance('light')" oncontextmenu="return setPreferredAppearance('default'),!1" class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
+<button id=light-toggle onclick='setPreferredAppearance("light")' oncontextmenu='return setPreferredAppearance("default"),!1' class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500" title=切换为浅色模式>
 <span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 160c-52.9.0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6.0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1.0-181 131.1-49.9 181 0 49.9 131.1.0 181z"/></svg>
 </span>
 </button>
-</div>
-</div>
-</footer>
-</body>
-</html>
+</div></div></footer></body></html>
