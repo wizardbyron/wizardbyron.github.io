@@ -45,12 +45,12 @@ hasCJKLanguage = true
   weight = 10
 
 [[menu.main]]
-  name = "博客"
+  name = "博客文章"
   pageRef = "blog"
   weight = 20
 
 [[menu.main]]
-  name = "标签"
+  name = "标签分类"
   pageRef = "tags"
   weight = 30
 
