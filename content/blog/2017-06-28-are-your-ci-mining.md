@@ -103,7 +103,7 @@ rm -f /tmp/bonn.sh
 
 **跨站请求伪造（Cross-Site Request Forgery）** 在OWASP Top 10 里排在 A8，是常见的攻击类型。CSRF攻击原理比较简单，如下图所示：
 
-![跨站请求伪造](/images/post/20170628/csrf.png)
+![跨站请求伪造](/img/blog/20170628/csrf.png)
 
 ### Jenkins 的 跨站请求伪造（CSRF）攻击
 
