@@ -1,6 +1,6 @@
 ---
 title: "【翻译】Terraform 最佳实践：模块组合"
-date: 2022-03-06
+date: 2022-03-17
 tags:
 - Terraform
 - 基础设施即代码
