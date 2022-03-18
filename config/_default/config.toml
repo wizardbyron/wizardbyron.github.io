@@ -1,13 +1,12 @@
 # config/_default/config.toml
-defaultContentLanguage = 'zh'
-enableRobotsTXT = true
-paginate = 10
-summaryLength = 0
-
 baseURL = 'https://wwww.guyu.me/'
 title = '顾宇的博客'
 theme = "congo"
 
+defaultContentLanguage = 'zh'
+enableRobotsTXT = true
+paginate = 10
+summaryLength = 0
 hasCJKLanguage = true
 
 [outputs]
@@ -16,6 +15,7 @@ hasCJKLanguage = true
 [author]
   name = "顾宇"
   image = "/img/author.jpg"
+  headline = "从“知道”到“做到”"
   bio = "Stand Alone CompleX"
   links = [
     { linkedin = "https://linkedin.com/in/wizardbyron" },

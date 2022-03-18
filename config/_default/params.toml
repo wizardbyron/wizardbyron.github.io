@@ -4,11 +4,11 @@
   colorScheme = "slate"
   enableSearch = true
 
-[params.homepage]
+[homepage]
   layout = "profile" # valid options: page, profile, custom
   showRecent = true
 
-[params.article]
+[article]
   showDate = true
   dateFormat = "2 January 2006"
   showAuthor = true
@@ -23,5 +23,5 @@
   showWordCount = true
   showTaxonomies = true
 
-[params.list]
+[list]
   showTableOfContents = true
