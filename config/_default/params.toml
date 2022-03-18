@@ -1,0 +1,27 @@
+[params]
+  defaultAppearance = "dark"
+  showAppearanceSwitcher = true
+  colorScheme = "slate"
+  enableSearch = true
+
+[params.homepage]
+  layout = "profile" # valid options: page, profile, custom
+  showRecent = true
+
+[params.article]
+  showDate = true
+  dateFormat = "2 January 2006"
+  showAuthor = true
+  showBreadcrumbs = false
+  showDraftLabel = true
+  showEdit = true
+  editURL = "https://github.com/wizardbyron/wizardbyron.github.io/tree/main/content"
+  editAppendPath = true
+  showHeadingAnchors = true
+  showPagination = true
+  showReadingTime = true
+  showWordCount = true
+  showTaxonomies = true
+
+[params.list]
+  showTableOfContents = true

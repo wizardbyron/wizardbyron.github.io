@@ -1,0 +1,23 @@
+# config/_default/config.toml
+defaultContentLanguage = 'zh'
+enableRobotsTXT = true
+paginate = 10
+summaryLength = 0
+
+baseURL = 'https://wwww.guyu.me/'
+title = '顾宇的博客'
+theme = "congo"
+
+hasCJKLanguage = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[author]
+  name = "顾宇"
+  image = "/img/author.jpg"
+  bio = "Stand Alone CompleX"
+  links = [
+    { linkedin = "https://linkedin.com/in/wizardbyron" },
+    { github = "https://github.com/wizardbyron" }
+  ]

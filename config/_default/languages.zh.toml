@@ -1,0 +1,12 @@
+
+# config/_default/languagues.zh.toml
+
+languageCode = "zh"
+languageName = "Chinese-Simplified"
+displayName = "ZH"
+htmlCode = "zh"
+weight = 1
+rtl = false
+
+# Language-specific parameters go here
+

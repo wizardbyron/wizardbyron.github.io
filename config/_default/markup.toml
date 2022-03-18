@@ -1,0 +1,6 @@
+# config/_default/markup.toml
+
+[tableOfContents]
+  startLevel = 2
+  endLevel = 4
+
