@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://wwww.guyu.me/sitemap.xml
