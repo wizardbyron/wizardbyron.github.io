@@ -67,7 +67,7 @@ Netflix就是这样一个例子，Netflix是全球十大视频网站中唯一的
 
 在 Martin Fowler 的博客上，Rouan Wilsenach则作为一个观察者进一步从外部特征上描述了[DevOps文化](https://martinfowler.com/bliki/DevOpsCulture.html)。他认为DevOps文化的主要特征是"增加了开发和运维的合作"，为了支持这种合作的发生，需要在团队内部的文化和企业组织的文化上进行两方面的调整。如下图所示：
 
-![DevOps 文化](https://martinfowler.com/bliki/images/devOpsCulture/devops_culture.png)
+![DevOps 文化](https://martinfowler.com/bliki/images/devOpsCulture/devops_culture.png default)
 
 ### 责任共担（Shared Responsibility）
 

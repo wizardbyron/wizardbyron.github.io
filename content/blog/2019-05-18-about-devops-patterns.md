@@ -6,7 +6,7 @@ tags:
 
 2018年的5月，DevOps 实践手册作者"四人帮"之一的 John Willis 来到了北京，在 DevOps 国际峰会上做了一场名为"[DevOps：Almost 10 Years - What A Strange Long Trip It's Been](https://www.slideshare.net/botchagalupe/devops-a-long-strange-trip-its-been)"的演讲。除了这个演讲的 PPT 只有一张很长的图片以外，坐在台下的我对他在这篇演讲中 DevOps 的定义有了共鸣。在这次演讲中，他将 DevOps 定义如下：
 
-![John Willis 演讲 PPT 的一部分](/img/blog/20190518/devops-def.png)
+![John Willis 演讲 PPT 的一部分](/img/blog/20190518/devops-def.png default)
 
 翻译过来就是"DevOps 是一组实践和模式，用来将人力资本转化为高效能的组织资本" 。
 

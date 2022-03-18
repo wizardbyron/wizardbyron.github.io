@@ -21,7 +21,7 @@ Serverless 架构最早可以追溯到 Ken Fromm 发表的文章《[Why The Futu
 
 AWS Lambda 的编程模型如下所示：
 
-![lambda-programming-model](/img/blog/20170921/lambda-programming-model.png)
+![lambda-programming-model](/img/blog/20170921/lambda-programming-model.png default)
 
 AWS Lambda 运行在一个虚拟的容器里，但你无法配置这个容器。此外，这个虚拟的容器有一些[资源限制]，主要限制如下：
 
@@ -56,7 +56,7 @@ Amazon API Gateway 是一种完全托管的服务，可以帮助开发者轻松�
 
 Amazon API Gateway 可以根据不同的 Restful API 访问点将请求的数据传递给不同的资源进行处理。一般的 AWS API 架构如下所示：
 
-![building-serverless-backends-with-aws-lambda-and-amazon-api](/img/blog/20170921/building-serverless-backends-with-aws-lambda-and-amazon-api.png)
+![building-serverless-backends-with-aws-lambda-and-amazon-api](/img/blog/20170921/building-serverless-backends-with-aws-lambda-and-amazon-api.png default)
 
 1. 当请求通过域名访问到应用的时候，应用会将 HTTP 请求转发给 CDN (CloudFornt)。
 2. CloudFront 会根据转发规则把对应的 API 请求转发到 API Gateway 上。
@@ -75,7 +75,7 @@ Digital 部门负责该电信运营商所有的互联网和移动设备应用开
 
 这套应用部署在 AWS 上，并且通过网关和内部业务 BOSS （Business Operating Support System） 系统隔离。内部业务系统采用 SOAP 对外暴露服务，并由另外一个部门负责。因此，云上的应用所做的业务是给用户展现一个使用友好的界面，并通过数据的转化和内部 BOSS 系统进行交互。系统架构如下图所示：
 
-![MonolithicInAWS](/img/blog/20170921/MonolithicInAWS.jpg)
+![MonolithicInAWS](/img/blog/20170921/MonolithicInAWS.jpg default)
 
 ### 应用的交互流程如下
 
@@ -130,7 +130,7 @@ Digital 部门负责该电信运营商所有的互联网和移动设备应用开
 
 原先的单体应用对我们来说就是一个焦油坑，因此我们要停止在上面继续工作。所以，我们拆分策略模式如下所示：
 
-![拆分策略](/img/blog/20170921/Richardson-microservices-part7-2-1024x865.png)
+![拆分策略](/img/blog/20170921/Richardson-microservices-part7-2-1024x865.png default)
 
 在我们的架构里，实现新的需求就要变动老的应用。我们的想法是：
 
@@ -221,7 +221,7 @@ Digital 部门负责该电信运营商所有的互联网和移动设备应用开
 
 经过6个人两个月的开发（原计划8个人3个月），我们的 Serverless 微服务最终落地了。当然这中间有 60% 的时间是在探索全新的技术栈。最后的架构如下图所示：
 
-![ServerlessInAWS](/img/blog/20170921/ServerlessInAWS.jpg)
+![ServerlessInAWS](/img/blog/20170921/ServerlessInAWS.jpg default)
 
 在上图中，请求仍然是先到 CDN （CloudFront），然后：
 

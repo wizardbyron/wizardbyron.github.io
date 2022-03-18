@@ -97,7 +97,7 @@ Windows Server 因为没有 Window 了，那还叫 Windows 吗？所以，没有
 
 下面是 Docker 相关条目的发展历程一览图。实线为同一条目变动，虚线为相关不同条目变动：
 
-![容器技术相关条目](/img/blog/20190721/techradar-docker.png)
+![容器技术相关条目](/img/blog/20190721/techradar-docker.png default)
 
 相关条目：[容器安全扫描](https://www.thoughtworks.com/radar/techniques/container-security-scanning)，[Docker](https://www.thoughtworks.com/radar/platforms/docker)，[用 TDD 开发容器](https://www.thoughtworks.com/radar/techniques/tdd-ing-containers)，[Rancher](https://www.thoughtworks.com/radar/platforms/rancher)，[Kubernetes](https://www.thoughtworks.com/radar/platforms/kubernetes)，[Mesosphere DC/OS](https://www.thoughtworks.com/radar/platforms/mesosphere-dcos)，[Apache Mesos](https://www.thoughtworks.com/radar/platforms/apache-mesos)，[Prometheus](https://www.thoughtworks.com/radar/tools/prometheus)、[Istio](https://www.thoughtworks.com/radar/platforms/istio)、[Helm](https://www.thoughtworks.com/radar/tools/helm)、[Jaeger](https://www.thoughtworks.com/radar/tools/jaeger)、[OpenTracing](https://www.thoughtworks.com/radar/platforms/opentracing)，[Rook](https://www.thoughtworks.com/radar/platforms/rook)
 
@@ -231,6 +231,6 @@ Serverless 的架构把应用程序的理念推向了一个新的极致。以前
 
 下面是微服务相关条目的发展历程一览图。实线为同一条目变动，虚线为相关不同条目变动：
 
-![微服务技术相关条目](/img/blog/20190721/techradar-microservices.png)
+![微服务技术相关条目](/img/blog/20190721/techradar-microservices.png default)
 
 相关条目：[演进式架构](https://www.thoughtworks.com/radar/techniques/evolutionary-architecture)，[Nancy](https://www.thoughtworks.com/radar/languages-and-frameworks/nancy)，[Consul](https://www.thoughtworks.com/radar/tools/consul)，[OpenTracing](https://www.thoughtworks.com/radar/platforms/opentracing) ，[Spring Cloud](https://www.thoughtworks.com/radar/languages-and-frameworks/spring-cloud) ，[野心过大的 API 网关](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways)，[边车模式处理端点的安全](https://www.thoughtworks.com/radar/techniques/sidecars-for-endpoint-security)，[服务网格(Service Mesh)](https://www.thoughtworks.com/radar/techniques/service-mesh)，[后端应用即服务(Backend as service)](https://www.thoughtworks.com/radar/platforms/backend-as-a-service)，[AWS Lambda](https://www.thoughtworks.com/radar/platforms/aws-lambda)， [Amazon APIGateway](https://www.thoughtworks.com/radar/platforms/amazon-api-gateway) ，[无服务器应用架构（Serverless Architecture)](https://www.thoughtworks.com/radar/techniques/serverless-architecture)，[KNative](https://www.thoughtworks.com/radar/platforms/knative)，[分层的微服务架构](https://www.thoughtworks.com/radar/techniques/layered-microservices-architecture)，[消费者驱动的契约测试](https://www.thoughtworks.com/radar/techniques/consumer-driven-contract-testing)，[微服务嫉妒](https://www.thoughtworks.com/radar/techniques/microservice-envy)

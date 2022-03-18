@@ -12,7 +12,7 @@ tags:
 
 架构图如下：
 
-![ServerlessInAWS](/img/blog/20180201/ServerlessInAWS.jpg)
+![ServerlessInAWS](/img/blog/20180201/ServerlessInAWS.jpg default)
 
 在这个架构中，我们采用了前后端分离的技术。我们把 HTML，JS， CSS 等静态内容部署在 S3 上，并通过 CloudFront 作为 CDN 构成了整个架构的前端部分。我们把 Amazon API Gateway 作为后端的整体接口连接后端的各种风格的微服务，无论是运行在 Lambda 上的函数，还是运行在 EC2 上的 Java 微服务，他们整体构成了这个应用的后端部分。
 
@@ -24,7 +24,7 @@ tags:
 
 由于我们的架构是前后端分离的，因此我们为前端和后端分别构造了两条流水线，使得前后端开发可以独立。如下图所示：
 
-![full-pipeline](/img/blog/20180201/full-pipeline.png)
+![full-pipeline](/img/blog/20180201/full-pipeline.png default)
 
 在这种情况下，前端团队和后端团队是两个不同的团队，可以独立开发和部署，但在发布的时候则有些不同。由于用户是最后感知功能变化的。因此，为了避免界面报错找不到接口，在新增功能的场景下，后端先发布，前端后发布。在删除功能的场景下，前端先发布，后端后发布。
 
@@ -34,7 +34,7 @@ tags:
 
 前端持续交付流水线如下所示：
 
-![frontend-pipeline](/img/blog/20180201/frontend-pipeline.png)
+![frontend-pipeline](/img/blog/20180201/frontend-pipeline.png default)
 
 前端流水线的各步骤过程如下：
 
@@ -50,7 +50,7 @@ tags:
 
 后端持续交付流水线如下所示：
 
-![frontend-pipeline](/img/blog/20180201/backend-pipeline.png)
+![frontend-pipeline](/img/blog/20180201/backend-pipeline.png default)
 
 后端流水线的各步骤过程如下：
 
@@ -65,7 +65,7 @@ tags:
 
 部署的效果如下所示：
 
-![lambda-deployment](/img/blog/20180201/lambda-deployment.png)
+![lambda-deployment](/img/blog/20180201/lambda-deployment.png default)
 
 ## 无服务器微服务的持续交付新挑战
 
@@ -129,7 +129,7 @@ End-2-End （UI）的测试代码占30%左右，占用了开发人员 30% 的时
 
 根据微服务的定义，AWS API Gateway 和  Lambda 的组合确实满足 微服务的特征，这看起来很美好。就像下图一样：
 
-![faas](/img/blog/20180201/faas.png)
+![faas](/img/blog/20180201/faas.png default)
 
 但当Lambda 函数多了，管理众多的函数的发布就成为了很高的一件事。而且， 可能会变成[” NanoService 反模式“](https://www.infoq.com/news/2014/05/nano-services)
 
