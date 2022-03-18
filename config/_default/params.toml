@@ -33,7 +33,9 @@ showScrollToTop = true
   showReadingTime = true
   showWordCount = true
   showTaxonomies = true
+  showTableOfContents = true
 
 [list]
   showTableOfContents = true
+  showBreadcrumbs = true
 
