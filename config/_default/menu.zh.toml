@@ -9,7 +9,7 @@
   weight = 20
 
 [[main]]
-  name = "标签分类"
+  name = "文章分类"
   pageRef = "tags"
   weight = 30
 

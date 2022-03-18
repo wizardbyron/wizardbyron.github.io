@@ -11,13 +11,3 @@ hasCJKLanguage = true
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
-
-[author]
-  name = "顾宇"
-  image = "/img/author.jpg"
-  headline = "从“知道”到“做到”"
-  bio = "Stand Alone CompleX"
-  links = [
-    { linkedin = "https://linkedin.com/in/wizardbyron" },
-    { github = "https://github.com/wizardbyron" }
-  ]

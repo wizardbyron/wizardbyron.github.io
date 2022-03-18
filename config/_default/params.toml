@@ -1,12 +1,23 @@
-[params]
-  defaultAppearance = "dark"
-  showAppearanceSwitcher = true
-  colorScheme = "slate"
-  enableSearch = true
+defaultAppearance = "dark"
+showAppearanceSwitcher = true
+colorScheme = "slate"
+enableSearch = true
+enableCodeCopy = true
+showScrollToTop = true
 
 [homepage]
   layout = "profile" # valid options: page, profile, custom
   showRecent = true
+
+[author]
+  name = "顾宇"
+  image = "/img/author.jpg"
+  headline = ""
+  bio = "Stand Alone CompleX"
+  links = [
+    { linkedin = "https://linkedin.com/in/wizardbyron" },
+    { github = "https://github.com/wizardbyron" }
+  ]
 
 [article]
   showDate = true
@@ -25,3 +36,4 @@
 
 [list]
   showTableOfContents = true
+

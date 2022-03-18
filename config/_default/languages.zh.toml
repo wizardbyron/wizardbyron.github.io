@@ -9,4 +9,12 @@ weight = 1
 rtl = false
 
 # Language-specific parameters go here
-
+[author]
+  name = "顾宇"
+  image = "/img/author.jpg"
+  headline = ""
+  bio = "Stand Alone CompleX"
+  links = [
+    { linkedin = "https://linkedin.com/in/wizardbyron" },
+    { github = "https://github.com/wizardbyron" }
+  ]
