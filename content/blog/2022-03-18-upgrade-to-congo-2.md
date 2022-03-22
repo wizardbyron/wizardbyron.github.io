@@ -1,9 +1,9 @@
 ---
-title: "博客主题升级到 Congo 2"
+title: "博客主题升级到 Congo 2.0"
 date: 2022-03-18T15:50:35+08:00
 ---
 
-近期，发现我的博客一直使用的博客主题 Congo 升级到了 2 版本。新版本增加了一些新特性，并且和最新的 Hugo 保持一致。具体的升级参考可以参考官方升级说明 <https://jpanther.github.io/congo/docs/version-2/upgrade/#paramstoml>，这里我仅仅将自己的升级过程做一个简单的记录。
+近期，发现我的博客一直使用的博客主题 [Congo](https://jpanther.github.io/congo/docs/w) 升级到了 2.0 版本。新版本增加了一些新特性，并且和最新的 Hugo 保持一致。具体的升级参考可以参考官方升级说明 <https://jpanther.github.io/congo/docs/version-2/upgrade/#paramstoml>，这里我仅仅将自己的升级过程做一个简单的记录。
 
 由于我之前是下载主题并直接安装到 hugo 的 themes 目录里。这样做不利于主题的同步更新，同时代码库也较大。因此，这次升级我采用 submodule 的方式。
 
