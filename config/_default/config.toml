@@ -1,5 +1,5 @@
 # config/_default/config.toml
-baseURL = 'https://wwww.guyu.me/'
+baseURL = 'https://www.guyu.me/'
 title = '顾宇的博客'
 theme = "congo"
 
