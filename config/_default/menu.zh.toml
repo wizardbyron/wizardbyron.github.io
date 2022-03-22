@@ -15,7 +15,7 @@
 
 [[main]]
   name = "实践指南"
-  url = "/guide"
+  url = "/guides"
   weight = 40
 
 [[main]]
