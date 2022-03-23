@@ -1,6 +1,7 @@
-defaultAppearance = "dark"
+defaultAppearance = "light"
+autoSwitchAppearance = true
 showAppearanceSwitcher = true
-colorScheme = "slate"
+colorScheme = "ocean"
 enableSearch = true
 enableCodeCopy = true
 showScrollToTop = true
