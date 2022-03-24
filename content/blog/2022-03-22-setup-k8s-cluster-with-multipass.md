@@ -29,19 +29,22 @@ tags:
 
 ## 命令介绍
 
-`./k8sctl create`: 创建一个新的本地 k8s 集群，默认包含一个控制面和两个工作节点。
-`./k8sctl start`: 启动已停止的本地 k8s 集群上的所有节点。
-`./k8sctl stop`: 停止的本地 k8s 集群上的所有节点。
-`./k8sctl restart`: 重启本地 k8s 集群上的所有节点。
-`./k8sctl destroy [节点名]`: 销毁本地 k8s 集群上的所有节点或指定节点。
-`./k8sctl check`: 检查 k8s 集群上各节点和 Pod 的状态。
-`./k8sctl status`: 检查 k8s 集群上各节点虚拟机工作状态。
-`./k8sctl login`: 登陆控制面进行操作。
+`k8sctl` 是管理集群的工具，它包含如下子命令：
+
+- `./k8sctl create`: 创建一个新的本地 k8s 集群，默认包含一个控制面和两个工作节点。
+- `./k8sctl start`: 启动已停止的本地 k8s 集群上的所有节点。
+- `./k8sctl stop`: 停止的本地 k8s 集群上的所有节点。
+- `./k8sctl restart`: 重启本地 k8s 集群上的所有节点。
+- `./k8sctl destroy [节点名]`: 销毁本地 k8s 集群上的所有节点或指定节点。
+- `./k8sctl check`: 检查 k8s 集群上各节点和 Pod 的状态。
+- `./k8sctl status`: 检查 k8s 集群上各节点虚拟机工作状态。
+- `./k8sctl login`: 登陆控制面进行操作。
 
 ## 项目目录介绍
 
 ```sh
-├── k8sctl 主控制文件
+k8s-multipass
+├── k8sctl # 主控制文件
 ├── scripts # 各服务脚本目录
 │   ├── dns # DNS 服务端和客户端安装和配置脚本
 │   │   ├── client.sh
