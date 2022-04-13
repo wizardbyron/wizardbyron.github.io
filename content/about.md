@@ -7,6 +7,15 @@ date = "2021-12-11"
 
 兴趣爱好广泛，喜欢阅读、写作、电影、制作咖啡、调酒、旅行。
 
+微信公众号: wizardbyron
+
+## 其它渠道
+
+- [简书](https://www.jianshu.com/u/66fea2f123be)
+- [CSDN博客](https://blog.csdn.net/byronm)
+- [腾讯云+社区](https://cloud.tencent.com/developer/column/4781)
+- [InfoQ](https://infoq.cn/u/wizardbyron)
+
 ## 职业经历
 
 |工作起止年月|工作单位|部门|职位|
