@@ -8,7 +8,7 @@ tags:
 
 > 原文：<https://martinfowler.com/bliki/TestDouble.html>
 
-Gerard Meszaros 正在编写一本使用不同 xUnit 框架模式的书。他遇到的一件尴尬的事情是 stub, mock, fake, dummy 的各种名称的定义，以及人们用来替代测试系统的某些部分的其他东西。为了解决这个问题，他提出了自己的词汇表，我认为这个词汇表值得进一步传播。
+Gerard Meszaros 正在编写《[xUnit测试模式](https://book.douban.com/subject/3419784/)》。他遇到的一件尴尬的事情是 stub, mock, fake, dummy 的各种名称的定义，以及人们用来替代测试系统的某些部分的其他东西。为了解决这个问题，他提出了自己的词汇表，我认为这个词汇表值得进一步传播。
 
 他使用的通用术语是测试替身（想想特技替身）。 测试替身是一个通用术语，用于替换生产对象以进行测试的任何情况。 Gerard 列出了多种类型的测试替身：
 
