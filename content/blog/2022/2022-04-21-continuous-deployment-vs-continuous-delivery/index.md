@@ -8,7 +8,7 @@ tags:
 
 > 原文: <https://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/>
 
-Timothy Fitz 关于持续部署的[博客文章](http://timothyfitz.com/2009/02/08/continuous-deployment/)([中文版](https://www.guyu.me/blog/2022/2022-04-13-continuous-deployment/))在我和 Dave 出版《持续交付》一书之前一年多就发表了。 那么为什么我们选择了不同的名字呢？ 实际上有区别还是我们只是心血来潮？
+Timothy Fitz 关于持续部署的[博客文章](http://timothyfitz.com/2009/02/08/continuous-deployment/)([中文版](https://www.guyu.me/blog/2022/2022-04-13-continuous-deployment/))在我和 Dave 出版《持续交付》一书之前一年多就发表了。 为什么我们选择了不同的名字呢？ 是实际上有区别还是我们心血来潮？
 
 我们决定把这本书叫做《持续交付》有几个原因。首先，有一个有点学究的事实是：**部署并不意味着发布**。就像我们在书中说的那样，你可以持续部署到 UAT 环境——这不是什么太大的问题。持续部署特别之处在于每次变更都要通过自动化测试（或者通过可选的 QA 门禁）到生产环境。持续部署是一个发布每个良好构建给用户的实践——更精确的名称可能是“持续发布”。
 
