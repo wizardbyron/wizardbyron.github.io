@@ -5,6 +5,9 @@ tags:
   - 技术债
   - 翻译
 ---
+
+> 原文: <https://insights.sei.cmu.edu/blog/got-technical-debt-track-technical-debt-to-improve-your-development-practices/>
+
 什么是技术债？为什么要识别技术债？它难道不应该被视为缺陷和 Bug 吗？通过严格的方法讨论技术债及其后果是研究人员和软件工程师都感兴趣的领域。如果缺乏经过验证的工具和技术获得可重复的结果，开发人员就会求助于临时实践，最常见的是使用问题跟踪系统（issue tracker）或待办事项管理(backlog-management)实践来跟踪技术债。我们调研了开源项目和政府项目中使用的四个问题跟踪系统里的 1,264 个问题，并确定了 109 个技术债样本。这些研究被记录在论文[Got Technical Debt? Surfacing Elusive Technical Debt in Issue Trackers](https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=453508)里。论问题表明了技术债已经进入问题跟踪系统，并在开发人员的工作讨论中。即使开发人员没有明确将某些记为技术债，也可以使用我们发明的分类方法在这些问题跟踪系统中识别技术债项目。我们使用这些结果来改进技术债的定义以及在问题跟踪系统中明确报告技术债的方法。在本文中，我们描述了这个分类方法以及跟踪债对实践和研究的影响。
 
 ## 识别和分类技术债
