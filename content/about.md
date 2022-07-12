@@ -30,6 +30,8 @@ date = "2021-12-11"
 
 ## 出版
 
+2022 年 - [卓有成效的工程师](https://book.douban.com/subject/35948443/)
+
 2020 年 - [研发质量保障与工程效率](https://book.douban.com/subject/35413388/)
 
 2017 年 - [ThoughtWorks 洞见：微服务文集（二）](https://read.amazon.cn/kp/embed?asin=B076X4NS7F&preview=newtab&linkCode=kpe&ref_=cm_sw_r_kb_dp_rRMMAbY2GMZG8)
