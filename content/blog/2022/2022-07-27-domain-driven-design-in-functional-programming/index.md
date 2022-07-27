@@ -17,7 +17,7 @@ tags:
 
 ## 战略模式 vs 战术模式
 
-![](blg_inline_domain_driven-01.png)
+![战略模式和战术模式](blg_inline_domain_driven-01.png)
 
 领域驱动设计（DDD）分为战略模式和战术模式。 战略模式由限界上下文、通用语言和上下文映射等模式组成； 战术模式由值类型、实体和聚合等模式组成。
 
@@ -27,7 +27,7 @@ tags:
 
 ## 聚合
 
-![](blg_inline_domain_driven-02.png)
+![领域模型](blg_inline_domain_driven-02.png)
 
 聚合背后的想法是强制一致性和不变量（invariants）。聚合是强制执行不变量并充当一致性边界的地方。当更新聚合的一部分时，可能还需要继续更新其他部分以确保其一致性。
 
