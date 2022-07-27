@@ -1,9 +1,11 @@
 ---
-title: 【翻译】函数式编程下的领域驱动设计
+title: 【翻译】函数式编程中的领域驱动设计
 date: 2022-07-27
 tags:
   - DDD
 ---
+
+> 原文:<https://www.thoughtworks.com/insights/blog/architecture/domain-driven-design-in-functional-programming>
 
 领域驱动设计 (DDD) 提供了许多技术和模式来控制软件应用程序中的复杂性——即使这些是用函数式编程语言编写的。 不幸的是，用函数式编程语言实现 DDD 可以参考的资源非常有限。 即使你设法找到了它，它也常常缺乏函数式编程的实质。
 
