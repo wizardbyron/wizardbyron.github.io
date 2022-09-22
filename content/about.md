@@ -29,13 +29,13 @@ title = "关于我"
 
 ## 出版
 
-2022 年 - [卓有成效的工程师](https://book.douban.com/subject/35948443/)
+2022 年 - 《卓有成效的工程师》 - [豆瓣](https://book.douban.com/subject/35948443/)｜[购买链接](https://item.jd.com/13241077.html)
 
-2020 年 - [研发质量保障与工程效率](https://book.douban.com/subject/35413388/)
+2020 年 - 《研发质量保障与工程效率》 - [豆瓣](https://book.douban.com/subject/35413388/)｜[购买链接](https://item.jd.com/12982162.html)
 
-2017 年 - [ThoughtWorks 洞见：微服务文集（二）](https://read.amazon.cn/kp/embed?asin=B076X4NS7F&preview=newtab&linkCode=kpe&ref_=cm_sw_r_kb_dp_rRMMAbY2GMZG8)
+2017 年 - 《ThoughtWorks 洞见：微服务文集（二）》 - [JD 电子书](https://e.jd.com/30379709.html?ebook=1)
 
-2016 年 - [《七周七 Web 框架》](https://book.douban.com/subject/26583236/)
+2016 年 - 《七周七 Web 框架》- [豆瓣](https://book.douban.com/subject/26583236/)｜[购买链接](https://item.jd.com/13069628.html)
 
 ## 演讲和分享
 
@@ -43,7 +43,7 @@ title = "关于我"
 
 |    日期    | 城市 |       活动       | 主题                                 |
 | :--------: | ---- | :--------------: | :----------------------------------- |
-| 2022-08-20 | 深圳 | K+ 全球软件研发行业创新峰会 | 微服务产品的规模化敏捷——当SAFe遇到DDD          |
+| 2022-08-20 | 深圳 | K+ 全球软件研发行业创新峰会 | 微服务产品的规模化敏捷: 当SAFe遇到DDD |
 
 ### 2021 年
 
