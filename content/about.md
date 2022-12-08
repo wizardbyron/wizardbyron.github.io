@@ -43,6 +43,7 @@ title = "关于我"
 
 |    日期    | 城市 |       活动       | 主题                                 |
 | :--------: | ---- | :--------------: | :----------------------------------- |
+| 2022-12-07 | 在线 | DevOps Meetup | [如何让测试更好的助力 DevOps](https://www.bilibili.com/video/BV1r24y1k7BN/) |
 | 2022-11-05 | 在线 | 破马张飞 S10E1 | [一书读懂敏捷测试](https://www.bilibili.com/video/BV1W8411h7tu/)|
 | 2022-08-20 | 深圳 | K+ 全球软件研发行业创新峰会 | 微服务产品的规模化敏捷: 当SAFe遇到DDD |
 
@@ -99,36 +100,38 @@ title = "关于我"
 
 ## 其它平台内容
 
-### B站
+### 哔哩哔哩
 
-[破马张飞 S10E04 一书读懂敏捷测试](https://www.bilibili.com/video/BV1W8411h7tu/)
+- [如何让测试更好的助力 DevOps](https://www.bilibili.com/video/BV1r24y1k7BN/)
+
+- [破马张飞 S10E04 一书读懂敏捷测试](https://www.bilibili.com/video/BV1W8411h7tu/)
 
 ### IT 大咖说
 
-[CloudNative 时代的 DevOps 应该怎么做？](http://www.itdks.com/dakalive/detail/12289)
+- [CloudNative 时代的 DevOps 应该怎么做？](http://www.itdks.com/dakalive/detail/12289)
 
-[大型团队 Jenkins 的构建最佳实践](http://www.itdks.com/dakalive/detail/5450)
+- [大型团队 Jenkins 的构建最佳实践](http://www.itdks.com/dakalive/detail/5450)
 
-[当持续集成服务器成为了安全关键隐患](http://www.itdks.com/dakalive/detail/3659)
+- [当持续集成服务器成为了安全关键隐患](http://www.itdks.com/dakalive/detail/3659)
 
 ### ThoughtWorks 洞见
 
-[从技术雷达看 ​DevOps 的十年 - 容器技术和微服务](https://insights.thoughtworks.cn/container-technology-and-micro-services/)
+- [从技术雷达看 ​DevOps 的十年 - 容器技术和微服务](https://insights.thoughtworks.cn/container-technology-and-micro-services/)
 
-[从技术雷达看 DevOps 的十年 – 基础设施即代码和云计算](https://insights.thoughtworks.cn/infrastructure-as-code-and-cloud-computing/)
+- [从技术雷达看 DevOps 的十年 – 基础设施即代码和云计算](https://insights.thoughtworks.cn/infrastructure-as-code-and-cloud-computing/)
 
-[从技术雷达看 DevOps 的十年 - DevOps 和持续交付](https://insights.thoughtworks.cn/devops-and-continuous-delivery/)
+- [从技术雷达看 DevOps 的十年 - DevOps 和持续交付](https://insights.thoughtworks.cn/devops-and-continuous-delivery/)
 
-[讨论微服务之前，你知道微服务的 4 个定义吗？](https://insights.thoughtworks.cn/four-definitions-of-microservices/)
+- [讨论微服务之前，你知道微服务的 4 个定义吗？](https://insights.thoughtworks.cn/four-definitions-of-microservices/)
 
-[Serverless 的微服务持续交付案例](https://insights.thoughtworks.cn/case-of-serverless-microservices-continuous-delivery/)
+- [Serverless 的微服务持续交付案例](https://insights.thoughtworks.cn/case-of-serverless-microservices-continuous-delivery/)
 
-[Serverless 的微服务架构案例](https://insights.thoughtworks.cn/serverless-microservices-architecture-case/)
+- [Serverless 的微服务架构案例](https://insights.thoughtworks.cn/serverless-microservices-architecture-case/)
 
-[推进微服务落地的 7 个步骤](https://insights.thoughtworks.cn/improve-the-efficiency-of-microservices/)
+- [推进微服务落地的 7 个步骤](https://insights.thoughtworks.cn/improve-the-efficiency-of-microservices/)
 
-[微服务实施常被忽视的 5 个难点](http://insights.thoughtworks.cn/five-problems-of-microservices/)
+- [微服务实施常被忽视的 5 个难点](http://insights.thoughtworks.cn/five-problems-of-microservices/)
 
-[避免 CI 成为安全隐患](http://insights.thoughtworks.cn/to-avoid-ci-become-a-security-risk/)
+- [避免 CI 成为安全隐患](http://insights.thoughtworks.cn/to-avoid-ci-become-a-security-risk/)
 
-[DevOps 技术发展的 9 个趋势](http://insights.thoughtworks.cn/nine-trends-of-devops/)
+- [DevOps 技术发展的 9 个趋势](http://insights.thoughtworks.cn/nine-trends-of-devops/)
