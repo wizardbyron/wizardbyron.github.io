@@ -15,6 +15,5 @@ rtl = false
   headline = ""
   bio = "www.guyu.me"
   links = [
-    { linkedin = "https://linkedin.com/in/wizardbyron" },
     { github = "https://github.com/wizardbyron" }
   ]
