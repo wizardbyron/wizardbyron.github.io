@@ -3,7 +3,7 @@ baseURL = 'https://www.guyu.me/'
 title = '顾宇的博客'
 theme = "congo"
 
-defaultContentLanguage = 'zh'
+defaultContentLanguage = 'zh-cn'
 hasCJKLanguage = true
 
 enableRobotsTXT = true
