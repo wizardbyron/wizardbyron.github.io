@@ -1,10 +1,12 @@
 defaultAppearance = "light"
-autoSwitchAppearance = true
-showAppearanceSwitcher = true
 colorScheme = "ocean"
+autoSwitchAppearance = true
 enableSearch = true
 enableCodeCopy = true
-showScrollToTop = true
+
+[footer]
+  showAppearanceSwitcher = true
+  showScrollToTop = true
 
 
 [homepage]

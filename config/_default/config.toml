@@ -1,7 +1,6 @@
 # config/_default/config.toml
 baseURL = 'https://www.guyu.me/'
 title = '顾宇的博客'
-theme = "congo"
 
 defaultContentLanguage = 'zh-cn'
 hasCJKLanguage = true

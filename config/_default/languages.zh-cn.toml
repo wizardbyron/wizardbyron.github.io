@@ -3,14 +3,18 @@
 
 languageCode = "zh"
 languageName = "Chinese-Simplified"
-displayName = "ZH"
-htmlCode = "zh"
 weight = 1
-rtl = false
+
+[params]
+  displayName = "ZH"
+  htmlCode = "zh"
+  rtl = false
 
 # Language-specific parameters go here
-[author]
+[params.author]
   name = "顾宇"
+
+[author]
   image = "/img/author.jpg"
   headline = ""
   bio = "www.guyu.me"
