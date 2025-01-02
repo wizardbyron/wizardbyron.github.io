@@ -2,7 +2,7 @@
 baseURL = 'https://www.guyu.me/'
 title = '顾宇的博客'
 
-defaultContentLanguage = 'zh-cn'
+defaultContentLanguage = 'zh-Hans'
 hasCJKLanguage = true
 
 enableRobotsTXT = true
