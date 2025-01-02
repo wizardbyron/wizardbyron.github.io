@@ -136,7 +136,7 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 如果你无法模拟足够多的真实用户数据，把以上的工具生成的脚本或配置放到 [flood.io](https://flood.io) 上运行，得到更好的参考报告，如下图所示：
 ![flood.io](floodio.png)
 
-如果你需要度量某些操作的停机时间，你可以在进行负载测试的时候进行操作。也可以使用我写的小工具 [wade](https://github.com/wizardbyron/wade) （Web Application Downtime Estimation）来测试。关于 wade 的故事可以参考 [一怒之下，我写了一个开源流量测试工具](/blog/2018-07-07-why-do-I-write-wade.md)。
+如果你需要度量某些操作的停机时间，你可以在进行负载测试的时候进行操作。也可以使用我写的小工具 [wade](https://github.com/wizardbyron/wade) （Web Application Downtime Estimation）来测试。关于 wade 的故事可以参考 [一怒之下，我写了一个开源流量测试工具](/blog/2018/2018-07-07-why-do-I-write-wade/)。
 
 通过模拟“萨瓦迪卡”的访问数据，我得到了以下数据：
 
