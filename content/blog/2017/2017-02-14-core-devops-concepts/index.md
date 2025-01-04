@@ -76,7 +76,7 @@ changes）**提升单向价值流速度并降低部署风险。
 
 于此同时，Patrick 发现， DevOpsDays 的所有话题都围绕着两条主线：**技术（technologies）**和 **流程管理（process management）**，而这些话题又相互交织在一起形成了四个不同的反馈环，如下图所示。其中蓝色气泡代表技术，黄色气泡代表过程管理：
 
-![DevOps 反馈环](feedback-loop.jpg)
+![DevOps反馈环](feedback-loop.jpg)
 
 ### 开发-测试反馈环（黑色箭头反馈环）
 
