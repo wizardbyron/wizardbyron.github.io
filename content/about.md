@@ -3,11 +3,12 @@ title: "关于我"
 date: 2025-04-25
 ---
 
-你好，我是顾宇。曾经作为 IT 咨询师和软件工程师为各行业客户提供数字化转型咨询服务。并在其中综合应用规模化敏捷（SAFe®）、领域驱动设计（DDD）、微服务架构、DevOps 和云原生技术。并在多年的实践过程中积累了丰富的实践和教学经验。
+你好，我是顾宇，现在热衷于构建 AI 原生的生活方式。曾经作为 IT 咨询师、敏捷教练和软件工程师为各行业客户提供数字化转型咨询服务。并在其中综合应用规模化敏捷（SAFe®）、领域驱动设计（DDD）、微服务架构、DevOps 和云原生技术。并在多年的实践过程中积累了丰富的实践和教学经验。
 
 ## 其他渠道
 
 - 微信公众号: guyu_notes
+- 豆瓣：<https://www.douban.com/personage/36089051/>
 
 ## 职业经历
 
@@ -24,15 +25,11 @@ date: 2025-04-25
 
 ## 出版
 
-2022 年 - [《敏捷测试价值观、方法与实践》](https://item.jd.com/13492069.html)
-
-2022 年 - [《卓有成效的工程师》](https://item.jd.com/13241077.html)
-
-2020 年 - [《研发质量保障与工程效率》](https://item.jd.com/12982162.html)
-
-2017 年 - [《ThoughtWorks 洞见：微服务文集（二）》](https://e.jd.com/30379709.html?ebook=1)
-
-2016 年 - [《七周七 Web 框架》](https://item.jd.com/13069628.html)
+* 2022 年 - [《敏捷测试价值观、方法与实践》](https://book.douban.com/subject/36147650/)
+* 2022 年 - [《卓有成效的工程师》](https://book.douban.com/subject/35948443/)
+* 2020 年 - [《研发质量保障与工程效率》](https://book.douban.com/subject/35413388/)
+* 2017 年 - [《ThoughtWorks 洞见：微服务文集（二）》](https://e.jd.com/30379709.html?ebook=1)
+* 2016 年 - [《七周七 Web 框架》](https://book.douban.com/subject/26583236/)
 
 ## 演讲和分享
 
@@ -118,35 +115,23 @@ date: 2025-04-25
 ### 哔哩哔哩
 
 - [如何让测试更好的助力 DevOps](https://www.bilibili.com/video/BV1r24y1k7BN/)
-
 - [破马张飞 S10E04 一书读懂敏捷测试](https://www.bilibili.com/video/BV1W8411h7tu/)
 
 ### IT 大咖说
 
 - [CloudNative 时代的 DevOps 应该怎么做？](http://www.itdks.com/dakalive/detail/12289)
-
 - [大型团队 Jenkins 的构建最佳实践](http://www.itdks.com/dakalive/detail/5450)
-
 - [当持续集成服务器成为了安全关键隐患](http://www.itdks.com/dakalive/detail/3659)
 
 ### ThoughtWorks 洞见
 
 - [从技术雷达看 ​DevOps 的十年 - 容器技术和微服务](https://insights.thoughtworks.cn/container-technology-and-micro-services/)
-
 - [从技术雷达看 DevOps 的十年 – 基础设施即代码和云计算](https://insights.thoughtworks.cn/infrastructure-as-code-and-cloud-computing/)
-
 - [从技术雷达看 DevOps 的十年 - DevOps 和持续交付](https://insights.thoughtworks.cn/devops-and-continuous-delivery/)
-
 - [讨论微服务之前，你知道微服务的 4 个定义吗？](https://insights.thoughtworks.cn/four-definitions-of-microservices/)
-
 - [Serverless 的微服务持续交付案例](https://insights.thoughtworks.cn/case-of-serverless-microservices-continuous-delivery/)
-
 - [Serverless 的微服务架构案例](https://insights.thoughtworks.cn/serverless-microservices-architecture-case/)
-
 - [推进微服务落地的 7 个步骤](https://insights.thoughtworks.cn/improve-the-efficiency-of-microservices/)
-
 - [微服务实施常被忽视的 5 个难点](http://insights.thoughtworks.cn/five-problems-of-microservices/)
-
 - [避免 CI 成为安全隐患](http://insights.thoughtworks.cn/to-avoid-ci-become-a-security-risk/)
-
 - [DevOps 技术发展的 9 个趋势](http://insights.thoughtworks.cn/nine-trends-of-devops/)
