@@ -4,6 +4,9 @@ autoSwitchAppearance = true
 enableSearch = true
 enableCodeCopy = true
 
+[author]
+  name = "顾宇"
+
 [footer]
   showAppearanceSwitcher = true
   showScrollToTop = true
