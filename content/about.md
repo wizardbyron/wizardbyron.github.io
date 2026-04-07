@@ -1,13 +1,36 @@
 ---
 title: "关于我"
-date: 2026-04-02
+date: 2026-04-07
 ---
 
-我是顾宇，曾经作为软件工程师、研发效能专家、软件架构专家、SAFe® 认证的规模化敏捷顾问（SAFe® 5 Program Consultant）为企业提供企业数字化转型、企业 IT 治理和软件工程服务。并在其中综合应用规模化敏捷（SAFe®）、领域驱动设计（DDD）和云原生技术。在多年的转型咨询和软件全生命周期工程经历中积累了丰富的落地经验。
+我是顾宇，软件工程师、开源爱好者、SAFe® 认证的规模化敏捷顾问（SAFe® 5 Program Consultant）。
 
-目前热衷于探索 AI 原生的生活和工作方式。
+曾作为敏捷教练、研发效能专家、架构专家为企业提供企业数字化转型、企业 IT 治理、敏捷转型、研发效能改进等服务。并在其中综合应用规模化敏捷（SAFe®）、领域驱动设计（DDD）和云原生技术。
 
-## 其他渠道
+目前正在探索 AI 原生的生活方式和工作方式。
+
+我曾就职的企业：
+
+- 希音（SHEIN）
+- 腾讯（Tencent）
+- 埃森哲（Accenture）
+- 斯特沃克（ThoughtWorks）
+
+我曾服务的国内客户：
+
+- 华为
+- 太平洋保险
+- 吉林电力
+- 振坤行（zkh360.com）
+
+我曾服务的海外客户：
+
+- [REA Group](https://www.rea-group.com)
+- [iProperty.com](https://www.iproperty.com.my)
+- [大华银行（UOB）](https://www.uob.com.sg/general/index.page)
+- [联合国儿童基金会（UNICEF）](https://www.unicef.org)
+
+## 其他媒体
 
 - 微信公众号: guyu_notes
 - 豆瓣：<https://www.douban.com/personage/36089051/>
