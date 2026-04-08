@@ -9,16 +9,21 @@
   weight = 20
 
 [[main]]
-  name = "演讲和分享"
-  pageRef = "talks"
-  weight = 30
-
-[[main]]
   name = "博客列表"
   pageRef = "blog"
-  weight = 40
+  weight = 30
 
 [[main]]
   name = "博客标签"
   pageRef = "tags"
+  weight = 40
+
+[[main]]
+  name = "演讲和分享"
+  pageRef = "talks"
   weight = 50
+
+[[main]]
+  name = "Agent Skills"
+  pageRef = "skills"
+  weight = 60
