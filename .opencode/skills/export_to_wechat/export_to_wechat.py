@@ -9,6 +9,7 @@ import sys
 import re
 import argparse
 import subprocess
+import tempfile
 from pathlib import Path
 from datetime import datetime
 
@@ -20,6 +21,166 @@ except ImportError:
     HAS_MARKDOWN = False
 
 TEMPLATE_DIR = Path(__file__).parent
+
+
+def copy_html_as_rtf_to_clipboard(html_content):
+    """将 HTML 内容复制到剪贴板（微信编辑器粘贴方式）"""
+    # 生成带样式的 HTML
+    styled_html = f'''<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 16px; line-height: 1.8; padding: 20px; max-width: 100%; word-wrap: break-word;">
+{html_content}
+</div>'''
+    
+    try:
+        # 使用 pbcopy 复制
+        process = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
+        process.communicate(input=styled_html.encode('utf-8'))
+        return True
+    except Exception as e:
+        print(f"⚠️ 复制失败: {e}")
+        return False
+
+
+def generate_rtf_from_html(html_content):
+    """将 HTML 转换为 RTF 格式"""
+    # 简单的 RTF 生成器
+    rtf_lines = []
+    rtf_lines.append(r'{\rtf1\ansi\deff0')
+    rtf_lines.append(r'{\fonttbl{\f0 Helvetica;}}')
+    rtf_lines.append(r'\f0\fs24')
+    
+    lines = html_content.split('\n')
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            rtf_lines.append(r'\par')
+            continue
+        
+        # 处理标签
+        if line.startswith('<h1'):
+            content = extract_tag_content(line, 'h1')
+            rtf_lines.append(r'\fs36\b ' + escape_rtf(content) + r'\b0\par')
+        elif line.startswith('<h2'):
+            content = extract_tag_content(line, 'h2')
+            rtf_lines.append(r'\fs28\b ' + escape_rtf(content) + r'\b0\par')
+        elif line.startswith('<h3'):
+            content = extract_tag_content(line, 'h3')
+            rtf_lines.append(r'\fs24\b ' + escape_rtf(content) + r'\b0\par')
+        elif line.startswith('<p>'):
+            content = extract_tag_content(line, 'p')
+            content = process_inline_tags(content)
+            rtf_lines.append(escape_rtf(content) + r'\par')
+        elif line.startswith('<li>'):
+            content = extract_tag_content(line, 'li')
+            content = process_inline_tags(content)
+            rtf_lines.append(r'\bullet ' + escape_rtf(content) + r'\par')
+        elif line.startswith('<ol'):
+            continue  # 列表开始
+        elif line.startswith('</ol'):
+            continue  # 列表结束
+        elif line.startswith('<pre>'):
+            content = extract_tag_content(line, 'pre')
+            rtf_lines.append(r'{\f1\fs20 ' + escape_rtf(content) + r'}\par')
+        else:
+            # 处理剩余的 HTML 标签
+            content = re.sub(r'<[^>]+>', '', line)
+            if content.strip():
+                rtf_lines.append(escape_rtf(content) + r'\par')
+    
+    rtf_lines.append('}')
+    return '\n'.join(rtf_lines)
+
+
+def extract_tag_content(text, tag):
+    """提取 HTML 标签内容"""
+    pattern = f'<{tag}[^>]*>(.*?)</{tag}>'
+    match = re.search(pattern, text, re.DOTALL)
+    return match.group(1) if match else text
+
+
+def process_inline_tags(text):
+    """处理行内标签"""
+    # 移除所有行内标签但保留内容
+    text = re.sub(r'<br\s*/?>', '\n', text)
+    text = re.sub(r'<strong>(.*?)</strong>', r'\1', text)
+    text = re.sub(r'<b>(.*?)</b>', r'\1', text)
+    text = re.sub(r'<em>(.*?)</em>', r'\1', text)
+    text = re.sub(r'<i>(.*?)</i>', r'\1', text)
+    text = re.sub(r'<code>(.*?)</code>', r'\1', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    return text
+
+
+def escape_rtf(text):
+    """转义 RTF 特殊字符"""
+    text = text.replace('\\', '\\\\')
+    text = text.replace('{', '\\{')
+    text = text.replace('}', '\\}')
+    text = text.replace('\n', r'\par ')
+    text = text.replace('&nbsp;', ' ')
+    text = text.replace('&amp;', '&')
+    text = text.replace('&lt;', '<')
+    text = text.replace('&gt;', '>')
+    return text
+
+
+def copy_html_to_clipboard(html_content):
+    """复制 HTML 到剪贴板（微信编辑器粘贴）"""
+    # 使用 pbcopy 复制纯 HTML
+    try:
+        process = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
+        process.communicate(input=html_content.encode('utf-8'))
+        return True
+    except Exception as e:
+        print(f"⚠️ 复制失败: {e}")
+        return False
+
+
+def copy_plain_text_to_clipboard(markdown_text):
+    """复制为纯文本（微信编辑器可接受的格式）"""
+    # 转换 Markdown 到纯文本（保留基本格式）
+    plain_lines = []
+    lines = markdown_text.split('\n')
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            plain_lines.append('')
+            continue
+        
+        # 标题转换
+        if line.startswith('# '):
+            plain_lines.append(line[2:])
+            plain_lines.append('=' * len(line[2:]))
+        elif line.startswith('## '):
+            plain_lines.append(line[3:])
+            plain_lines.append('-' * len(line[3:]))
+        elif line.startswith('### '):
+            plain_lines.append(line[4:])
+        # 列表
+        elif line.startswith('- ') or line.startswith('* '):
+            plain_lines.append('• ' + line[2:])
+        elif re.match(r'^\d+\.\s', line):
+            plain_lines.append(line)
+        # 代码
+        elif line.startswith('```'):
+            continue
+        else:
+            # 移除 Markdown 格式
+            line = re.sub(r'\*\*(.+?)\*\*', r'\1', line)
+            line = re.sub(r'\*(.+?)\*', r'\1', line)
+            line = re.sub(r'`(.+?)`', r'\1', line)
+            plain_lines.append(line)
+    
+    plain_text = '\n'.join(plain_lines)
+    
+    try:
+        process = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
+        process.communicate(input=plain_text.encode('utf-8'))
+        return True
+    except Exception as e:
+        print(f"⚠️ 复制失败: {e}")
+        return False
 
 
 def markdown_to_html(markdown_text):
@@ -330,7 +491,7 @@ def copy_to_clipboard(text):
         return False
 
 
-def convert_blog_to_plain_html(blog_path, copy=True):
+def convert_blog_to_plain_html(blog_path, copy=True, mode='html'):
     """转换博客为纯 HTML（不含样式，用于直接粘贴到微信）"""
     
     if not os.path.exists(blog_path):
@@ -349,11 +510,45 @@ def convert_blog_to_plain_html(blog_path, copy=True):
 {html_content}'''
     
     if copy:
-        if copy_to_clipboard(plain_html):
-            print("✅ 内容已复制到剪贴板")
-            print("   可以直接粘贴到微信公众号编辑器")
+        if mode == 'html':
+            if copy_to_clipboard(plain_html):
+                print("✅ HTML 内容已复制到剪贴板")
+                print("   微信编辑器：使用 Ctrl+V 粘贴，或在代码模式下粘贴")
+        elif mode == 'rtf':
+            if copy_html_as_rtf_to_clipboard(plain_html):
+                print("✅ 富文本内容已复制到剪贴板")
+                print("   微信编辑器：直接 Ctrl+V 粘贴（推荐）")
+        elif mode == 'text':
+            if copy_plain_text_to_clipboard(body):
+                print("✅ 纯文本内容已复制到剪贴板")
+                print("   微信编辑器：粘贴后使用编辑器格式化")
     
     return plain_html
+
+
+def convert_blog_to_rtf(blog_path, copy=True):
+    """转换博客为 RTF 格式（支持富文本粘贴到微信）"""
+    
+    if not os.path.exists(blog_path):
+        print(f"❌ 文件不存在: {blog_path}")
+        return None
+    
+    # 读取博客
+    frontmatter, body = read_blog_file(blog_path)
+    title = frontmatter.get('title', '无标题')
+    
+    # 转换为 HTML
+    html_content = markdown_to_html(body)
+    
+    # 添加标题
+    full_html = f'<h1>{escape_html(title)}</h1>\n{html_content}'
+    
+    if copy:
+        if copy_html_as_rtf_to_clipboard(full_html):
+            print("✅ 富文本内容已复制到剪贴板")
+            print("   可以直接粘贴到微信公众号编辑器（保留格式）")
+    
+    return full_html
 
 
 def interactive_convert():
@@ -397,10 +592,12 @@ def interactive_convert():
     
     print("\n选择输出格式:")
     print("  1. HTML 文件（含样式，可浏览器预览）")
-    print("  2. 纯 HTML（直接粘贴到微信编辑器）")
-    print("  3. 复制到剪贴板（纯 HTML）")
+    print("  2. 纯 HTML（保存到文件）")
+    print("  3. 复制到剪贴板 - HTML（微信代码模式粘贴）")
+    print("  4. 复制到剪贴板 - RTF（微信直接粘贴，保留格式）")
+    print("  5. 复制到剪贴板 - 纯文本")
     
-    format_choice = input("\n请输入选择 (1/2/3) [默认 3]: ").strip() or "3"
+    format_choice = input("\n请输入选择 (1-5) [默认 4]: ").strip() or "4"
     
     if format_choice == "1":
         output_path = blog_path.replace('.md', '_wechat.html')
@@ -413,8 +610,12 @@ def interactive_convert():
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(plain_html)
         print(f"✅ 已保存到: {output_path}")
+    elif format_choice == "3":
+        convert_blog_to_plain_html(blog_path, copy=True, mode='html')
+    elif format_choice == "4":
+        convert_blog_to_plain_html(blog_path, copy=True, mode='rtf')
     else:
-        convert_blog_to_plain_html(blog_path, copy=True)
+        convert_blog_to_plain_html(blog_path, copy=True, mode='text')
 
 
 if __name__ == "__main__":
@@ -423,23 +624,30 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:
-  python3 export_to_wechat.py                          # 交互式转换
-  python3 export_to_wechat.py content/blog/xxx/index.md # 转换指定文件
-  python3 export_to_wechat.py --clipboard file.md       # 复制到剪贴板
-  python3 export_to_wechat.py --preview file.md         # 生成预览 HTML
+  python3 export_to_wechat.py                                    # 交互式转换
+  python3 export_to_wechat.py content/blog/xxx/index.md         # 生成预览 HTML
+  python3 export_to_wechat.py file.md -c                         # 复制 HTML 到剪贴板
+  python3 export_to_wechat.py file.md -r                         # 复制 RTF（富文本）到剪贴板
+  python3 export_to_wechat.py file.md -t                         # 复制纯文本到剪贴板
         """
     )
     parser.add_argument('file', nargs='?', help='博客文件路径')
-    parser.add_argument('--clipboard', '-c', action='store_true', help='复制到剪贴板')
-    parser.add_argument('--preview', '-p', action='store_true', help='生成预览 HTML')
+    parser.add_argument('--clipboard', '-c', action='store_true', help='复制 HTML 到剪贴板（微信代码模式）')
+    parser.add_argument('--rtf', '-r', action='store_true', help='复制 RTF 富文本到剪贴板（微信直接粘贴，推荐）')
+    parser.add_argument('--text', '-t', action='store_true', help='复制纯文本到剪贴板')
+    parser.add_argument('--preview', '-p', action='store_true', help='生成预览 HTML 文件')
     parser.add_argument('--author', '-a', default='', help='作者名')
     parser.add_argument('--source', '-s', default='', help='来源 URL')
     
     args = parser.parse_args()
     
     if args.file:
-        if args.clipboard:
-            convert_blog_to_plain_html(args.file, copy=True)
+        if args.rtf:
+            convert_blog_to_plain_html(args.file, copy=True, mode='rtf')
+        elif args.text:
+            convert_blog_to_plain_html(args.file, copy=True, mode='text')
+        elif args.clipboard:
+            convert_blog_to_plain_html(args.file, copy=True, mode='html')
         elif args.preview:
             convert_blog_to_wechat(args.file, author=args.author, source_url=args.source)
         else:
