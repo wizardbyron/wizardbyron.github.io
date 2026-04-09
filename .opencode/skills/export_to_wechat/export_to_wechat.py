@@ -25,81 +25,164 @@ def markdown_to_html(markdown_text):
     in_code_block = False
     in_list = False
     in_ordered_list = False
+    in_table = False
+    table_rows = []
     
-    for line in lines:
+    def process_table_row(row, is_header=False):
+        """处理表格行"""
+        cells = []
+        # 分割单元格，处理 | | 的情况
+        parts = row.strip().strip('|').split('|')
+        for cell in parts:
+            cell = cell.strip()
+            if cell:  # 跳过空单元格
+                if is_header:
+                    cells.append(f'<th>{process_inline(cell)}</th>')
+                else:
+                    cells.append(f'<td>{process_inline(cell)}</td>')
+        return cells
+    
+    def build_table(rows):
+        """构建表格 HTML"""
+        if not rows:
+            return ''
+        html = ['<table>']
+        # 第一行是表头
+        html.append('<thead><tr>')
+        html.append(''.join(rows[0]))
+        html.append('</tr></thead>')
+        # 其余是数据行
+        if len(rows) > 1:
+            html.append('<tbody>')
+            for row in rows[1:]:
+                html.append('<tr>')
+                html.append(''.join(row))
+                html.append('</tr>')
+            html.append('</tbody>')
+        html.append('</table>')
+        return ''.join(html)
+    
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        
         # 代码块
         if line.strip().startswith('```'):
             if not in_code_block:
+                # 关闭可能打开的列表
+                if in_list:
+                    html_parts.append('</ul>')
+                    in_list = False
+                if in_ordered_list:
+                    html_parts.append('</ol>')
+                    in_ordered_list = False
+                # 关闭可能打开的表格
+                if in_table:
+                    html_parts.append(build_table(table_rows))
+                    table_rows = []
+                    in_table = False
                 html_parts.append('<pre><code>')
                 in_code_block = True
             else:
                 html_parts.append('</code></pre>')
                 in_code_block = False
+            i += 1
             continue
         
         if in_code_block:
             html_parts.append(line.replace('<', '&lt;').replace('>', '&gt;'))
+            i += 1
             continue
+        
+        # 检测表格
+        if line.strip().startswith('|') and '|' in line.strip()[1:]:
+            # 关闭可能打开的列表
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            if in_ordered_list:
+                html_parts.append('</ol>')
+                in_ordered_list = False
+            
+            # 检查是否是分隔行 (|---|---|)
+            if re.match(r'^\|[\s\-:|]+\|$', line.strip()):
+                # 分隔行，跳过但标记表头结束
+                i += 1
+                continue
+            
+            # 添加行到表格
+            in_table = True
+            cells = process_table_row(line, is_header=(len(table_rows) == 0))
+            table_rows.append(cells)
+            i += 1
+            continue
+        
+        # 处理累积的表格
+        if in_table and table_rows:
+            html_parts.append(build_table(table_rows))
+            table_rows = []
+            in_table = False
         
         # 标题
         if line.startswith('# '):
             html_parts.append(f'<h2>{escape_html(line[2:])}</h2>')
-            continue
         elif line.startswith('## '):
             html_parts.append(f'<h3>{escape_html(line[3:])}</h3>')
-            continue
         elif line.startswith('### '):
             html_parts.append(f'<h4>{escape_html(line[4:])}</h4>')
-            continue
-        
         # 无序列表
-        if line.strip().startswith('- ') or line.strip().startswith('* '):
+        elif line.strip().startswith('- ') or line.strip().startswith('* '):
             if not in_list:
                 html_parts.append('<ul>')
                 in_list = True
             content = line.strip()[2:]
             html_parts.append(f'<li>{process_inline(content)}</li>')
-            continue
-        
         # 有序列表
-        if line.strip() and re.match(r'^\d+\.\s', line.strip()):
+        elif line.strip() and re.match(r'^\d+\.\s', line.strip()):
             if not in_ordered_list:
                 html_parts.append('<ol>')
                 in_ordered_list = True
             content = re.sub(r'^\d+\.\s*', '', line.strip())
             html_parts.append(f'<li>{process_inline(content)}</li>')
-            continue
-        
-        # 关闭列表
-        if in_list:
-            html_parts.append('</ul>')
-            in_list = False
-        if in_ordered_list:
-            html_parts.append('</ol>')
-            in_ordered_list = False
-        
         # 引用
-        if line.startswith('>'):
+        elif line.startswith('>'):
             html_parts.append(f'<blockquote>{escape_html(line[1:].strip())}</blockquote>')
-            continue
-        
         # 分隔线
-        if line.strip() in ['---', '***', '___']:
+        elif line.strip() in ['---', '***', '___']:
             html_parts.append('<hr/>')
-            continue
-        
         # 空行
-        if not line.strip():
-            continue
-        
+        elif not line.strip():
+            pass  # 忽略空行
         # 段落
-        html_parts.append(f'<p>{process_inline(line)}</p>')
+        else:
+            html_parts.append(f'<p>{process_inline(line)}</p>')
+        
+        # 关闭列表（如果下一行不是列表项）
+        if in_list or in_ordered_list:
+            next_i = i + 1
+            next_is_list = False
+            if next_i < len(lines):
+                next_line = lines[next_i].strip()
+                if next_line.startswith('- ') or next_line.startswith('* ') or re.match(r'^\d+\.\s', next_line):
+                    next_is_list = True
+            
+            if not next_is_list and (in_list or in_ordered_list):
+                if in_list:
+                    html_parts.append('</ul>')
+                    in_list = False
+                if in_ordered_list:
+                    html_parts.append('</ol>')
+                    in_ordered_list = False
+        
+        i += 1
     
     # 关闭未关闭的标签
     if in_list:
         html_parts.append('</ul>')
     if in_ordered_list:
         html_parts.append('</ol>')
+    if in_table and table_rows:
+        html_parts.append(build_table(table_rows))
     
     return '\n'.join(html_parts)
 
@@ -173,9 +256,10 @@ def generate_preview_html(title, html_content, author="", source_url=""):
         }}
         ul, ol {{ padding-left: 1.5em; margin: 1em 0; }}
         li {{ margin: 0.5em 0; }}
-        table {{ border-collapse: collapse; width: 100%; margin: 1em 0; }}
-        th, td {{ border: 1px solid #ddd; padding: 8px 12px; text-align: left; }}
-        th {{ background-color: #f6f8fa; }}
+        table {{ border-collapse: collapse; width: 100%; margin: 1em 0; overflow-x: auto; display: block; }}
+        th, td {{ border: 1px solid #ddd; padding: 10px 12px; text-align: left; font-size: 14px; }}
+        th {{ background-color: #f6f8fa; font-weight: bold; }}
+        tr:nth-child(even) {{ background-color: #fafafa; }}
         a {{ color: #576b95; }}
         hr {{ border: none; border-top: 1px solid #eee; margin: 2em 0; }}
         .meta {{ text-align: center; color: #999; font-size: 0.9em; margin-bottom: 2em; padding-bottom: 1em; border-bottom: 1px solid #eee; }}
