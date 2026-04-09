@@ -55,8 +55,10 @@ alias.ap=add -p
 
 ## 5. 优化 AI 编程工具
 
-如果安装下列 AI 开发工具，则增加这些配置
+如果安装下列 AI 编程工具，则增加这些配置
 
 ### 1. OpenCode
 
-1. https://github.com/Opencode-DCP/opencode-dynamic-context-pruning
+```sh
+opencode plugin @tarquinen/opencode-dcp@latest --global
+```
