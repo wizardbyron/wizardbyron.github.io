@@ -198,71 +198,163 @@ def escape_html(text):
 
 def process_inline(text):
     """处理行内格式"""
-    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
-    text = re.sub(r'_(.+?)_', r'<em>\1</em>', text)
-    text = re.sub(r'`(.+?)`', r'<code>\1</code>', text)
-    text = re.sub(r'!\[([^\]]*)\]\(([^\)]+)\)', r'<img src="\2" alt="\1" style="max-width:100%;"/>', text)
-    text = re.sub(r'\[([^\]]+)\]\(([^\)]+)\)', r'<a href="\2">\1</a>', text)
+    # 粗体 - 使用微信公众号强调色
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong style="color:#47acaf;font-weight:bold;">\1</strong>', text)
+    # 斜体 - 使用微信公众号强调色
+    text = re.sub(r'\*(.+?)\*', r'<em style="color:#47acaf;font-style:italic;">\1</em>', text)
+    text = re.sub(r'_(.+?)_', r'<em style="color:#47acaf;font-style:italic;">\1</em>', text)
+    # 行内代码
+    text = re.sub(r'`(.+?)`', r'<code style="background-color:#f5f5f5;padding:2px 4px;border-radius:3px;font-family:Consolas,monospace;font-size:0.9em;">\1</code>', text)
+    # 图片
+    text = re.sub(r'!\[([^\]]*)\]\(([^\)]+)\)', r'<img src="\2" alt="\1" style="max-width:100%;height:auto;display:block;margin:1em auto;"/>', text)
+    # 链接
+    text = re.sub(r'\[([^\]]+)\]\(([^\)]+)\)', r'<a href="\2" style="color:#576b95;text-decoration:none;">\1</a>', text)
     return text
 
 
 def generate_preview_html(title, html_content, author="", source_url=""):
-    """生成带完整样式的预览 HTML"""
+    """生成带完整样式的预览 HTML - 仿微信公众号样式"""
     
     wechat_html = f'''<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>{escape_html(title)}</title>
     <style>
         body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size: 16px;
             line-height: 1.8;
             color: #333;
             max-width: 677px;
             margin: 0 auto;
             padding: 20px;
+            background: #fff;
+            -webkit-text-size-adjust: 100% !important;
         }}
-        h1 {{ font-size: 1.5em; text-align: center; margin-bottom: 1em; }}
-        h2 {{ font-size: 1.3em; margin-top: 1.5em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }}
-        h3 {{ font-size: 1.1em; margin-top: 1.2em; }}
-        h4 {{ font-size: 1em; margin-top: 1em; }}
-        p {{ margin: 1em 0; }}
-        img {{ max-width: 100%; height: auto; display: block; margin: 1em auto; }}
+        h1 {{ 
+            font-size: 1.5em; 
+            text-align: center; 
+            margin-bottom: 1em;
+            font-weight: normal;
+        }}
+        h2 {{ 
+            font-size: 1.3em; 
+            margin: 30px 0 15px; 
+            padding-bottom: 8px;
+            border-bottom: 2px solid #595959;
+            color: #595959;
+            font-weight: bold;
+        }}
+        h3 {{ 
+            font-size: 1.1em; 
+            margin: 20px 0 10px;
+            color: #595959;
+            font-weight: bold;
+        }}
+        h4 {{ 
+            font-size: 1em; 
+            margin: 15px 0 8px;
+            color: #595959;
+            font-weight: bold;
+        }}
+        p {{ 
+            color: #595959; 
+            margin: 8px 0;
+            text-align: justify;
+            line-height: 1.8em;
+            font-size: 16px;
+        }}
+        img {{ 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+            margin: 1em auto;
+            border-radius: 4px;
+        }}
         pre {{ 
-            background-color: #f6f8fa; 
+            background-color: #f8f8f8; 
             padding: 16px; 
             overflow-x: auto; 
-            border-radius: 6px;
+            border-radius: 4px;
             font-size: 14px;
-            line-height: 1.45;
+            line-height: 1.5em;
+            margin: 1em 0;
+            border: 1px solid #e0e0e0;
         }}
         code {{
-            background-color: #f6f8fa;
-            padding: 0.2em 0.4em;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
             border-radius: 3px;
-            font-family: "SF Mono", Consolas, Monaco, monospace;
+            font-family: Consolas, Monaco, "Courier New", monospace;
             font-size: 0.9em;
+            color: #c7254e;
         }}
-        pre code {{ background-color: transparent; padding: 0; }}
+        pre code {{ 
+            background-color: transparent; 
+            padding: 0; 
+            border-radius: 0;
+            color: #333;
+        }}
         blockquote {{
             border-left: 4px solid #ddd;
             margin: 1em 0;
-            padding-left: 1em;
+            padding: 8px 16px;
+            background-color: #f9f9f9;
             color: #666;
         }}
-        ul, ol {{ padding-left: 1.5em; margin: 1em 0; }}
-        li {{ margin: 0.5em 0; }}
-        table {{ border-collapse: collapse; width: 100%; margin: 1em 0; overflow-x: auto; display: block; }}
-        th, td {{ border: 1px solid #ddd; padding: 10px 12px; text-align: left; font-size: 14px; }}
-        th {{ background-color: #f6f8fa; font-weight: bold; }}
+        ul, ol {{ 
+            padding-left: 1.5em; 
+            margin: 1em 0;
+            color: #595959;
+        }}
+        li {{ 
+            margin: 0.5em 0;
+            line-height: 1.8em;
+        }}
+        table {{ 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 1em 0; 
+            overflow-x: auto;
+            display: block;
+        }}
+        th, td {{ 
+            border: 1px solid #ddd; 
+            padding: 10px 12px; 
+            text-align: left; 
+            font-size: 14px;
+            color: #595959;
+        }}
+        th {{ 
+            background-color: #f8f8f8; 
+            font-weight: bold;
+        }}
         tr:nth-child(even) {{ background-color: #fafafa; }}
-        a {{ color: #576b95; }}
-        hr {{ border: none; border-top: 1px solid #eee; margin: 2em 0; }}
-        .meta {{ text-align: center; color: #999; font-size: 0.9em; margin-bottom: 2em; padding-bottom: 1em; border-bottom: 1px solid #eee; }}
+        a {{ 
+            color: #576b95;
+            text-decoration: none;
+        }}
+        a:hover {{ text-decoration: underline; }}
+        hr {{ 
+            border: none; 
+            border-top: 1px solid #eee; 
+            margin: 2em 0;
+        }}
+        .meta {{ 
+            text-align: center; 
+            color: #999; 
+            font-size: 0.9em; 
+            margin-bottom: 2em; 
+            padding-bottom: 1em; 
+            border-bottom: 1px solid #eee;
+        }}
+        .section-separator {{
+            text-align: center;
+            color: #ccc;
+            margin: 2em 0;
+        }}
     </style>
 </head>
 <body>
@@ -273,11 +365,11 @@ def generate_preview_html(title, html_content, author="", source_url=""):
     </div>
     {html_content}
     <hr/>
-    <p style="text-align:center;color:#999;font-size:12px;">═══════════════════════════════</p>
-    <p style="text-align:center;color:#999;font-size:12px;">📋 使用说明</p>
-    <p style="text-align:center;color:#999;font-size:12px;">1. 选中上方所有内容 (Cmd+A)</p>
-    <p style="text-align:center;color:#999;font-size:12px;">2. 复制 (Cmd+C)</p>
-    <p style="text-align:center;color:#999;font-size:12px;">3. 粘贴到微信公众号编辑器 (Cmd+V)</p>
+    <p style="text-align:center;color:#ccc;font-size:12px;">═══════════════════════════════</p>
+    <p style="text-align:center;color:#999;font-size:14px;">📋 使用说明</p>
+    <p style="text-align:center;color:#595959;font-size:13px;">1. 选中上方所有内容 (Cmd+A / Ctrl+A)</p>
+    <p style="text-align:center;color:#595959;font-size:13px;">2. 复制 (Cmd+C / Ctrl+C)</p>
+    <p style="text-align:center;color:#595959;font-size:13px;">3. 打开微信公众号后台，粘贴 (Cmd+V / Ctrl+V)</p>
 </body>
 </html>'''
     
