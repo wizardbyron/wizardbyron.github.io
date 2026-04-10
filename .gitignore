@@ -13,3 +13,4 @@
 .DS_Store
 resources/
 public/
+*_wechat_preview.html
