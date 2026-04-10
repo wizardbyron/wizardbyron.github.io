@@ -94,3 +94,33 @@ tags:
 4. 创建新内容时参考 `archetypes/default.md` 中的默认模板
 5. 这是个人博客 - 保持专业但有个性的语调
 6. **禁止自动推送到远程** - 所有 git 操作仅限本地，push 需用户明确授权
+
+## 技能调用说明
+
+本项目已配置以下 opencode 技能，可通过 `skill` 工具调用：
+
+### 可用技能
+
+1. **import_from_notes** - 从苹果备忘录导入内容到博客
+2. **export_to_wechat** - 将博客文章导出为微信公众号格式
+
+### 调用方式
+
+```bash
+# 使用 skill 工具调用
+skill {"name": "import_from_notes"}
+skill {"name": "export_to_wechat"}
+
+# 或直接运行 Python 脚本
+python3 .opencode/skills/import_from_notes/import_from_notes.py
+python3 .opencode/skills/export_to_wechat/export_to_wechat.py
+```
+
+### 技能配置
+
+技能配置文件：`.opencode/skills.json`
+技能入口脚本：`.opencode/skills/skill_runner.py`
+
+各技能详细使用说明见：
+- `.opencode/skills/import_from_notes/SKILL.md`
+- `.opencode/skills/export_to_wechat/SKILL.md`

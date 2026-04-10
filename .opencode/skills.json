@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "import_from_notes",
+      "description": "从苹果备忘录导入内容到博客",
+      "entry": ".opencode/skills/skill_runner.py",
+      "type": "python",
+      "args": {
+        "list": {
+          "description": "列出备忘录",
+          "flag": "--list"
+        },
+        "import": {
+          "description": "导入指定序号的备忘录",
+          "flag": "--import"
+        }
+      }
+    },
+    {
+      "name": "export_to_wechat",
+      "description": "将博客文章导出为微信公众号格式",
+      "entry": ".opencode/skills/skill_runner.py",
+      "type": "python",
+      "args": {
+        "file": {
+          "description": "指定要导出的文件路径"
+        },
+        "no_open": {
+          "description": "不自动打开浏览器",
+          "flag": "--no-open"
+        }
+      }
+    }
+  ]
+}

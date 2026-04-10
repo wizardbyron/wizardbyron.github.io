@@ -487,6 +487,23 @@ def interactive_convert():
     convert_blog_to_wechat(blog_path)
 
 
+def skill_handler(args=None):
+    """技能调用入口"""
+    if args:
+        file_path = args.get('file')
+        if file_path:
+            convert_blog_to_wechat(
+                file_path,
+                author=args.get('author', ''),
+                source_url=args.get('source', ''),
+                auto_open=not args.get('no_open', False)
+            )
+        else:
+            interactive_convert()
+    else:
+        interactive_convert()
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="将 Markdown 博客转换为微信公众号可用的格式",

@@ -137,6 +137,23 @@ def get_note_content(note_index):
     return title, body, None
 
 
+def merge_consecutive_headings(text, tag):
+    """合并连续的同级别 HTML 标题为一个（Apple Notes 会把标题拆成多个标签）"""
+    pattern = r'(<{tag}[^>]*>.*?</{tag}>\s*)+'.format(tag=tag)
+    
+    def replacer(match):
+        chunk = match.group(0)
+        inner_pattern = r'<{tag}[^>]*>(.*?)</{tag}>'.format(tag=tag)
+        parts = re.findall(inner_pattern, chunk, flags=re.IGNORECASE | re.DOTALL)
+        merged = ' '.join(strip_basic_tags(p) for p in parts if strip_basic_tags(p).strip())
+        if merged.strip():
+            return '<{tag}>{merged}</{tag}>'.format(tag=tag, merged=merged)
+        return ''
+    
+    text = re.sub(pattern, replacer, text, flags=re.IGNORECASE | re.DOTALL)
+    return text
+
+
 def html_to_markdown(text):
     """将 HTML 转换为 Markdown"""
     if not text:
@@ -145,27 +162,25 @@ def html_to_markdown(text):
     if '<' not in text or '>' not in text:
         return text
     
+    # 合并连续的同级别标题（Apple Notes 特有问题）
+    text = merge_consecutive_headings(text, 'h1')
+    text = merge_consecutive_headings(text, 'h2')
+    
     # 清理 Notes 特有标签
     text = re.sub(r'</?font[^>]*>', '', text, flags=re.IGNORECASE)
     text = re.sub(r'</?span[^>]*>', '', text, flags=re.IGNORECASE)
     text = re.sub(r'</?div[^>]*>', '\n', text, flags=re.IGNORECASE)
     text = re.sub(r'<br\s*/?>', '\n', text, flags=re.IGNORECASE)
     
-    # 处理 h1 标题
-    h1_pattern = r'<h1[^>]*>(.*?)</h1>'
-    h1_matches = re.findall(h1_pattern, text, flags=re.IGNORECASE | re.DOTALL)
-    if h1_matches:
-        title_parts = [strip_basic_tags(m) for m in h1_matches if strip_basic_tags(m).strip()]
-        if title_parts:
-            text = re.sub(h1_pattern, '', text, flags=re.IGNORECASE | re.DOTALL)
-            text = text.strip()
+    # 处理 h1 标题（移除，因为 frontmatter 已包含标题）
+    text = re.sub(r'<h1[^>]*>.*?</h1>', '', text, flags=re.IGNORECASE | re.DOTALL)
     
     # 处理 h2 标题
     def convert_h2(match):
         content = match.group(1)
         content = strip_basic_tags(content)
         if content and content.strip():
-            return f'\n## {content}\n'
+            return f'\n\n## {content}\n\n'
         return ''
     text = re.sub(r'<h2[^>]*>(.*?)</h2>', convert_h2, text, flags=re.IGNORECASE | re.DOTALL)
     
@@ -193,17 +208,36 @@ def html_to_markdown(text):
         if text == old_text:
             break
     
-    # 清理空白
+    # 清理空白：段落之间保留一个空行，列表项之间不留空行
     lines = text.split('\n')
     result_lines = []
+    prev_was_empty = True
+    
     for line in lines:
-        line = line.strip()
-        if line and not re.match(r'^[\|\-\s:]+$', line):
-            result_lines.append(line)
+        stripped = line.strip()
+        
+        if stripped and re.match(r'^[\|\-\s:]+$', stripped) and not stripped.startswith('- '):
+            continue
+        
+        if stripped:
+            # 列表项紧跟上一个列表项（不留空行）
+            if stripped.startswith('- ') and result_lines and result_lines[-1] == '':
+                prev_is_list = len(result_lines) >= 2 and result_lines[-2].startswith('- ')
+                if prev_is_list:
+                    result_lines.pop()  # 移除列表间的空行
+            
+            result_lines.append(stripped)
+            prev_was_empty = False
+        elif not prev_was_empty:
+            result_lines.append('')
+            prev_was_empty = True
+    
+    while result_lines and result_lines[-1] == '':
+        result_lines.pop()
     
     result = '\n'.join(result_lines)
     
-    # 重新编号列表
+    # 重新编号有序列表
     lines = result.split('\n')
     fixed_lines = []
     in_list = False
@@ -222,19 +256,6 @@ def html_to_markdown(text):
     
     result = '\n'.join(fixed_lines)
     result = re.sub(r'\n{3,}', '\n\n', result)
-    
-    # 移除重复标题行
-    lines = result.split('\n')
-    if len(lines) > 1:
-        first_line = lines[0].strip()
-        cleaned = [lines[0]]
-        seen_title = False
-        for line in lines[1:]:
-            if line.strip() == first_line and not seen_title:
-                seen_title = True
-                continue
-            cleaned.append(line)
-        result = '\n'.join(cleaned)
     
     return result.strip()
 
@@ -271,7 +292,7 @@ def decode_html_entities(text):
     return text
 
 
-def export_note(note_index, output_path=None):
+def export_note(note_index, output_path=None, slug=None):
     """导出单个备忘录"""
     title, body, error = get_note_content(note_index)
     
@@ -292,21 +313,20 @@ tags:
 
 '''
     
-    if not markdown_content.startswith('#'):
-        full_content = frontmatter + '# ' + title + '\n\n' + markdown_content
-    else:
-        full_content = frontmatter + markdown_content
-    
     if not output_path:
-        slug = re.sub(r'[^\w\s-]', '', title.lower())
-        slug = re.sub(r'[-\s]+', '-', slug)
-        output_path = f"content/blog/{export_date}-{slug}/index.md"
+        if slug:
+            safe_slug = re.sub(r'[^\w\s-]', '', slug.lower())
+            safe_slug = re.sub(r'[-\s]+', '-', safe_slug).strip('-')
+        else:
+            safe_slug = re.sub(r'[^\w\s-]', '', title.lower())
+            safe_slug = re.sub(r'[-\s]+', '-', safe_slug).strip('-')
+        output_path = f"content/blog/{export_date}-{safe_slug}/index.md"
     
     output_dir = Path(output_path).parent
     output_dir.mkdir(parents=True, exist_ok=True)
     
     with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(full_content)
+        f.write(frontmatter + markdown_content)
     
     print(f"✅ 已导出: {output_path}")
     return True
@@ -380,6 +400,19 @@ def interactive_export():
             print("❌ 请输入有效数字")
 
 
+def skill_handler(args=None):
+    """技能调用入口"""
+    if args:
+        if args.get('list'):
+            list_notes()
+        elif args.get('import'):
+            export_note(int(args['import']))
+        else:
+            interactive_export()
+    else:
+        interactive_export()
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="从苹果备忘录导入内容到博客",
@@ -393,12 +426,13 @@ if __name__ == "__main__":
     )
     parser.add_argument('--list', '-l', action='store_true', help='列出备忘录')
     parser.add_argument('--import', '-i', dest='note_index', type=int, metavar='N', help='导入第N篇备忘录')
+    parser.add_argument('--slug', '-s', dest='slug', type=str, metavar='SLUG', help='英文目录名（如 ai-restart-life）')
     
     args = parser.parse_args()
     
     if args.list:
         list_notes()
     elif args.note_index:
-        export_note(args.note_index)
+        export_note(args.note_index, slug=args.slug)
     else:
         interactive_export()
