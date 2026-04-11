@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "skills": [
     {
-      "name": "import_from_notes",
+      "name": "import-from-notes",
       "description": "从苹果备忘录导入内容到博客",
       "entry": ".opencode/skills/skill_runner.py",
       "type": "python",
@@ -14,11 +14,15 @@
         "import": {
           "description": "导入指定序号的备忘录",
           "flag": "--import"
+        },
+        "slug": {
+          "description": "英文目录名",
+          "flag": "--slug"
         }
       }
     },
     {
-      "name": "export_to_wechat",
+      "name": "export-to-wechat",
       "description": "将博客文章导出为微信公众号格式",
       "entry": ".opencode/skills/skill_runner.py",
       "type": "python",
@@ -29,6 +33,26 @@
         "no_open": {
           "description": "不自动打开浏览器",
           "flag": "--no-open"
+        }
+      }
+    },
+    {
+      "name": "create-trade-plan",
+      "description": "创建交易计划博客文章",
+      "entry": ".opencode/skills/skill_runner.py",
+      "type": "python",
+      "args": {
+        "title": {
+          "description": "文章标题"
+        },
+        "stock_code": {
+          "description": "股票代码（如 SZ.002163）"
+        },
+        "slug": {
+          "description": "英文目录名"
+        },
+        "date": {
+          "description": "日期 (YYYY-MM-DD)"
         }
       }
     }

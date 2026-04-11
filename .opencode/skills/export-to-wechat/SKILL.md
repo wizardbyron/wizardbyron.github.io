@@ -1,4 +1,7 @@
-# 导出博客到微信公众号
+---
+name: export-to-wechat
+description: 将 Hugo 博客的 Markdown 内容转换为微信公众号可用的 HTML 格式，使用与微信公众号一致的样式，自动在浏览器中打开预览。
+---
 
 ## 功能说明
 
@@ -9,19 +12,19 @@
 ### 交互式选择（推荐）
 
 ```bash
-python3 .opencode/skills/export_to_wechat/export_to_wechat.py
+python3 .opencode/skills/export-to-wechat/export_to_wechat.py
 ```
 
 ### 命令行指定文件
 
 ```bash
-python3 .opencode/skills/export_to_wechat/export_to_wechat.py content/blog/xxx/index.md
+python3 .opencode/skills/export-to-wechat/export_to_wechat.py content/blog/xxx/index.md
 
 # 不自动打开浏览器
-python3 .opencode/skills/export_to_wechat/export_to_wechat.py file.md --no-open
+python3 .opencode/skills/export-to-wechat/export_to_wechat.py file.md --no-open
 
 # 指定作者和来源
-python3 .opencode/skills/export_to_wechat/export_to_wechat.py file.md -a "作者" -s "https://example.com"
+python3 .opencode/skills/export-to-wechat/export_to_wechat.py file.md -a "作者" -s "https://example.com"
 ```
 
 ## 发布步骤

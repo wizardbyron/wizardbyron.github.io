@@ -101,19 +101,22 @@ tags:
 
 ### 可用技能
 
-1. **import_from_notes** - 从苹果备忘录导入内容到博客
-2. **export_to_wechat** - 将博客文章导出为微信公众号格式
+1. **import-from-notes** - 从苹果备忘录导入内容到博客
+2. **export-to-wechat** - 将博客文章导出为微信公众号格式
+3. **create-trade-plan** - 创建交易计划博客文章
 
 ### 调用方式
 
 ```bash
 # 使用 skill 工具调用
-skill {"name": "import_from_notes"}
-skill {"name": "export_to_wechat"}
+skill {"name": "import-from-notes"}
+skill {"name": "export-to-wechat"}
+skill {"name": "create-trade-plan"}
 
 # 或直接运行 Python 脚本
-python3 .opencode/skills/import_from_notes/import_from_notes.py
-python3 .opencode/skills/export_to_wechat/export_to_wechat.py
+python3 .opencode/skills/import-from-notes/import_from_notes.py
+python3 .opencode/skills/export-to-wechat/export_to_wechat.py
+python3 .opencode/skills/create-trade-plan/create_trade_plan.py -t "标题" -c "SZ.002163"
 ```
 
 ### 技能配置
@@ -122,5 +125,6 @@ python3 .opencode/skills/export_to_wechat/export_to_wechat.py
 技能入口脚本：`.opencode/skills/skill_runner.py`
 
 各技能详细使用说明见：
-- `.opencode/skills/import_from_notes/SKILL.md`
-- `.opencode/skills/export_to_wechat/SKILL.md`
+- `.opencode/skills/import-from-notes/SKILL.md`
+- `.opencode/skills/export-to-wechat/SKILL.md`
+- `.opencode/skills/create-trade-plan/SKILL.md`

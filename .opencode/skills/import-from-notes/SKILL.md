@@ -1,4 +1,7 @@
-# 从备忘录导入 (import_from_notes)
+---
+name: import-from-notes
+description: 从苹果备忘录（Notes.app）的「草稿」文件夹导入内容，自动转换为 Hugo 博客格式的 Markdown 文件。支持合并连续标题、列表格式化和英文目录名。
+---
 
 ## 功能说明
 
@@ -15,20 +18,23 @@
 ### 交互式导入（推荐）
 
 ```bash
-python3 .opencode/skills/import_from_notes/import_from_notes.py
+python3 .opencode/skills/import-from-notes/import_from_notes.py
 ```
 
 ### 命令行导入
 
 ```bash
 # 列出备忘录
-python3 .opencode/skills/import_from_notes/import_from_notes.py --list
+python3 .opencode/skills/import-from-notes/import_from_notes.py --list
 
 # 导入第1篇
-python3 .opencode/skills/import_from_notes/import_from_notes.py --import 1
+python3 .opencode/skills/import-from-notes/import_from_notes.py --import 1
+
+# 导入第1篇并指定英文目录名
+python3 .opencode/skills/import-from-notes/import_from_notes.py --import 1 --slug ai-restart-life
 
 # 导入全部
-python3 .opencode/skills/import_from_notes/import_from_notes.py
+python3 .opencode/skills/import-from-notes/import_from_notes.py
 # 输入 'a'
 ```
 
