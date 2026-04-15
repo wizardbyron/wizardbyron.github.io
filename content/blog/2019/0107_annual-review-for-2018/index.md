@@ -13,19 +13,19 @@ tags:
 
 2018 年参加了大大小小的分享共计12场，北京、上海和深圳，平均每月一场，详情见：[https://wizardbyron.github.io/slides/](https://wizardbyron.github.io/slides/)，PPT 都可以免费下载。
 
-发表了 15 万字，共计 24 篇，平均每月1篇5000字左右文章，大部分都在[简书](https://www.jianshu.com/u/66fea2f123be)和 [GitChat](https://gitbook.cn/gitchat/author/58397910a8f7f84532595b98)
+发表了 15 万字，共计 24 篇，平均每月1篇5000字左右文章，大部分都在[简书](https://www.jianshu.com/u/66fea2f123be)和 GitChat（[原平台已下线，此为历史存档]）
 
 自己研发了三个线下课程：[AWS 架构实战工作坊](https://wizardbyron.github.io/workshops/)、持续交付、微服务。从敏捷，到持续交付，到 DevOps，再到微服务。我计划 2019 年丰富这些线下课程。
 
-两个在线课程：[DevOps 落地实战](https://gitbook.cn/gitchat/column/5a79594e74fabe0f179f3e8b)、DevOps 从入门到精通（ThoughtWorks 社区），翻新 DevOps 转型实战课程，增加更细致的案例和动手实践，内容会比以前丰富 5 倍左右。
+两个在线课程：DevOps 落地实战（[原平台已下线，此为历史存档]）、DevOps 从入门到精通（ThoughtWorks 社区），翻新 DevOps 转型实战课程，增加更细致的案例和动手实践，内容会比以前丰富 5 倍左右。
 
 参与编写两个标准：DevOps 标准、微服务标准。都还是征求意见稿，2019年将继续完善。
 
 开发了两个开源软件，2019年要继续完善，0.1.0 Release
 
-[vivian](https://github.com/wizardbyron/vivian)，详见[测试驱动开发 Nginx 配置](/blog/2018-06-12-tdd-in-nginx)
+[vivian](https://github.com/wizardbyron/vivian)，详见[测试驱动开发 Nginx 配置](/blog/2018/0612_tdd-in-nginx)
 
-[wade](https://github.com/wizardbyron/vivian)，详见[一怒之下，我写了一个开源流量测试工具](/blog/2018-07-07-why-do-I-write-wade)
+[wade](https://github.com/wizardbyron/vivian)，详见[一怒之下，我写了一个开源流量测试工具](/blog/2018/0707_why-do-I-write-wade)
 
 ## 其次是一点感想
 

@@ -9,7 +9,7 @@ tags:
  - Kubernetes
 ---
 
-> 本文原文发表于 2019 年 7 月 11 日的 [ThoughtWorks 洞见](https://insights.thoughtworks.cn/container-technology-and-micro-services/)，后经过修改发表到博客上。
+> 本文原文发表于 2019 年 7 月 11 日的 ThoughtWorks 洞见（原站点已下线），后经过修改发表到博客上。
 
 在上一篇文章中，我们讲到了基础设施即代码和云计算给运维领域带来的深远影响。而 DevOps 运动不仅仅改变了运维端，同时也改变了开发端，特别是 Docker 的兴起和微服务架构的流行。在这一篇，我们将通过技术雷达上相关条目的变化来考察 Docker 和微服务的发展。
 

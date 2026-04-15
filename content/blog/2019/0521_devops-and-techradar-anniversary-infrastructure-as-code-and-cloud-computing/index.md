@@ -8,7 +8,7 @@ tags:
  - 技术雷达
 ---
 
-> 本文原文发表于 2019 年 5 月 21 日的 [ThoughtWorks 洞见](https://insights.thoughtworks.cn/infrastructure-as-code-and-cloud-computing/)，后经过修改发表到博客上。
+> 本文原文发表于 2019 年 5 月 21 日的 ThoughtWorks 洞见（原站点已下线），后经过修改发表到博客上。
 
 在上一篇文章中，我们讲到了DevOps 和持续交付的关系。本篇将回顾最先改变运维工作的相关技术 —— 基础设施即代码和云计算，通过技术雷达上相关条目的变动来跟踪其趋势变化。
 

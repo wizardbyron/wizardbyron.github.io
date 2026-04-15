@@ -7,9 +7,9 @@ tags:
  - 持续交付
 ---
 
-> 本文原文发表于 2019 年 4 月 16 日的 [ThoughtWorks 洞见](https://insights.thoughtworks.cn/devops-and-continuous-delivery/)，后经过修改发表到博客上。
+> 本文原文发表于 2019 年 4 月 16 日的 ThoughtWorks 洞见（原站点已下线），后经过修改发表到博客上。
 
-2009 年底，比利时根特举办了第一届 DevOpsDays。ThoughtWorks 的咨询师[Chris-Read](https://blog.chris-read.net/) 作为嘉宾之一，代表 ThoughtWorks 出席了这次活动并带来名为 “[持续集成，流水线和部署](https://www.slideshare.net/ChristopherRead/continuous-integration-build-pipelines-and-continuous-deployment)”的演讲。ThoughtWorks 作为 DevOps 运动最早的见证者和奠基人，并没有意识到这个周末聚会将在接下来 10 年给全球 IT 行业带来的深远影响。
+2009 年底，比利时根特举办了第一届 DevOpsDays。ThoughtWorks 的咨询师[Chris-Read](https://blog.chris-read.net/) 作为嘉宾之一，代表 ThoughtWorks 出席了这次活动并带来名为 “[持续集成，流水线和部署]([原 SlideShare 已下线，此为历史存档]”的演讲。ThoughtWorks 作为 DevOps 运动最早的见证者和奠基人，并没有意识到这个周末聚会将在接下来 10 年给全球 IT 行业带来的深远影响。
 
 1 个月后，ThoughtWorks 发布了第一期的技术雷达。作为一个新兴的名词，DevOps 还没有成熟到让令人瞩目的阶段。然而，即便 DevOps 还没有被纳入技术雷达，但与之相关的早期实践和工具都已出现。在接下来的十年中，DevOps 已经成为每期技术雷达不可或缺的一部分。从这个角度上说，技术雷达就是 DevOps 发展的见证者。
 

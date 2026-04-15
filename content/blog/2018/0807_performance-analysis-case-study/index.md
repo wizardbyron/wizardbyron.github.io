@@ -5,7 +5,7 @@ tags:
 - AWS
 - 云计算
 ---
-本文是我在 gitchat 上的文章[云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）](https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html)的前半部分，本文对原文有所修改和总结。交流实录请[点击这里](https://gitbook.cn/books/5b5d6f054f88ac0f2df54fdd/index.html)。
+本文是我在 gitchat 上的文章云计算生产环境架构性能调优和迁移套路总结（以 AWS 为例）（[原平台已下线，此为历史存档]）的前半部分，本文对原文有所修改和总结。交流实录请点击这里（[原平台已下线，此为历史存档]）。
 
 ## 案例背景
 
@@ -133,10 +133,10 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 
 如果你有 CDN 或者 URL 访问分析数据，可以它来构建你的测试案例。如果什么没有，例如“萨瓦迪卡”这种情况，你就可以使用主页的 URL 来进行测试。常用的工具有 Selenium， Jmeter 和 Gatling。你可以用 Selenium 录制一个用户访问的脚本，来模拟用户访问。你也可以通过 Jmeter 或 Gatling 来增加并发进行负载测试，后者能提供更加有用的信息。
 
-如果你无法模拟足够多的真实用户数据，把以上的工具生成的脚本或配置放到 [flood.io](https://flood.io) 上运行，得到更好的参考报告，如下图所示：
+如果你无法模拟足够多的真实用户数据，把以上的工具生成的脚本或配置放到 flood.io 上运行（该服务已下线，此为历史存档），得到更好的参考报告，如下图所示：
 ![flood.io](floodio.png)
 
-如果你需要度量某些操作的停机时间，你可以在进行负载测试的时候进行操作。也可以使用我写的小工具 [wade](https://github.com/wizardbyron/wade) （Web Application Downtime Estimation）来测试。关于 wade 的故事可以参考 [一怒之下，我写了一个开源流量测试工具](/blog/2018/2018-07-07-why-do-I-write-wade/)。
+如果你需要度量某些操作的停机时间，你可以在进行负载测试的时候进行操作。也可以使用我写的小工具 [wade](https://github.com/wizardbyron/wade) （Web Application Downtime Estimation）来测试。关于 wade 的故事可以参考 [一怒之下，我写了一个开源流量测试工具](/blog/2018/0707_why-do-I-write-wade/)。
 
 通过模拟“萨瓦迪卡”的访问数据，我得到了以下数据：
 
@@ -159,4 +159,4 @@ InnoDB: mmap(3296722944 bytes) failed; errno 12
 6. **结论**：根据数据的计算解答第 2 步 提出的关键问题。
 7. **建议**：根据度量数据得出的下一步优化建议。
 
-至此，我们完成了对生产环境性能的分析。接下来，就要为性能设计架构迁移方案了。请关注下篇《[AWS 上的生产环境架构优化案例](/blog/2018-08-08-architecutre-optimization-case-study)》
+至此，我们完成了对生产环境性能的分析。接下来，就要为性能设计架构迁移方案了。请关注下篇《[AWS 上的生产环境架构优化案例](/blog/2018/0808_architecutre-optimization-case-study)》

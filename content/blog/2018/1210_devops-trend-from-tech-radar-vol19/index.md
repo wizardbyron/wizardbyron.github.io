@@ -19,7 +19,7 @@ tags:
 4. 微服务及其误区
 5. 安全
 
-特别要提出的是，这期技术雷达采纳了 [2018 年的 DevOps 报告](https://cloudplatformonline.com/2018-state-of-devops.html) 中的**四个关键指标(FOUR KEYMETRICS)**:前置时间，部署频率，平均恢复时间(MTTR)和变更失败百分比。而这四个关键指标也是业界度量 DevOps 效果的统一方式。
+特别要提出的是，这期技术雷达采纳了 [2018 年的 DevOps 报告](https://dora.dev/research/2018/dora-report/2018-dora-accelerate-state-of-devops-report.pdf)（[中文版](https://services.google.com/fh/files/misc/state-of-devops-2018.pdf)）中的**四个关键指标(FOUR KEYMETRICS)**:前置时间，部署频率，平均恢复时间(MTTR)和变更失败百分比。而这四个关键指标也是业界度量 DevOps 效果的统一方式。
 
 每个指标都创造了一个良性循环，并使团队专注于持续改进:缩短交付周期，减少浪费的活动，从而使你可以更频繁地部署，进而改进他们的实践和自动化流程。通过更好的实践，自动化和监控可以提高你从故障中恢复的速度，从而降低故障频率。
 
@@ -33,7 +33,7 @@ tags:
 
 ### 和外包团队的 DevOps 合作
 
-而随着 DevOps 应用的加深，会不可避免的碰到组织结构上带来的问题。特别是和外包方的合作，会影响组织的 DevOps 表现。这样的合作往往充满了漫长繁冗且火药味十足的会议和合同谈判，这是 DevOps 运动中不希望看到的但是又无法避免的问题。在 [2018 年的 DevOps 报告](https://cloudplatformonline.com/2018-state-of-devops.html)中看到**外包会带来效能下降**——“低效能团队将整部分职能进行外包的可能性几乎是高效能团队的 4 倍，这些 **外包功能包括测试或运维等等**。”
+而随着 DevOps 应用的加深，会不可避免的碰到组织结构上带来的问题。特别是和外包方的合作，会影响组织的 DevOps 表现。这样的合作往往充满了漫长繁冗且火药味十足的会议和合同谈判，这是 DevOps 运动中不希望看到的但是又无法避免的问题。在 [2018 年的 DevOps 报告](https://dora.dev/research/2018/dora-report/2018-dora-accelerate-state-of-devops-report.pdf)中看到**外包会带来效能下降**——“低效能团队将整部分职能进行外包的可能性几乎是高效能团队的 4 倍，这些 **外包功能包括测试或运维等等**。”
 
 看到这里，千万不要得出“不要用外包的结论”。这里说得是不要“职能的外包”，而“端到端的外包”（End-2-End OutSourcing）则会免除这种顾虑。很多业界一流的 IT 服务企业都提供端到端的 IT 外包服务，你只需要告诉它们你要DevOps，它们会用最有效的方式交付给你。与**供应商一起增量交付(INCREMENTAL DELIVERY WITH COTS (commercial off-the-shelf))** 就是这期技术雷达中提出的和外包商一起进行 DevOps 策略之一。与供应商的做端到端的 DevOps 性质的外包另外一个优点则是这样的供应商适合做“长期合作伙伴”来补充你业务、IT 等多样性的不足，甚至能够帮你培训员工。
 
@@ -41,11 +41,11 @@ tags:
 
 但是，和外包方的合作仍然是在 DevOps 转型过程中不可避免的痛苦，可以采用一些方式减轻这种痛苦。例如这期技术雷达中介绍的**“风险相称的供应商策略(RISK-COMMENSURATE VENDOR STRATEGY) ”**，它鼓励在高度关键系统中维持其供应商的独立性。而那些相对不太重要的业务可以利用供应商提供的成熟解决方案，这可以让企业更容易承受失去该供应商所带来的影响。这不光是说 IT 产品供应商，同样也指的 IT 服务供应商。
 
-[“**边界购买（BOUNDED BUY）**”](https://www.slideshare.net/tgriffo/agile-australia-2017-hypothesisdriven-cots-software-selection-tiago-griffo)就是这样一种实践，在采购产品中即只选择模块化、解耦的，且 只包含于单一业务能力(Business Capability)的限界上下文(Bounded Context)中的厂商产品。应该将这种对 模块化和独立交付能力的要求，加入对供应商选择的验收标准中去。也可以将一小部分业务的端到端维护外包出去，在获得灵活性的同时，又获得高效。
+[“**边界购买（BOUNDED BUY）**”]([原 SlideShare 已下线，此为历史存档])就是这样一种实践，在采购产品中即只选择模块化、解耦的，且 只包含于单一业务能力(Business Capability)的限界上下文(Bounded Context)中的厂商产品。应该将这种对 模块化和独立交付能力的要求，加入对供应商选择的验收标准中去。也可以将一小部分业务的端到端维护外包出去，在获得灵活性的同时，又获得高效。
 
 ### 和 UI 的合作 ——DesignOps
 
-DevOps 的目标就是尽可能的缩短最终用户想法到代码之间的距离，避免传递过程中的信息失真。特别是用户的反馈，于是有了 DesignOps 实践。这个领域的实践和工具也日渐成熟。这期的技术雷达介绍的一整套支持 UI 的开发环境(也称为UI DEV ENVIRONMENTS)专注于用户体验设计人员与开发人员之间的协作，例如 :[Storybook](https://storybook.js.org/) ，[react-styleguidist](https://react-styleguidist.js.org/)，[Compositor](https://compositor.io/) 及 [MDX](https://mdxjs.com/)。这些工具大部分围绕 React 的生态圈产生。既可以在组件库或设计系统的开发过程中单独使用，也可以嵌入到 Web应用项目中使用。
+DevOps 的目标就是尽可能的缩短最终用户想法到代码之间的距离，避免传递过程中的信息失真。特别是用户的反馈，于是有了 DesignOps 实践。这个领域的实践和工具也日渐成熟。这期的技术雷达介绍的一整套支持 UI 的开发环境(也称为UI DEV ENVIRONMENTS)专注于用户体验设计人员与开发人员之间的协作，例如 :[Storybook](https://storybook.js.org/) ，[react-styleguidist](https://react-styleguidist.js.org/)，[MDX](https://mdxjs.com/) 等。这些工具大部分围绕 React 的生态圈产生。既可以在组件库或设计系统的开发过程中单独使用，也可以嵌入到 Web应用项目中使用。
 
 ### 分布式团队的合作
 
@@ -139,6 +139,6 @@ JavaScript 社区曾经有一个从前端到后端“一统天下”的设想。
 
 [https://www.thoughtworks.com/cn/radar/](https://www.thoughtworks.com/cn/radar/)
 
-[https://cloudplatformonline.com/2018-state-of-devops.html](https://cloudplatformonline.com/2018-state-of-devops.html)
+[https://dora.dev/research/2018/dora-report/2018-dora-accelerate-state-of-devops-report.pdf](https://dora.dev/research/2018/dora-report/2018-dora-accelerate-state-of-devops-report.pdf)
 
 [https://puppet.com/resources/whitepaper/state-of-devops-report](https://puppet.com/resources/whitepaper/state-of-devops-report)

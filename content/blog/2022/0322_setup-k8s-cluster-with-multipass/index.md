@@ -6,7 +6,7 @@ tags:
 - 开源
 ---
 
-在 [通过 Vagrant 一键初始化 K8S 集群](/blog/2022-02-08-setup-k8s-cluster-with-vagrant/) 之后，发现 VirtualBox 只支持 X86 芯片，对 Apple M1 不支持。加之 CentOS 的支持也将近尾声。而我在捣鼓 [Provisioner](https://github.com/wizardbyron/provisioners) 脚本的时候总要花大量的时间测试 CentOS 的兼容性，很耗时间。
+在 [通过 Vagrant 一键初始化 K8S 集群](/blog/2022/0208_setup-k8s-cluster-with-vagrant/) 之后，发现 VirtualBox 只支持 X86 芯片，对 Apple M1 不支持。加之 CentOS 的支持也将近尾声。而我在捣鼓 [Provisioner](https://github.com/wizardbyron/provisioners) 脚本的时候总要花大量的时间测试 CentOS 的兼容性，很耗时间。
 
 偶然发现 [Multipass](http://multipass.run) 可以支持在 Apple M1 虚拟 Ubuntu 实例，效果还不错。所以将 Provisioner 的脚本进行了移植，并基于 Multipass 进行了一层封装以管理整个 k8s 集群。所以花了两周的业余时间调整了一下。
 
